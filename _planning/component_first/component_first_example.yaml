@@ -1,0 +1,580 @@
+app:
+  name: "Tucker's Project Portfolio"
+  author: "Tucker"
+  role: "UX Designer"
+  description: "A web based portfolio of ux projects"
+  version: "1.0.0"
+  metadata:
+    project_type: "portfolio"
+    framework: "react"
+    last_updated: "2025-03-27"
+  documentation:
+    design_system: "https://design.system.url"
+    component_library: "https://component.library.url"
+    api_docs: "https://api.docs.url"
+  architecture:
+    patterns:
+      state: "Component-level stores with Context API"
+      data_flow: "REST API → React Query → Component State"
+      error_handling: "Error Boundaries per feature"
+    scalability:
+      caching:
+        strategy: "Stale-while-revalidate with selective invalidation"
+        rationale: "Optimal for portfolio content that updates infrequently"
+      cdn:
+        strategy: "CloudFront with S3 origin"
+        regions: ["us-west-2"]
+        rationale: "Initial launch region, expand based on traffic"
+    security:
+      auth:
+        provider: "Auth0"
+        strategy: "JWT with refresh tokens"
+        session_duration: "24h"
+    build:
+      bundler: "Vite"
+      optimization:
+        code_splitting: "Route-based"
+        tree_shaking: true
+      dependencies:
+        ui: "Material UI v5"
+        state: "React Query v4"
+        forms: "React Hook Form"
+
+# Component definitions with semantic relationships and validation rules
+components:
+  # Header component with project navigation and controls
+  header:
+    metadata:
+      purpose: "Main navigation and project identification"
+      dependencies: ["theme"]
+      required: true
+    type: "section"
+    properties:
+      background_color: "emerald-500"
+      padding: "16px"
+    accessibility:
+      role: "banner"
+      aria_label: "Portfolio header"
+      keyboard_shortcuts:
+        "Escape": "collapse_navigation"
+    performance:
+      caching:
+        strategy: "stale-while-revalidate"
+        duration: "1h"
+    error_handling:
+      scenarios:
+        - error: "auth_failed"
+          action: "redirect_to_login"
+        - error: "session_expired"
+          action: "refresh_token"
+    children:
+      - type: "title"
+        properties:
+          text: "{Project Name}"
+          color: "white-100"
+          font_size: "24px"
+      - type: "button"
+        properties:
+          text: "Resume"
+          style: "primary"
+          background: "blue-500"
+          position: "top-right"
+        interactions:
+          on_click:
+            action: "download_resume"
+            behavior:
+              type: "fetch"
+              endpoint: "/api/resume"
+              format: "pdf"
+      - type: "icon_button"
+        properties:
+          icon: "chevron_down"
+          position: "right"
+          color: "white-100"
+        interactions:
+          on_click:
+            action: "toggle_expand"
+            behavior:
+              animation: "rotate(180deg)"
+              duration: "0.3s"
+              affects: ["description", "content_section"]
+
+  description:
+    type: "text_block"
+    metadata:
+      purpose: "Project overview and context"
+      max_length: 500
+      min_length: 100
+      content_type: "markdown"
+    properties:
+      text: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet."
+      padding: "16px"
+      background: "gray-100"
+    validation:
+      required_fields: ["text"]
+      content_rules:
+        - "Must contain project context"
+        - "Should avoid technical jargon"
+
+  image_carousel:
+    type: "carousel"
+    metadata:
+      purpose: "Display project screenshots and deliverables"
+      supported_formats: ["png", "jpg", "webp"]
+      max_file_size: "2MB"
+    properties:
+      height: "300px"
+      background: "slate-600"
+    performance:
+      image_optimization:
+        service: "Sharp"
+        sizes:
+          thumbnail: "300x200"
+          preview: "600x400"
+          full: "1200x800"
+        quality: 80
+        lazy_loading: true
+    error_handling:
+      scenarios:
+        - error: "image_load_failed"
+          fallback: "placeholder_image"
+        - error: "format_unsupported"
+          action: "convert_to_webp"
+    accessibility:
+      role: "region"
+      aria_label: "Project images"
+      keyboard_navigation:
+        "ArrowLeft": "previous_image"
+        "ArrowRight": "next_image"
+      screen_reader:
+        announcements:
+          navigation: "Image {current} of {total}"
+          loading: "Loading image..."
+    responsive:
+      mobile:
+        gesture: "swipe"
+        controls:
+          dots: "visible"
+          arrows: "hidden"
+        image_quality: "preview"
+      desktop:
+        gesture: "click"
+        controls:
+          dots: "hidden"
+          arrows: "visible"
+        image_quality: "full"
+    state:
+      loading:
+        initial: "skeleton"
+        transition: "fade"
+        duration: "0.3s"
+    data_structure:
+      images:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            url: "string"
+            alt: "string"
+            caption: "string"
+    navigation:
+      - type: "button"
+        properties:
+          icon: "arrow_left"
+          position: "left"
+          style: "transparent"
+        interactions:
+          on_click:
+            action: "navigate_slides"
+            behavior:
+              transition: "slide"
+              direction: "previous"
+              duration: "0.5s"
+              easing: "ease-in-out"
+      - type: "button"
+        properties:
+          icon: "arrow_right"
+          position: "right"
+          style: "transparent"
+        interactions:
+          on_click:
+            action: "navigate_slides"
+            behavior:
+              transition: "slide"
+              direction: "next"
+              duration: "0.5s"
+              easing: "ease-in-out"
+
+  progress_bar:
+    type: "navigation"
+    metadata:
+      purpose: "Display project phase and progress"
+    properties:
+      background: "slate-600"
+      padding: "16px"
+    data_handling:
+      store: "progress"
+      persistence: "local_storage"
+      sync:
+        endpoint: "/api/progress"
+        strategy: "optimistic-update"
+        conflict_resolution: "server-wins"
+    error_handling:
+      scenarios:
+        - error: "sync_failed"
+          action: "retry"
+          max_attempts: 3
+        - error: "invalid_state"
+          action: "reset_to_last_valid"
+    accessibility:
+      role: "navigation"
+      aria_label: "Project progress"
+      live_region: true
+      announcements:
+        state_change: "Project phase changed to {phase}"
+        completion: "Phase {phase} completed"
+    state:
+      store: "progress"
+      initial: 
+        current_phase: "Understand"
+        completed_phases: []
+      actions:
+        - "update_phase"
+        - "mark_complete"
+      selectors:
+        - "current_phase"
+        - "completed_phases"
+    responsive:
+      mobile:
+        padding: "8px"
+        font_size: "14px"
+      desktop:
+        padding: "16px"
+        font_size: "16px"
+    accessibility:
+      role: "navigation"
+      aria_label: "Project progress navigation"
+      keyboard_shortcuts:
+        "ArrowRight": "next_phase"
+        "ArrowLeft": "previous_phase"
+    validation:
+      states: ["active", "inactive", "complete"]
+      transitions:
+        - from: "active"
+          to: ["complete"]
+        - from: "inactive"
+          to: ["active"]
+        - from: "complete"
+          to: ["inactive"]
+    items:
+      - text: "Understand"
+        state: "active"
+      - text: "Solve"
+        state: "inactive"
+      - text: "Create"
+        state: "inactive"
+      - text: "Verify"
+        state: "inactive"
+
+  content_section:
+    type: "grid"
+    metadata:
+      purpose: "Display detailed project information"
+      content_type: "mixed"
+    properties:
+      columns: 2
+      background: "gray-800"
+      padding: "24px"
+    performance:
+      content_loading:
+        strategy: "progressive"
+        priority: "text-first"
+    data_handling:
+      content_type: "markdown"
+      sanitization: "dompurify"
+      max_length: 5000
+    error_handling:
+      scenarios:
+        - error: "content_load_failed"
+          fallback: "cached_version"
+        - error: "validation_failed"
+          action: "show_inline_error"
+    i18n:
+      content_flow: "left-to-right"
+      date_format: "MMMM DD, YYYY"
+      number_format:
+        decimal: "."
+        thousands: ","
+    responsive:
+      mobile:
+        type: "stack"
+        spacing: "16px"
+      tablet:
+        type: "grid"
+        columns: 2
+        spacing: "24px"
+      desktop:
+        type: "grid"
+        columns: 2
+        spacing: "24px"
+    accessibility:
+      role: "main"
+      aria_label: "Project details"
+      headings:
+        - level: 2
+          content: "Project Description"
+        - level: 2
+          content: "Key Points"
+    state:
+      store: "content"
+      initial:
+        is_expanded: false
+    children:
+      - type: "text_block"
+        properties:
+          text: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description."
+          color: "white-100"
+        validation:
+          min_length: 50
+          max_length: 1000
+          required: true
+      - type: "bullet_list"
+        properties:
+          color: "white-100"
+          items:
+            - "Bullet Point One"
+            - "Bullet Point Two"
+            - "Bullet Point Three"
+            - "Bullet Point Four"
+            - "Bullet Point Five"
+        validation:
+          min_items: 3
+          max_items: 7
+          required: true
+
+layout:
+  type: "stack"
+  spacing: "0"
+  children:
+    - "header"
+    - "description"
+    - "image_carousel"
+    - "progress_bar"
+    - "content_section"
+
+theme:
+  colors:
+    primary: "emerald-500"
+    secondary: "slate-600"
+    accent: "blue-500"
+    background: "gray-100"
+    dark: "gray-800"
+  typography:
+    font_family: "sans-serif"
+    base_size: "16px"
+  spacing:
+    small: "8px"
+    medium: "16px"
+    large: "24px"
+    xl: "32px"
+
+system:
+  performance:
+    image_optimization:
+      formats: ["webp"]
+      lazy_loading: true
+      processing:
+        service: "Sharp"
+        sizes: ["thumbnail", "preview", "full"]
+        quality: 80
+    caching:
+      enabled: true
+      strategy: "stale-while-revalidate"
+      duration: "1h"
+      invalidation:
+        triggers: ["content_update", "image_upload"]
+        strategy: "selective-key"
+  security:
+    authentication: true
+    roles:
+      admin: ["edit", "delete", "publish"]
+      user: ["view"]
+    csrf_protection: true
+    rate_limiting:
+      global: "1000/hour"
+      api: "100/minute"
+      upload: "10/minute"
+  deployment:
+    platform: "AWS"
+    regions: ["us-west-2"]
+    cdn_enabled: true
+    scaling:
+      auto_scaling: true
+      min_instances: 2
+      max_instances: 10
+    monitoring:
+      metrics:
+        - "response_time"
+        - "error_rate"
+        - "cache_hit_ratio"
+      alerts:
+        - type: "error_spike"
+          threshold: "5% increase"
+        - type: "performance_degradation"
+          threshold: "p95 > 500ms"
+
+development:
+  framework: "React"
+  language: "TypeScript"
+  package_manager: "npm"
+  code_organization:
+    structure:
+      - "components/"
+      - "hooks/"
+      - "services/"
+      - "types/"
+      - "utils/"
+    naming:
+      components: "PascalCase"
+      files: "kebab-case"
+      constants: "SCREAMING_SNAKE_CASE"
+  type_safety:
+    strictness: "strict"
+    required:
+      - "component props"
+      - "api responses"
+      - "state shapes"
+    codegen:
+      source: "API schema"
+      target: "TypeScript types"
+  testing:
+    unit:
+      framework: "Jest"
+      focus:
+        - "component rendering"
+        - "state transitions"
+        - "utility functions"
+    integration:
+      framework: "React Testing Library"
+      focus:
+        - "component interactions"
+        - "data flow"
+        - "error scenarios"
+    e2e:
+      framework: "Cypress"
+      coverage_threshold: 80
+      critical_flows:
+        - "project navigation"
+        - "content loading"
+        - "responsive behavior"
+  error_handling:
+    logging: "CloudWatch"
+    monitoring: "Datadog"
+    strategy:
+      client:
+        boundary_placement: "feature-level"
+        fallback_ui: "error-specific"
+      api:
+        retry_strategy: "exponential-backoff"
+        timeout: "5s"
+  ci_cd:
+    provider: "GitHub Actions"
+    environments: ["dev", "staging", "prod"]
+    checks:
+      - "type-check"
+      - "lint"
+      - "test"
+      - "build"
+      - "lighthouse"
+    deployment:
+      strategy: "blue-green"
+      rollback: "automatic"
+
+data_sources:
+  projects:
+    type: "REST API"
+    base_url: "/api/v1"
+    backend:
+      language: "Node.js"
+      framework: "Express"
+      database: "PostgreSQL"
+    endpoints:
+      get_project:
+        path: "/projects/{id}"
+        method: "GET"
+        cache_duration: "5m"
+        error_handling:
+          404: "Show empty state"
+          500: "Retry 3 times"
+      update_progress:
+        path: "/projects/{id}/progress"
+        method: "PUT"
+        rate_limit: "10/minute"
+        concurrency:
+          strategy: "optimistic-update"
+          conflict_resolution: "last-write-wins"
+    state_handling:
+      library: "React Query"
+      strategies:
+        caching: "background-update"
+        prefetching: "on-hover"
+        pagination: "infinite-scroll"
+  assets:
+    type: "S3"
+    bucket: "portfolio-assets"
+    region: "us-west-2"
+    upload:
+      max_size: "5MB"
+      process:
+        - "compress"
+        - "optimize"
+        - "resize"
+      workflow:
+        1: "Client upload to presigned URL"
+        2: "Lambda trigger for processing"
+        3: "CDN invalidation"
+
+i18n:
+  default_language: "en"
+  supported_languages: ["en", "es", "fr"]
+  fallback_language: "en"
+  translations:
+    path: "/locales/{lang}.json"
+    namespaces: ["common", "projects"]
+    management:
+      tool: "Lokalise"
+      workflow: "developer-request → translator → review"
+    loading:
+      strategy: "lazy"
+      fallback: "key-name"
+  date_formats:
+    short: "MM/DD/YYYY"
+    long: "MMMM DD, YYYY"
+  rtl_support: false
+
+# Global configurations that affect multiple components
+global:
+  accessibility:
+    compliance: "WCAG 2.1 AA"
+    color_contrast:
+      minimum_ratio: "4.5:1"
+    focus_indicators:
+      style: "high-contrast"
+      width: "2px"
+  
+  performance:
+    metrics:
+      ttfb: "< 200ms"
+      fcp: "< 1s"
+      lcp: "< 2.5s"
+    
+  error_handling:
+    global_boundary:
+      type: "fallback_ui"
+      retry_button: true
+    
+  responsive:
+    breakpoints:
+      mobile: "max-width: 768px"
+      tablet: "max-width: 1024px"
+      desktop: "min-width: 1025px"

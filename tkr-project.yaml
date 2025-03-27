@@ -1,0 +1,478 @@
+app:
+  name: "Tucker's UX Portfolio"
+  author: "Sean 'Tucker' Harley"
+  role: "UX Designer"
+  description: "A web based portfolio showcasing UX projects and process"
+  planning directory: "./_planning"
+  figma: "https://www.figma.com/design/HuQZMqdDsULN1acWYhLtJl/TKR-Portfolio?node-id=0-1&t=mca2u97QdfjBItAs-1"
+  taskboard: 
+    board: "Portfolio Implementation"
+    id: "67e2a6fa-b120-484c-b161-acf8264646fc"
+  version: "1.0.0"
+  metadata:
+    project_type: "portfolio"
+    framework: "next.js"
+    last_updated: "2025-03-27"
+  architecture:
+    patterns:
+      state: "React Context for project navigation"
+      data_flow: "Static JSON → Next.js → Component State"
+      error_handling: "Next.js Error Pages"
+    scalability:
+      caching:
+        strategy: "Static Generation with ISR"
+        rationale: "Portfolio content updates infrequently"
+      cdn:
+        strategy: "Vercel Edge Network"
+        regions: ["auto"]
+        rationale: "Global distribution with zero config"
+    build:
+      bundler: "Next.js"
+      optimization:
+        code_splitting: "Route-based"
+        tree_shaking: true
+      dependencies:
+        routing: "next/router"
+        images: "next/image"
+
+components:
+  header:
+    metadata:
+      purpose: "Portfolio identification and resume access"
+      required: true
+    type: "section"
+    properties:
+      padding: "16px"
+      display: "flex"
+      justify_content: "space-between"
+      align_items: "center"
+    accessibility:
+      role: "banner"
+      aria_label: "Portfolio header"
+    children:
+      - type: "div"
+        properties:
+          display: "flex"
+          flex_direction: "column"
+        children:
+          - type: "text"
+            properties:
+              text: "Sean 'Tucker' Harley"
+              font_weight: "regular"
+          - type: "text"
+            properties:
+              text: "UX Designer"
+              font_style: "italic"
+      - type: "button"
+        properties:
+          text: "Resume"
+          variant: "outlined"
+          color: "white"
+        interactions:
+          on_click:
+            action: "download_resume"
+
+  project_list:
+    type: "stack"
+    metadata:
+      purpose: "Display all portfolio projects"
+    properties:
+      spacing: "0"
+      width: "100%"
+    accessibility:
+      role: "list"
+      aria_label: "Portfolio projects"
+    children:
+      - component: "project_card"
+        repeat: "projects"
+
+  project_card:
+    type: "article"
+    metadata:
+      purpose: "Individual project preview"
+    properties:
+      display: "grid"
+      grid_template_columns: "2fr 1fr"
+      padding: "24px"
+      cursor: "pointer"
+    state:
+      hover:
+        scale: 1.02
+        transition: "0.2s ease"
+    data_structure:
+      properties:
+        company:
+          type: "string"
+          required: true
+        project_title:
+          type: "string"
+          required: true
+        role:
+          type: "string"
+          required: true
+        image:
+          type: "string"
+          format: "url"
+        background_color:
+          type: "string"
+          format: "hex"
+    accessibility:
+      role: "listitem"
+      aria_label: "{project_title} at {company}"
+    children:
+      - type: "div"
+        properties:
+          display: "flex"
+          flex_direction: "column"
+          gap: "8px"
+        children:
+          - type: "text"
+            properties:
+              text: "{company}"
+              font_style: "italic"
+          - type: "text"
+            properties:
+              text: "{project_title}"
+              font_weight: "bold"
+          - type: "text"
+            properties:
+              text: "{role}"
+              font_style: "italic"
+      - type: "image"
+        properties:
+          src: "{image}"
+          alt: "{project_title} preview"
+          object_fit: "cover"
+    interactions:
+      on_click:
+        action: "navigate"
+        target: "/project/{id}"
+
+  process_nav:
+    type: "nav"
+    metadata:
+      purpose: "Project process step navigation"
+      required: true
+    properties:
+      display: "flex"
+      justify_content: "center"
+      gap: "32px"
+      padding: "16px"
+    accessibility:
+      role: "navigation"
+      aria_label: "Process steps"
+    state:
+      active_step:
+        initial: "understand"
+        reset_on: "project_change"
+    children:
+      - type: "button"
+        repeat: "steps"
+        properties:
+          text: "{step_name}"
+          variant: "text"
+        state:
+          active:
+            text_decoration: "underline"
+            text_decoration_thickness: "2px"
+            text_decoration_color: "currentColor"
+        interactions:
+          on_click:
+            action: "change_step"
+            behavior:
+              scroll_to: "top"
+
+  process_content:
+    type: "section"
+    metadata:
+      purpose: "Display step-specific project content"
+    properties:
+      padding: "24px"
+    state:
+      transitions:
+        enter:
+          type: "slide-fade"
+          duration: "0.3s"
+          direction: "{navigation_direction}"  # 'left' or 'right'
+    accessibility:
+      role: "region"
+      aria_label: "Process step content"
+      live_region: true
+    data_structure:
+      properties:
+        step:
+          type: "string"
+          enum: ["understand", "solve", "create", "verify"]
+        content:
+          type: "string"
+          format: "markdown"
+        images:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              url: "string"
+              caption: "string"
+
+  arrow_nav:
+    type: "div"
+    metadata:
+      purpose: "Previous/Next step navigation"
+    properties:
+      display: "flex"
+      justify_content: "space-between"
+      position: "fixed"
+      top: "50%"
+      width: "100%"
+      transform: "translateY(-50%)"
+    children:
+      - type: "button"
+        properties:
+          aria_label: "Previous step"
+          icon: "arrow_left"
+          variant: "icon"
+        interactions:
+          on_click:
+            action: "previous_step"
+            behavior:
+              transition: "slide-from-left"
+      - type: "button"
+        properties:
+          aria_label: "Next step"
+          icon: "arrow_right"
+          variant: "icon"
+        interactions:
+          on_click:
+            action: "next_step"
+            behavior:
+              transition: "slide-from-right"
+
+layout:
+  pages:
+    project_grid:
+      type: "stack"
+      spacing: "0"
+      children:
+        - "header"
+        - "project_list"
+    
+    project_detail:
+      type: "stack"
+      spacing: "0"
+      children:
+        - "header"
+        - "process_nav"
+        - "process_content"
+        - "arrow_nav"
+
+theme:
+  colors:
+    nutrien: "#8DA89C"  # Sage green
+    worldplay: "#E6B655"  # Golden yellow
+    shaw: "#9B8EB8"  # Purple
+    taskboard: "#C69B9B"  # Pink/Mauve
+    tucker: "#2C2C2C"  # Dark gray
+  typography:
+    font_family: "sans-serif"
+    base_size: "16px"
+  spacing:
+    small: "8px"
+    medium: "16px"
+    large: "24px"
+    xl: "32px"
+
+system:
+  performance:
+    image_optimization:
+      formats: ["webp"]
+      lazy_loading: true
+      processing:
+        service: "next/image"
+        sizes: ["640", "750", "828", "1080", "1200"]
+        quality: 75
+    caching:
+      enabled: true
+      strategy: "stale-while-revalidate"
+      duration: "24h"
+
+development:
+  framework: "Next.js"
+  language: "JavaScript"
+  package_manager: "npm"
+  code_organization:
+    structure:
+      - "pages/"
+      - "components/"
+      - "styles/"
+      - "public/"
+      - "data/"
+    naming:
+      components: "PascalCase"
+      files: "kebab-case"
+  testing:
+    unit:
+      framework: "Jest"
+      focus:
+        - "component rendering"
+        - "navigation"
+    e2e:
+      framework: "Cypress"
+      critical_flows:
+        - "project navigation"
+        - "responsive behavior"
+
+data_sources:
+  projects:
+    type: "Static JSON"
+    location: "data/projects.js"
+    structure:
+      properties:
+        id: "string"
+        company: "string"
+        title: "string"
+        role: "string"
+        image: "string"
+        color: "string"
+        process:
+          type: "object"
+          properties:
+            understand:
+              type: "object"
+              properties:
+                content: "string"
+                images: "array"
+            solve:
+              type: "object"
+              properties:
+                content: "string"
+                images: "array"
+            create:
+              type: "object"
+              properties:
+                content: "string"
+                images: "array"
+            verify:
+              type: "object"
+              properties:
+                content: "string"
+                images: "array"
+  assets:
+    type: "Local"
+    directory: "public/images"
+    optimization:
+      service: "next/image"
+      formats: ["webp"]
+
+global:
+  accessibility:
+    compliance: "WCAG 2.1 AA"
+    color_contrast:
+      minimum_ratio: "4.5:1"
+    focus_indicators:
+      style: "high-contrast"
+      width: "2px"
+  
+  performance:
+    metrics:
+      fcp: "< 1s"
+      lcp: "< 2.5s"
+    
+  responsive:
+    breakpoints:
+      mobile: "max-width: 768px"
+      tablet: "max-width: 1024px"
+      desktop: "min-width: 1025px"
+
+analytics:
+  implementation:
+    type: "cookie-free"
+    storage: "sessionStorage"
+    meta_policy: "strict-origin-when-cross-origin"
+  
+  tracking:
+    session:
+      id_generation: "timestamp + random"
+      storage_type: "temporary"
+      persistence: "tab-lifetime"
+    
+    referrer:
+      sources:
+        search: ["google", "bing", "duckduckgo", "yahoo", "baidu", "yandex"]
+        social: ["linkedin", "twitter", "facebook", "instagram", "t.co", "lnkd.in"]
+        portfolio: ["behance", "dribbble", "github"]
+      attribution:
+        first_touch: true
+        last_touch: true
+        utm_parameters: true
+    
+    events:
+      pageview:
+        properties:
+          - path
+          - referrer
+          - navigation_type
+          - timestamp
+      process_step:
+        properties:
+          - step_name
+          - previous_step
+          - duration
+      interaction:
+        properties:
+          - type
+          - target
+          - metadata
+      engagement:
+        properties:
+          - scroll_depth
+          - time_on_page
+          - interactions_count
+    
+    performance:
+      metrics:
+        - load_time
+        - dom_ready
+        - referrer_time
+        - navigation_timing
+      resource_tracking: true
+    
+  data_handling:
+    storage:
+      daily_logs:
+        format: "JSON"
+        retention: "30 days"
+      aggregated_stats:
+        format: "JSON"
+        retention: "12 months"
+      exports:
+        format: ["CSV", "JSON"]
+        retention: "indefinite"
+    
+    privacy:
+      collected:
+        - page_views
+        - navigation_paths
+        - interaction_events
+        - viewport_data
+      excluded:
+        - personal_information
+        - ip_addresses
+        - location_data
+        - browser_history
+        - cookies
+        - persistent_storage
+    
+    backup:
+      frequency: "daily"
+      type: "git_commit"
+      aggregation: "weekly"
+      exports: "monthly"
+
+environment:
+  variables:
+    development:
+      NEXT_PUBLIC_BASE_URL: "http://localhost:3000"
+      NEXT_PUBLIC_RESUME_FILENAME: "tucker-harley-resume.pdf"
+    production:
+      NEXT_PUBLIC_BASE_URL: "{vercel-deployment-url}"
+      NEXT_PUBLIC_RESUME_FILENAME: "tucker-harley-resume.pdf"
