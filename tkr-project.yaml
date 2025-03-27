@@ -295,31 +295,63 @@ system:
       strategy: "stale-while-revalidate"
       duration: "24h"
 
-development:
-  framework: "Next.js"
-  language: "JavaScript"
-  package_manager: "npm"
-  code_organization:
-    structure:
-      - "pages/"
-      - "components/"
-      - "styles/"
-      - "public/"
-      - "data/"
-    naming:
-      components: "PascalCase"
-      files: "kebab-case"
-  testing:
-    unit:
-      framework: "Jest"
-      focus:
-        - "component rendering"
-        - "navigation"
-    e2e:
-      framework: "Cypress"
-      critical_flows:
-        - "project navigation"
-        - "responsive behavior"
+  development:
+    framework: "Next.js"
+    language: "JavaScript"
+    package_manager: "npm"
+    code_organization:
+      structure:
+        - "pages/"
+        - "components/"
+        - "styles/"
+        - "public/"
+        - "data/"
+        - "docs/"          # Generated documentation
+      naming:
+        components: "PascalCase"
+        files: "kebab-case"
+    documentation:
+      framework: "JSDoc"
+      generator: "better-docs"
+      config:
+        source:
+          include: ["components/", "pages/", "hooks/", "utils/"]
+          exclude: ["node_modules/", ".next/"]
+        plugins: ["plugins/markdown"]
+        opts:
+          template: "better-docs/template"
+          destination: "./docs"
+          recurse: true
+        templates:
+          better-docs:
+            name: "Tucker's Portfolio"
+            navigation: true
+            search: true
+            create_style_guide: true
+        tags:
+          allowUnknownTags: true
+          dictionaries: ["jsdoc", "closure"]
+        source_type: "module"
+      requirements:
+        - "@typedef descriptions for component props"
+        - "Component purpose and usage examples"
+        - "Hook documentation with parameters and return values"
+        - "Utility function documentation"
+        - "Page component documentation"
+      stories:
+        integration: true    # Include Ladle stories in docs
+        live_examples: true  # Show live component examples
+    testing:
+      unit:
+        framework: "Jest"
+        focus:
+          - "component rendering"
+          - "navigation"
+      e2e:
+        framework: "Cypress"
+        critical_flows:
+          - "project navigation"
+          - "responsive behavior"
 
 data_sources:
   projects:
