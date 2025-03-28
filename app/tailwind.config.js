@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        nutrien: '#8DA89C',
-        worldplay: '#E6B655',
-        shaw: '#9B8EB8',
-        taskboard: '#C69B9B',
-        tucker: '#2C2C2C',
+        nutrien: '#9ad441',
+        worldplay: '#00a4e4',
+        shaw: '#0488c1',
+        taskboard: '#cc7c5e',
+        tucker: '#333333',
       },
       scale: {
         '102': '1.02',

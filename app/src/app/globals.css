@@ -4,11 +4,11 @@
 
 :root {
   /* Theme Colors */
-  --color-nutrien: #8DA89C;  /* Sage green */
-  --color-worldplay: #E6B655;  /* Golden yellow */
-  --color-shaw: #9B8EB8;  /* Purple */
-  --color-taskboard: #C69B9B;  /* Pink/Mauve */
-  --color-tucker: #2C2C2C;  /* Dark gray */
+  --color-nutrien: #9ad441;  
+  --color-worldplay: #00a4e4;
+  --color-shaw: #0488c1;
+  --color-taskboard: #cc7c5e;
+  --color-tucker: #333333;
   
   /* Typography */
   --font-family: sans-serif;

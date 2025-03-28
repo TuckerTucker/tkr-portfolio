@@ -74,7 +74,7 @@ const styles = {
  *   projectTitle="Design System"
  *   role="UX Designer"
  *   image="/projects/nutrien.jpg"
- *   backgroundColor="#8DA89C"
+ *   backgroundColor="#9ad441"
  * />
  * ```
  */

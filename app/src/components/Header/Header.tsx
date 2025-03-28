@@ -29,14 +29,14 @@ const styles = {
   },
   resume: {
     padding: '0.5rem 1rem',
-    border: '1px solid #2C2C2C',
+    border: '1px solid #333333',
     borderRadius: '0.375rem',
-    color: '#2C2C2C',
+    color: '#333333',
     textDecoration: 'none',
     transition: 'background-color 0.2s, color 0.2s',
   },
   resumeHover: {
-    backgroundColor: '#2C2C2C',
+    backgroundColor: '#333333',
     color: 'white',
   }
 };

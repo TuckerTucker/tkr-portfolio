@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --color-nutrien: #8DA89C;
-    --color-worldplay: #E6B655;
-    --color-shaw: #9B8EB8;
-    --color-taskboard: #C69B9B;
-    --color-tucker: #2C2C2C;
+    --color-nutrien: #9ad441;
+    --color-worldplay: #00a4e4;
+    --color-shaw: #0488c1;
+    --color-taskboard: #cc7c5e;
+    --color-tucker: #333333;
   }
 
   html {

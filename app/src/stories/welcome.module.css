@@ -8,7 +8,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #2C2C2C;
+  color: #333333;
 }
 
 .section {
@@ -74,11 +74,11 @@
 }
 
 /* Colors */
-.nutrienBg { background-color: #8DA89C; }
-.worldplayBg { background-color: #E6B655; }
-.shawBg { background-color: #9B8EB8; }
-.taskboardBg { background-color: #C69B9B; }
-.tuckerBg { background-color: #2C2C2C; }
+.nutrienBg { background-color: #9ad441; }
+.worldplayBg { background-color: #00a4e4; }
+.shawBg { background-color: #0488c1; }
+.taskboardBg { background-color: #cc7c5e; }
+.tuckerBg { background-color: #333333; }
 
 /* Spacing */
 .w8 { width: 2rem; height: 2rem; }

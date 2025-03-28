@@ -119,7 +119,7 @@ export const Default: Story = () => (
     title="Example Project"
     role="UX Designer"
     image="/placeholder.jpg"
-    color="#8DA89C"
+    color="#9ad441"
   />
 );
 
@@ -130,7 +130,7 @@ export const LongTitle: Story = () => (
     title="A Very Long Project Title That Might Wrap to Multiple Lines"
     role="UX Designer"
     image="/placeholder.jpg"
-    color="#E6B655"
+    color="#00a4e4"
   />
 );
 ```
@@ -165,7 +165,7 @@ export const projects = [
     title: 'Safety Portal',
     role: 'UX Lead',
     image: '/images/nutrien.jpg',
-    color: '#8DA89C'
+    color: '#9ad441'
   },
   {
     id: 'worldplay',
@@ -173,7 +173,7 @@ export const projects = [
     title: 'Analytics Dashboard',
     role: 'Manager, UX & Design',
     image: '/images/worldplay.jpg',
-    color: '#E6B655'
+    color: '#00a4e4'
   },
   // Additional projects...
 ]

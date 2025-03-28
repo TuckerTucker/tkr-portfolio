@@ -52,7 +52,7 @@ npm install -D jsdoc better-docs
  *   title="Project Title"
  *   role="UX Designer"
  *   image="/image.jpg"
- *   color="#8DA89C"
+ *   color="#9ad441"
  * />
  * ```
  */
@@ -173,7 +173,7 @@ export const Default: Story = () => (
     title="Example Project"
     role="UX Designer"
     image="/placeholder.jpg"
-    color="#8DA89C"
+    color="#9ad441"
   />
 );
 
@@ -187,7 +187,7 @@ export const LongTitle: Story = () => (
     title="A Very Long Project Title That Might Wrap"
     role="UX Designer"
     image="/placeholder.jpg"
-    color="#E6B655"
+    color="#00a4e4"
   />
 );
 ```

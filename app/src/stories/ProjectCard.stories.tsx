@@ -8,7 +8,7 @@ export const ProjectCardBasic = () => (
     company="Nutrien"
     projectTitle="Design System"
     role="UX Designer"
-    backgroundColor="#8DA89C"
+    backgroundColor="#9ad441"
   />
 );
 
@@ -18,7 +18,7 @@ export const ProjectCardWithImage = () => (
     projectTitle="Game Analytics"
     role="UX Designer"
     image={placeholderImage}
-    backgroundColor="#E6B655"
+    backgroundColor="#00a4e4"
   />
 );
 
@@ -29,7 +29,7 @@ export const ProjectCardWithHover = () => (
       projectTitle="Mobile App"
       role="UX Designer"
       image={placeholderImage}
-      backgroundColor="#9B8EB8"
+      backgroundColor="#0488c1"
     />
   </div>
 );

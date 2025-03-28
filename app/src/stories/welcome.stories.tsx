@@ -21,23 +21,23 @@ export const Welcome: Story = () => {
         <div className={styles.grid}>
           <div className={styles.colorItem}>
             <div className={`${styles.colorSwatch} ${styles.nutrienBg}`}></div>
-            <span>Nutrien (Sage)</span>
+            <span>Nutrien</span>
           </div>
           <div className={styles.colorItem}>
             <div className={`${styles.colorSwatch} ${styles.worldplayBg}`}></div>
-            <span>Worldplay (Golden)</span>
+            <span>Worldplay</span>
           </div>
           <div className={styles.colorItem}>
             <div className={`${styles.colorSwatch} ${styles.shawBg}`}></div>
-            <span>Shaw (Purple)</span>
+            <span>Shaw</span>
           </div>
           <div className={styles.colorItem}>
             <div className={`${styles.colorSwatch} ${styles.taskboardBg}`}></div>
-            <span>Taskboard (Pink)</span>
+            <span>Taskboard</span>
           </div>
           <div className={styles.colorItem}>
             <div className={`${styles.colorSwatch} ${styles.tuckerBg}`}></div>
-            <span>Tucker (Dark Gray)</span>
+            <span>Tucker</span>
           </div>
         </div>
       </section>

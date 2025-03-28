@@ -9,7 +9,7 @@ const sampleProjects = [
     company: 'Nutrien',
     title: 'Design System',
     role: 'UX Designer',
-    color: '#8DA89C',
+    color: '#9ad441',
   },
   {
     id: '2',
@@ -17,7 +17,7 @@ const sampleProjects = [
     title: 'Game Analytics',
     role: 'UX Designer',
     image: placeholderImage,
-    color: '#E6B655',
+    color: '#00a4e4',
   },
   {
     id: '3',
@@ -25,7 +25,7 @@ const sampleProjects = [
     title: 'Mobile App',
     role: 'UX Designer',
     image: placeholderImage,
-    color: '#9B8EB8',
+    color: '#0488c1',
   },
   {
     id: '4',
@@ -33,7 +33,7 @@ const sampleProjects = [
     title: 'Project Management',
     role: 'UX Designer',
     image: placeholderImage,
-    color: '#C69B9B',
+    color: '#cc7c5e',
   },
 ];
 

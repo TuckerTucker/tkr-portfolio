@@ -65,7 +65,7 @@ const styles = {
  *     company: 'Nutrien',
  *     title: 'Design System',
  *     role: 'UX Designer',
- *     color: '#8DA89C',
+ *     color: '#9ad441',
  *   },
  * ];
  * 

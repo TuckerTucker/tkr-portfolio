@@ -267,11 +267,11 @@ layout:
 
 theme:
   colors:
-    nutrien: "#8DA89C"  # Sage green
-    worldplay: "#E6B655"  # Golden yellow
-    shaw: "#9B8EB8"  # Purple
-    taskboard: "#C69B9B"  # Pink/Mauve
-    tucker: "#2C2C2C"  # Dark gray
+    nutrien: "#9ad441"  # Sage green
+    worldplay: "#00a4e4"  # Golden yellow
+    shaw: "#0488c1"  # Purple
+    taskboard: "#cc7c5e"  # Pink/Mauve
+    tucker: "#333333"  # Dark gray
   typography:
     font_family: "sans-serif"
     base_size: "16px"
