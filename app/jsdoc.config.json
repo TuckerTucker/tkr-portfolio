@@ -1,9 +1,14 @@
 {
   "source": {
-    "include": ["src/"],
-    "exclude": ["node_modules/", ".next/"]
+    "include": [
+      "src/components/", 
+      "src/app/", 
+      "src/data/"
+    ],
+    "exclude": ["node_modules/", ".next/", "src/stories/"],
+    "sourceType": "module"
   },
-  "plugins": ["plugins/markdown"],
+  "plugins": ["jsdoc/plugins/markdown"],
   "opts": {
     "destination": "./docs",
     "recurse": true,

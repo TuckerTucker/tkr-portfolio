@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image'; // Import next/image
 
 /**
  * ProjectCard component props
@@ -11,7 +12,7 @@ interface ProjectCardProps {
   projectTitle: string;
   /** Role in the project */
   role: string;
-  /** Project preview image URL */
+  /** Project preview image URL (relative to /public) */
   image?: string;
   /** Background color for the card */
   backgroundColor?: string;
@@ -21,50 +22,10 @@ interface ProjectCardProps {
   onClick?: () => void;
 }
 
-const styles = {
-  card: {
-    display: 'grid',
-    gridTemplateColumns: '2fr 1fr',
-    padding: '1.5rem',
-    cursor: 'pointer',
-    transition: 'transform 0.2s ease',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '0.5rem',
-  },
-  company: {
-    fontSize: '1rem',
-    fontStyle: 'italic',
-    color: '#4B5563',
-  },
-  title: {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    color: '#111827',
-  },
-  role: {
-    fontSize: '1rem',
-    fontStyle: 'italic',
-    color: '#4B5563',
-  },
-  imageContainer: {
-    position: 'relative' as const,
-    width: '100%',
-    height: '100%',
-    minHeight: '200px',
-  },
-  image: {
-    objectFit: 'cover' as const,
-    width: '100%',
-    height: '100%',
-    borderRadius: '0.375rem',
-  },
-};
-
 /**
  * ProjectCard component displays a preview of a portfolio project
+ * 
+ * Uses Tailwind CSS for styling and responsiveness, and next/image for optimization.
  * 
  * @component
  * @example
@@ -73,8 +34,8 @@ const styles = {
  *   company="Nutrien"
  *   projectTitle="Design System"
  *   role="UX Designer"
- *   image="/projects/nutrien.jpg"
- *   backgroundColor="#9ad441"
+ *   image="/images/nutrien-card.png"
+ *   backgroundColor="#8DA89C"
  * />
  * ```
  */
@@ -83,41 +44,46 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   projectTitle,
   role,
   image,
-  backgroundColor,
+  backgroundColor = '#f3f4f6', // Default background color (gray-100)
   className = '',
   onClick,
 }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
-
   return (
     <article
-      style={{
-        ...styles.card,
-        backgroundColor,
-        transform: isHovered ? 'scale(1.02)' : 'scale(1)',
-      }}
-      className={className}
+      style={{ backgroundColor }} // Keep dynamic background color inline
+      className={`
+        grid grid-cols-1 md:grid-cols-3 gap-6 p-6 cursor-pointer 
+        transition-transform duration-200 ease-in-out transform 
+        hover:scale-102 group ${className}
+      `}
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       role="article"
       aria-label={`${projectTitle} at ${company}`}
     >
-      <div style={styles.content}>
-        <p style={styles.company}>{company}</p>
-        <h2 style={styles.title}>{projectTitle}</h2>
-        <p style={styles.role}>{role}</p>
+      {/* Content Section */}
+      <div className="flex flex-col gap-2 md:col-span-2">
+        <p className="text-base italic text-gray-600">{company}</p>
+        <h2 className="text-xl font-bold text-gray-900">{projectTitle}</h2>
+        <p className="text-base italic text-gray-600">{role}</p>
       </div>
 
-      {image && (
-        <div style={styles.imageContainer}>
-          <img
+      {/* Image Section */}
+      <div className="relative w-full h-full min-h-[150px] md:min-h-[100px] md:col-span-1 overflow-hidden rounded">
+        {image ? (
+          <Image
             src={image}
             alt={`${projectTitle} preview`}
-            style={styles.image}
+            layout="fill" // Use fill layout for responsive container
+            objectFit="cover" // Cover the container
+            className="transition-transform duration-300 group-hover:scale-105" // Optional: subtle zoom on hover
           />
-        </div>
-      )}
+        ) : (
+          // Placeholder if no image
+          <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-500 text-sm">No Image</span>
+          </div>
+        )}
+      </div>
     </article>
   );
 };

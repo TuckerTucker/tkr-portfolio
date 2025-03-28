@@ -11,38 +11,10 @@ interface HeaderProps {
   resumeFileName?: string;
 }
 
-const styles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem',
-  },
-  title: {
-    fontSize: '1.125rem',
-    lineHeight: '1.75rem',
-  },
-  subtitle: {
-    fontSize: '1rem',
-    lineHeight: '1.5rem',
-    fontStyle: 'italic',
-  },
-  resume: {
-    padding: '0.5rem 1rem',
-    border: '1px solid #333333',
-    borderRadius: '0.375rem',
-    color: '#333333',
-    textDecoration: 'none',
-    transition: 'background-color 0.2s, color 0.2s',
-  },
-  resumeHover: {
-    backgroundColor: '#333333',
-    color: 'white',
-  }
-};
-
 /**
  * Header component that displays portfolio identification and resume access
+ * 
+ * Uses Tailwind CSS for styling.
  * 
  * @component
  * @example
@@ -52,29 +24,29 @@ const styles = {
  */
 export const Header: React.FC<HeaderProps> = ({ 
   className = '',
-  resumeFileName = 'tucker-harley-resume.pdf'
+  resumeFileName = 'tucker-harley-resume.pdf' // Default from .clinerules environment
 }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
-
   return (
     <header 
-      style={styles.header}
+      className={`flex justify-between items-center p-4 ${className}`} // Use Tailwind for padding, flex, etc.
       role="banner"
       aria-label="Portfolio header"
     >
+      {/* Name and Title */}
       <div>
-        <h1 style={styles.title}>Sean &apos;Tucker&apos; Harley</h1>
-        <p style={styles.subtitle}>UX Designer</p>
+        <h1 className="text-lg">Sean 'Tucker' Harley</h1> {/* Adjusted text size */}
+        <p className="text-base italic">UX Designer</p> {/* Adjusted text size */}
       </div>
       
+      {/* Resume Button */}
       <a
         href={`/${resumeFileName}`}
-        style={{
-          ...styles.resume,
-          ...(isHovered ? styles.resumeHover : {})
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        className="
+          px-4 py-2 border border-tucker rounded 
+          text-tucker no-underline 
+          transition-colors duration-200 
+          hover:bg-tucker hover:text-white
+        " // Tailwind classes for button styling and hover effect
         download
       >
         Resume

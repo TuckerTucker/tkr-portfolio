@@ -1,24 +1,6 @@
 import React from 'react';
 import { ProjectCard } from '../ProjectCard/ProjectCard';
-
-/**
- * Project data interface
- * @interface Project
- */
-interface Project {
-  /** Project ID */
-  id: string;
-  /** Company name */
-  company: string;
-  /** Project title */
-  title: string;
-  /** Role in the project */
-  role: string;
-  /** Project preview image URL */
-  image?: string;
-  /** Background color for the card */
-  color?: string;
-}
+import { Project } from '@/data/projects'; // Assuming Project type is exported from data
 
 /**
  * ProjectGrid component props
@@ -33,28 +15,10 @@ interface ProjectGridProps {
   onProjectClick?: (projectId: string) => void;
 }
 
-const styles = {
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 600px), 1fr))',
-    gap: '2rem',
-    width: '100%',
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: '2rem',
-  },
-  container: {
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#fafafa',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-};
-
 /**
  * ProjectGrid component displays a grid of project cards
+ * 
+ * Uses Tailwind CSS for styling and responsiveness.
  * 
  * @component
  * @example
@@ -65,7 +29,8 @@ const styles = {
  *     company: 'Nutrien',
  *     title: 'Design System',
  *     role: 'UX Designer',
- *     color: '#9ad441',
+ *     color: '#8DA89C',
+ *     process: { ... } // Add process data
  *   },
  * ];
  * 
@@ -78,10 +43,11 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({
   onProjectClick,
 }) => {
   return (
-    <div style={styles.container}>
+    // Outer container for background color and centering
+    <div className={`w-full min-h-screen bg-gray-50 flex justify-center items-start py-8 ${className}`}>
+      {/* Grid section */}
       <section
-        style={styles.grid}
-        className={className}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl px-4" 
         role="list"
         aria-label="Portfolio projects"
       >
@@ -94,6 +60,8 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({
             image={project.image}
             backgroundColor={project.color}
             onClick={() => onProjectClick?.(project.id)}
+            // Add rounded corners and shadow for better card appearance
+            className="rounded-lg shadow-md overflow-hidden" 
           />
         ))}
       </section>
