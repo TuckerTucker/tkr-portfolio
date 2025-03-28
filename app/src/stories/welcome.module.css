@@ -1,0 +1,103 @@
+.container {
+  padding: 1.5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #2C2C2C;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.colorItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.colorSwatch {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+}
+
+.spacingBox {
+  background-color: #e5e7eb;
+}
+
+.animationContainer {
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+}
+
+.animationBox {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.slideFromLeft {
+  animation: slideFromLeft 0.3s ease-out;
+}
+
+.slideFromRight {
+  animation: slideFromRight 0.3s ease-out;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Colors */
+.nutrienBg { background-color: #8DA89C; }
+.worldplayBg { background-color: #E6B655; }
+.shawBg { background-color: #9B8EB8; }
+.taskboardBg { background-color: #C69B9B; }
+.tuckerBg { background-color: #2C2C2C; }
+
+/* Spacing */
+.w8 { width: 2rem; height: 2rem; }
+.w16 { width: 4rem; height: 4rem; }
+.w24 { width: 6rem; height: 6rem; }
+.w32 { width: 8rem; height: 8rem; }
+
+/* Animations */
+@keyframes slideFromLeft {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes slideFromRight {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

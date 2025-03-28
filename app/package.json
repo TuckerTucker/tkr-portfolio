@@ -1,0 +1,41 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "ladle": "ladle serve",
+    "ladle:build": "ladle build",
+    "docs": "jsdoc -c jsdoc.config.json",
+    "docs:watch": "nodemon --watch src --ext js,jsx,ts,tsx --exec 'npm run docs'"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.484.0",
+    "next": "15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@ladle/react": "^5.0.2",
+    "@types/node": "^20.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "10.4.14",
+    "clean-jsdoc-theme": "^4.2.17",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.2.4",
+    "jsdoc": "^4.0.2",
+    "nodemon": "^3.1.0",
+    "postcss": "8.4.21",
+    "tailwindcss": "3.3.0",
+    "typescript": "^5.3.0"
+  }
+}

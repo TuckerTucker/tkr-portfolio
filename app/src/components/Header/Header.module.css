@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-style: italic;
+}
+
+.resume {
+  padding: 0.5rem 1rem;
+  border: 1px solid #2C2C2C;
+  border-radius: 0.375rem;
+  color: #2C2C2C;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.resume:hover {
+  background-color: #2C2C2C;
+  color: white;
+}

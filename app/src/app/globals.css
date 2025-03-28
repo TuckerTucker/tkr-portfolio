@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Theme Colors */
+  --color-nutrien: #8DA89C;  /* Sage green */
+  --color-worldplay: #E6B655;  /* Golden yellow */
+  --color-shaw: #9B8EB8;  /* Purple */
+  --color-taskboard: #C69B9B;  /* Pink/Mauve */
+  --color-tucker: #2C2C2C;  /* Dark gray */
+  
+  /* Typography */
+  --font-family: sans-serif;
+  --base-size: 16px;
+  
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xl: 32px;
+  
+  /* Focus Indicators */
+  --focus-ring-style: 2px solid currentColor;
+  --focus-ring-offset: 2px;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-tucker;
+    font-family: var(--font-family);
+    font-size: var(--base-size);
+  }
+
+  /* High contrast focus indicators */
+  *:focus-visible {
+    outline: var(--focus-ring-style);
+    outline-offset: var(--focus-ring-offset);
+  }
+}
+
+@layer components {
+  .hover-scale {
+    @apply transition-transform duration-200;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  :root {
+    --base-size: 14px;
+    --spacing-large: 20px;
+    --spacing-xl: 28px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --spacing-xl: 24px;
+  }
+}

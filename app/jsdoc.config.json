@@ -1,0 +1,44 @@
+{
+  "source": {
+    "include": ["src/"],
+    "exclude": ["node_modules/", ".next/"]
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "destination": "./docs",
+    "recurse": true,
+    "template": "node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "title": "Tucker's Portfolio",
+      "menu": [
+        {
+          "title": "GitHub",
+          "link": "https://github.com/yourusername/portfolio",
+          "target": "_blank"
+        }
+      ],
+      "meta": [
+        {
+          "name": "author",
+          "content": "Sean 'Tucker' Harley"
+        },
+        {
+          "name": "description",
+          "content": "Documentation for Tucker's UX Portfolio components and utilities"
+        }
+      ]
+    }
+  },
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": false
+    }
+  }
+}

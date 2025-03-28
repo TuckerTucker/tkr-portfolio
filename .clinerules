@@ -7,7 +7,7 @@ app:
   figma: "https://www.figma.com/design/HuQZMqdDsULN1acWYhLtJl/TKR-Portfolio?node-id=0-1&t=mca2u97QdfjBItAs-1"
   taskboard: 
     board: "Portfolio Implementation"
-    id: "67e2a6fa-b120-484c-b161-acf8264646fc"
+    id: "d6933ec7-ba40-4246-a4b8-37c02cfcd363"
   version: "1.0.0"
   metadata:
     project_type: "portfolio"
