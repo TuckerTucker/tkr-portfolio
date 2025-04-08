@@ -1,0 +1,34 @@
+[
+  {
+    "id": "agentic_ai_kanban",
+    "title": "Agentic AI Kanban",
+    "color": "#FF8800",
+    "subtitle": "Personal",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+  },
+  {
+    "id": "nutrien",
+    "title": "Nutrien",
+    "color": "#9ad441",
+    "subtitle": "Safety Portal",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+  },
+  {
+    "id": "worldplay",
+    "title": "Worldplay",
+    "color": "#00a4e4",
+    "subtitle": "Analytics Dashboard",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+  },
+  {
+    "id": "shaw",
+    "title": "Shaw",
+    "color": "#0488c1",
+    "subtitle": "Phone Portal",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+  }
+]
