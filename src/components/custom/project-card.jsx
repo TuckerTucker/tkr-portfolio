@@ -27,11 +27,8 @@ const ProjectCard = ({
 
   return (
     <DropdownMenuItem
-      // Base classes from .clinerules + passed className
-      // Note: .clinerules specifies display:flex, padding, border, cursor.
-      // DropdownMenuItem handles some styling, we add others.
       className={cn(
-        "flex items-center p-4 border-b border-gray-200 cursor-pointer focus:bg-accent/10 data-[highlighted]:bg-accent/10", // Added focus/highlight style
+        "flex items-center w-full p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors duration-150",
         className
       )}
       onClick={handleClick}
@@ -39,13 +36,11 @@ const ProjectCard = ({
     >
       <ColorBlock
         backgroundColor={color}
-        marginRight="16px" // From .clinerules definition
-        // Other props like width, height, borderRadius use defaults from ColorBlock
+        marginRight="16px"
       />
       <ProjectInfo
         title={title}
         subtitle={subtitle}
-        // className="flex flex-col" // Base class is already in ProjectInfo
       />
     </DropdownMenuItem>
   );

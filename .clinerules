@@ -6,8 +6,9 @@ app:
   description: "A web based portfolio of UX design projects"
   version: "1.0.0"
   Taskboard:
-    Board: Portfolio Implementation Plan
-    ID: 4f62d922-df9a-447e-b5a4-e29d91ae2635
+    Board: "Portfolio UI Implementation"
+    ID: "e96ca510-9b8d-4b67-ad3f-9839951c26e0"
+    
   metadata:
     project_type: "portfolio"
     framework: "react (19)" # Specified React version

@@ -3,7 +3,6 @@ import Header from './components/layout/header';
 import ProjectSelector from './components/feature/project-selector';
 import { useProjects } from './hooks/useProjects.js';
 import { useSelectedProject } from './hooks/SelectedProjectContext.jsx';
-import './App.css';
 
 import ImageCarousel from './components/feature/image-carousel.jsx';
 import Description from './components/feature/description.jsx';
@@ -79,7 +78,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-text">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow max-w-5xl w-full mx-auto px-6 py-8 flex flex-col gap-8">
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>

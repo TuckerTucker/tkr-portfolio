@@ -10,15 +10,15 @@ const Description = ({
   title = "Project Title",
   description = "This is a short project description. Lorem Ipsum Dolor Sit Amet.",
   className,
-  titleClassName = "text-2xl font-bold mb-4",
-  descriptionClassName = "text-base leading-relaxed mb-6",
+  titleClassName = "text-xl font-semibold mb-3 font-heading",
+  descriptionClassName = "text-sm leading-relaxed mb-4",
   ...props
 }) => {
   return (
     <div
-      className={cn("bg-white p-6", className)} // Base classes from .clinerules
-      role="article" // Accessibility from .clinerules
-      aria-label="Project description" // Accessibility from .clinerules
+      className={cn("bg-white p-6 rounded shadow-sm", className)}
+      role="article"
+      aria-label="Project description"
       {...props}
     >
       <h2 className={cn(titleClassName)}>{title}</h2>

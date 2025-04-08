@@ -18,11 +18,9 @@ export default {
         text: "#333333",
       },
       fontFamily: {
-        sans: ["'Ellograph CF'", 'sans-serif'], // Default body font
-        heading: ["'Graphite Std'", 'sans-serif'], // Heading font
-        // Note: 'Graphite Std' is also part of the default sans stack in .clinerules,
-        // but we explicitly define heading and body fonts here for clarity.
-        // The full stack from .clinerules is "'Graphite Std', 'Ellograph CF', sans-serif"
+        sans: ["ellograph-cf", "sans-serif"], // Match Adobe Fonts CSS
+        heading: ["graphite-std", "sans-serif"], // Match Adobe Fonts CSS
+        // Note: updated to match exact font-family names from Adobe Fonts
       },
       spacing: {
         small: "8px",

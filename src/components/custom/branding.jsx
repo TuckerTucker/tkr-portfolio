@@ -10,13 +10,13 @@ const Branding = ({
   name = "Sean 'Tucker' Harley", // Default from .clinerules
   title = "UX Designer", // Default from .clinerules
   className,
-  nameClassName = "text-xl font-bold", // Example default styling
-  titleClassName = "text-sm opacity-90", // Example default styling
+  nameClassName = "text-lg font-semibold font-heading", // Slightly smaller, clean font with heading font
+  titleClassName = "text-xs opacity-80", // Subtle subtitle
   ...props
 }) => {
   return (
     <div
-      className={cn("flex flex-col", className)} // Base class from .clinerules + passed className
+      className={cn("flex flex-col gap-1", className)} // Add small gap, keep clean
       {...props}
     >
       <p className={cn(nameClassName)}>{name}</p>

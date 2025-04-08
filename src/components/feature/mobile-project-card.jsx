@@ -26,7 +26,7 @@ const MobileProjectCard = ({
   return (
     <div
       className={cn(
-        "w-full bg-white rounded-md shadow-md mb-6 overflow-hidden",
+        "w-full bg-white rounded-md shadow-md mb-6 overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200",
         className
       )}
       role="article"
@@ -39,7 +39,9 @@ const MobileProjectCard = ({
         subtitle={subtitle}
         backgroundColor={color}
         textColor="#FFFFFF"
-        className="p-4 flex justify-between items-center"
+        className="p-4 flex flex-col gap-1"
+        titleClassName="text-base font-semibold"
+        subtitleClassName="text-xs opacity-80"
       />
       <img
         src={imageUrl.replace("{id}", id)} // Replace placeholder if needed

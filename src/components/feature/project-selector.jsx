@@ -34,7 +34,7 @@ const ProjectSelector = ({
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            "flex justify-between items-center w-full bg-secondary text-white px-6 py-4 rounded-t-md",
+            "flex justify-between items-center w-full bg-[#FF8800] text-white px-6 py-4 rounded-t-md",
             className
           )}
           aria-label="Select project"
@@ -43,7 +43,7 @@ const ProjectSelector = ({
           <ChevronDown size={20} className="ml-2" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white rounded-b-md shadow-lg w-full p-0">
+      <DropdownMenuContent className="bg-white rounded-b-md shadow-lg min-w-full p-0">
         <ProjectCardList projects={projects} onProjectSelect={handleSelect} />
       </DropdownMenuContent>
     </DropdownMenu>

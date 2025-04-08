@@ -9,12 +9,6 @@
 /* Base styles are handled by Tailwind and the @layer base below */
 
 /* Improve focus visibility for accessibility */
-:focus-visible {
-  outline: 3px solid #00A3FF; /* Accent color from theme */
-  outline-offset: 2px;
-  border-radius: 4px;
-  transition: outline-color 0.2s ease;
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

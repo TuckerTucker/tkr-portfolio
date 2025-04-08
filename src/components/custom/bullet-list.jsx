@@ -18,14 +18,11 @@ const BulletList = ({
 
   return (
     <ul
-      // Base classes from .clinerules + passed className
-      className={cn("list-disc pl-5 mt-4", className)}
+      className={cn("list-disc pl-6 mt-3 space-y-2", className)}
       {...props}
     >
       {items.map((item, index) => (
-        // Using shadcn/typography li variant class from .clinerules definition
-        // Assuming 'variant="li"' translates to standard li styling + mb-2
-        <li key={index} className={cn(listItemClassName)}>
+        <li key={index} className={cn("text-sm leading-relaxed", listItemClassName)}>
           {item}
         </li>
       ))}

@@ -16,9 +16,9 @@ const BulletListContainer = ({
 }) => {
   return (
     <div
-      className={cn("bg-white p-6", className)} // Base container styles from .clinerules
-      role="list" // Accessibility from .clinerules
-      aria-label="Project features" // Accessibility from .clinerules
+      className={cn("bg-white p-6 rounded shadow-sm", className)}
+      role="list"
+      aria-label="Project features"
       {...props}
     >
       <BulletList

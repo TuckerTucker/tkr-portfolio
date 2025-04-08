@@ -13,7 +13,7 @@ const Header = ({
   className,
   ...props
 }) => {
-  const baseClasses = "bg-primary p-4 flex justify-between items-center";
+  const baseClasses = "bg-[#613CB0] p-4 flex justify-between items-center";
 
   const handleDownload = () => {
     const link = document.createElement('a');
@@ -34,7 +34,7 @@ const Header = ({
       <Branding className="text-white" />
       <Button
         variant="primary"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200"
         onClick={handleDownload}
       >
         Resume
