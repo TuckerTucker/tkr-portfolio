@@ -46,10 +46,11 @@ jobs:
 
   # Deployment job
   deploy:
-    # Environment block removed to avoid validation issues;
-    # actions/deploy-pages deploys to the default Pages environment.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Move runs-on to the top
     needs: build
+    environment:
+      name: github-pages # Required by actions/deploy-pages
+      url: ${{ steps.deployment.outputs.page_url }}/storybook/ # Set the deployment URL to include /storybook/
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
