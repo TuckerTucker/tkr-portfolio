@@ -1,0 +1,70 @@
+[
+  {
+    "id": "tucker",
+    "title": "Tucker",
+    "color": "#bdbdbd",
+    "subtitle": "About the designer",
+    "logoUrl": "/Tucker.svg",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "slides": [
+      { "type": "image", "src": "/slides/tucker/slide1.jpg", "alt": "Tucker Slide 1" },
+      { "type": "image", "src": "/slides/tucker/slide2.jpg", "alt": "Tucker Slide 2" }
+    ]
+  },
+  {
+    "id": "agentic_ai_kanban",
+    "title": "Agentic AI Kanban",
+    "color": "#FF8800",
+    "subtitle": "Personal",
+    "logoUrl": "/taskboard.svg",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "slides": [
+      { "type": "image", "src": "/slides/agentic_ai_kanban/slide1.jpg", "alt": "Kanban Slide 1" },
+      { "type": "video", "src": "/slides/agentic_ai_kanban/demo.mp4", "alt": "Kanban Demo Video" },
+      { "type": "image", "src": "/slides/agentic_ai_kanban/slide2.jpg", "alt": "Kanban Slide 2" }
+    ]
+  },
+  {
+    "id": "nutrien",
+    "title": "Nutrien",
+    "color": "#9ad441",
+    "subtitle": "Safety Portal",
+    "logoUrl": "/nutrien.svg",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "slides": [
+      { "type": "image", "src": "/slides/nutrien/slide1.jpg", "alt": "Nutrien Slide 1" },
+      { "type": "image", "src": "/slides/nutrien/slide2.jpg", "alt": "Nutrien Slide 2" },
+      { "type": "image", "src": "/slides/nutrien/slide3.jpg", "alt": "Nutrien Slide 3" }
+    ]
+  },
+  {
+    "id": "worldplay",
+    "title": "Worldplay",
+    "color": "#00a4e4",
+    "subtitle": "Analytics Dashboard",
+    "logoUrl": "/worldplay.svg",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "slides": [
+      { "type": "image", "src": "/slides/worldplay/slide1.jpg", "alt": "Worldplay Slide 1" },
+      { "type": "image", "src": "/slides/worldplay/slide2.jpg", "alt": "Worldplay Slide 2" }
+    ]
+  },
+  {
+    "id": "shaw",
+    "title": "Shaw",
+    "color": "#0488c1",
+    "subtitle": "Phone Portal",
+    "logoUrl": "/shaw.svg",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "slides": [
+      { "type": "image", "src": "/slides/shaw/slide1.jpg", "alt": "Shaw Slide 1" },
+      { "type": "image", "src": "/slides/shaw/slide2.jpg", "alt": "Shaw Slide 2" },
+      { "type": "image", "src": "/slides/shaw/slide3.jpg", "alt": "Shaw Slide 3" }
+    ]
+  }
+]
