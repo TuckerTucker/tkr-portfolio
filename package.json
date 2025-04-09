@@ -10,9 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "build:storybook": "storybook build",
+    "build:portfolio": "npm run build",
+    "deploy:portfolio": "npm run build:portfolio && gh-pages -d dist",
+    "deploy:storybook": "npm run build:storybook && gh-pages -d storybook-static -b gh-pages -D storybook",
     "docs": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
