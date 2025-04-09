@@ -16,6 +16,7 @@ import ProjectCardList from '@/components/custom/project-card-list';
 const ProjectSelector = ({
   projects = [],
   selectedProjectTitle = "Selected Project",
+  selectedProject = null,
   onSelectProject,
   className,
   ...props
@@ -34,16 +35,24 @@ const ProjectSelector = ({
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            "flex justify-between items-center w-full bg-[#FF8800] text-white px-6 py-4 rounded-t-md",
+            "flex justify-between items-center w-full text-white px-6 py-4 rounded-t-md",
             className
           )}
+          style={{
+            backgroundColor: selectedProject?.color || '#FF8800',
+            '--radix-dropdown-menu-trigger-width': '100%',
+          }}
           aria-label="Select project"
         >
           <span className="text-lg">{selectedProjectTitle}</span>
           <ChevronDown size={20} className="ml-2" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white rounded-b-md shadow-lg min-w-full p-0">
+      <DropdownMenuContent
+        className="shadow-lg max-w-none p-0 overflow-y-auto md:rounded-b-md md:absolute md:top-full md:left-0
+        fixed top-0 left-0 right-0 z-50 h-[80vh] rounded-none bg-white block md:w-auto"
+        style={{ width: 'var(--radix-dropdown-menu-trigger-width)' }}
+      >
         <ProjectCardList projects={projects} onProjectSelect={handleSelect} />
       </DropdownMenuContent>
     </DropdownMenu>
@@ -53,6 +62,7 @@ const ProjectSelector = ({
 ProjectSelector.propTypes = {
   projects: PropTypes.array,
   selectedProjectTitle: PropTypes.string,
+  selectedProject: PropTypes.object,
   onSelectProject: PropTypes.func,
   className: PropTypes.string,
 };

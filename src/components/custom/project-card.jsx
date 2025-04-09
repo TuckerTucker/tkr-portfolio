@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { cn } from "@/lib/utils";
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu"; // shadcn component
 import ColorBlock from '@/components/custom/color-block';
 import ProjectInfo from '@/components/custom/project-info';
 
 /**
  * Represents a single project item within the project selector dropdown.
- * Combines ColorBlock and ProjectInfo within a DropdownMenuItem.
+ * Combines ColorBlock and ProjectInfo.
  * Based on .clinerules definition for project_card.
  */
 const ProjectCard = ({
@@ -26,23 +25,24 @@ const ProjectCard = ({
   };
 
   return (
-    <DropdownMenuItem
+    <div
       className={cn(
-        "flex items-center w-full p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors duration-150",
+        "flex items-center w-full p-4 rounded-none cursor-pointer transition-colors duration-150",
         className
       )}
+      style={{ backgroundColor: color, color: '#fff' }}
       onClick={handleClick}
       {...props}
     >
       <ColorBlock
-        backgroundColor={color}
+        backgroundColor="rgba(255,255,255,0.3)"
         marginRight="16px"
       />
       <ProjectInfo
         title={title}
         subtitle={subtitle}
       />
-    </DropdownMenuItem>
+    </div>
   );
 };
 

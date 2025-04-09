@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/header';
 import ProjectSelector from './components/feature/project-selector';
+import CustomProjectPicker from './components/feature/custom-project-picker';
 import { useProjects } from './hooks/useProjects.js';
 import { useSelectedProject } from './hooks/SelectedProjectContext.jsx';
 
@@ -32,11 +33,12 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Desktop view */}
-      <div className="hidden md:flex flex-col gap-6">
-        <ProjectSelector
+      {/* Project picker and content */}
+      <div className="flex flex-col gap-6">
+        <CustomProjectPicker
           projects={projects}
           selectedProjectTitle={selectedTitle}
+          selectedProject={selectedProject}
           onSelectProject={handleSelectProject}
         />
         {loading && <p>Loading projects...</p>}
@@ -56,20 +58,6 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* Mobile view */}
-      <div className="flex flex-col md:hidden">
-        {projects.map((project) => (
-          <MobileProjectCard
-            key={project.id}
-            id={project.id}
-            title={project.title}
-            subtitle={project.subtitle}
-            color={project.color}
-            imageUrl={`/placeholder/${project.id}/thumbnail.jpg`}
-            onClick={() => setSelectedProjectId(project.id)}
-          />
-        ))}
-      </div>
     </div>
   );
 };
