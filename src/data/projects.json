@@ -1,5 +1,13 @@
 [
   {
+    "id": "tucker",
+    "title": "Tucker",
+    "color": "#bdbdbd",
+    "subtitle": "About the designer",
+    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
+    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+  },
+  {
     "id": "agentic_ai_kanban",
     "title": "Agentic AI Kanban",
     "color": "#FF8800",
@@ -31,4 +39,5 @@
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   }
+ 
 ]

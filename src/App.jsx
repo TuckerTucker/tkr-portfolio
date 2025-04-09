@@ -1,15 +1,12 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/header';
-import ProjectSelector from './components/feature/project-selector';
 import CustomProjectPicker from './components/feature/custom-project-picker';
 import { useProjects } from './hooks/useProjects.js';
 import { useSelectedProject } from './hooks/SelectedProjectContext.jsx';
 
 import ImageCarousel from './components/feature/image-carousel.jsx';
-import Description from './components/feature/description.jsx';
-import BulletListContainer from './components/feature/bullet-list-container.jsx';
-import PdfDownload from './components/feature/pdf-download.jsx';
-import MobileProjectCard from './components/feature/mobile-project-card.jsx';
+import ContentSection from './components/feature/content-section.jsx';
 
 const HomePage = () => {
   const { projects, loading, error } = useProjects();
@@ -31,6 +28,13 @@ const HomePage = () => {
       ]
     : [];
 
+  // Effect to select the first project by default
+  useEffect(() => {
+    if (!loading && projects.length > 0 && !selectedProjectId) {
+      setSelectedProjectId(projects[0].id);
+    }
+  }, [loading, projects, selectedProjectId, setSelectedProjectId]);
+
   return (
     <div className="flex flex-col gap-6">
       {/* Project picker and content */}
@@ -46,14 +50,11 @@ const HomePage = () => {
         {selectedProject && (
           <>
             <ImageCarousel images={images} />
-            <Description
+            <ContentSection
               title={selectedProject.title}
               description={selectedProject.description}
+              bullets={selectedProject.bullets}
             />
-            <BulletListContainer items={selectedProject.bullets} />
-            <div className="flex justify-center">
-              <PdfDownload />
-            </div>
           </>
         )}
       </div>
