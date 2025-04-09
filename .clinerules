@@ -5,6 +5,8 @@ app:
   role: "UX Designer"
   description: "A web based portfolio of UX design projects"
   version: "1.0.0"
+  github:
+    username: "tuckertucker"
   Taskboard:
     Board: "Portfolio UI Implementation"
     ID: "e96ca510-9b8d-4b67-ad3f-9839951c26e0"
@@ -15,8 +17,9 @@ app:
     last_updated: "2025-04-04"
   documentation:
     design_system: "https://ui.shadcn.com"
-    component_library: "storybook"
-    # api_docs: "https://api.docs.url"
+    component_library:
+      framework: "storybook"
+      ghpages_dir: "/storybook/"
     code_documentation:
       tool: "JSDoc with better-docs"
       purpose: "Inline code documentation generation"
