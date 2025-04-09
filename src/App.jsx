@@ -19,15 +19,6 @@ const HomePage = () => {
     setSelectedProjectId(project.id);
   };
 
-  // Placeholder images based on project id
-  const images = selectedProject
-    ? [
-        { src: `/placeholder/${selectedProject.id}/slide1.jpg`, alt: 'Screenshot 1' },
-        { src: `/placeholder/${selectedProject.id}/slide2.jpg`, alt: 'Screenshot 2' },
-        { src: `/placeholder/${selectedProject.id}/slide3.jpg`, alt: 'Screenshot 3' }
-      ]
-    : [];
-
   // Effect to select the first project by default
   useEffect(() => {
     if (!loading && projects.length > 0 && !selectedProjectId) {
@@ -49,7 +40,7 @@ const HomePage = () => {
         {error && <p>Error loading projects.</p>}
         {selectedProject && (
           <>
-            <ImageCarousel images={images} />
+            <ImageCarousel items={selectedProject.slides || []} />
             <ContentSection
               title={selectedProject.title}
               description={selectedProject.description}

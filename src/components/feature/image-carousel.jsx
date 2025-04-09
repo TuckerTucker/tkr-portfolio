@@ -10,15 +10,15 @@ import {
 } from "@/components/ui/carousel";
 
 /**
- * Displays a carousel of images.
+ * Displays a carousel of images and videos.
  * Based on .clinerules definition for image_carousel.
  */
 const ImageCarousel = ({
-  images = [], // Array of { src, alt }
+  items = [], // Array of { type: 'image' | 'video', src, alt }
   className,
   ...props
 }) => {
-  if (!images || images.length === 0) {
+  if (!items || items.length === 0) {
     return null;
   }
 
@@ -31,25 +31,38 @@ const ImageCarousel = ({
     >
       <Carousel>
         <CarouselContent>
-          {images.map((img, index) => (
+          {items.map((item, index) => (
             <CarouselItem key={index}>
-              <div className="relative w-full h-[300px] md:h-[300px] sm:h-[200px]">
-                <img
-                  src={img.src}
-                  alt={img.alt || `Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
+              <div className="relative w-full h-[300px] md:h-[300px] sm:h-[200px] bg-black"> {/* Added bg-black for video */}
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-contain" // Use contain for video
+                    aria-label={item.alt || `Video slide ${index + 1}`}
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt || `Image slide ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors duration-150" />
-        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors duration-150" />
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-          {images.map((_, index) => (
+        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors duration-150 z-10" />
+        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors duration-150 z-10" />
+        {/* Optional: Update dots if needed */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {items.map((_, index) => (
             <span
               key={index}
-              className="w-2 h-2 rounded-full bg-white opacity-50"
+              className="w-2 h-2 rounded-full bg-white opacity-50" // Consider active state styling
             />
           ))}
         </div>
@@ -59,8 +72,9 @@ const ImageCarousel = ({
 };
 
 ImageCarousel.propTypes = {
-  images: PropTypes.arrayOf(
+  items: PropTypes.arrayOf(
     PropTypes.shape({
+      type: PropTypes.oneOf(['image', 'video']).isRequired,
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
     })
