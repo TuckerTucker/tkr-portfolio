@@ -24,7 +24,7 @@ const CustomProjectPicker = ({
   return (
     <div className={cn('relative w-full', className)} {...props}>
       <button
-        className="flex justify-between items-center w-full text-white px-6 py-4 rounded-md"
+        className="relative z-[51] flex justify-between items-center w-full text-white px-6 py-4 rounded-t-md shadow-md" // Added relative z-[51]
         style={{
           backgroundColor: selectedProject?.color || '#FF8800',
         }}
@@ -32,16 +32,18 @@ const CustomProjectPicker = ({
         aria-label="Select project"
       >
         <span className="text-lg">{selectedProjectTitle}</span>
-        <ChevronDown size={20} className="ml-2" />
+        <ChevronDown size={20} className={cn("ml-2 transition-transform duration-300", isOpen ? "rotate-180" : "")} />
       </button>
 
-      {isOpen && (
-        <div
-          className="block w-full mt-2 rounded-md shadow-lg bg-white overflow-y-auto max-h-[80vh]"
-        >
-          <ProjectCardList projects={projects} onProjectSelect={handleSelect} />
-        </div>
-      )}
+      <div
+        className={cn(
+          "absolute left-0 top-full mt-0 w-full rounded-b-md shadow-lg bg-white overflow-y-auto max-h-[80vh] z-50", // Removed mt-1, changed rounding
+          "transition-all duration-300 ease-in-out origin-top",
+          isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+        )}
+      >
+        <ProjectCardList projects={projects} onProjectSelect={handleSelect} />
+      </div>
     </div>
   );
 };

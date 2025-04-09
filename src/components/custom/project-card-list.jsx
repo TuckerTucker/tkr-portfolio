@@ -23,7 +23,7 @@ const ProjectCardList = ({
   }
 
   return (
-    <div className={cn("py-1", className)} {...props}> {/* Added padding based on typical dropdown content */}
+    <div className={cn("", className)} {...props}> {/* Removed py-1 */}
       {projects.map((project) => (
         <ProjectCard
           key={project.id}
