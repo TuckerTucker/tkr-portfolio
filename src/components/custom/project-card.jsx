@@ -38,7 +38,7 @@ const ProjectCard = ({
       {/* Left: Logo or Color Block */}
       <div className="flex items-center mr-4 flex-shrink-0 w-16 h-16"> {/* Added container for logo/block */}
         {logoUrl ? (
-          <img src={logoUrl} alt={`${title} logo`} className="max-w-full max-h-full object-contain" />
+          <img src={`${import.meta.env.BASE_URL}${logoUrl}`} alt={`${title} logo`} className="max-w-full max-h-full object-contain" />
         ) : (
           <ColorBlock
             backgroundColor="rgba(255,255,255,0.3)"

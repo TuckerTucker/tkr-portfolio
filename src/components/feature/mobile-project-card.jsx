@@ -44,7 +44,7 @@ const MobileProjectCard = ({
         subtitleClassName="text-xs opacity-80"
       />
       <img
-        src={imageUrl.replace("{id}", id)} // Replace placeholder if needed
+        src={`${import.meta.env.BASE_URL}${imageUrl.replace("{id}", id)}`} // Replace placeholder if needed
         alt={`Preview of ${title} project`}
         className="w-full h-48 object-cover"
       />

@@ -46,7 +46,7 @@ const ImageCarousel = ({
                   />
                 ) : (
                   <img
-                    src={item.src}
+                    src={`${import.meta.env.BASE_URL}${item.src}`}
                     alt={item.alt || `Image slide ${index + 1}`}
                     className="w-full h-full object-cover"
                   />

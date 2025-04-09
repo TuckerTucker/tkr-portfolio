@@ -12,7 +12,8 @@
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "build:portfolio": "npm run build",
-    "deploy:portfolio": "npm run build:portfolio && gh-pages -d dist",
+    "clean": "rm -rf dist",
+    "deploy:portfolio": "npm run clean && npm run build:portfolio && gh-pages -d dist",
     "deploy:storybook": "npm run build:storybook && ./deploy-storybook",
     "docs": "jsdoc -c jsdoc.json"
   },

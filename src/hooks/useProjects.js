@@ -10,7 +10,7 @@ export function useProjects() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/src/data/projects.json')
+    fetch(`${import.meta.env.BASE_URL}data/projects.json`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load projects.json');
         return res.json();
