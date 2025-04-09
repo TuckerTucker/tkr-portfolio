@@ -33,7 +33,7 @@ const ImageCarousel = ({
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
-              <div className="relative w-full h-[300px] md:h-[300px] sm:h-[200px] bg-black"> {/* Added bg-black for video */}
+              <div className="relative w-full aspect-video bg-black"> {/* Responsive 16:9 aspect ratio */}
                 {item.type === 'video' ? (
                   <video
                     src={item.src}
