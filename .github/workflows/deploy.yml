@@ -9,62 +9,35 @@ on:
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# peaceiris/actions-gh-pages needs contents: write to push to the gh-pages branch
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  # Build job
-  build:
+  deploy-storybook:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '>=20' # Use Node.js version >= 20 as specified in .clinerules
           cache: 'npm'
+
       - name: Install dependencies
         run: npm install
-      - name: Build Storybook
-        run: npm run build-storybook # Build Storybook static files
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload storybook-static directory
-          path: './storybook-static'
 
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest # Move runs-on to the top
-    needs: build
-    environment:
-      name: github-pages # Required by actions/deploy-pages
-      url: ${{ steps.deployment.outputs.page_url }}/storybook/ # Set the deployment URL to include /storybook/
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build Storybook
+        run: npm run build-storybook # Build Storybook static files (output to ./storybook-static)
+
+      - name: Deploy Storybook to gh-pages/storybook directory
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          # Deploy to the /storybook/ path on the gh-pages branch
-          # Note: The actions/deploy-pages action handles deploying to the correct branch (gh-pages by default)
-          # and the path configuration is handled by the environment URL and artifact structure.
-          # We are uploading the contents of storybook-static to the root of the artifact,
-          # and the environment URL tells GitHub Pages where to serve it from.
-          # If you need finer control over the target directory *within* the branch,
-          # you might switch to peaceiris/actions-gh-pages, but this setup is standard.
-          # For clarity, the effective deployment path will be https://<username>.github.io/<repo-name>/storybook/
-          # based on the artifact upload and the environment URL.
-          # The action deploys the artifact uploaded in the 'build' job.
-          # No explicit 'target_dir' needed here with actions/deploy-pages v4 when using artifacts.
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages # Branch to deploy to
+          publish_dir: ./storybook-static # Directory to deploy from the build
+          destination_dir: ./storybook # Subdirectory to deploy into on the target branch
+          # Optional: keep_files: false # Set to true to keep existing files in destination_dir
+          # Optional: force_orphan: true # Set to true to create orphan commits
