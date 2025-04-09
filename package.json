@@ -13,7 +13,7 @@
     "build:storybook": "storybook build",
     "build:portfolio": "npm run build",
     "deploy:portfolio": "npm run build:portfolio && gh-pages -d dist",
-    "deploy:storybook": "npm run build:storybook && gh-pages -d storybook-static -b gh-pages -D storybook",
+    "deploy:storybook": "npm run build:storybook && ./deploy-storybook",
     "docs": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
