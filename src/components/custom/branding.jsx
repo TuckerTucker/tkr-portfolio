@@ -16,11 +16,12 @@ const Branding = ({
 }) => {
   return (
     <div
-      className={cn("flex flex-col gap-1", className)} // Add small gap, keep clean
+      className={cn("flex items-center gap-2", className)} // Changed to flex-row (default), added items-center and gap
       {...props}
     >
-      <p className={cn(nameClassName)}>{name}</p>
-      <p className={cn(titleClassName)}>{title}</p>
+      <div className={cn(nameClassName)}>{name}</div>
+      <span className="opacity-50">|</span> {/* Separator */}
+      <div className={cn(titleClassName)}>{title}</div>
     </div>
   );
 };

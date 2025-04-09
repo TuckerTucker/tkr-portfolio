@@ -4,6 +4,7 @@
     "title": "Tucker",
     "color": "#bdbdbd",
     "subtitle": "About the designer",
+    "logoUrl": "/Tucker.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   },
@@ -12,6 +13,7 @@
     "title": "Agentic AI Kanban",
     "color": "#FF8800",
     "subtitle": "Personal",
+    "logoUrl": "/taskboard.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   },
@@ -20,6 +22,7 @@
     "title": "Nutrien",
     "color": "#9ad441",
     "subtitle": "Safety Portal",
+    "logoUrl": "/nutrien.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   },
@@ -28,6 +31,7 @@
     "title": "Worldplay",
     "color": "#00a4e4",
     "subtitle": "Analytics Dashboard",
+    "logoUrl": "/worldplay.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   },
@@ -36,8 +40,8 @@
     "title": "Shaw",
     "color": "#0488c1",
     "subtitle": "Phone Portal",
+    "logoUrl": "/shaw.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
   }
- 
 ]

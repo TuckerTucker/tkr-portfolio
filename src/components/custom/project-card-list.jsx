@@ -31,6 +31,7 @@ const ProjectCardList = ({
           title={project.title}
           subtitle={project.subtitle}
           color={project.color}
+          logoUrl={project.logoUrl} // Pass logoUrl
           onClick={onProjectSelect} // Pass the handler down
           // Add any specific className for list items if needed
         />
@@ -46,6 +47,7 @@ ProjectCardList.propTypes = {
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      logoUrl: PropTypes.string, // Add logoUrl prop type
       // Add other project properties if needed by ProjectCard later
     })
   ),
