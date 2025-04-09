@@ -89,7 +89,6 @@ export const WithNotifications = () => {
 
 WithNotifications.storyName = 'Card with Notifications Example';
 
-
 export default {
   title: 'UI Primitives/Card (shadcn)',
 };

@@ -11,14 +11,14 @@ app:
     last_updated: "2025-03-27"
   documentation:
     design_system: "https://ui.shadcn.com"
-    component_library: "https://ladle.dev"
+    component_library: "https://storybook.dev"
     api_docs: "https://api.docs.url"
   architecture:
     patterns:
       state: "Component-level stores with Context API"
       data_flow: "REST API → React Query → Component State"
       error_handling: "Error Boundaries per feature"
-      component_development: "Ladle stories with shadcnui components"
+      component_development: "storybook stories with shadcnui components"
     scalability:
       caching:
         strategy: "Stale-while-revalidate with selective invalidation"
@@ -41,7 +41,7 @@ app:
         ui: "shadcnui"
         state: "React Query v4"
         forms: "React Hook Form"
-        component_library: "Ladle"
+        component_library: "storybook"
 
 # Component definitions with semantic relationships and validation rules
 components:
@@ -238,7 +238,7 @@ development:
     structure:
       - "components/"
       - "components/ui/"      # shadcnui components
-      - "stories/"           # Ladle stories
+      - "stories/"           # storybook stories
       - "hooks/"
       - "services/"
       - "types/"
@@ -249,7 +249,7 @@ development:
       constants: "SCREAMING_SNAKE_CASE"
   testing:
     component:
-      framework: "Ladle"
+      framework: "storybook"
       focus:
         - "component isolation"
         - "visual regression"

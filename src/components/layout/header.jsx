@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { cn } from "@/lib/utils";
 import Branding from '@/components/custom/branding';
 import { Button } from '@/components/ui/button';
+import { File } from 'lucide-react';
 
 /**
  * The main header component for the portfolio.
@@ -37,6 +38,7 @@ const Header = ({
         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200"
         onClick={handleDownload}
       >
+        <File size={16} className="mr-2" />
         Resume
       </Button>
     </header>

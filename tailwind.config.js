@@ -4,6 +4,26 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
+  safelist: [
+    "text-primary",
+    "text-secondary",
+    "text-nutrien",
+    "text-worldplay",
+    "text-shaw",
+    "text-accent",
+    "text-background",
+    "text-card",
+    "text-text",
+    "bg-primary",
+    "bg-secondary",
+    "bg-nutrien",
+    "bg-worldplay",
+    "bg-shaw",
+    "bg-accent",
+    "bg-background",
+    "bg-card",
+    "bg-text"
+  ],
   theme: {
     extend: {
       colors: {

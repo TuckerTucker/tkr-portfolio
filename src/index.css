@@ -130,3 +130,11 @@
     color: var(--color-foreground);
   }
 }
+
+/* Disable all borders globally */
+*,
+*::before,
+*::after {
+  border: none !important;
+  border-width: 0 !important;
+}

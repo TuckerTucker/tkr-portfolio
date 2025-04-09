@@ -15,7 +15,7 @@ app:
     last_updated: "2025-04-04"
   documentation:
     design_system: "https://ui.shadcn.com"
-    component_library: "https://ladle.dev"
+    component_library: "storybook"
     # api_docs: "https://api.docs.url"
     code_documentation:
       tool: "JSDoc with better-docs"
@@ -26,7 +26,7 @@ app:
       state: "Component-level stores with Context API"
       data_flow: "Local JSON → Component State"
       error_handling: "Error Boundaries per feature"
-      component_development: "Ladle stories with shadcnui components"
+      component_development: "Storybook stories with shadcnui components"
     scalability:
       caching:
         strategy: "Stale-while-revalidate with selective invalidation"
@@ -41,7 +41,7 @@ app:
         rationale: "Portfolio is public-facing with no protected content"
     build:
       build_tool: "Vite" # Changed from Next.js
-\      optimization:
+\     optimization:
         code_splitting: "Dynamic import()" # Changed from Route-based
         tree_shaking: true
       dependencies:
@@ -49,7 +49,7 @@ app:
         ui: "shadcnui"
         state: "React Context API"
         forms: "React Hook Form"
-        component_library: "Ladle (^5.0.0)" # Specified Ladle version
+        component_library: "Storybook"
 
 # Component definitions with semantic relationships and validation rules
 components:
@@ -571,7 +571,7 @@ development:
     structure:
       - "components/"
       - "components/ui/"      # shadcnui components
-      - "stories/"           # Ladle stories
+      - "stories/"           # storybook stories
       - "hooks/"
       - "services/"
       - "utils/"
@@ -581,7 +581,7 @@ development:
       constants: "SCREAMING_SNAKE_CASE"
   testing:
     component:
-      framework: "Ladle"
+      framework: "storybook"
       focus:
         - "component isolation"
         - "visual regression"
@@ -648,11 +648,11 @@ deployment:
     source_branch: "main" # Assumes build is run from the main branch
     deployment_branch: "gh-pages"
     # Example URL: https://<username>.github.io/<repo-name>
-  component_library: # Ladle deployment details
+  component_library: # storybook deployment details
     platform: "GitHub Pages"
     method: "GitHub Actions"
     workflow_file: ".github/workflows/deploy.yml"
     source_branch: "main" # Workflow triggers on push to main
-    # Example URL: https://<username>.github.io/<repo-name> (or subpath like /ladle/)
+    
 
 # End of documentation

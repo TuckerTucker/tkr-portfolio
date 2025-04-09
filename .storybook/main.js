@@ -1,18 +1,18 @@
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  "stories": [
-    "../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-    "../stories/**/*.mdx"
-  ],
+  "stories": ["../stories/**/*.@(mdx|stories.@(js|jsx|ts|tsx))", "../stories/**/*.mdx"],
+
   "addons": [
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/experimental-addon-test"
   ],
+
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
   },
+
   "viteFinal": async (config) => {
     config.css = {
       postcss: true,
@@ -21,6 +21,14 @@ const config = {
       },
     };
     return config;
+  },
+
+  docs: {
+    autodocs: true
+  },
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
   }
 };
 export default config;

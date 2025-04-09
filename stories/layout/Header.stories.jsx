@@ -23,7 +23,7 @@ export default {
   title: 'Layout Components/Header',
   component: Header,
   argTypes: {
-    onResumeClick: { action: 'resumeClicked' }, // Log clicks in Ladle actions tab
+    onResumeClick: { action: 'resumeClicked' }, // Log clicks in storybook actions tab
     className: { control: 'text' },
   },
 };
