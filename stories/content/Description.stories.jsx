@@ -1,9 +1,6 @@
 import React from 'react';
 import Description from '@/components/feature/description'; // Use alias
 
-export const Default = () => <Description />;
-Default.storyName = 'Default Description';
-
 export const LongDescription = () => (
   <Description
     title="Worldplay Analytics Dashboard"
@@ -12,20 +9,8 @@ export const LongDescription = () => (
 );
 LongDescription.storyName = 'Longer Description Text';
 
-export const CustomStyling = () => (
-  <Description
-    title="Custom Styled Description"
-    description="This description block has custom styles applied to demonstrate flexibility."
-    className="border border-dashed border-accent rounded-lg shadow-md"
-    titleClassName="text-3xl font-heading text-primary mb-2"
-    descriptionClassName="text-lg italic text-secondary"
-  />
-);
-CustomStyling.storyName = 'With Custom Styling';
-
-
 export default {
-  title: 'Feature Components/Description',
+  title: 'Content/Description',
   component: Description,
   argTypes: {
     title: { control: 'text' },

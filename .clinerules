@@ -7,6 +7,7 @@ app:
   version: "1.0.0"
   github:
     username: "tuckertucker"
+  linkedin: "in/tuckerharleybrown"
   Taskboard:
     Board: "Portfolio UI Implementation"
     ID: "e96ca510-9b8d-4b67-ad3f-9839951c26e0"

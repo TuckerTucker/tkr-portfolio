@@ -17,21 +17,9 @@ export const Default = () => (
 );
 Default.storyName = 'Default Content Section';
 
-export const CustomStyling = () => (
-  <ContentSection
-    title="Custom Styled Content Section"
-    description="This content section has custom styles applied to demonstrate flexibility."
-    bullets={sampleBullets}
-    className="border border-dashed border-accent rounded-lg shadow-md"
-    descriptionClassName="bg-gray-50 p-4 rounded"
-    bulletListClassName="bg-gray-100 p-4 rounded"
-  />
-);
-CustomStyling.storyName = 'With Custom Styling';
-
 
 export default {
-  title: 'Feature Components/Content Section',
+  title: 'Content/Content Section',
   component: ContentSection,
   argTypes: {
     title: { control: 'text' },

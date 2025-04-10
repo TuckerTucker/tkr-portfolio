@@ -1,14 +1,14 @@
 import React from 'react';
-import ProjectCard from '@/components/custom/project-card'; // Use alias
+import ProjectCardList from '@/components/custom/project-card-list'; // Use alias
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
-// Sample project data based on .clinerules
+// Sample project data based on .clinerules (same as ProjectCard story)
 const sampleProjects = [
   {
     id: "agentic_ai_kanban",
     title: "Agentic AI Kanban",
-    color: "#FF8800", // secondary color
+    color: "#FF8800",
     subtitle: "Personal",
   },
   {
@@ -35,7 +35,7 @@ const sampleProjects = [
 const DropdownWrapper = ({ children }) => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
-      <Button variant="outline">View Projects</Button>
+      <Button >View Projects</Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-72"> {/* Adjust width as needed */}
       {children}
@@ -43,40 +43,29 @@ const DropdownWrapper = ({ children }) => (
   </DropdownMenu>
 );
 
-export const SingleCard = () => (
+export const EmptyList = () => (
   <DropdownWrapper>
-    <ProjectCard {...sampleProjects[0]} />
+    <ProjectCardList projects={[]} />
   </DropdownWrapper>
 );
-SingleCard.storyName = 'Single Project Card';
+EmptyList.storyName = 'Empty List';
 
-export const MultipleCards = () => (
-  <DropdownWrapper>
-    {sampleProjects.map(project => (
-      <ProjectCard key={project.id} {...project} />
-    ))}
-  </DropdownWrapper>
-);
-MultipleCards.storyName = 'List of Project Cards';
-
-export const WithClickHandler = () => {
-  const handleClick = (project) => {
-    alert(`Selected Project: ${project.title} (ID: ${project.id})`);
+export const WithSelectionHandler = () => {
+  const handleSelect = (project) => {
+    alert(`Selected Project from List: ${project.title} (ID: ${project.id})`);
   };
 
   return (
     <DropdownWrapper>
-      {sampleProjects.map(project => (
-        <ProjectCard key={project.id} {...project} onClick={handleClick} />
-      ))}
+      <ProjectCardList projects={sampleProjects} onProjectSelect={handleSelect} />
     </DropdownWrapper>
   );
 };
-WithClickHandler.storyName = 'With Click Handler';
+WithSelectionHandler.storyName = 'With Selection Handler';
 
 
 export default {
-  title: 'Custom Components/Project Card (Dropdown Item)',
-  component: ProjectCard,
-  // We don't need argTypes here as the component is best viewed in context
+  title: 'Navigation/Project Card List',
+  component: ProjectCardList,
+  // Again, argTypes might not be super useful here as it's best viewed in context
 };

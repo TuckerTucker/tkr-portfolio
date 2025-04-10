@@ -16,24 +16,13 @@ const shortBullets = [
 export const Default = () => <BulletList items={sampleBullets} />;
 Default.storyName = 'Default List';
 
-export const Empty = () => <BulletList items={[]} />;
-Empty.storyName = 'Empty List (Renders Nothing)';
-
 export const ShortList = () => <BulletList items={shortBullets} />;
 ShortList.storyName = 'Short List';
 
-export const CustomStyling = () => (
-  <BulletList
-    items={sampleBullets}
-    className="list-decimal text-primary pl-8 mt-8" // Override default styles
-    listItemClassName="mb-4 italic font-semibold" // Override item styles
-  />
-);
-CustomStyling.storyName = 'With Custom Styling';
 
 
 export default {
-  title: 'Custom Components/Bullet List',
+  title: 'Content/Bullet List',
   component: BulletList,
   argTypes: {
     items: { control: 'object' }, // Allow editing array in controls

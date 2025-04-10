@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/header';
+import Footer from './components/layout/footer';
 import CustomProjectPicker from './components/feature/custom-project-picker';
 import { useProjects } from './hooks/useProjects.js';
 import { useSelectedProject } from './hooks/SelectedProjectContext.jsx';
@@ -56,14 +57,17 @@ const HomePage = () => {
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-text">
-      <Header />
-      <main className="flex-grow max-w-5xl w-full mx-auto px-6 py-8 flex flex-col gap-8">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </main>
-    </div>
+    <>
+      <div className="flex flex-col min-h-screen bg-background text-text">
+        <Header />
+        <main className="flex-grow max-w-5xl w-full mx-auto px-6 py-8 flex flex-col gap-8">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 }
 

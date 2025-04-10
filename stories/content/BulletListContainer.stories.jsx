@@ -11,22 +11,9 @@ const sampleBullets = [
 export const Default = () => <BulletListContainer items={sampleBullets} />;
 Default.storyName = 'Default Container';
 
-export const Empty = () => <BulletListContainer items={[]} />;
-Empty.storyName = 'Empty List (Renders Nothing)';
-
-export const CustomStyling = () => (
-  <BulletListContainer
-    items={sampleBullets}
-    className="border border-dashed border-accent rounded-lg shadow-md"
-    listClassName="list-decimal pl-8 mt-8"
-    listItemClassName="mb-4 italic font-semibold"
-  />
-);
-CustomStyling.storyName = 'With Custom Styling';
-
 
 export default {
-  title: 'Feature Components/Bullet List Container',
+  title: 'Content/Bullet List Container',
   component: BulletListContainer,
   argTypes: {
     items: { control: 'object' },

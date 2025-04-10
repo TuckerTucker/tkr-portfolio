@@ -17,12 +17,6 @@ const themeColors = {
 export const Default = () => <ColorBlock />;
 Default.storyName = 'Default (Fallback Color)';
 
-export const PrimaryColor = () => <ColorBlock backgroundColor={themeColors.primary} />;
-PrimaryColor.storyName = 'Primary Color';
-
-export const SecondaryColor = () => <ColorBlock backgroundColor={themeColors.secondary} />;
-SecondaryColor.storyName = 'Secondary Color';
-
 export const ProjectColors = () => (
   <div className="flex space-x-4">
     <ColorBlock backgroundColor={themeColors.nutrien} />
@@ -33,18 +27,8 @@ export const ProjectColors = () => (
 );
 ProjectColors.storyName = 'Project Colors';
 
-export const CustomSize = () => (
-  <ColorBlock
-    backgroundColor={themeColors.accent}
-    width="100px"
-    height="50px"
-    borderRadius="8px"
-  />
-);
-CustomSize.storyName = 'Custom Size & Radius';
-
 export default {
-  title: 'Custom Components/Color Block',
+  title: 'Theme/Color Block',
   component: ColorBlock, // Optional: Link component for controls addon
   argTypes: { // Optional: Define controls for props
     backgroundColor: { control: 'color' },

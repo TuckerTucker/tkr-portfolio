@@ -44,7 +44,7 @@ const Template = () => {
 };
 
 export default {
-  title: 'Feature/CustomProjectPicker',
+  title: 'Navigation/CustomProjectPicker',
   component: CustomProjectPicker,
 };
 

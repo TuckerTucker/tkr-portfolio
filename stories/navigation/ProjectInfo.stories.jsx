@@ -33,7 +33,7 @@ CustomTextStyling.storyName = 'With Custom Text Styling';
 
 
 export default {
-  title: 'Custom Components/Project Info',
+  title: 'navigation/Project Info',
   component: ProjectInfo,
   argTypes: {
     title: { control: 'text' },
