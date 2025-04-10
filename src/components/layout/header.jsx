@@ -35,11 +35,11 @@ const Header = ({
       <Branding className="text-white" />
       <Button
         variant="primary"
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200"
+        className="bg-white hover:bg-white text-[#613CB0] border border-[#613CB0] font-semibold px-4 py-2 rounded transition-colors duration-200"
         onClick={handleDownload}
       >
-        <File size={16} className="mr-2" />
-        Resume
+        <File size={16} className="mr-2 text-[#613CB0]" />
+        Download Resumé &nbsp;
       </Button>
     </header>
   );
