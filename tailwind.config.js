@@ -29,7 +29,7 @@ export default {
       colors: {
         primary: "#613CB0",  // tucker color
         secondary: "#FF8800",  // taskboard color
-        nutrien: "#9ad441",
+        nutrien: "#3b5f18",
         worldplay: "#00a4e4",
         shaw: "#0488c1",
         accent: "#00A3FF",

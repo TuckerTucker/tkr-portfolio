@@ -4,7 +4,7 @@ export const ThemeColors = () => {
   const colors = {
     primary: "#613CB0",
     secondary: "#FF8800",
-    nutrien: "#9ad441",
+    nutrien: "#3b5f18",
     worldplay: "#00a4e4",
     shaw: "#0488c1",
     accent: "#00A3FF",

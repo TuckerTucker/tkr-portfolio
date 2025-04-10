@@ -14,7 +14,7 @@ const sampleProjects = [
   {
     id: "nutrien",
     title: "Nutrien",
-    color: "#9ad441",
+    color: "#3b5f18",
     subtitle: "Safety Portal",
   },
   {

@@ -10,8 +10,8 @@ const ProjectInfo = ({
   title = "Default Title",
   subtitle = "Default Subtitle",
   className,
-  titleClassName = "text-base font-semibold text-text", // Default title style
-  subtitleClassName = "text-sm text-gray-600", // Default subtitle style
+  titleClassName = "text-base font-semibold text-white", // Default title style
+  subtitleClassName = "text-sm text-white-600", // Default subtitle style
   ...props
 }) => {
   return (

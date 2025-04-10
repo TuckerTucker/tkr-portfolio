@@ -31,7 +31,14 @@ const CustomProjectPicker = ({
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Select project"
       >
-        <span className="text-lg">{selectedProjectTitle}</span>
+        {selectedProject?.logoUrl && (
+          <img
+            src={`${import.meta.env.BASE_URL}${selectedProject.logoUrl}`}
+            alt={`${selectedProjectTitle} logo`}
+            className="mr-2 object-contain"
+          />
+        )}
+        <span className="text-lg">{selectedProject?.subtitle || 'Select a Project'}</span>
         <ChevronDown size={20} className={cn("ml-2 transition-transform duration-300", isOpen ? "rotate-180" : "")} />
       </button>
 
