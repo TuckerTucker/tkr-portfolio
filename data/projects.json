@@ -2,7 +2,7 @@
   {
     "id": "tucker",
     "title": "Tucker",
-    "color": "#bdbdbd",
+    "color": "#613CB0",
     "subtitle": "About the designer",
     "logoUrl": "Tucker.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
@@ -31,7 +31,7 @@
   {
     "id": "nutrien",
     "title": "Nutrien",
-    "color": "#9ad441",
+    "color": "#3b5f18",
     "subtitle": "Safety Portal",
     "logoUrl": "nutrien.svg",
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
