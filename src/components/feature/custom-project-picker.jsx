@@ -25,11 +25,10 @@ const CustomProjectPicker = ({
     <div className={cn('relative w-full', className)} {...props}>
       <button
         className={cn(
-          "relative z-[51] flex justify-between items-center w-full text-white px-6 py-4 min-h-[90px] shadow-lg transition-all duration-200",
-          isOpen ? "rounded-t-md" : "rounded-md"
+          "relative z-[51] flex  items-center w-full text-white px-6 rounded-t-md py-4 min-h-[90px] shadow-lg transition-all duration-200",
         )}
         style={{
-          backgroundColor: selectedProject?.color || '#FF8800',
+          backgroundColor: selectedProject?.color || '#613CB0',
         }}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Select project"

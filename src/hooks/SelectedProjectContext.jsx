@@ -8,8 +8,20 @@ const SelectedProjectContext = createContext();
 /**
  * Provider component to wrap the app and provide selected project state.
  */
+import { useEffect } from 'react';
+
 export function SelectedProjectProvider({ children }) {
-  const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(() => {
+    return localStorage.getItem('selectedProjectId') || null;
+  });
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      localStorage.setItem('selectedProjectId', selectedProjectId);
+    } else {
+      localStorage.removeItem('selectedProjectId');
+    }
+  }, [selectedProjectId]);
 
   return (
     <SelectedProjectContext.Provider value={{ selectedProjectId, setSelectedProjectId }}>
