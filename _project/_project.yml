@@ -1,0 +1,15 @@
+directories:
+  - path: "../"
+    description: "Root project directory"
+    subdirectories:
+      - path: "@project/"
+        description: "Project context and grounding information"
+        subdirectories:
+          - path: "_claude/"
+            description: "Claude AI agent configuration directory"
+            files:
+              - "claude.local.md": "Project specific Claude configuration"
+          - path: "_ref/"
+            description: "Reference materials for packages and/or libraries used in the project to assist the coding agents."
+          - path: "_specs/"
+            description: "Project planning documents. May include wireframes, architecture docs, planning discussions."

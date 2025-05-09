@@ -37,7 +37,7 @@ app:
         rationale: "Portfolio is public-facing with no protected content"
     build:
       build_tool: "Vite" # Changed from Next.js
-\      optimization:
+      optimization:
         code_splitting: "Dynamic import()" # Changed from Route-based
         tree_shaking: true
       dependencies:

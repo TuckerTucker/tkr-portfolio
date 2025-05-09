@@ -43,6 +43,7 @@ const CustomProjectPicker = ({
           <span className="text-lg">{selectedProject?.subtitle || 'Select a Project'}</span>
         </div>
         <div className="flex items-center justify-center bg-black/40 rounded-md px-5 py-2.5">
+          <span className="mr-2 text-sm font-medium">Projects</span>
           <ChevronDown
             size={25}
             className={cn("transition-transform duration-300", isOpen ? "rotate-180" : "")}
