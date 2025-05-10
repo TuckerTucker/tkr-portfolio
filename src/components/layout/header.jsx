@@ -14,7 +14,7 @@ const Header = ({
   className,
   ...props
 }) => {
-  const baseClasses = "bg-[#613CB0] p-4 flex justify-between items-center";
+  const baseClasses = "bg-[#613CB0] p-4 flex justify-between items-center sticky top-0 z-50 w-full shadow-md";
 
   const handleDownload = () => {
     const link = document.createElement('a');

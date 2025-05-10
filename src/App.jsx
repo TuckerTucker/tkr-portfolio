@@ -42,11 +42,13 @@ const HomePage = () => {
         {selectedProject && (
           <>
             <ImageCarousel items={selectedProject.slides || []} />
+            {/* Content section hidden temporarily
             <ContentSection
               title={selectedProject.title}
               description={selectedProject.description}
               bullets={selectedProject.bullets}
             />
+            */}
           </>
         )}
       </div>
@@ -60,13 +62,13 @@ function App() {
     <>
       <div className="flex flex-col min-h-screen bg-background text-text">
         <Header />
-        <main className="flex-grow max-w-5xl w-full mx-auto px-6 py-8 flex flex-col gap-8">
+        <main className="flex-grow max-w-5xl w-full mx-auto px-6 py-8 flex flex-col gap-8 mt-2">
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
