@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { cn } from "@/lib/utils";
 import {
@@ -8,13 +8,38 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import htmlSlideComponents from '@/components/html-slides';
 
 /**
- * Displays a carousel of images and videos.
- * Based on .clinerules definition for image_carousel.
+ * Dynamic HTML Slide Component Loader
+ * Loads the appropriate component from the registry and handles missing components
+ */
+const DynamicHtmlSlide = ({ component, props, alt }) => {
+  const Component = htmlSlideComponents[component];
+  
+  if (!Component) {
+    return (
+      <div className="w-full h-full flex items-center justify-center text-red-500">
+        Component "{component}" not found
+      </div>
+    );
+  }
+  
+  return <Component {...props} aria-label={alt} />;
+};
+
+DynamicHtmlSlide.propTypes = {
+  component: PropTypes.string.isRequired,
+  props: PropTypes.object,
+  alt: PropTypes.string
+};
+
+/**
+ * Displays a carousel of images, videos, and HTML components.
+ * Based on .clinerules definition for image_carousel with HTML extension.
  */
 const ImageCarousel = ({
-  items = [], // Array of { type: 'image' | 'video', src, alt }
+  items = [], // Array of { type: 'image' | 'video' | 'html', src/component, alt/props }
   className,
   ...props
 }) => {
@@ -24,9 +49,9 @@ const ImageCarousel = ({
 
   return (
     <div
-      className={cn("relative w-full bg-gray-200 overflow-hidden", className)} // Base container styles
-      role="region" // Accessibility from .clinerules
-      aria-label="Project screenshots" // Accessibility from .clinerules
+      className={cn("relative w-full bg-gray-200 overflow-hidden", className)}
+      role="region"
+      aria-label="Project content showcase"
       {...props}
     >
       <Carousel>
@@ -41,9 +66,19 @@ const ImageCarousel = ({
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-contain" // Use contain for video
+                    className="w-full h-full object-contain"
                     aria-label={item.alt || `Video slide ${index + 1}`}
                   />
+                ) : item.type === 'html' ? (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+                    <Suspense fallback={<div className="text-white">Loading component...</div>}>
+                      <DynamicHtmlSlide 
+                        component={item.component} 
+                        props={item.props} 
+                        alt={item.alt || `HTML slide ${index + 1}`} 
+                      />
+                    </Suspense>
+                  </div>
                 ) : (
                   <img
                     src={`${import.meta.env.BASE_URL}${item.src}`}
@@ -62,7 +97,7 @@ const ImageCarousel = ({
           {items.map((_, index) => (
             <span
               key={index}
-              className="w-2 h-2 rounded-full bg-white opacity-50" // Consider active state styling
+              className="w-2 h-2 rounded-full bg-white opacity-50"
             />
           ))}
         </div>
@@ -74,8 +109,10 @@ const ImageCarousel = ({
 ImageCarousel.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(['image', 'video']).isRequired,
-      src: PropTypes.string.isRequired,
+      type: PropTypes.oneOf(['image', 'video', 'html']).isRequired,
+      src: PropTypes.string,
+      component: PropTypes.string,
+      props: PropTypes.object,
       alt: PropTypes.string,
     })
   ),

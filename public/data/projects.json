@@ -23,6 +23,22 @@
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
     "slides": [
+      { 
+        "type": "html", 
+        "component": "TechStack", 
+        "props": {
+          "title": "Technologies Used",
+          "technologies": [
+            { "name": "React", "description": "Frontend Framework" },
+            { "name": "Node.js", "description": "Backend Server" },
+            { "name": "MongoDB", "description": "Database" },
+            { "name": "Express", "description": "Web Framework" },
+            { "name": "Socket.IO", "description": "Real-time Updates" },
+            { "name": "Tailwind CSS", "description": "Styling" }
+          ]
+        },
+        "alt": "Technology stack visualization for Agentic AI Kanban" 
+      },
       { "type": "image", "src": "slides/taskboard/beached_balls.png", "alt": "Kanban Slide 1" },
       { "type": "image", "src": "slides/taskboard/ramoon.png", "alt": "Kanban Demo Video" },
       { "type": "image", "src": "slides/taskboard/knitten.png", "alt": "Kanban Slide 2" }
@@ -51,6 +67,22 @@
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
     "slides": [
+      { 
+        "type": "html", 
+        "component": "TechStack", 
+        "props": {
+          "title": "Analytics Stack",
+          "technologies": [
+            { "name": "D3.js", "description": "Data Visualization" },
+            { "name": "React", "description": "UI Framework" },
+            { "name": "GraphQL", "description": "API Layer" },
+            { "name": "AWS Lambda", "description": "Serverless Functions" },
+            { "name": "Elasticsearch", "description": "Data Storage" },
+            { "name": "Kibana", "description": "Data Exploration" }
+          ]
+        },
+        "alt": "Analytics technology stack for Worldplay dashboard" 
+      },
       { "type": "image", "src": "slides/worldplay/beached_balls.png", "alt": "Worldplay Slide 1" },
       { "type": "image", "src": "slides/worldplay/ramoon.png", "alt": "Worldplay Slide 2" },
       { "type": "image", "src": "slides/worldplay/knitten.png", "alt": "Worldplay Slide 3" }
