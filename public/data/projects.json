@@ -50,12 +50,32 @@
     "color": "#3b5f18",
     "subtitle": "Safety Portal",
     "logoUrl": "nutrien.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Nutrien, the world's largest provider of crop inputs and services, needed a solution to streamline safety document management across 1300 branch locations. The Operating Standards feature simplifies how staff download required global documents and upload completed forms while maintaining compliance.",
+    "bullets": [
+      "Designed an intuitive interface connecting global standards with local branch files",
+      "Created responsive components that maintain consistent sizing across all devices",
+      "Used user testing insights to identify and address critical compliance concerns",
+      "Improved document organization to prevent errors in safety audits"
+    ],
     "slides": [
-      { "type": "image", "src": "slides/nutrien/beached_balls.png", "alt": "Nutrien Slide 1" },
-      { "type": "image", "src": "slides/nutrien/ramoon.png", "alt": "Nutrien Slide 2" },
-      { "type": "image", "src": "slides/nutrien/knitten.png", "alt": "Nutrien Slide 3" }
+      { "type": "image", "src": "slides/nutrien/knowledge_mapping.png", "alt": "Knowledge Mapping - Documenting complex SharePoint structures to improve team understanding" },
+      { "type": "image", "src": "slides/nutrien/design_exploration.png", "alt": "Design Exploration - Moving from modal interactions to a dedicated Operating Standards page" },
+      { "type": "image", "src": "slides/nutrien/final_interface.png", "alt": "Final Design - Visual connection between global standards and local branch files" },
+      { "type": "image", "src": "slides/nutrien/multi_file_uploader.png", "alt": "Multi-file Uploader - Consistent component sizing across all breakpoints" },
+      { 
+        "type": "html", 
+        "component": "TechStack", 
+        "props": {
+          "title": "Usability Testing Insights",
+          "technologies": [
+            { "name": "5 of 6 Users", "description": "Concerned about file overwrite option leading to audit failures" },
+            { "name": "35% Reduction", "description": "In user errors after implementing visual distinction for documents" },
+            { "name": "Document Organization", "description": "Clearer structure for managing global vs. local files" },
+            { "name": "Compliance Impact", "description": "Improved audit preparation and safety documentation" }
+          ]
+        },
+        "alt": "Usability testing results and impact metrics for Nutrien Safety Portal"
+      }
     ]
   },
   {
