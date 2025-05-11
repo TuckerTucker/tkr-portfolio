@@ -61,10 +61,8 @@ function App() {
   return (
     <>
       <div className="flex flex-col min-h-screen bg-background text-text">
-        <Header className="fixed top-0 left-0 right-0 z-50" />
-        {/* Spacer div to prevent content shift */}
-        <div className="h-16 w-full"></div>
-        <main className="flex-grow max-w-5xl w-full mx-auto px-6 pt-4 pb-8 flex flex-col gap-8">
+{/* Header and spacer div removed */}
+        <main className="flex-grow max-w-5xl w-full mx-auto px-6 pt-8 pb-8 flex flex-col gap-8">
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
