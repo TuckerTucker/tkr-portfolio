@@ -6,11 +6,12 @@ import ProjectCard from '@/components/custom/project-card';
 /**
  * Renders a list of ProjectCard components within a dropdown context.
  * Takes an array of project data and an optional selection handler.
- * Based on .clinerules definition for project_selector's project_card_list child.
+ * Enhanced with mobile-first responsive design.
  */
 const ProjectCardList = ({
-  projects = [], // Default to empty array
-  onProjectSelect, // Function to call when a project is selected
+  projects = [],
+  onProjectSelect,
+  isMobile = false, // New prop to handle mobile-specific layouts
   className,
   ...props
 }) => {
@@ -23,7 +24,15 @@ const ProjectCardList = ({
   }
 
   return (
-    <div className={cn("", className)} {...props}> {/* Removed py-1 */}
+    <div 
+      className={cn(
+        "divide-y divide-gray-100",
+        className
+      )} 
+      role="listbox"
+      aria-label="Project list"
+      {...props}
+    >
       {projects.map((project) => (
         <ProjectCard
           key={project.id}
@@ -31,9 +40,9 @@ const ProjectCardList = ({
           title={project.title}
           subtitle={project.subtitle}
           color={project.color}
-          logoUrl={project.logoUrl} // Pass logoUrl
-          onClick={onProjectSelect} // Pass the handler down
-          // Add any specific className for list items if needed
+          logoUrl={project.logoUrl}
+          onClick={onProjectSelect}
+          isMobile={isMobile} // Pass the mobile flag down to each card
         />
       ))}
     </div>
@@ -47,11 +56,11 @@ ProjectCardList.propTypes = {
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
-      logoUrl: PropTypes.string, // Add logoUrl prop type
-      // Add other project properties if needed by ProjectCard later
+      logoUrl: PropTypes.string,
     })
   ),
   onProjectSelect: PropTypes.func,
+  isMobile: PropTypes.bool,
   className: PropTypes.string,
 };
 

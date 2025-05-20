@@ -7,15 +7,16 @@ import ProjectInfo from '@/components/custom/project-info';
 /**
  * Represents a single project item within the project selector dropdown.
  * Displays logo, project info, and an image placeholder.
- * Based on .clinerules definition for project_card and user screenshot.
+ * Enhanced with mobile-first responsive design.
  */
 const ProjectCard = ({
   id,
   title,
   subtitle,
   color,
-  logoUrl, // Added logoUrl prop
-  onClick, // Function to handle selection
+  logoUrl,
+  onClick,
+  isMobile = false, // New prop to handle mobile-specific layouts
   className,
   ...props
 }) => {
@@ -28,17 +29,28 @@ const ProjectCard = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full p-4 rounded-none cursor-pointer transition-colors duration-150", // Added justify-between
+        "flex items-center justify-between w-full rounded-none cursor-pointer transition-colors duration-150",
+        // More compact on mobile
+        isMobile ? "p-3" : "p-4",
         className
       )}
       style={{ backgroundColor: color, color: '#fff' }}
       onClick={handleClick}
+      role="option"
+      aria-selected="false"
       {...props}
     >
-      {/* Left: Logo or Color Block */}
-      <div className="flex items-center mr-4 flex-shrink-0 w-16 h-16"> {/* Added container for logo/block */}
+      {/* Left: Logo or Color Block - Smaller on mobile */}
+      <div className={cn(
+        "flex items-center mr-3 flex-shrink-0",
+        isMobile ? "w-12 h-12" : "w-16 h-16",
+      )}>
         {logoUrl ? (
-          <img src={`${import.meta.env.BASE_URL}${logoUrl}`} alt={`${title} logo`} className="max-w-full max-h-full object-contain" />
+          <img 
+            src={`${import.meta.env.BASE_URL}${logoUrl}`} 
+            alt={`${title} logo`} 
+            className="max-w-full max-h-full object-contain"
+          />
         ) : (
           <ColorBlock
             backgroundColor="rgba(255,255,255,0.3)"
@@ -47,15 +59,20 @@ const ProjectCard = ({
         )}
       </div>
 
-      {/* Center: Project Info */}
+      {/* Center: Project Info - Adjust text size on mobile */}
       <ProjectInfo
         title={title}
         subtitle={subtitle}
-        className="flex-grow" // Allow info to take up space
+        className="flex-grow"
+        isMobile={isMobile}
       />
 
-      {/* Right: Image Placeholder */}
-      <div className="ml-4 w-24 h-16 bg-gray-300 flex items-center justify-center text-gray-600 text-sm flex-shrink-0">
+      {/* Right: Image Placeholder - Hide on very small screens, smaller on mobile */}
+      <div className={cn(
+        "bg-gray-300 flex items-center justify-center text-gray-600 flex-shrink-0 ml-3",
+        isMobile ? "w-16 h-12 hidden sm:flex" : "w-24 h-16",
+        isMobile ? "text-xs" : "text-sm",
+      )}>
         Image
       </div>
     </div>
@@ -67,8 +84,9 @@ ProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  logoUrl: PropTypes.string, // Added prop type
+  logoUrl: PropTypes.string,
   onClick: PropTypes.func,
+  isMobile: PropTypes.bool,
   className: PropTypes.string,
 };
 

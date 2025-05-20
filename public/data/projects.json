@@ -11,7 +11,76 @@
       { "type": "video", "src": "slides/tucker/designing_stuff.mp4", "alt": "Tucker Slide Video" },
       { "type": "image", "src": "slides/tucker/beached_balls.png", "alt": "Tucker Slide 1" },
       { "type": "image", "src": "slides/tucker/ramoon.png", "alt": "Tucker Slide 2" },
-      { "type": "image", "src": "slides/tucker/knitten.png", "alt": "Tucker Slide 3" }
+      { "type": "image", "src": "slides/tucker/knitten.png", "alt": "Tucker Slide 3" },
+      { 
+        "type": "html", 
+        "component": "SkillsMatrix", 
+        "props": {
+          "title": "Skills & Expertise",
+          "categories": [
+            { "id": "design", "name": "Design" },
+            { "id": "development", "name": "Development" },
+            { "id": "tools", "name": "Tools & Software" }
+          ],
+          "skills": [
+            {
+              "id": "ux-design",
+              "name": "UX Design",
+              "category": "design",
+              "proficiency": 5,
+              "experience": "8+ years",
+              "description": "Creating user-centered designs through research, wireframing, and usability testing",
+              "projects": ["Nutrien Safety Portal", "Worldplay Analytics Dashboard", "Shaw Phone Portal"]
+            },
+            {
+              "id": "ui-design",
+              "name": "UI Design",
+              "category": "design",
+              "proficiency": 5,
+              "experience": "7+ years",
+              "description": "Crafting visually appealing and accessible interfaces with a focus on usability",
+              "projects": ["Taskboard", "Nutrien Safety Portal", "Worldplay Analytics Dashboard"]
+            },
+            {
+              "id": "react",
+              "name": "React",
+              "category": "development",
+              "proficiency": 4,
+              "experience": "5+ years",
+              "description": "Building interactive web applications with React, Context API, and hooks",
+              "projects": ["Taskboard", "Portfolio Website"]
+            },
+            {
+              "id": "tailwind",
+              "name": "Tailwind CSS",
+              "category": "development",
+              "proficiency": 4,
+              "experience": "3+ years",
+              "description": "Creating responsive and utility-first CSS designs",
+              "projects": ["Taskboard", "Portfolio Website"]
+            },
+            {
+              "id": "figma",
+              "name": "Figma",
+              "category": "tools",
+              "proficiency": 5,
+              "experience": "4+ years",
+              "description": "Creating design systems, prototypes, and collaborative design workflows",
+              "projects": ["Nutrien Safety Portal", "Worldplay Analytics Dashboard", "Taskboard"]
+            },
+            {
+              "id": "storybook",
+              "name": "Storybook",
+              "category": "tools",
+              "proficiency": 4,
+              "experience": "3+ years",
+              "description": "Building component libraries and design systems documentation",
+              "projects": ["Portfolio Website", "Taskboard"]
+            }
+          ]
+        },
+        "alt": "Tucker's skills matrix showing proficiency in design and development" 
+      }
     ]
   },
   {
@@ -23,6 +92,104 @@
     "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
     "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
     "slides": [
+      { 
+        "type": "html", 
+        "component": "ProcessTimeline", 
+        "props": {
+          "title": "Project Development Process",
+          "description": "The key phases in developing the AI-powered kanban board project",
+          "stages": [
+            {
+              "name": "Research",
+              "description": "Studied existing kanban tools and identified opportunities for AI integration",
+              "deliverable": "Competitive Analysis"
+            },
+            {
+              "name": "Planning",
+              "description": "Defined project scope, features, and technical architecture",
+              "deliverable": "Project Roadmap"
+            },
+            {
+              "name": "Design",
+              "description": "Created wireframes, user flows, and visual design for the application",
+              "deliverable": "UI/UX Prototypes"
+            },
+            {
+              "name": "Development",
+              "description": "Built the React front-end, Node.js backend, and integrated AI capabilities",
+              "deliverable": "MVP Release"
+            },
+            {
+              "name": "Testing",
+              "description": "Conducted user testing and gathered feedback for improvements",
+              "deliverable": "Usability Report"
+            }
+          ],
+          "activeStage": 3
+        },
+        "alt": "Development process timeline for the Agentic AI Kanban project" 
+      },
+      { 
+        "type": "html", 
+        "component": "UserFlow", 
+        "props": {
+          "title": "Task Management Flow",
+          "description": "Key user journey through the AI task management process",
+          "flowSteps": [
+            {
+              "label": "Task Creation",
+              "title": "Creating a New Task",
+              "description": "Users create a new task by entering a title, description, and optional attachments",
+              "userActions": [
+                "Click 'Add Task' button",
+                "Fill out task details form",
+                "Click 'Save' to create task"
+              ],
+              "systemResponse": "The system creates the task and triggers AI analysis to suggest categorization and priority",
+              "decisionPoints": [
+                "User can accept or modify AI suggestions",
+                "User can assign the task to team members"
+              ]
+            },
+            {
+              "label": "AI Processing",
+              "title": "AI Task Analysis",
+              "description": "The system uses AI to analyze task content and provide intelligent suggestions",
+              "systemResponse": "AI identifies key information, suggests tags, estimates complexity, and recommends priority level",
+              "decisionPoints": [
+                "System determines if task requires special handling",
+                "System identifies related tasks and dependencies"
+              ]
+            },
+            {
+              "label": "Board Placement",
+              "title": "Task Board Placement",
+              "description": "The task is placed on the kanban board based on its status and category",
+              "userActions": [
+                "Review AI-suggested placement",
+                "Drag task to different column if needed",
+                "Add additional tags or metadata"
+              ],
+              "systemResponse": "System updates task metadata and triggers any automation rules"
+            },
+            {
+              "label": "Progress Tracking",
+              "title": "Task Progress Tracking",
+              "description": "Users and AI work together to track and update task progress",
+              "userActions": [
+                "Drag task between status columns",
+                "Add comments and update description",
+                "Track time spent on task"
+              ],
+              "systemResponse": "AI provides insights on potential blockers and suggests optimizations based on progress patterns"
+            }
+          ]
+        },
+        "alt": "User flow diagram for task management in the Agentic AI Kanban project" 
+      },
+      { "type": "image", "src": "slides/taskboard/beached_balls.png", "alt": "Kanban Slide 1" },
+      { "type": "image", "src": "slides/taskboard/ramoon.png", "alt": "Kanban Demo Video" },
+      { "type": "image", "src": "slides/taskboard/knitten.png", "alt": "Kanban Slide 2" },
       { 
         "type": "html", 
         "component": "TechStack", 
@@ -38,10 +205,7 @@
           ]
         },
         "alt": "Technology stack visualization for Agentic AI Kanban" 
-      },
-      { "type": "image", "src": "slides/taskboard/beached_balls.png", "alt": "Kanban Slide 1" },
-      { "type": "image", "src": "slides/taskboard/ramoon.png", "alt": "Kanban Demo Video" },
-      { "type": "image", "src": "slides/taskboard/knitten.png", "alt": "Kanban Slide 2" }
+      }
     ]
   },
   {
@@ -58,20 +222,123 @@
       "Improved document organization to prevent errors in safety audits"
     ],
     "slides": [
+      { 
+        "type": "html", 
+        "component": "UserPersona", 
+        "props": {
+          "name": "Maria Rodriguez",
+          "role": "Branch Safety Coordinator",
+          "demographics": {
+            "Age": "42",
+            "Location": "Rural Iowa",
+            "Experience": "15 years at Nutrien",
+            "Tech Comfort": "Moderate"
+          },
+          "goals": [
+            "Ensure branch compliance with all safety regulations",
+            "Minimize time spent on administrative paperwork",
+            "Train new employees on safety procedures accurately",
+            "Prevent safety incidents through proper documentation"
+          ],
+          "painPoints": [
+            "Struggles to locate the correct global documents for local implementation",
+            "Worries about accidentally overwriting or deleting important files",
+            "Finds it difficult to track which forms have been completed",
+            "Feels overwhelmed during safety audits"
+          ],
+          "behaviors": [
+            "Accesses the safety portal 2-3 times per week",
+            "Prefers to batch-process safety documentation tasks",
+            "Often works from different devices (office PC, tablet in the field)",
+            "Carefully double-checks all submissions before finalizing"
+          ],
+          "quote": "I need to be 100% certain we're compliant. When auditors come, there's no room for mistakes with our documentation."
+        },
+        "alt": "User persona for Nutrien Branch Safety Coordinator" 
+      },
       { "type": "image", "src": "slides/nutrien/knowledge_mapping.png", "alt": "Knowledge Mapping - Documenting complex SharePoint structures to improve team understanding" },
       { "type": "image", "src": "slides/nutrien/design_exploration.png", "alt": "Design Exploration - Moving from modal interactions to a dedicated Operating Standards page" },
+      { 
+        "type": "html", 
+        "component": "BeforeAfter", 
+        "props": {
+          "title": "Interface Redesign",
+          "beforeImage": "slides/nutrien/knowledge_mapping.png",
+          "afterImage": "slides/nutrien/final_interface.png",
+          "beforeLabel": "Previous Design",
+          "afterLabel": "New Design"
+        },
+        "alt": "Before and after comparison of the Nutrien safety portal interface"
+      },
       { "type": "image", "src": "slides/nutrien/final_interface.png", "alt": "Final Design - Visual connection between global standards and local branch files" },
       { "type": "image", "src": "slides/nutrien/multi_file_uploader.png", "alt": "Multi-file Uploader - Consistent component sizing across all breakpoints" },
       { 
         "type": "html", 
-        "component": "TechStack", 
+        "component": "UsabilityMetrics", 
         "props": {
-          "title": "Usability Testing Insights",
-          "technologies": [
-            { "name": "5 of 6 Users", "description": "Concerned about file overwrite option leading to audit failures" },
-            { "name": "35% Reduction", "description": "In user errors after implementing visual distinction for documents" },
-            { "name": "Document Organization", "description": "Clearer structure for managing global vs. local files" },
-            { "name": "Compliance Impact", "description": "Improved audit preparation and safety documentation" }
+          "title": "Usability Testing Results",
+          "participants": 6,
+          "metrics": [
+            {
+              "name": "Task Completion Rate",
+              "value": "85%",
+              "percentage": 85,
+              "description": "Percentage of tasks completed successfully without assistance"
+            },
+            {
+              "name": "Error Rate",
+              "value": "Reduced by 35%",
+              "percentage": 65,
+              "description": "Reduction in user errors compared to previous interface"
+            },
+            {
+              "name": "User Satisfaction",
+              "value": "4.2/5",
+              "percentage": 84,
+              "description": "Average satisfaction score from post-test surveys"
+            }
+          ],
+          "tasks": [
+            {
+              "name": "Locate a specific global standard",
+              "description": "Find the 'Chemical Handling Procedure' document",
+              "successRate": 100,
+              "avgTime": "28 seconds"
+            },
+            {
+              "name": "Upload a completed local form",
+              "description": "Upload the monthly inspection checklist",
+              "successRate": 83,
+              "avgTime": "45 seconds"
+            },
+            {
+              "name": "Replace an existing document",
+              "description": "Update an outdated safety form with a new version",
+              "successRate": 67,
+              "avgTime": "1:12 minutes"
+            }
+          ],
+          "insights": [
+            {
+              "type": "negative",
+              "title": "File Overwrite Concerns",
+              "description": "5 out of 6 users expressed concerns about accidentally overwriting existing files during the upload process.",
+              "impact": "high",
+              "action": "Added a confirmation dialog with clear visual indicators showing which files would be replaced."
+            },
+            {
+              "type": "positive",
+              "title": "Visual Connection Between Global and Local",
+              "description": "Users appreciated the clear visual connection between global standards and local implementation files.",
+              "impact": "medium"
+            },
+            {
+              "type": "info",
+              "title": "Mobile Usage Higher Than Expected",
+              "description": "4 out of 6 users reported they would need to access the system from mobile devices in the field.",
+              "impact": "medium",
+              "action": "Enhanced responsive design to ensure consistent component sizing across all breakpoints."
+            }
           ]
         },
         "alt": "Usability testing results and impact metrics for Nutrien Safety Portal"
@@ -84,9 +351,140 @@
     "color": "#00a4e4",
     "subtitle": "Analytics Dashboard",
     "logoUrl": "worldplay.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Worldplay needed a comprehensive analytics dashboard to help content publishers understand viewer engagement and optimize their video strategies. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
+    "bullets": ["Real-time analytics visualization", "Custom report builder", "Audience segmentation tools"],
     "slides": [
+      { 
+        "type": "html", 
+        "component": "DesignSystem", 
+        "props": {
+          "title": "Worldplay Design System",
+          "colors": [
+            {
+              "name": "Primary",
+              "variants": [
+                { "name": "Base", "hex": "#00a4e4" },
+                { "name": "Light", "hex": "#40c4ff" },
+                { "name": "Dark", "hex": "#0078a8" }
+              ]
+            },
+            {
+              "name": "Secondary",
+              "variants": [
+                { "name": "Base", "hex": "#6b38fb" },
+                { "name": "Light", "hex": "#9c73ff" },
+                { "name": "Dark", "hex": "#4b288d" }
+              ]
+            },
+            {
+              "name": "Neutral",
+              "variants": [
+                { "name": "White", "hex": "#ffffff" },
+                { "name": "Gray-100", "hex": "#f0f4f8" },
+                { "name": "Gray-300", "hex": "#d0d7de" },
+                { "name": "Gray-700", "hex": "#424a53" },
+                { "name": "Gray-900", "hex": "#1f2328" }
+              ]
+            },
+            {
+              "name": "Feedback",
+              "variants": [
+                { "name": "Success", "hex": "#26d07c" },
+                { "name": "Warning", "hex": "#ffb547" },
+                { "name": "Error", "hex": "#ef4565" },
+                { "name": "Info", "hex": "#118ab2" }
+              ]
+            }
+          ],
+          "typography": [
+            {
+              "name": "Headings",
+              "variants": [
+                {
+                  "name": "H1",
+                  "specs": "32px / 700 / 1.2",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "2rem",
+                  "fontWeight": 700,
+                  "lineHeight": "1.2",
+                  "sample": "Video Performance Analysis"
+                },
+                {
+                  "name": "H2",
+                  "specs": "24px / 600 / 1.3",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "1.5rem",
+                  "fontWeight": 600,
+                  "lineHeight": "1.3",
+                  "sample": "Audience Demographics"
+                },
+                {
+                  "name": "H3",
+                  "specs": "20px / 600 / 1.4",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "1.25rem",
+                  "fontWeight": 600,
+                  "lineHeight": "1.4",
+                  "sample": "Revenue by Region"
+                }
+              ]
+            },
+            {
+              "name": "Body",
+              "variants": [
+                {
+                  "name": "Body Large",
+                  "specs": "18px / 400 / 1.5",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "1.125rem",
+                  "fontWeight": 400,
+                  "lineHeight": "1.5",
+                  "sample": "The analytics dashboard provides comprehensive insights into viewer engagement patterns."
+                },
+                {
+                  "name": "Body",
+                  "specs": "16px / 400 / 1.5",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "1rem",
+                  "fontWeight": 400,
+                  "lineHeight": "1.5",
+                  "sample": "Track performance metrics across different content categories and platforms."
+                },
+                {
+                  "name": "Small",
+                  "specs": "14px / 400 / 1.5",
+                  "fontFamily": "Inter, sans-serif",
+                  "fontSize": "0.875rem",
+                  "fontWeight": 400,
+                  "lineHeight": "1.5",
+                  "sample": "Data refreshes automatically every 5 minutes. Last updated: 2:30 PM."
+                }
+              ]
+            }
+          ],
+          "components": [
+            {
+              "name": "Data Cards",
+              "description": "Cards displaying key metrics with optional trend indicators and comparison data",
+              "image": "slides/worldplay/ramoon.png"
+            },
+            {
+              "name": "Line Charts",
+              "description": "Interactive line charts for time-series data visualization",
+              "image": "slides/worldplay/knitten.png"
+            },
+            {
+              "name": "Filter Controls",
+              "description": "Consistent filter patterns for refining dashboard views",
+              "image": "slides/worldplay/beached_balls.png"
+            }
+          ]
+        },
+        "alt": "Worldplay analytics dashboard design system" 
+      },
+      { "type": "image", "src": "slides/worldplay/beached_balls.png", "alt": "Worldplay Slide 1" },
+      { "type": "image", "src": "slides/worldplay/ramoon.png", "alt": "Worldplay Slide 2" },
+      { "type": "image", "src": "slides/worldplay/knitten.png", "alt": "Worldplay Slide 3" },
       { 
         "type": "html", 
         "component": "TechStack", 
@@ -102,10 +500,7 @@
           ]
         },
         "alt": "Analytics technology stack for Worldplay dashboard" 
-      },
-      { "type": "image", "src": "slides/worldplay/beached_balls.png", "alt": "Worldplay Slide 1" },
-      { "type": "image", "src": "slides/worldplay/ramoon.png", "alt": "Worldplay Slide 2" },
-      { "type": "image", "src": "slides/worldplay/knitten.png", "alt": "Worldplay Slide 3" }
+      }
     ]
   },
   {
@@ -114,8 +509,8 @@
     "color": "#0488c1",
     "subtitle": "Phone Portal",
     "logoUrl": "shaw.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Shaw Communications needed a comprehensive user portal for their phone service customers. The redesigned portal helps customers manage their accounts, view call history, configure features, and get support for their phone services.",
+    "bullets": ["Account management dashboard", "Interactive feature configuration", "Visual call history and usage tracking"],
     "slides": [
       { "type": "image", "src": "slides/shaw/beached_balls.png", "alt": "Shaw Slide 1" },
       { "type": "image", "src": "slides/shaw/ramoon.png", "alt": "Shaw Slide 2" },
