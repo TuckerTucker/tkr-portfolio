@@ -1,8 +1,60 @@
+# TKR Portfolio Project
+# Core project configuration for the TKR Portfolio
+
+# Project metadata
+project:
+  name: "TKR Portfolio"
+  version: "0.1.0"
+  description: "A portfolio website showcasing Tucker Harley's projects and skills"
+  author: "Tucker Harley"
+  role: "UX Designer & Developer"
+  timestamp: "2025-05-20"
+  status: "in-progress"
+  
+  # External systems and references
+  references:
+    design_system: "Storybook"
+    component_library: "Shadcn UI / Radix UI"
+  
+  # Repository information
+  repository:
+    type: "git"
+    url: "https://github.com/tuckertucker/tkr-portfolio"
+    branch: "main"
+
+# Technology Stack
+tech_stack:
+  frontend:
+    framework: "React"
+    language: "JavaScript"
+    build_tool: "Vite"
+    package_manager: "npm"
+    key_libraries:
+      - name: "React Router"
+        version: "^7.5.0"
+        purpose: "Routing and navigation"
+      - name: "TailwindCSS"
+        version: "^3.4.3"
+        purpose: "Utility-first CSS framework"
+      - name: "Radix UI"
+        version: "^2.1.6"
+        purpose: "Accessible UI components"
+      - name: "Embla Carousel"
+        version: "^8.6.0"
+        purpose: "Image carousel functionality"
+  
+  # Deployment details
+  deployment:
+    strategy: "GitHub Pages"
+    bundling: "Vite build"
+    cdn: "GitHub Pages CDN"
+
+# Directory structure
 directories:
   - path: "../"
     description: "Root project directory"
     subdirectories:
-      - path: "@project/"
+      - path: "_project/"
         description: "Project context and grounding information"
         subdirectories:
           - path: "_claude/"
@@ -11,5 +63,97 @@ directories:
               - "claude.local.md": "Project specific Claude configuration"
           - path: "_ref/"
             description: "Reference materials for packages and/or libraries used in the project to assist the coding agents."
+            subdirectories:
+              - path: "tkr-project-yaml/"
+                description: "Templates and specifications for project YAML files"
+                files:
+                  - "specification-guide.md": "Detailed guide for completing YAML documentation"
+                subdirectories:
+                  - path: "templates/"
+                    description: "YAML templates for different documentation types"
+                    files:
+                      - "component-template.yaml": "Template for individual UI components"
+                      - "template-core-project.yaml": "Template for core project configuration"
           - path: "_specs/"
-            description: "Project planning documents. May include wireframes, architecture docs, planning discussions."
+            description: "Project planning documents including wireframes, architecture docs, and implementation guidelines"
+            subdirectories:
+              - path: "html_slides/"
+                description: "Documentation and guidelines for HTML slides implementation"
+                files:
+                  - "usage_guidelines.md": "Instructions for HTML slides usage"
+              - path: "ui_wireframes/"
+                description: "UI wireframes and design mockups"
+                files:
+                  - "app.svg": "Application wireframe"
+                  - "project_dropdown.png": "Project dropdown UI design"
+                  - "wireframes.png": "General UI wireframes"
+
+# Global Design Tokens
+global:
+  design_tokens:
+    colors:
+      primary: "#3b82f6"    # Blue-500
+      secondary: "#10b981"  # Emerald-500
+      accent: "#8b5cf6"     # Violet-500
+      text:
+        primary: "#1f2937"  # Gray-800
+        secondary: "#6b7280"  # Gray-500
+      background:
+        light: "#ffffff"
+        dark: "#111827"     # Gray-900
+      semantic:
+        success: "#10b981"  # Emerald-500
+        warning: "#f59e0b"  # Amber-500
+        error: "#ef4444"    # Red-500
+        info: "#3b82f6"     # Blue-500
+    
+    typography:
+      font_family: "system-ui, sans-serif"
+      base_size: "16px"
+      scale_ratio: 1.25
+      weights:
+        regular: 400
+        medium: 500
+        bold: 700
+    
+    spacing:
+      base: "8px"
+      scale:
+        xs: "4px"    # 0.5x base
+        sm: "8px"    # 1x base
+        md: "16px"   # 2x base
+        lg: "24px"   # 3x base
+        xl: "32px"   # 4x base
+  
+  # Accessibility standards
+  accessibility:
+    compliance: "WCAG 2.1 AA"
+    color_contrast:
+      minimum_ratio: "4.5:1"
+    keyboard_navigation: true
+    screen_reader_support: true
+    focus_indicators:
+      style: "outline"
+      color: "#3b82f6"
+      width: "2px"
+  
+  # Responsive design configuration
+  responsive:
+    breakpoints:
+      mobile: "max-width: 599px"
+      tablet: "600px to 1023px"
+      desktop: "min-width: 1024px"
+    strategy: "mobile-first"
+    container_widths:
+      max_width: "1280px"
+      padding: "16px"
+
+# Project purpose
+purpose:
+  summary: "To showcase Tucker Harley's portfolio of work, skills, and experience as a UX Designer and Developer through an interactive website built with modern web technologies."
+  goals:
+    - "Present project showcases with detailed descriptions and visual examples"
+    - "Demonstrate technical skills through well-structured React code and components"
+    - "Implement interactive features like image carousels and HTML slides"
+    - "Provide an accessible and responsive user experience"
+    - "Create a design system using Storybook for component documentation"
