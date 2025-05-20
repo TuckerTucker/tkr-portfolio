@@ -67,7 +67,7 @@ const ImageCarousel = ({
 
   return (
     <div
-      className={cn("relative w-full bg-gray-200 overflow-hidden", className)}
+      className={cn("relative w-full bg-gray-200 dark:bg-gray-800 overflow-hidden", className)}
       role="region"
       aria-label="Project content showcase"
       {...props}
@@ -94,7 +94,7 @@ const ImageCarousel = ({
                     />
                   ) : item.type === 'html' ? (
                     <div className={cn(
-                      "w-full bg-gradient-to-r from-gray-900 to-gray-800 text-white",
+                      "w-full",
                       // On mobile, allow HTML slides to expand vertically with scrolling
                       isMobile ? "overflow-y-auto max-h-[80vh]" : "h-full flex items-center justify-center"
                     )}>

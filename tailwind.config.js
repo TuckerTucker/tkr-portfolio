@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
+  darkMode: 'class',
   safelist: [
     "text-primary",
     "text-secondary",
@@ -14,6 +15,9 @@ export default {
     "text-background",
     "text-card",
     "text-text",
+    "dark:text-background-dark",
+    "dark:text-card-dark",
+    "dark:text-text-dark",
     "bg-primary",
     "bg-secondary",
     "bg-nutrien",
@@ -22,7 +26,10 @@ export default {
     "bg-accent",
     "bg-background",
     "bg-card",
-    "bg-text"
+    "bg-text",
+    "dark:bg-background-dark",
+    "dark:bg-card-dark",
+    "dark:bg-text-dark"
   ],
   theme: {
     extend: {
@@ -33,9 +40,21 @@ export default {
         worldplay: "#00a4e4",
         shaw: "#0488c1",
         accent: "#00A3FF",
-        background: "#F5F5F5",
-        card: "#FFFFFF",
-        text: "#333333",
+        background: {
+          light: "#F5F5F5",
+          dark: "#1A1A1A",
+          DEFAULT: "#F5F5F5"
+        },
+        card: {
+          light: "#FFFFFF",
+          dark: "#2A2A2A",
+          DEFAULT: "#FFFFFF"
+        },
+        text: {
+          light: "#333333",
+          dark: "#F0F0F0",
+          DEFAULT: "#333333"
+        },
       },
       fontFamily: {
         sans: ["ellograph-cf", "sans-serif"], // Match Adobe Fonts CSS

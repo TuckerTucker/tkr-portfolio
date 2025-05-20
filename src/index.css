@@ -127,10 +127,46 @@
   }
 }
 
-/* Disable all borders globally */
-*,
-*::before,
-*::after {
-  border: none !important;
-  border-width: 0 !important;
+/* Selectively apply borders */
+.card,
+.button,
+.input,
+.select,
+.dropdown,
+.theme-toggle {
+  border: 1px solid var(--color-border) !important;
+}
+
+/* Add transition for theme changes */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Override Tailwind's dark mode colors with our theme values */
+.dark {
+  --tw-bg-background-dark: var(--background);
+  --tw-text-text-dark: var(--foreground);
+  --tw-bg-card-dark: var(--card);
+  --tw-text-card-dark: var(--card-foreground);
+}
+
+/* HTML Slides Theme Variables */
+.slide-theme-light {
+  --slide-bg: linear-gradient(to right, #f0f4f8, #e1e8ed);
+  --slide-text: #333333;
+  --slide-title: #222222;
+  --slide-accent: #613CB0;
+  --slide-secondary: #FF8800;
+  --slide-card-bg: rgba(255, 255, 255, 0.6);
+  --slide-card-border: rgba(0, 0, 0, 0.1);
+}
+
+.slide-theme-dark {
+  --slide-bg: linear-gradient(to right, #1a1a2e, #16213e);
+  --slide-text: #e1e8ed;
+  --slide-title: #ffffff;
+  --slide-accent: #8a63d2;
+  --slide-secondary: #FFA940;
+  --slide-card-bg: rgba(255, 255, 255, 0.1);
+  --slide-card-border: rgba(255, 255, 255, 0.05);
 }

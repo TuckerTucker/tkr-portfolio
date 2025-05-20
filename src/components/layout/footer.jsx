@@ -2,6 +2,7 @@ import React from 'react';
 import { Github, Linkedin, File, Cloud } from 'lucide-react';
 import Branding from '@/components/custom/branding';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 const Footer = () => {
   const handleDownload = () => {
@@ -33,7 +34,7 @@ const Footer = () => {
           </Button>
         </div>
 
-        {/* Bottom section with links and copyright */}
+        {/* Bottom section with links, theme toggle, and copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-5 flex-wrap justify-center md:justify-start">
             <a
@@ -77,7 +78,11 @@ const Footer = () => {
               <span>Storybook</span>
             </a>
           </div>
-          <div className="text-sm opacity-80">&copy; {new Date().getFullYear()} Sean 'Tucker' Harley</div>
+
+          <div className="flex items-center gap-3">
+            <ThemeToggle className="mr-1" />
+            <div className="text-sm opacity-80">&copy; {new Date().getFullYear()} Sean 'Tucker' Harley</div>
+          </div>
         </div>
       </div>
     </footer>

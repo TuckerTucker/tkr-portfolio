@@ -50,6 +50,10 @@ app:
       data_flow: "Local JSON → Component State"
       error_handling: "Error Boundaries per feature"
       component_development: "Storybook stories with shadcnui components"
+      theming: 
+        implementation: "CSS variables + Context API"
+        mechanism: "localStorage + system preference detection"
+        class_approach: "Dark class on root element with tailwind dark: variant"
     scalability:
       caching:
         strategy: "Stale-while-revalidate with selective invalidation"
@@ -130,7 +134,7 @@ components:
   footer:
     metadata:
       purpose: "Site footer with links and contact information"
-      dependencies: ["theme", "shadcnui/button", "custom/branding"]
+      dependencies: ["theme", "shadcnui/button", "custom/branding", "ui/theme-toggle"]
       required: true
     type: "section"
     properties:
@@ -209,10 +213,18 @@ components:
                       className: "flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
                       icon: "storybook"
                       text: "Storybook"
-              - type: "copyright"
+              - type: "right_section"
                 properties:
-                  className: "text-sm opacity-80"
-                  text: "&copy; {new Date().getFullYear()} Sean 'Tucker' Harley"
+                  className: "flex items-center gap-3"
+                children:
+                  - type: "theme_toggle"
+                    component: "ui/theme-toggle"
+                    properties:
+                      className: "mr-1"
+                  - type: "copyright"
+                    properties:
+                      className: "text-sm opacity-80"
+                      text: "&copy; {new Date().getFullYear()} Sean 'Tucker' Harley"
 
   # Project selector dropdown
   project_selector:
@@ -499,13 +511,82 @@ components:
     component: "html-slides/TechStack"
     metadata:
       purpose: "Interactive HTML slides for specific projects"
-      dependencies: ["theme"]
+      dependencies: ["theme", "useTheme"]
+      theme_support:
+        implementation: "HOC wrapper"
+        component: "slide-wrapper.jsx"
+        variables:
+          light:
+            bg: "linear-gradient(to right, #f0f4f8, #e1e8ed)"
+            text: "#333333"
+            title: "#222222"
+            card_bg: "rgba(255, 255, 255, 0.6)"
+          dark:
+            bg: "linear-gradient(to right, #1a1a2e, #16213e)"
+            text: "#e1e8ed"
+            title: "#ffffff"
+            card_bg: "rgba(255, 255, 255, 0.1)"
     properties:
       padding: "24px"
       className: "my-6"
     accessibility:
       role: "region"
       aria_label: "Project slides"
+      
+  # Theme toggle component
+  theme_toggle:
+    type: "component"
+    component: "ui/theme-toggle"
+    metadata:
+      purpose: "Toggle between light, dark, and system theme modes"
+      dependencies: ["useTheme"]
+      required: false
+    properties:
+      padding: "0.5rem"
+      background: "white/20"
+      border_radius: "0.375rem"
+      display: "flex"
+      gap: "0.25rem"
+    accessibility:
+      aria_label: "Theme toggle"
+    state:
+      store: "theme_context"
+      options:
+        - "light"
+        - "dark"
+        - "system"
+      persistance: "localStorage"
+    children:
+      - type: "button"
+        properties:
+          aria_label: "Light theme"
+          icon: "sun"
+          className: "p-1.5 rounded-md transition-colors"
+        interactions:
+          on_click:
+            action: "set_theme"
+            params:
+              theme: "light"
+      - type: "button"
+        properties:
+          aria_label: "System theme preference"
+          icon: "computer"
+          className: "p-1.5 rounded-md transition-colors"
+        interactions:
+          on_click:
+            action: "set_theme"
+            params:
+              theme: "system"
+      - type: "button"
+        properties:
+          aria_label: "Dark theme"
+          icon: "moon"
+          className: "p-1.5 rounded-md transition-colors"
+        interactions:
+          on_click:
+            action: "set_theme"
+            params:
+              theme: "dark"
 
 development:
   node_version: ">=20"
@@ -558,6 +639,18 @@ development:
         - "responsive behavior"
 
 theme:
+  mode: 
+    default: "system"  # Default to system preference
+    options: 
+      - "light"        # Forced light mode
+      - "dark"         # Forced dark mode
+      - "system"       # Follow system preference
+    storage: "localStorage"
+    implementation: "class-based" # Uses .dark class on documentElement
+    toggle:
+      position: "footer"
+      icons_only: true
+      component: "ui/theme-toggle"
   colors:
     primary: "#613CB0"    # Tucker color
     secondary: "#FF8800"  # Taskboard color
@@ -565,11 +658,23 @@ theme:
     worldplay: "#00a4e4"
     shaw: "#0488c1"
     accent: "#8b5cf6"     # Violet-500
-    background: "#F5F5F5"
-    card: "#FFFFFF"
+    background:
+      light: "#F5F5F5"
+      dark: "#1A1A1A"
+      DEFAULT: "#F5F5F5"
+    card:
+      light: "#FFFFFF"
+      dark: "#2A2A2A"
+      DEFAULT: "#FFFFFF"
     text:
-      primary: "#1f2937"  # Gray-800
-      secondary: "#6b7280"  # Gray-500
+      primary: 
+        light: "#1f2937"  # Gray-800
+        dark: "#F0F0F0"   # Gray-100
+        DEFAULT: "#1f2937"
+      secondary: 
+        light: "#6b7280"  # Gray-500
+        dark: "#9CA3AF"   # Gray-400
+        DEFAULT: "#6b7280"
   typography:
     font_family: "system-ui, sans-serif"
     base_size: "16px"

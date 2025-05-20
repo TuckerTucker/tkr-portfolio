@@ -14,14 +14,14 @@ const TechStack = ({
   ...props 
 }) => {
   return (
-    <div className={cn("w-full h-full flex flex-col p-6", className)} {...props}>
-      <h2 className="text-2xl font-heading mb-4">{title}</h2>
+    <div className={cn("w-full h-full flex flex-col p-6 text-[var(--slide-text)]", className)} {...props}>
+      <h2 className="text-2xl font-heading mb-4 text-[var(--slide-title)]">{title}</h2>
       
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-grow">
         {technologies.map((tech, index) => (
           <div 
             key={index}
-            className="flex flex-col items-center justify-center p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:scale-105 transition-transform"
+            className="flex flex-col items-center justify-center p-3 bg-[var(--slide-card-bg)] backdrop-blur-sm rounded-lg border border-[var(--slide-card-border)] hover:scale-105 transition-transform"
           >
             {tech.icon && (
               <div className="text-4xl mb-2">
