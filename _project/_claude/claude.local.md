@@ -13,31 +13,43 @@ The assistant's responses are concise and informative.
 # When Writing code
 Ensure modularity, extensibility and testability by following Inversion of Control (IoC) design principles.
 
-# Portfolio Project
+# TKR Portfolio Project
+# Configuration file for the TKR Portfolio website
+
 app:
-  name: "Tucker's Project Portfolio"
+  name: "TKR Portfolio"
   author: "Sean 'Tucker' Harley"
-  role: "UX Designer"
-  description: "A web based portfolio of UX design projects"
-  version: "1.0.0"
+  role: "UX Designer & Developer"
+  description: "A portfolio website showcasing Tucker Harley's projects and skills"
+  version: "0.1.0"
+  github:
+    username: "tuckertucker"
+    repo: "tkr-portfolio"
+  linkedin: "in/tuckerharleybrown"
+  bluesky: "tucker.sh"
+  timestamp: "2025-05-20"
+  status: "in-progress"
+    
   metadata:
     project_type: "portfolio"
-    framework: "react (19)" # Specified React version
-    last_updated: "2025-04-04"
+    framework: "react (19)"
+    last_updated: "2025-05-20"
   documentation:
     design_system: "https://ui.shadcn.com"
-    component_library: "https://storybook.dev"
-    # api_docs: "https://api.docs.url"
+    component_library:
+      framework: "storybook"
+      ghpages_dir: "/storybook/"
+      url: "https://tuckertucker.github.io/tkr-portfolio/storybook/"
     code_documentation:
       tool: "JSDoc with better-docs"
       purpose: "Inline code documentation generation"
-      build_script: "npm run docs" # Added script reference
+      build_script: "npm run docs"
   architecture:
     patterns:
       state: "Component-level stores with Context API"
       data_flow: "Local JSON → Component State"
       error_handling: "Error Boundaries per feature"
-      component_development: "storybook stories with shadcnui components"
+      component_development: "Storybook stories with shadcnui components"
     scalability:
       caching:
         strategy: "Stale-while-revalidate with selective invalidation"
@@ -51,16 +63,15 @@ app:
         strategy: "Public access only"
         rationale: "Portfolio is public-facing with no protected content"
     build:
-      build_tool: "Vite" # Changed from Next.js
+      build_tool: "Vite"
       optimization:
-        code_splitting: "Dynamic import()" # Changed from Route-based
+        code_splitting: "Dynamic import()"
         tree_shaking: true
       dependencies:
-        routing: "react-router-dom (HashRouter)" # Specified HashRouter for GH Pages compatibility
-        ui: "shadcnui"
+        routing: "react-router-dom"
+        ui: "shadcnui + tailwindcss"
         state: "React Context API"
-        forms: "React Hook Form"
-        component_library: "storybook (^5.0.0)" # Specified storybook version
+        component_library: "Storybook"
 
 # Component definitions with semantic relationships and validation rules
 components:
@@ -68,15 +79,20 @@ components:
   header:
     metadata:
       purpose: "Main navigation and designer identification"
-      dependencies: ["theme", "shadcnui/navigation"]
+      dependencies: ["theme", "shadcnui/button", "custom/branding"]
       required: true
     type: "section"
     properties:
-      background_color: "#613CB0" # tucker color
+      background_color: "#613CB0"
       padding: "16px"
       display: "flex"
       justify_content: "space-between"
       align_items: "center"
+      height: "64px"
+      position: "fixed"
+      width: "100%"
+      z_index: 50
+      shadow: "md"
     accessibility:
       role: "banner"
       aria_label: "Portfolio header"
@@ -93,14 +109,14 @@ components:
         component: "custom/branding"
         properties:
           name: "Sean 'Tucker' Harley"
-          title: "UX Designer"
+          title: "UX Designer & Developer"
           className: "text-white flex flex-col"
       - type: "button"
         component: "shadcnui/button"
         properties:
-          text: "Resume"
+          text: "Download Resumé"
           variant: "primary"
-          className: "bg-blue-500 text-white px-4 py-2 rounded"
+          className: "bg-white hover:bg-white text-[#613CB0] border border-[#613CB0] font-semibold px-4 py-2 rounded transition-colors duration-200"
         interactions:
           on_click:
             action: "download_resume"
@@ -109,6 +125,94 @@ components:
               endpoint: "/assets/resume.pdf"
               format: "pdf"
               filename: "Tucker_Harley_Resume.pdf"
+
+  # Footer component
+  footer:
+    metadata:
+      purpose: "Site footer with links and contact information"
+      dependencies: ["theme", "shadcnui/button", "custom/branding"]
+      required: true
+    type: "section"
+    properties:
+      background_color: "#613CB0"
+      color: "white"
+      padding: "24px"
+      display: "flex"
+      flex_direction: "column"
+      width: "100%"
+      margin_top: "auto"
+    accessibility:
+      role: "contentinfo"
+      aria_label: "Footer"
+    children:
+      - type: "container"
+        properties:
+          className: "max-w-5xl mx-auto px-6"
+        children:
+          - type: "top_section"
+            properties:
+              className: "flex flex-col md:flex-row justify-between items-center mb-6 pb-6 border-b border-white/20"
+            children:
+              - type: "branding"
+                component: "custom/branding"
+                properties:
+                  className: "text-white mb-4 md:mb-0"
+                  nameClassName: "text-xl font-semibold font-heading"
+                  titleClassName: "text-sm opacity-80"
+              - type: "button"
+                component: "shadcnui/button"
+                properties:
+                  variant: "primary"
+                  className: "bg-white hover:bg-white text-[#613CB0] border border-[#613CB0] font-semibold px-4 py-2 rounded transition-colors duration-200"
+                  icon: "file"
+                  text: "Download Resumé"
+                interactions:
+                  on_click:
+                    action: "download_resume"
+          - type: "bottom_section"
+            properties:
+              className: "flex flex-col md:flex-row justify-between items-center gap-4"
+            children:
+              - type: "link_container"
+                properties:
+                  className: "flex items-center gap-5 flex-wrap justify-center md:justify-start"
+                children:
+                  - type: "social_link"
+                    properties:
+                      href: "https://linkedin.com/in/tuckerharleybrown"
+                      target: "_blank"
+                      rel: "noopener noreferrer"
+                      className: "flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
+                      icon: "linkedin"
+                      text: "LinkedIn"
+                  - type: "social_link"
+                    properties:
+                      href: "https://bsky.app/profile/tucker.sh"
+                      target: "_blank"
+                      rel: "noopener noreferrer"
+                      className: "flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
+                      icon: "cloud"
+                      text: "Bluesky"
+                  - type: "social_link"
+                    properties:
+                      href: "https://github.com/tuckertucker"
+                      target: "_blank"
+                      rel: "noopener noreferrer"
+                      className: "flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
+                      icon: "github"
+                      text: "GitHub"
+                  - type: "social_link"
+                    properties:
+                      href: "https://tuckertucker.github.io/tkr-portfolio/storybook/"
+                      target: "_blank"
+                      rel: "noopener noreferrer"
+                      className: "flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
+                      icon: "storybook"
+                      text: "Storybook"
+              - type: "copyright"
+                properties:
+                  className: "text-sm opacity-80"
+                  text: "&copy; {new Date().getFullYear()} Sean 'Tucker' Harley"
 
   # Project selector dropdown
   project_selector:
@@ -119,7 +223,7 @@ components:
       dependencies: ["theme", "shadcnui/dropdown-menu"]
       required: true
     properties:
-      background_color: "#FF8800" # taskboard color
+      background_color: "#FF8800"
       color: "#FFFFFF"
       padding: "16px 24px"
       border_radius: "4px 4px 0 0"
@@ -175,36 +279,36 @@ components:
             properties:
               projects: [
                 {
-                  id: "agentic_ai_kanban",
-                  title: "Agentic AI Kanban",
+                  id: "taskboard",
+                  title: "Taskboard",
                   color: "#FF8800",
                   subtitle: "Personal",
-                  description: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-                  bullets: ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+                  description: "A project management tool designed to help manage tasks and workflows with an intuitive interface.",
+                  bullets: ["Agile methodology integration", "Real-time collaboration features", "Custom workflow configurations"]
                 },
                 {
                   id: "nutrien",
                   title: "Nutrien",
                   color: "#3b5f18",
                   subtitle: "Safety Portal",
-                  description: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-                  bullets: ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+                  description: "A comprehensive safety management portal for Nutrien, focusing on improving safety protocols and incident reporting.",
+                  bullets: ["Incident tracking and reporting", "Safety protocol documentation", "Interactive training modules"]
                 },
                 {
                   id: "worldplay",
                   title: "Worldplay",
                   color: "#00a4e4",
                   subtitle: "Analytics Dashboard",
-                  description: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-                  bullets: ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+                  description: "A data visualization dashboard for Worldplay, providing insights into customer behavior and service performance.",
+                  bullets: ["Real-time analytics", "Customizable data views", "Export and reporting capabilities"]
                 },
                 {
                   id: "shaw",
                   title: "Shaw",
                   color: "#0488c1",
                   subtitle: "Phone Portal",
-                  description: "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-                  bullets: ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"]
+                  description: "A customer service portal for Shaw, enabling users to manage their phone services and account settings.",
+                  bullets: ["Account management features", "Service configuration options", "Support request workflow"]
                 }
               ]
 
@@ -279,8 +383,8 @@ components:
         - "prev_slide"
     performance:
       image_optimization:
-        quality: 80 # Manual optimization quality target
-        lazy_loading: true # Can still be implemented with standard img tags
+        quality: 80
+        lazy_loading: true
     error_handling:
       scenarios:
         - error: "image_load_failed"
@@ -309,283 +413,117 @@ components:
           arrows: "visible"
         image_quality: "full"
     children:
-      - type: "slide"
-        component: "shadcnui/carousel-item"
-        properties:
-          className: "h-full w-full"
+      - type: "container"
+        component: "shadcnui/carousel-content"
         children:
-          - type: "image"
-            component: "html/img" # Changed from next/image for static export
+          - type: "slide"
+            component: "shadcnui/carousel-item"
             properties:
-              src: "/placeholder/{project_id}/slide1.jpg"
-              alt: "Project screenshot 1"
-              layout: "fill"
-              objectFit: "cover"
-      - type: "slide"
-        component: "shadcnui/carousel-item"
-        properties:
-          className: "h-full w-full"
+              className: "h-full w-full"
+            children:
+              - type: "image"
+                component: "html/img"
+                properties:
+                  src: "/slides/{project_id}/slide1.jpg"
+                  alt: "Project screenshot 1"
+                  className: "h-full w-full object-cover"
+          - type: "slide"
+            component: "shadcnui/carousel-item"
+            properties:
+              className: "h-full w-full"
+            children:
+              - type: "image"
+                component: "html/img"
+                properties:
+                  src: "/slides/{project_id}/slide2.jpg"
+                  alt: "Project screenshot 2"
+                  className: "h-full w-full object-cover"
+          - type: "slide"
+            component: "shadcnui/carousel-item"
+            properties:
+              className: "h-full w-full"
+            children:
+              - type: "image"
+                component: "html/img"
+                properties:
+                  src: "/slides/{project_id}/slide3.jpg"
+                  alt: "Project screenshot 3"
+                  className: "h-full w-full object-cover"
+      - type: "navigation"
         children:
-          - type: "image"
-            component: "html/img" # Changed from next/image for static export
+          - type: "button"
+            component: "shadcnui/button"
             properties:
-              src: "/placeholder/{project_id}/slide2.jpg"
-              alt: "Project screenshot 2"
-              layout: "fill"
-              objectFit: "cover"
-      - type: "slide"
-        component: "shadcnui/carousel-item"
-        properties:
-          className: "h-full w-full"
-        children:
-          - type: "image"
-            component: "html/img" # Changed from next/image for static export
+              variant: "ghost"
+              className: "absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
+              icon: "chevron-left"
+            interactions:
+              on_click:
+                action: "prev_slide"
+          - type: "button"
+            component: "shadcnui/button"
             properties:
-              src: "/placeholder/{project_id}/slide3.jpg"
-              alt: "Project screenshot 3"
-              layout: "fill"
-              objectFit: "cover"
-    navigation:
-      - type: "button"
-        component: "shadcnui/button"
-        properties:
-          icon: "chevron-left"
-          variant: "ghost"
-          className: "absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
-        interactions:
-          on_click:
-            action: "prev_slide"
-      - type: "button"
-        component: "shadcnui/button"
-        properties:
-          icon: "chevron-right"
-          variant: "ghost"
-          className: "absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
-        interactions:
-          on_click:
-            action: "next_slide"
+              variant: "ghost"
+              className: "absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
+              icon: "chevron-right"
+            interactions:
+              on_click:
+                action: "next_slide"
 
-  # Project description section
-  description:
-    type: "text_block"
-    component: "shadcnui/card"
-    metadata:
-      purpose: "Project overview and context"
-      max_length: 500
-      min_length: 100
-      content_type: "markdown"
-      dependencies: ["theme"]
-    properties:
-      padding: "24px"
-      background_color: "#FFFFFF"
-      className: "bg-white p-6"
-    state:
-      store: "project_description_state"
-      data_source: "projects"
-      data_key: "current_project_id"
-      template:
-        title: "{title}"
-        description: "{description}"
-    validation:
-      required_fields: ["title", "description"]
-      content_rules:
-        - "Must contain project context"
-        - "Should avoid technical jargon"
-    accessibility:
-      role: "article"
-      aria_label: "Project description"
-    children:
-      - type: "heading"
-        component: "shadcnui/typography"
-        properties:
-          text: "{title}"
-          variant: "h2"
-          className: "text-2xl font-bold mb-4"
-      - type: "paragraph"
-        component: "shadcnui/typography"
-        properties:
-          text: "{description}"
-          variant: "p"
-          className: "text-base leading-relaxed mb-6"
-
-  # Bullet list for project features
-  bullet_list:
-    type: "list"
-    component: "custom/bullet-list"
-    metadata:
-      purpose: "Project feature list"
-      dependencies: ["theme", "description"]
-    properties:
-      list_style: "bullet"
-      padding_left: "20px"
-      margin_top: "16px"
-      className: "list-disc pl-5 mt-4"
-    state:
-      store: "bullet_list_state"
-      data_source: "projects"
-      data_key: "current_project_id"
-      template:
-        items: "{bullets}"
-    accessibility:
-      role: "list"
-      aria_label: "Project features"
-    children:
-      - type: "list_item"
-        component: "shadcnui/typography"
-        properties:
-          variant: "li"
-          className: "mb-2"
-        state:
-          template:
-            text: "{item}"
-
-  # PDF download button
-  pdf_download:
-    type: "button"
-    component: "shadcnui/button"
-    metadata:
-      purpose: "Download resume PDF"
-      dependencies: ["theme"]
-    properties:
-      display: "flex"
-      align_items: "center"
-      justify_content: "center"
-      background_color: "#333333"
-      color: "#FFFFFF"
-      padding: "12px 24px"
-      border_radius: "4px"
-      margin_top: "24px"
-      className: "bg-slate-800 text-white rounded px-6 py-3 mt-6 flex items-center"
-    state:
-      template:
-        text: "Download PDF Resume"
-        pdf_url: "/assets/resume.pdf"
-        filename: "Tucker_Harley_Resume.pdf"
-    interactions:
-      on_click:
-        action: "download_pdf"
-        params:
-          url: "{pdf_url}"
-          filename: "{filename}"
-    accessibility:
-      role: "button"
-      aria_label: "Download resume as PDF"
-    children:
-      - type: "icon"
-        component: "lucide-react/download"
-        properties:
-          size: 18
-          className: "mr-2"
-      - type: "text"
-        properties:
-          text: "Download PDF Resume"
-
-  # Mobile specific project card
-  mobile_project_card:
-    type: "card"
-    component: "shadcnui/card"
-    metadata:
-      purpose: "Project card for mobile view"
-      dependencies: ["theme"]
-      visibility: "mobile_only"
-    properties:
-      width: "100%"
-      background_color: "#FFFFFF"
-      border_radius: "4px"
-      overflow: "hidden"
-      margin_bottom: "24px"
-      box_shadow: "0 2px 8px rgba(0,0,0,0.1)"
-      className: "w-full bg-white rounded-md shadow-md mb-6 overflow-hidden"
-    state:
-      template:
-        id: "{id}"
-        title: "{title}"
-        color: "{color}"
-        subtitle: "{subtitle}"
-    interactions:
-      on_click:
-        action: "navigate_to_project"
-        params:
-          project_id: "{id}"
-    accessibility:
-      role: "article"
-      aria_label: "Project: {title}"
-    responsive:
-      mobile:
-        display: "block"
-      desktop:
-        display: "none"
-    children:
-      - type: "header"
-        component: "custom/card-header"
-        properties:
-          padding: "16px"
-          background_color: "{color}"
-          color: "#FFFFFF"
-          className: "p-4 flex justify-between items-center"
-        children:
-          - type: "title"
-            component: "shadcnui/typography"
-            properties:
-              text: "{title}"
-              variant: "h3"
-              className: "text-white text-lg font-bold"
-          - type: "subtitle"
-            component: "shadcnui/typography"
-            properties:
-              text: "{subtitle}"
-              variant: "p"
-              className: "text-white text-sm opacity-80"
-      - type: "image"
-        component: "html/img" # Changed from next/image for static export
-        properties:
-          src: "/placeholder/{id}/thumbnail.jpg"
-          alt: "Preview of {title} project"
-          width: 400
-          height: 200
-          className: "w-full h-48 object-cover"
-
-  # Content container for project details
+  # Content section with HTML slides support
   content_section:
-    type: "grid"
-    component: "shadcnui/card"
+    type: "section"
+    component: "feature/content-section"
     metadata:
-      purpose: "Display detailed project information"
+      purpose: "Display detailed project information with HTML slides support"
       dependencies: ["theme", "description", "bullet_list"]
-      content_type: "mixed"
     properties:
       padding: "24px"
       background_color: "#FFFFFF"
-      className: "bg-white p-6 grid gap-6"
-    responsive:
-      mobile:
-        grid_template: "1fr"
-        padding: "16px"
-      desktop:
-        grid_template: "1fr 1fr"
-        padding: "24px"
+      className: "bg-white p-6 mt-16"
+    accessibility:
+      role: "main"
+      aria_label: "Project content"
+    children:
+      - type: "description"
+        component: "feature/description"
+      - type: "bullet_list_container"
+        component: "feature/bullet-list-container"
+      - type: "html_slides"
+        component: "html-slides/TechStack"
+        conditional: "{project_id === 'nutrien'}"
+
+  # HTML slides component
+  html_slides:
+    type: "slides"
+    component: "html-slides/TechStack"
+    metadata:
+      purpose: "Interactive HTML slides for specific projects"
+      dependencies: ["theme"]
+    properties:
+      padding: "24px"
+      className: "my-6"
     accessibility:
       role: "region"
-      aria_label: "Project details"
-    children:
-      - type: "text_section"
-        component: "description"
-      - type: "list_section"
-        component: "bullet_list"
+      aria_label: "Project slides"
 
 development:
-  node_version: ">=20" # Added Node version requirement
+  node_version: ">=20"
   framework: "React"
   language: "JavaScript"
   package_manager: "npm"
   code_organization:
     structure:
-      - "components/"
-      - "components/ui/"      # shadcnui components
-      - "stories/"           # storybook stories
-      - "hooks/"
-      - "services/"
-      - "utils/"
+      - "src/"
+      - "src/components/ui/"       # shadcnui components
+      - "src/components/custom/"   # custom components
+      - "src/components/feature/"  # feature-specific components
+      - "src/components/layout/"   # layout components
+      - "src/components/html-slides/" # HTML slides
+      - "src/hooks/"               # custom React hooks
+      - "src/lib/"                 # utility libraries
+      - "stories/"                 # storybook stories
+      - "public/"                  # static assets
     naming:
       components: "PascalCase"
       files: "kebab-case"
@@ -599,26 +537,20 @@ development:
         - "interaction testing"
         - "accessibility testing"
       stories:
-        structure: "stories/**/*.stories.js"
-        naming: "{ComponentName}.stories.js"
+        structure: "stories/**/*.stories.jsx"
+        naming: "{ComponentName}.stories.jsx"
         addons:
           - "a11y"
           - "controls"
           - "viewport"
     unit:
-      framework: "Jest"
+      framework: "Vitest"
       focus:
         - "component rendering"
         - "state transitions"
         - "utility functions"
-    integration:
-      framework: "React Testing Library"
-      focus:
-        - "component interactions"
-        - "data flow"
-        - "error scenarios"
     e2e:
-      framework: "Cypress"
+      framework: "Playwright"
       coverage_threshold: 80
       critical_flows:
         - "project navigation"
@@ -627,26 +559,30 @@ development:
 
 theme:
   colors:
-    primary: "#613CB0"  # tucker color
-    secondary: "#FF8800"  # taskboard color
+    primary: "#613CB0"    # Tucker color
+    secondary: "#FF8800"  # Taskboard color
     nutrien: "#3b5f18"
     worldplay: "#00a4e4"
     shaw: "#0488c1"
-    accent: "#00A3FF"
+    accent: "#8b5cf6"     # Violet-500
     background: "#F5F5F5"
     card: "#FFFFFF"
-    text: "#333333"
+    text:
+      primary: "#1f2937"  # Gray-800
+      secondary: "#6b7280"  # Gray-500
   typography:
-    font_source: "https://use.typekit.net/lmx7kzc.css" # Adobe Fonts
-    font_family: "'Graphite Std', 'Ellograph CF', sans-serif" # Added Adobe Fonts
+    font_family: "system-ui, sans-serif"
     base_size: "16px"
-    heading_font: "'Graphite Std', sans-serif" # Updated heading font
-    body_font: "'Ellograph CF', sans-serif" # Updated body font
+    scale_ratio: 1.25
+    weights:
+      regular: 400
+      medium: 500
+      bold: 700
   spacing:
-    small: "8px"
-    medium: "16px"
-    large: "24px"
-    xl: "32px"
+    small: "8px"    # 0.5rem
+    medium: "16px"  # 1rem
+    large: "24px"   # 1.5rem
+    xl: "32px"      # 2rem
   shadows:
     card: "0 2px 4px rgba(0,0,0,0.1)"
     dropdown: "0 4px 8px rgba(0,0,0,0.1)"
@@ -656,14 +592,19 @@ deployment:
     platform: "GitHub Pages"
     method: "Manual via gh-pages package"
     tool: "gh-pages"
-    source_branch: "main" # Assumes build is run from the main branch
+    url: "https://tuckertucker.github.io/tkr-portfolio"
+    homepage: "https://tuckertucker.github.io/tkr-portfolio"
+    source_branch: "main"
     deployment_branch: "gh-pages"
-    # Example URL: https://<username>.github.io/<repo-name>
-  component_library: # storybook deployment details
+    scripts:
+      dev: "npm run dev:portfolio"
+      build: "npm run build:portfolio"
+      deploy: "npm run deploy:portfolio"
+  component_library:
     platform: "GitHub Pages"
-    method: "GitHub Actions"
-    workflow_file: ".github/workflows/deploy.yml"
-    source_branch: "main" # Workflow triggers on push to main
-    # Example URL: https://<username>.github.io/<repo-name> (or subpath like /storybook/)
-
-# End of documentation
+    method: "Manual via deploy-storybook script"
+    url: "https://tuckertucker.github.io/tkr-portfolio/storybook/"
+    scripts:
+      dev: "npm run dev:storybook"
+      build: "npm run build:storybook"
+      deploy: "npm run deploy:storybook"
