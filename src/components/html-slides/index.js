@@ -8,6 +8,9 @@ import DesignSystem from './DesignSystem';
 import UserFlow from './UserFlow';
 import UsabilityMetrics from './UsabilityMetrics';
 import SkillsMatrix from './SkillsMatrix';
+import BornToTheWorld from './BornToTheWorld';
+import TheSparkAndTheArt from './TheSparkAndTheArt';
+import TheOffHoursCreative from './TheOffHoursCreative';
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -19,6 +22,9 @@ const ThemedDesignSystem = withSlideTheme(DesignSystem);
 const ThemedUserFlow = withSlideTheme(UserFlow);
 const ThemedUsabilityMetrics = withSlideTheme(UsabilityMetrics);
 const ThemedSkillsMatrix = withSlideTheme(SkillsMatrix);
+const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
+const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
+const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
 
 // Export component registry map
 const htmlSlideComponents = {
@@ -30,6 +36,9 @@ const htmlSlideComponents = {
   UserFlow: ThemedUserFlow,
   UsabilityMetrics: ThemedUsabilityMetrics,
   SkillsMatrix: ThemedSkillsMatrix,
+  BornToTheWorld: ThemedBornToTheWorld,
+  TheSparkAndTheArt: ThemedTheSparkAndTheArt,
+  TheOffHoursCreative: ThemedTheOffHoursCreative,
 };
 
 export default htmlSlideComponents;

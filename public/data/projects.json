@@ -5,13 +5,31 @@
     "color": "#613CB0",
     "subtitle": "About the designer",
     "logoUrl": "Tucker.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "I'm a UX Designer & Developer who crafts user-centered digital experiences. With a background in songwriting, podcasting, and creative community building, I bring a unique perspective to design that combines analytical thinking with creative storytelling.",
+    "bullets": ["UX Designer with 8+ years experience", "Full-stack developer (React, Node.js, Python)", "Creator & host of The Spark & The Art podcast", "Singer-songwriter and creative community builder"],
     "slides": [
       { "type": "video", "src": "slides/tucker/designing_stuff.mp4", "alt": "Tucker Slide Video" },
       { "type": "image", "src": "slides/tucker/beached_balls.png", "alt": "Tucker Slide 1" },
       { "type": "image", "src": "slides/tucker/ramoon.png", "alt": "Tucker Slide 2" },
       { "type": "image", "src": "slides/tucker/knitten.png", "alt": "Tucker Slide 3" },
+      { 
+        "type": "html", 
+        "component": "BornToTheWorld", 
+        "props": {},
+        "alt": "Born to the World album showcase" 
+      },
+      { 
+        "type": "html", 
+        "component": "TheSparkAndTheArt", 
+        "props": {},
+        "alt": "The Spark & The Art podcast showcase" 
+      },
+      { 
+        "type": "html", 
+        "component": "TheOffHoursCreative", 
+        "props": {},
+        "alt": "The Off-Hours Creative community showcase" 
+      },
       { 
         "type": "html", 
         "component": "SkillsMatrix", 

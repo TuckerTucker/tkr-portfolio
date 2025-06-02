@@ -1,11 +1,12 @@
 {
-    "permissions": {
-      "allow": [
-        "Bash(cat:*)",
-        "Bash(ls:*)",
-        "Bash(grep:*)",
-        "Bash(curl:*)"
-      ],
-      "deny": []
-    }
-  }
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": false
+}

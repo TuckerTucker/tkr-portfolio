@@ -10,12 +10,23 @@ const withSlideTheme = (WrappedComponent) => {
   const ThemedSlideComponent = (props) => {
     const { theme } = useTheme();
     
+    // Determine the actual theme (considering system preference)
+    const getActualTheme = () => {
+      if (theme === 'system') {
+        // Check if the document has the 'dark' class
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      }
+      return theme;
+    };
+    
+    const actualTheme = getActualTheme();
+    
     return (
       <div 
         className={cn(
           "slide-theme-wrapper w-full h-full",
           "transition-colors duration-300",
-          theme === 'dark' ? 'slide-theme-dark' : 'slide-theme-light'
+          actualTheme === 'dark' ? 'slide-theme-dark' : 'slide-theme-light'
         )}
         style={{
           background: 'var(--slide-bg)'
