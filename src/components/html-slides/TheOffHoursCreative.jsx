@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 const TheOffHoursCreative = ({ className = "" }) => {
   const successes = [
     "A writer who finished the first draft of their novel",
-    "A songwriter that completed the first draft of their musical",
     "A paralegal who started their first regular painting practice"
   ];
 
@@ -27,11 +26,7 @@ const TheOffHoursCreative = ({ className = "" }) => {
           
           <div className="space-y-4 text-base md:text-lg leading-relaxed" style={{ color: 'var(--slide-text)' }}>
             <p>
-              Doing creative work outside of a day job helped keep me sane and fulfilled. I wanted to share that with other people with full-time jobs who had creative aspirations "I'd love to learn an instrument", "I have this idea for a book" etc ...
-            </p>
-            
-            <p>
-              The founding group, in 2019, was 15 people from various creative interests.
+              Doing creative work outside of a day job help keep me sane and fulfilled. I created a group for people, with full-time jobs, who have creative aspirations.
             </p>
             
             <div>
@@ -42,10 +37,6 @@ const TheOffHoursCreative = ({ className = "" }) => {
                 ))}
               </ul>
             </div>
-            
-            <p className="text-sm md:text-base italic" style={{ color: 'var(--slide-text)', opacity: 0.8 }}>
-              Not to make excuses but the pandemic had a negative impact on the group and it wrapped up in 2022
-            </p>
           </div>
         </div>
         
@@ -54,7 +45,18 @@ const TheOffHoursCreative = ({ className = "" }) => {
             asChild
             variant="outline"
             size="lg"
-            className="w-full md:w-auto"
+            className="w-full md:w-auto transition-all"
+            style={{ 
+              backgroundColor: 'var(--slide-button-bg)',
+              borderColor: 'var(--slide-button-border)',
+              color: 'var(--slide-button-text)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';
+            }}
           >
             <a
               href="https://www.offhourscreative.com"

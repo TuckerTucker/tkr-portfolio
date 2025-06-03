@@ -159,6 +159,10 @@ body {
   --slide-secondary: #FF8800;
   --slide-card-bg: rgba(255, 255, 255, 0.6);
   --slide-card-border: rgba(0, 0, 0, 0.1);
+  --slide-button-bg: transparent;
+  --slide-button-border: var(--slide-accent);
+  --slide-button-text: var(--slide-accent);
+  --slide-button-hover-bg: rgba(97, 60, 176, 0.1);
 }
 
 .slide-theme-dark {
@@ -169,4 +173,8 @@ body {
   --slide-secondary: #FFA940;
   --slide-card-bg: rgba(255, 255, 255, 0.1);
   --slide-card-border: rgba(255, 255, 255, 0.05);
+  --slide-button-bg: rgba(255, 255, 255, 0.15);
+  --slide-button-border: rgba(255, 255, 255, 0.25);
+  --slide-button-text: #ffffff;
+  --slide-button-hover-bg: rgba(255, 255, 255, 0.25);
 }

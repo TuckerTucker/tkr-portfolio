@@ -21,15 +21,10 @@ const BornToTheWorld = ({ className = "" }) => {
           
           <div className="space-y-4 text-base md:text-lg leading-relaxed" style={{ color: 'var(--slide-text)' }}>
             <p>
-              I've been a songwriter since I was 17 and when I turned 40, in 2011, I released my first collection of studio recordings.
-            </p>
-            
+              I've been a songwriter since I was seventeen. When I turned forty, in 2011, I released my first collection of studio recordings.
+            </p>            
             <p>
-              <em>Born to the World</em> is 5 songs of Love Soaked Heartache & Wanderlust (plus a lullaby).
-            </p>
-            
-            <p>
-              You'll learn the answer to the question <em>Why They Call it a Crush</em> (because "that's what happened to me when I saw him with you") and you'll be transported to a dreamland in the lullaby 'The Blanket Show'.
+              <em>Born to the World</em> is five original songs of love-soaked heartache and wanderlust (including a lullaby).
             </p>
           </div>
         </div>
@@ -39,7 +34,18 @@ const BornToTheWorld = ({ className = "" }) => {
             asChild
             variant="outline"
             size="lg"
-            className="w-full md:w-auto"
+            className="w-full md:w-auto transition-all"
+            style={{ 
+              backgroundColor: 'var(--slide-button-bg)',
+              borderColor: 'var(--slide-button-border)',
+              color: 'var(--slide-button-text)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';
+            }}
           >
             <a
               href="https://music.apple.com/us/album/born-to-the-world-ep/1588573507"

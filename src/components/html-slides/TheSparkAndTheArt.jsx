@@ -4,11 +4,8 @@ import { Button } from "../ui/button";
 
 const TheSparkAndTheArt = ({ className = "" }) => {
   const guestLinks = [
-    { name: "Stefan Sagmeister", episode: "24", url: "https://podcasts.apple.com/nz/podcast/24-stefan-sagmeister/id844809800?i=1000430450574" },
-    { name: "Aaron Draplin", episode: "80", url: "https://podcasts.apple.com/nz/podcast/80-design-as-a-trade-with-aaron-draplin/id844809800?i=1000405764197" },
-    { name: "Jorge Gutierrez", episode: "26", url: "https://podcasts.apple.com/nz/podcast/26-jorge-gutierrez-the-book-of-life-movie/id844809800?i=1000430450489" },
-    { name: "Carolyn Harley (Mom)", episode: "10", url: "https://podcasts.apple.com/nz/podcast/10-songs-that-matter-carolyn-harley/id844809800?i=1000430450576" },
-    { name: "Joe Harley (Dad)", episode: "8", url: "https://podcasts.apple.com/nz/podcast/8-nature-photographer-and-bass-player-joe-harley/id844809800?i=1000430450584" },
+    { name: "Stefan Sagmeister - Designer", episode: "24", url: "https://podcasts.apple.com/nz/podcast/24-stefan-sagmeister/id844809800?i=1000430450574" },
+    { name: "Jorge Gutierrez - Animation Director", episode: "26", url: "https://podcasts.apple.com/nz/podcast/26-jorge-gutierrez-the-book-of-life-movie/id844809800?i=1000430450489" },
   ];
 
   return (
@@ -29,7 +26,7 @@ const TheSparkAndTheArt = ({ className = "" }) => {
           
           <div className="space-y-4 text-base md:text-lg leading-relaxed" style={{ color: 'var(--slide-text)' }}>
             <p>
-              I produced 'The Spark & The Art Creativity Podcast' for three and half years between March 2014 and September 2017. I interviewed Photographers, Novelists, Film Makers, Songwriters, Art Therapists and more.
+              I produced <em>The Spark & The Art</em> for three and half years between March 2014 and September 2017. I interviewed Photographers, Novelists, Film Makers, Songwriters, Art Therapists and more.
             </p>
             
             <div>
@@ -44,16 +41,12 @@ const TheSparkAndTheArt = ({ className = "" }) => {
                       className="hover:underline transition-opacity hover:opacity-80"
                       style={{ color: 'var(--slide-accent)' }}
                     >
-                      {guest.name} (ep. {guest.episode})
+                      {guest.name}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
-            
-            <p className="text-sm md:text-base">
-              These interviews help build the foundation of my understanding of the creative process leading me to start The Off-Hours Creative.
-            </p>
           </div>
         </div>
         
@@ -62,7 +55,18 @@ const TheSparkAndTheArt = ({ className = "" }) => {
             asChild
             variant="outline"
             size="lg"
-            className="w-full md:w-auto"
+            className="w-full md:w-auto transition-all"
+            style={{ 
+              backgroundColor: 'var(--slide-button-bg)',
+              borderColor: 'var(--slide-button-border)',
+              color: 'var(--slide-button-text)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';
+            }}
           >
             <a
               href="https://podcasts.apple.com/nz/podcast/the-spark-the-art/id844809800"
