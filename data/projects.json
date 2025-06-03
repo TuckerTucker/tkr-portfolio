@@ -5,27 +5,80 @@
     "color": "#613CB0",
     "subtitle": "About the designer",
     "logoUrl": "Tucker.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "I'm a UX Designer & Developer who crafts user-centered digital experiences. With a background in songwriting, podcasting, and creative community building, I bring a unique perspective to design that combines analytical thinking with creative storytelling.",
+    "bullets": ["UX Designer with 8+ years experience", "Full-stack developer (React, Node.js, Python)", "Creator & host of The Spark & The Art podcast", "Singer-songwriter and creative community builder"],
     "slides": [
-      { "type": "video", "src": "slides/tucker/designing_stuff.mp4", "alt": "Tucker Slide Video" },
-      { "type": "image", "src": "slides/tucker/beached_balls.png", "alt": "Tucker Slide 1" },
-      { "type": "image", "src": "slides/tucker/ramoon.png", "alt": "Tucker Slide 2" },
-      { "type": "image", "src": "slides/tucker/knitten.png", "alt": "Tucker Slide 3" }
+      { 
+        "type": "video", 
+        "src": "slides/tucker/designing_stuff.mp4",
+        "alt": "Born to the World album showcase" 
+      },
+      { 
+        "type": "html", 
+        "component": "BornToTheWorld", 
+        "props": {},
+        "alt": "Born to the World album showcase" 
+      },
+      { 
+        "type": "html", 
+        "component": "TheSparkAndTheArt", 
+        "props": {},
+        "alt": "The Spark & The Art podcast showcase" 
+      },
+      { 
+        "type": "html", 
+        "component": "TheOffHoursCreative", 
+        "props": {},
+        "alt": "The Off-Hours Creative community showcase" 
+      }
     ]
   },
   {
     "id": "agentic_ai_kanban",
     "title": "Agentic AI Kanban",
     "color": "#FF8800",
-    "subtitle": "Personal",
+    "subtitle": "a kanban for human in the loop AI coding",
     "logoUrl": "taskboard.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "TaskBoardAI is a lightweight, file-based kanban board system designed for AI agents and human-in-the-loop collaboration. It bridges the gap between AI assistants and human project management, allowing both to maintain and manipulate shared project boards with synchronized updates.",
+    "bullets": ["MCP Server integration for AI assistant compatibility", "JSON-based architecture for easy AI parsing", "Rich markdown with subtasks and dependencies", "Real-time collaboration with webhooks"],
     "slides": [
-      { "type": "image", "src": "slides/taskboard/beached_balls.png", "alt": "Kanban Slide 1" },
-      { "type": "image", "src": "slides/taskboard/ramoon.png", "alt": "Kanban Demo Video" },
-      { "type": "image", "src": "slides/taskboard/knitten.png", "alt": "Kanban Slide 2" }
+      { 
+        "type": "html", 
+        "component": "ProcessTimeline", 
+        "props": {
+          "title": "Project Development Process",
+          "description": "The key phases in developing the AI-powered kanban board project",
+          "stages": [
+            {
+              "name": "Research",
+              "description": "Studied existing kanban tools and identified opportunities for AI integration",
+              "deliverable": "Competitive Analysis"
+            },
+            {
+              "name": "Planning",
+              "description": "Defined project scope, features, and technical architecture",
+              "deliverable": "Project Roadmap"
+            },
+            {
+              "name": "Design",
+              "description": "Created wireframes, user flows, and visual design for the application",
+              "deliverable": "UI/UX Prototypes"
+            },
+            {
+              "name": "Development",
+              "description": "Built the React front-end, Node.js backend, and integrated AI capabilities",
+              "deliverable": "MVP Release"
+            },
+            {
+              "name": "Testing",
+              "description": "Conducted user testing and gathered feedback for improvements",
+              "deliverable": "Usability Report"
+            }
+          ],
+          "activeStage": 3
+        },
+        "alt": "Development process timeline for the Agentic AI Kanban project" 
+      }
     ]
   },
   {
@@ -34,12 +87,16 @@
     "color": "#3b5f18",
     "subtitle": "Safety Portal",
     "logoUrl": "nutrien.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Nutrien, the world's largest provider of crop inputs and services, needed a solution to streamline safety document management across 1300 branch locations. The Operating Standards feature simplifies how staff download required global documents and upload completed forms while maintaining compliance.",
+    "bullets": [
+      "Designed an intuitive interface connecting global standards with local branch files",
+      "Created responsive components that maintain consistent sizing across all devices",
+      "Used user testing insights to identify and address critical compliance concerns",
+      "Improved document organization to prevent errors in safety audits"
+    ],
     "slides": [
-      { "type": "image", "src": "slides/nutrien/beached_balls.png", "alt": "Nutrien Slide 1" },
-      { "type": "image", "src": "slides/nutrien/ramoon.png", "alt": "Nutrien Slide 2" },
-      { "type": "image", "src": "slides/nutrien/knitten.png", "alt": "Nutrien Slide 3" }
+      { "type": "image", "src": "slides/nutrien/final_interface.png", "alt": "Final Design - Visual connection between global standards and local branch files" },
+      { "type": "image", "src": "slides/nutrien/multi_file_uploader.png", "alt": "Multi-file Uploader - Consistent component sizing across all breakpoints" }
     ]
   },
   {
@@ -48,12 +105,25 @@
     "color": "#00a4e4",
     "subtitle": "Analytics Dashboard",
     "logoUrl": "worldplay.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Worldplay needed a comprehensive analytics dashboard to help content publishers understand viewer engagement and optimize their video strategies. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
+    "bullets": ["Real-time analytics visualization", "Custom report builder", "Audience segmentation tools"],
     "slides": [
-      { "type": "image", "src": "slides/worldplay/beached_balls.png", "alt": "Worldplay Slide 1" },
-      { "type": "image", "src": "slides/worldplay/ramoon.png", "alt": "Worldplay Slide 2" },
-      { "type": "image", "src": "slides/worldplay/knitten.png", "alt": "Worldplay Slide 3" }
+      { 
+        "type": "html", 
+        "component": "TechStack", 
+        "props": {
+          "title": "Analytics Stack",
+          "technologies": [
+            { "name": "D3.js", "description": "Data Visualization" },
+            { "name": "React", "description": "UI Framework" },
+            { "name": "GraphQL", "description": "API Layer" },
+            { "name": "AWS Lambda", "description": "Serverless Functions" },
+            { "name": "Elasticsearch", "description": "Data Storage" },
+            { "name": "Kibana", "description": "Data Exploration" }
+          ]
+        },
+        "alt": "Analytics technology stack for Worldplay dashboard" 
+      }
     ]
   },
   {
@@ -62,12 +132,10 @@
     "color": "#0488c1",
     "subtitle": "Phone Portal",
     "logoUrl": "shaw.svg",
-    "description": "This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet. This is a short project description. Lorem Ipsum Dolor Sit Amet.",
-    "bullets": ["Bullet Point One", "Bullet Point Two", "Bullet Point Three"],
+    "description": "Shaw Communications needed a comprehensive user portal for their phone service customers. The redesigned portal helps customers manage their accounts, view call history, configure features, and get support for their phone services.",
+    "bullets": ["Account management dashboard", "Interactive feature configuration", "Visual call history and usage tracking"],
     "slides": [
-      { "type": "image", "src": "slides/shaw/beached_balls.png", "alt": "Shaw Slide 1" },
-      { "type": "image", "src": "slides/shaw/ramoon.png", "alt": "Shaw Slide 2" },
-      { "type": "image", "src": "slides/shaw/knitten.png", "alt": "Shaw Slide 3" }
+      { "type": "image", "src": "slides/shaw/beached_balls.png", "alt": "Shaw Slide 1" }
     ]
   }
 ]
