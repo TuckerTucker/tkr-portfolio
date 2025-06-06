@@ -125,17 +125,5 @@
         "alt": "Analytics technology stack for Worldplay dashboard" 
       }
     ]
-  },
-  {
-    "id": "shaw",
-    "title": "Shaw",
-    "color": "#0488c1",
-    "subtitle": "Phone Portal",
-    "logoUrl": "shaw.svg",
-    "description": "Shaw Communications needed a comprehensive user portal for their phone service customers. The redesigned portal helps customers manage their accounts, view call history, configure features, and get support for their phone services.",
-    "bullets": ["Account management dashboard", "Interactive feature configuration", "Visual call history and usage tracking"],
-    "slides": [
-      { "type": "image", "src": "slides/shaw/beached_balls.png", "alt": "Shaw Slide 1" }
-    ]
   }
 ]
