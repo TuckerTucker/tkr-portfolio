@@ -1,4 +1,0 @@
-import{j as t}from"./iframe-YjQ-Yh2m.js";import{B as o}from"./branding-CXQlXKuY.js";import"./utils-cITkMCpB.js";const e=()=>t.jsxs("div",{className:"bg-primary p-4",children:[" ",t.jsx(o,{className:"text-white"})]});e.storyName="In Header Context (White Text)";const d={title:"Header/Branding",component:o,argTypes:{name:{control:"text"},title:{control:"text"},className:{control:"text"},nameClassName:{control:"text"},titleClassName:{control:"text"}}};e.__docgenInfo={description:"",methods:[],displayName:"HeaderContext"};var a,r,s;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`() => <div className="bg-primary p-4"> {/* Simulate header background */}
-    <Branding className="text-white" // Class from .clinerules header definition
-  />
-  </div>`,...(s=(r=e.parameters)==null?void 0:r.docs)==null?void 0:s.source}}};const c=["HeaderContext"];export{e as HeaderContext,c as __namedExportsOrder,d as default};
