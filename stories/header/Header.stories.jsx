@@ -1,29 +1,16 @@
 import React from 'react';
-import Header from '@/components/layout/header'; // Use alias
-
-export const Default = () => <Header />;
-Default.storyName = 'Default Header';
-
-export const WithClickHandler = () => {
-  const handleClick = () => {
-    alert('Resume button clicked!');
-  };
-  return <Header onResumeClick={handleClick} />;
-};
-WithClickHandler.storyName = 'With Resume Click Handler';
-
-// Example of passing custom class
-export const CustomStyled = () => (
-    <Header className="border-b-4 border-accent shadow-lg" />
-);
-CustomStyled.storyName = 'With Custom Styling';
-
+import Header from '@/components/layout/header';
 
 export default {
-  title: 'Header/Header',
+  title: 'Layout/Header',
   component: Header,
-  argTypes: {
-    onResumeClick: { action: 'resumeClicked' }, // Log clicks in storybook actions tab
-    className: { control: 'text' },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Header component (not currently used in the app).',
+      },
+    },
   },
 };
+
+export const Default = () => <Header />;

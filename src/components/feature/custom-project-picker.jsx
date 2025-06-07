@@ -121,7 +121,7 @@ const CustomProjectPicker = ({
       {/* Dropdown menu */}
       <div
         className={cn(
-          "absolute left-0 top-full mt-0 w-full rounded-b-md shadow-md bg-white dark:bg-card-dark z-50", 
+          "absolute left-0 top-full mt-0 w-full rounded-b-md shadow-md bg-card z-50", 
           // Different max height for mobile vs desktop
           isMobile ? "max-h-[70vh]" : "max-h-[80vh]",
           "overflow-y-auto",

@@ -50,6 +50,27 @@
 
 :root {
   --radius: 0.625rem;
+  /* Light theme colors in RGB for Tailwind compatibility */
+  --color-background: 245 245 245;
+  --color-foreground: 51 51 51;
+  --color-card: 255 255 255;
+  --color-card-foreground: 51 51 51;
+  --color-popover: 255 255 255;
+  --color-popover-foreground: 51 51 51;
+  --color-primary: 97 60 176;
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 255 136 0;
+  --color-secondary-foreground: 255 255 255;
+  --color-muted: 245 245 245;
+  --color-muted-foreground: 115 115 115;
+  --color-accent: 0 163 255;
+  --color-accent-foreground: 255 255 255;
+  --color-destructive: 220 38 38;
+  --color-border: 226 232 240;
+  --color-input: 226 232 240;
+  --color-ring: 148 163 184;
+  
+  /* Keep the oklch values for other uses */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -84,6 +105,27 @@
 }
 
 .dark {
+  /* Dark theme colors in RGB for Tailwind compatibility */
+  --color-background: 26 26 26;
+  --color-foreground: 240 240 240;
+  --color-card: 42 42 42;
+  --color-card-foreground: 240 240 240;
+  --color-popover: 42 42 42;
+  --color-popover-foreground: 240 240 240;
+  --color-primary: 138 99 210;
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 255 169 64;
+  --color-secondary-foreground: 255 255 255;
+  --color-muted: 64 64 64;
+  --color-muted-foreground: 156 163 175;
+  --color-accent: 56 189 248;
+  --color-accent-foreground: 255 255 255;
+  --color-destructive: 239 68 68;
+  --color-border: 64 64 64;
+  --color-input: 64 64 64;
+  --color-ring: 125 125 125;
+  
+  /* Keep the oklch values for other uses */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

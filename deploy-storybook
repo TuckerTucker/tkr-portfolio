@@ -15,10 +15,14 @@ mkdir -p "$TEMP_DIR/$TARGET_DIR"
 rm -rf "$TEMP_DIR/$TARGET_DIR"/*
 cp -R storybook-static/* "$TEMP_DIR/$TARGET_DIR/"
 
+# Add .nojekyll file to enable directory indexing on GitHub Pages
+echo "Adding .nojekyll file for GitHub Pages"
+cp .nojekyll "$TEMP_DIR/"
+
 cd $TEMP_DIR
 
 echo "Adding files to git"
-git add $TARGET_DIR
+git add $TARGET_DIR .nojekyll
 
 if git diff --cached --quiet; then
   echo "No changes to commit"

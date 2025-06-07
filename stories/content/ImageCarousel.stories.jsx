@@ -1,16 +1,10 @@
 import React from 'react';
 import ImageCarousel from '@/components/feature/image-carousel';
 
-// Sample items for different carousel configurations
-const sampleItems = [
-  { type: 'image', src: 'slides/tucker/knitten.png', alt: 'Slide 1' },
-  { type: 'image', src: 'slides/tucker/ramoon.png', alt: 'Slide 2' },
-  { type: 'video', src: 'slides/tucker/designing_stuff.mp4', alt: 'Demo video' },
-];
-
-// Sample items including HTML slide
-const mixedItems = [
-  { type: 'image', src: 'slides/tucker/knitten.png', alt: 'Slide 1' },
+// Mixed content example with image, video, and HTML slides
+const mixedContentItems = [
+  { type: 'image', src: 'slides/tucker/knitten.png', alt: 'Knitten design' },
+  { type: 'video', src: 'slides/tucker/designing_stuff.mp4', alt: 'Design process video' },
   { 
     type: 'html', 
     component: 'TechStack', 
@@ -25,14 +19,23 @@ const mixedItems = [
     },
     alt: 'Interactive tech stack' 
   },
-  { type: 'video', src: 'slides/tucker/designing_stuff.mp4', alt: 'Demo video' },
+  { 
+    type: 'html', 
+    component: 'ProcessTimeline', 
+    props: {
+      phases: [
+        { name: 'Research', duration: '2 weeks', description: 'User interviews and analysis' },
+        { name: 'Design', duration: '3 weeks', description: 'Wireframes and prototypes' },
+        { name: 'Development', duration: '8 weeks', description: 'Implementation and testing' },
+        { name: 'Launch', duration: '1 week', description: 'Deployment and monitoring' }
+      ]
+    },
+    alt: 'Project timeline' 
+  },
 ];
 
-export const Default = () => <ImageCarousel items={sampleItems} />;
-Default.storyName = 'Default Carousel';
-
-export const WithHtmlSlide = () => <ImageCarousel items={mixedItems} />;
-WithHtmlSlide.storyName = 'Carousel with HTML Slide';
+export const MixedContent = () => <ImageCarousel items={mixedContentItems} />;
+MixedContent.storyName = 'Image, Video, and HTML Slides';
 
 export default {
   title: 'Content/Image Carousel',
@@ -44,7 +47,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'A carousel component that supports images, videos, and interactive HTML components.',
+        component: 'A versatile carousel component that seamlessly displays images, videos, and interactive HTML components.',
       },
     },
   },

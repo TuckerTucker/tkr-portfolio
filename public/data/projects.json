@@ -82,6 +82,24 @@
     ]
   },
   {
+    "id": "ai_dev_team",
+    "title": "AI Dev Team",
+    "color": "#ffd300",
+    "subtitle": "Chatting with custom development team bots",
+    "logoUrl": "nutrien.svg",
+    "description": "To best create coding projects that work I created my own team of web technology experts",
+    "bullets": [
+      "Lorem Ipsum",
+      "Dolor Sit Amet",
+      "Lorem Ipsum",
+      "Dolor Sit Amet"
+    ],
+    "slides": [
+      { "type": "image", "src": "slides/tucker/knitten.png", "alt": "Final Design - Visual connection between global standards and local branch files" },
+      { "type": "image", "src": "slides/tucker/ramoon.png", "alt": "Multi-file Uploader - Consistent component sizing across all breakpoints" }
+    ]
+  },
+  {
     "id": "nutrien",
     "title": "Nutrien",
     "color": "#3b5f18",
@@ -103,9 +121,9 @@
     "id": "worldplay",
     "title": "Worldplay",
     "color": "#00a4e4",
-    "subtitle": "Analytics Dashboard",
+    "subtitle": "Analytics Dashboard — Discovery Process",
     "logoUrl": "worldplay.svg",
-    "description": "Worldplay needed a comprehensive analytics dashboard to help content publishers understand viewer engagement and optimize their video strategies. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
+    "description": "Worldplay needed a comprehensive analytics dashboard to help the internal customer support teams understand the live stream events in real-time. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
     "bullets": ["Real-time analytics visualization", "Custom report builder", "Audience segmentation tools"],
     "slides": [
       { 
@@ -124,18 +142,6 @@
         },
         "alt": "Analytics technology stack for Worldplay dashboard" 
       }
-    ]
-  },
-  {
-    "id": "shaw",
-    "title": "Shaw",
-    "color": "#0488c1",
-    "subtitle": "Phone Portal",
-    "logoUrl": "shaw.svg",
-    "description": "Shaw Communications needed a comprehensive user portal for their phone service customers. The redesigned portal helps customers manage their accounts, view call history, configure features, and get support for their phone services.",
-    "bullets": ["Account management dashboard", "Interactive feature configuration", "Visual call history and usage tracking"],
-    "slides": [
-      { "type": "image", "src": "slides/shaw/beached_balls.png", "alt": "Shaw Slide 1" }
     ]
   }
 ]
