@@ -17,7 +17,9 @@ const DesignSystem = ({
   className,
   ...props 
 }) => {
-  const [activeTab, setActiveTab] = useState('colors');
+  // Filter out non-DOM props
+  const { isMobile: _, ...domProps } = props;
+  const [activeTab, setActiveTab] = useState('typography');
   
   // Function to display color in accessible format
   const getContrastColor = (hexColor) => {
@@ -41,24 +43,13 @@ const DesignSystem = ({
         !isMobile && "h-full",
         className
       )} 
-      {...props}
+      {...domProps}
     >
       <div className="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <h2 className="text-xl md:text-2xl font-heading text-white">{title}</h2>
         
         {/* Tab navigation - Stacked on mobile, side by side on tablet+ */}
         <div className="flex space-x-1 bg-gray-700 rounded-lg p-1 self-start sm:self-auto">
-          <button 
-            className={cn(
-              "px-3 py-1 text-xs rounded-md transition-colors",
-              activeTab === 'colors' 
-                ? "bg-blue-500 text-white" 
-                : "text-gray-300 hover:text-white"
-            )}
-            onClick={() => setActiveTab('colors')}
-          >
-            Colors
-          </button>
           <button 
             className={cn(
               "px-3 py-1 text-xs rounded-md transition-colors",
@@ -73,13 +64,13 @@ const DesignSystem = ({
           <button 
             className={cn(
               "px-3 py-1 text-xs rounded-md transition-colors",
-              activeTab === 'components' 
+              activeTab === 'colors' 
                 ? "bg-blue-500 text-white" 
                 : "text-gray-300 hover:text-white"
             )}
-            onClick={() => setActiveTab('components')}
+            onClick={() => setActiveTab('colors')}
           >
-            Components
+            Colors
           </button>
         </div>
       </div>
@@ -89,34 +80,6 @@ const DesignSystem = ({
         "flex-grow",
         isMobile ? "overflow-y-auto" : "overflow-auto"
       )}>
-        {/* Colors tab */}
-        {activeTab === 'colors' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {colors.map((colorGroup, groupIndex) => (
-              <div key={groupIndex} className="bg-gray-800 rounded-lg overflow-hidden">
-                <div className="p-2 md:p-3 border-b border-gray-700">
-                  <h3 className="text-xs md:text-sm text-white font-medium">{colorGroup.name}</h3>
-                </div>
-                <div className="divide-y divide-gray-700">
-                  {colorGroup.variants.map((variant, variantIndex) => {
-                    const contrastColor = getContrastColor(variant.hex);
-                    return (
-                      <div 
-                        key={variantIndex} 
-                        className="flex justify-between items-center p-2 md:p-3"
-                        style={{ backgroundColor: variant.hex, color: contrastColor }}
-                      >
-                        <span className="text-xs md:text-sm font-medium">{variant.name}</span>
-                        <span className="text-xs opacity-80">{variant.hex}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        
         {/* Typography tab */}
         {activeTab === 'typography' && (
           <div className="space-y-6 md:space-y-8 bg-gray-800 rounded-lg p-4 md:p-6">
@@ -151,27 +114,28 @@ const DesignSystem = ({
           </div>
         )}
         
-        {/* Components tab */}
-        {activeTab === 'components' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
-            {components.map((component, index) => (
-              <div key={index} className="bg-gray-800 rounded-lg overflow-hidden">
-                <div className="p-3 md:p-4 border-b border-gray-700">
-                  <h3 className="text-xs md:text-sm text-white font-medium">{component.name}</h3>
+        {/* Colors tab */}
+        {activeTab === 'colors' && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            {colors.map((colorGroup, groupIndex) => (
+              <div key={groupIndex} className="bg-gray-800 rounded-lg overflow-hidden">
+                <div className="p-2 md:p-3 border-b border-gray-700">
+                  <h3 className="text-xs md:text-sm text-white font-medium">{colorGroup.name}</h3>
                 </div>
-                <div className="p-3 md:p-4 bg-gray-700 min-h-[100px] md:min-h-[120px] flex items-center justify-center">
-                  {component.image ? (
-                    <img 
-                      src={component.image} 
-                      alt={`${component.name} component example`}
-                      className="max-w-full max-h-[80px] md:max-h-[100px] object-contain"
-                    />
-                  ) : (
-                    <div className="text-gray-400 text-xs md:text-sm">No preview available</div>
-                  )}
-                </div>
-                <div className="p-3 md:p-4">
-                  <p className="text-xs text-gray-400">{component.description}</p>
+                <div className="divide-y divide-gray-700">
+                  {colorGroup.variants.map((variant, variantIndex) => {
+                    const contrastColor = getContrastColor(variant.hex);
+                    return (
+                      <div 
+                        key={variantIndex} 
+                        className="flex justify-between items-center p-2 md:p-3"
+                        style={{ backgroundColor: variant.hex, color: contrastColor }}
+                      >
+                        <span className="text-xs md:text-sm font-medium">{variant.name}</span>
+                        <span className="text-xs opacity-80">{variant.hex}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -215,7 +179,8 @@ DesignSystem.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       description: PropTypes.string,
-      image: PropTypes.string
+      image: PropTypes.string,
+      link: PropTypes.string
     })
   ),
   isMobile: PropTypes.bool,

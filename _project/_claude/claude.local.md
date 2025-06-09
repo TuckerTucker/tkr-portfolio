@@ -21,7 +21,7 @@ project:
   name: "TKR Portfolio"
   version: "0.1.0"
   description: "A portfolio website showcasing Tucker Harley's projects and skills"
-  author: "Tucker Harley"
+  author: "Sean 'Tucker' Harley"
   role: "UX Designer & Developer"
   timestamp: "2025-02-06"
   status: "in-progress"
@@ -234,7 +234,7 @@ global:
 
 # Project purpose
 purpose:
-  summary: "To showcase Tucker Harley's portfolio of work, skills, and experience as a UX Designer and Developer through an interactive website built with modern web technologies."
+  summary: "To showcase Sean 'Tucker' Harley's portfolio of work, skills, and experience as a UX Designer and Developer through an interactive website built with modern web technologies."
   goals:
     - "Present project showcases with detailed descriptions and visual examples"
     - "Demonstrate technical skills through well-structured React code and components"

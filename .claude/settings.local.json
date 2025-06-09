@@ -5,7 +5,9 @@
       "Bash(ls:*)",
       "Bash(grep:*)",
       "Bash(curl:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "mcp__Taskboard__move-card",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   },
