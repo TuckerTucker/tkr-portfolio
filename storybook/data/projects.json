@@ -202,10 +202,10 @@
             }
           ],
           "components": [
-            { "name": "View Component Library", "description": "Explore all components in Storybook (run: npm run dev:storybook)", "link": "http://localhost:6006" },
-            { "name": "Theme Components", "description": "Colors, Typography, and Design Tokens", "link": "http://localhost:6006/?path=/story/theme-colors--default" },
-            { "name": "Navigation Components", "description": "Project Picker and Header", "link": "http://localhost:6006/?path=/story/navigation-customprojectpicker--default" },
-            { "name": "Content Components", "description": "Image Carousel and HTML Slides", "link": "http://localhost:6006/?path=/story/content-imagecarousel--default" }
+            { "name": "View Component Library", "description": "Explore all components in Storybook", "link": "/storybook" },
+            { "name": "Theme Components", "description": "Colors, Typography, and Design Tokens", "link": "/storybook/?path=/story/theme-colors--default" },
+            { "name": "Navigation Components", "description": "Project Picker and Header", "link": "/storybook/?path=/story/navigation-customprojectpicker--default" },
+            { "name": "Content Components", "description": "Image Carousel and HTML Slides", "link": "/storybook/?path=/story/content-imagecarousel--default" }
           ]
         },
         "alt": "Design system tokens and components" 
