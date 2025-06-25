@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Review Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --light-bg: #f8fafc;
+            --dark-bg: #1e293b;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .loading-spinner {
+            width: 2rem;
+            height: 2rem;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--danger-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-bg);
+            border-color: var(--border-color);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .content {
+            padding: 2rem 0;
+        }
+
+        .report-section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: none;
+        }
+
+        .report-section.active {
+            display: block;
+        }
+
+        .section-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .critical { color: var(--danger-color); }
+        .high { color: #dc2626; }
+        .medium { color: var(--warning-color); }
+        .low { color: var(--success-color); }
+        .info { color: var(--info-color); }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .findings-list {
+            margin-top: 2rem;
+        }
+
+        .finding-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .finding-item:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .finding-header {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .finding-header:hover {
+            background-color: var(--light-bg);
+        }
+
+        .finding-title {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .finding-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .severity-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .severity-critical {
+            background-color: #fef2f2;
+            color: var(--danger-color);
+            border: 1px solid #fecaca;
+        }
+
+        .severity-high {
+            background-color: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fed7aa;
+        }
+
+        .severity-medium {
+            background-color: #fffbeb;
+            color: var(--warning-color);
+            border: 1px solid #fde68a;
+        }
+
+        .severity-low {
+            background-color: #f0fdf4;
+            color: var(--success-color);
+            border: 1px solid #bbf7d0;
+        }
+
+        .finding-content {
+            padding: 1rem;
+            display: none;
+            background-color: #fafafa;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .finding-content.expanded {
+            display: block;
+        }
+
+        .finding-description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .finding-location {
+            background: #f3f4f6;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .finding-remediation {
+            background: #f0fdf4;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #bbf7d0;
+            color: #065f46;
+        }
+
+        .expand-icon {
+            transition: transform 0.2s;
+            color: var(--text-light);
+        }
+
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .risk-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .risk-high {
+            background-color: #fef2f2;
+            color: var(--danger-color);
+            border: 1px solid #fecaca;
+        }
+
+        .risk-medium {
+            background-color: #fffbeb;
+            color: var(--warning-color);
+            border: 1px solid #fde68a;
+        }
+
+        .risk-low {
+            background-color: #f0fdf4;
+            color: var(--success-color);
+            border: 1px solid #bbf7d0;
+        }
+
+        .score-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .markdown-content {
+            line-height: 1.7;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .markdown-content h1 { font-size: 2rem; }
+        .markdown-content h2 { font-size: 1.75rem; }
+        .markdown-content h3 { font-size: 1.5rem; }
+        .markdown-content h4 { font-size: 1.25rem; }
+
+        .markdown-content p {
+            margin: 1rem 0;
+        }
+
+        .markdown-content ul, .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .markdown-content li {
+            margin: 0.5rem 0;
+        }
+
+        .markdown-content code {
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .markdown-content pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: var(--text-light);
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .markdown-content th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .markdown-content tr:hover {
+            background: var(--light-bg);
+        }
+
+        .markdown-content tr:last-child td {
+            border-bottom: none;
+        }
+
+        .markdown-content .status-current {
+            background: #f0fdf4;
+            color: var(--success-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .markdown-content .status-outdated {
+            background: #fffbeb;
+            color: var(--warning-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .markdown-content .risk-low {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .markdown-content .risk-medium {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .markdown-content .risk-high {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .markdown-content strong {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .markdown-content em {
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .refresh-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin-left: 1rem;
+        }
+
+        .refresh-button:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .finding-meta {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Repository Review Dashboard</h1>
+            <p id="repo-title">Dynamic Analysis Dashboard</p>
+            <button class="refresh-button" onclick="loadReports()">🔄 Refresh Reports</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-links" id="navigation">
+                <!-- Navigation will be populated dynamically -->
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="container">
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <span>Loading repository reports...</span>
+            </div>
+
+            <div id="error-container"></div>
+            <div id="content-container">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Repository Review Dashboard</p>
+            <p id="generation-info">Analysis conducted by specialized AI agents</p>
+        </div>
+    </footer>
+
+    <script>
+        class ReportDashboard {
+            constructor() {
+                this.reports = {};
+                this.currentSection = 'overview';
+                this.baseUrl = window.location.pathname.replace(/\/[^\/]*$/, '/');
+            }
+
+            async init() {
+                await this.loadReports();
+                this.setupEventListeners();
+            }
+
+            async loadReports() {
+                const loading = document.getElementById('loading');
+                const errorContainer = document.getElementById('error-container');
+                const contentContainer = document.getElementById('content-container');
+                
+                loading.style.display = 'flex';
+                errorContainer.innerHTML = '';
+                contentContainer.innerHTML = '';
+
+                try {
+                    // Load merged analysis first (overview)
+                    await this.loadMergedAnalysis();
+                    
+                    // Load individual agent reports
+                    const agents = ['security', 'quality', 'overview', 'deps'];
+                    for (const agent of agents) {
+                        await this.loadAgentReport(agent);
+                    }
+
+                    // Check if we actually loaded any reports
+                    const hasAnyReports = Object.keys(this.reports).length > 0;
+                    
+                    if (hasAnyReports) {
+                        this.createNavigation();
+                        this.renderContent();
+                    } else {
+                        this.showInstructions(errorContainer);
+                    }
+                    
+                    loading.style.display = 'none';
+
+                } catch (error) {
+                    console.error('Failed to load reports:', error);
+                    loading.style.display = 'none';
+                    
+                    // Check if this is a "no reports found" situation vs actual error
+                    const hasAnyReports = Object.keys(this.reports).length > 0;
+                    
+                    if (!hasAnyReports) {
+                        this.showInstructions(errorContainer);
+                    } else {
+                        errorContainer.innerHTML = `
+                            <div class="error">
+                                <strong>Error loading reports:</strong> ${error.message}
+                                <br>Make sure the report files exist in the current directory.
+                            </div>
+                        `;
+                    }
+                }
+            }
+
+            async loadMergedAnalysis() {
+                try {
+                    // Load merged findings JSON
+                    const mergedFindings = await this.fetchJSON('merged-findings.json');
+                    
+                    // Load merged analysis markdown
+                    const mergedAnalysis = await this.fetchText('merged-analysis.md');
+
+                    this.reports.overview = {
+                        type: 'merged',
+                        title: 'Executive Summary',
+                        subtitle: 'Comprehensive analysis across all domains',
+                        findings: mergedFindings,
+                        analysis: mergedAnalysis,
+                        icon: '📊'
+                    };
+                } catch (error) {
+                    console.warn('Could not load merged analysis:', error.message);
+                }
+            }
+
+            async loadAgentReport(agentName) {
+                try {
+                    const findings = await this.fetchJSON(`${agentName}/findings.json`);
+                    const metrics = await this.fetchJSON(`${agentName}/metrics.json`);
+                    const analysis = await this.fetchText(`${agentName}/analysis-report.md`);
+
+                    const agentConfig = {
+                        security: { title: 'Security Analysis', icon: '🛡️', subtitle: 'Security vulnerabilities and risks' },
+                        quality: { title: 'Quality Analysis', icon: '🧪', subtitle: 'Code quality and testing coverage' },
+                        overview: { title: 'Architecture Overview', icon: '🏗️', subtitle: 'System architecture and design' },
+                        deps: { title: 'Dependencies', icon: '📦', subtitle: 'Dependency analysis and vulnerabilities' }
+                    };
+
+                    this.reports[agentName] = {
+                        type: 'agent',
+                        title: agentConfig[agentName]?.title || agentName.charAt(0).toUpperCase() + agentName.slice(1),
+                        subtitle: agentConfig[agentName]?.subtitle || `${agentName} analysis report`,
+                        icon: agentConfig[agentName]?.icon || '📋',
+                        findings: findings,
+                        metrics: metrics,
+                        analysis: analysis
+                    };
+                } catch (error) {
+                    console.warn(`Could not load ${agentName} report:`, error.message);
+                }
+            }
+
+            async fetchJSON(filename) {
+                const response = await fetch(this.baseUrl + filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${filename}: ${response.status}`);
+                }
+                return await response.json();
+            }
+
+            async fetchText(filename) {
+                const response = await fetch(this.baseUrl + filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${filename}: ${response.status}`);
+                }
+                return await response.text();
+            }
+
+            createNavigation() {
+                const navigation = document.getElementById('navigation');
+                const reports = Object.keys(this.reports);
+                
+                // Show navigation when we have reports
+                navigation.style.display = 'flex';
+                
+                navigation.innerHTML = reports.map(key => {
+                    const report = this.reports[key];
+                    return `
+                        <a href="#${key}" class="nav-link ${key === this.currentSection ? 'active' : ''}" 
+                           data-section="${key}">
+                            ${report.icon} ${report.title}
+                        </a>
+                    `;
+                }).join('');
+            }
+
+            renderContent() {
+                const container = document.getElementById('content-container');
+                const reports = Object.keys(this.reports);
+                
+                container.innerHTML = reports.map(key => {
+                    const report = this.reports[key];
+                    return `
+                        <section id="${key}" class="report-section ${key === this.currentSection ? 'active' : ''}">
+                            ${this.renderReportSection(key, report)}
+                        </section>
+                    `;
+                }).join('');
+
+                // Update page title and metadata
+                if (this.reports.overview && this.reports.overview.findings) {
+                    const metadata = this.reports.overview.findings.metadata;
+                    if (metadata) {
+                        document.getElementById('repo-title').textContent = 
+                            `${metadata.repository?.name || 'Repository'} - Analysis Dashboard`;
+                        document.getElementById('generation-info').textContent = 
+                            `Generated on ${new Date(metadata.analysis_date).toLocaleDateString()} | ${metadata.merged_agents?.join(', ') || 'Multiple'} agents`;
+                    }
+                }
+            }
+
+            renderReportSection(key, report) {
+                return `
+                    <div class="section-header">
+                        <h2 class="section-title">${report.icon} ${report.title}</h2>
+                        <p class="section-subtitle">${report.subtitle}</p>
+                    </div>
+                    <div class="section-content">
+                        ${this.renderSectionContent(key, report)}
+                    </div>
+                `;
+            }
+
+            renderSectionContent(key, report) {
+                if (key === 'overview' && report.type === 'merged') {
+                    return this.renderMergedOverview(report);
+                } else {
+                    return this.renderAgentReport(report);
+                }
+            }
+
+            renderMergedOverview(report) {
+                const summary = report.findings.summary || {};
+                const findings = report.findings.findings_by_priority || {};
+                
+                return `
+                    ${this.renderRiskIndicator(summary.risk_assessment, summary.overall_health_score)}
+                    ${this.renderOverviewMetrics(summary)}
+                    ${this.renderCriticalFindings(findings.critical || [])}
+                    ${report.analysis ? `<div class="markdown-content">${this.parseMarkdown(report.analysis)}</div>` : ''}
+                `;
+            }
+
+            renderAgentReport(report) {
+                const findingsArray = report.findings.findings || [];
+                const metrics = report.metrics || {};
+                
+                return `
+                    ${this.renderAgentMetrics(metrics)}
+                    ${this.renderFindings(findingsArray)}
+                    ${report.analysis ? `<div class="markdown-content">${this.parseMarkdown(report.analysis)}</div>` : ''}
+                `;
+            }
+
+            renderRiskIndicator(riskLevel, healthScore) {
+                const riskClass = riskLevel === 'high' ? 'risk-high' : 
+                                 riskLevel === 'medium' ? 'risk-medium' : 'risk-low';
+                const riskIcon = riskLevel === 'high' ? '🚨' : 
+                               riskLevel === 'medium' ? '⚠️' : '✅';
+                
+                return `
+                    <div class="risk-indicator ${riskClass}">
+                        ${riskIcon} ${riskLevel.toUpperCase()} RISK - Health Score: ${healthScore || 'N/A'}/10
+                    </div>
+                `;
+            }
+
+            renderOverviewMetrics(summary) {
+                return `
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value critical">${summary.critical_issues || 0}</div>
+                            <div class="metric-label">Critical</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value high">${summary.high_issues || 0}</div>
+                            <div class="metric-label">High</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value medium">${summary.medium_issues || 0}</div>
+                            <div class="metric-label">Medium</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value low">${summary.low_issues || 0}</div>
+                            <div class="metric-label">Low</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderAgentMetrics(metrics) {
+                if (!metrics.overall_assessment) return '';
+                
+                const assessment = metrics.overall_assessment;
+                const keys = Object.keys(assessment);
+                
+                return `
+                    <div class="metrics-grid">
+                        ${keys.slice(0, 4).map(key => `
+                            <div class="metric-card">
+                                <div class="metric-value info">${assessment[key]}</div>
+                                <div class="metric-label">${key.replace(/_/g, ' ')}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            renderCriticalFindings(criticalFindings) {
+                if (!criticalFindings.length) return '';
+                
+                return `
+                    <div class="findings-list">
+                        <h3 style="margin-bottom: 1rem; color: var(--danger-color);">🔴 Critical Issues Requiring Immediate Attention</h3>
+                        ${criticalFindings.map(finding => this.renderFinding(finding)).join('')}
+                    </div>
+                `;
+            }
+
+            renderFindings(findings) {
+                if (!findings.length) return '';
+                
+                // Group by severity
+                const groupedFindings = findings.reduce((acc, finding) => {
+                    const severity = finding.severity || 'medium';
+                    if (!acc[severity]) acc[severity] = [];
+                    acc[severity].push(finding);
+                    return acc;
+                }, {});
+
+                const severityOrder = ['critical', 'high', 'medium', 'low'];
+                const severityLabels = {
+                    critical: '🔴 Critical Issues',
+                    high: '🟡 High Priority Issues', 
+                    medium: '🟠 Medium Priority Issues',
+                    low: '🟢 Low Priority Issues'
+                };
+
+                return severityOrder.map(severity => {
+                    if (!groupedFindings[severity]) return '';
+                    
+                    return `
+                        <div class="findings-list">
+                            <h3 style="margin-bottom: 1rem; color: var(--${severity === 'critical' ? 'danger' : severity === 'high' ? 'warning' : severity === 'medium' ? 'info' : 'success'}-color);">
+                                ${severityLabels[severity]}
+                            </h3>
+                            ${groupedFindings[severity].map(finding => this.renderFinding(finding)).join('')}
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderFinding(finding) {
+                const findingId = finding.id || Math.random().toString(36).substr(2, 9);
+                
+                return `
+                    <div class="finding-item">
+                        <div class="finding-header" onclick="toggleFinding('${findingId}')">
+                            <span class="finding-title">${finding.title}</span>
+                            <div class="finding-meta">
+                                <span class="severity-badge severity-${finding.severity || 'medium'}">${finding.severity || 'medium'}</span>
+                                <span class="expand-icon" id="icon-${findingId}">▼</span>
+                            </div>
+                        </div>
+                        <div class="finding-content" id="content-${findingId}">
+                            <div class="finding-description">${finding.description}</div>
+                            ${finding.location ? `
+                                <div class="finding-location">
+                                    📁 Location: ${finding.location.file}${finding.location.line ? `:${finding.location.line}` : ''}
+                                </div>
+                            ` : ''}
+                            ${finding.remediation ? `
+                                <div class="finding-remediation">
+                                    <strong>💡 Remediation:</strong> ${finding.remediation}
+                                </div>
+                            ` : ''}
+                            ${finding.effort ? `
+                                <div style="margin-top: 0.5rem; color: var(--text-light);">
+                                    <strong>Effort:</strong> ${finding.effort}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            parseMarkdown(markdown) {
+                if (!markdown) return '';
+                
+                let html = markdown;
+                
+                // Handle code blocks first (to protect them from other processing)
+                html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+                    return `<pre><code class="language-${lang || 'text'}">${this.escapeHtml(code.trim())}</code></pre>`;
+                });
+                
+                // Handle inline code
+                html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+                
+                // Handle tables
+                html = this.parseMarkdownTables(html);
+                
+                // Handle headers (from h4 to h1 to avoid conflicts)
+                html = html.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+                html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+                html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+                html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                
+                // Handle horizontal rules
+                html = html.replace(/^---+$/gim, '<hr>');
+                
+                // Handle bold and italic
+                html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+                html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+                // Handle links and images
+                html = html.replace(/!\[([^\]]*)\]\(([^\)]*)\)/g, '<img alt="$1" src="$2" />');
+                html = html.replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" target="_blank">$1</a>');
+                
+                // Handle blockquotes
+                html = html.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
+                
+                // Handle unordered lists
+                html = this.parseMarkdownLists(html);
+                
+                // Handle line breaks and paragraphs
+                html = html.replace(/\n\n+/g, '</p><p>');
+                html = html.replace(/\n/g, '<br>');
+                html = `<p>${html}</p>`;
+                
+                // Clean up empty paragraphs
+                html = html.replace(/<p><\/p>/g, '');
+                html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+                html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<hr>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<blockquote>.*?<\/blockquote>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<table>.*?<\/table>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<ul>.*?<\/ul>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<ol>.*?<\/ol>)<\/p>/g, '$1');
+                html = html.replace(/<p>(<pre>.*?<\/pre>)<\/p>/g, '$1');
+                
+                // Add special styling for status badges and risk levels
+                html = this.addSpecialStyling(html);
+                
+                return html;
+            }
+
+            parseMarkdownTables(html) {
+                const tableRegex = /^(\|.*\|)\n(\|.*\|)\n((?:\|.*\|\n?)*)/gm;
+                
+                return html.replace(tableRegex, (match, header, separator, rows) => {
+                    const headerCells = header.split('|').slice(1, -1).map(cell => 
+                        `<th>${cell.trim()}</th>`).join('');
+                    
+                    const rowsHtml = rows.trim().split('\n').map(row => {
+                        if (!row.trim()) return '';
+                        const cells = row.split('|').slice(1, -1).map(cell => 
+                            `<td>${cell.trim()}</td>`).join('');
+                        return `<tr>${cells}</tr>`;
+                    }).filter(row => row).join('');
+                    
+                    return `<table><thead><tr>${headerCells}</tr></thead><tbody>${rowsHtml}</tbody></table>`;
+                });
+            }
+
+            parseMarkdownLists(html) {
+                // Handle unordered lists
+                html = html.replace(/^[\s]*[-*+] (.+)$/gm, '<li>$1</li>');
+                html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                    return `<ul>${match}</ul>`;
+                });
+                
+                // Handle ordered lists
+                html = html.replace(/^[\s]*\d+\. (.+)$/gm, '<li>$1</li>');
+                html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                    // Check if this is already wrapped in ul (from unordered lists)
+                    if (match.includes('<ul>')) return match;
+                    return `<ol>${match}</ol>`;
+                });
+                
+                return html;
+            }
+
+            addSpecialStyling(html) {
+                // Add styling for common status indicators
+                html = html.replace(/✅\s*Current/g, '<span class="status-current">✅ Current</span>');
+                html = html.replace(/⚠️\s*Outdated/g, '<span class="status-outdated">⚠️ Outdated</span>');
+                html = html.replace(/⚠️\s*Behind/g, '<span class="status-outdated">⚠️ Behind</span>');
+                
+                // Add styling for risk levels
+                html = html.replace(/\|\s*Low\s*\|/g, '| <span class="risk-low">Low</span> |');
+                html = html.replace(/\|\s*Medium\s*\|/g, '| <span class="risk-medium">Medium</span> |');
+                html = html.replace(/\|\s*High\s*\|/g, '| <span class="risk-high">High</span> |');
+                
+                return html;
+            }
+
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            showInstructions(container) {
+                container.innerHTML = `
+                    <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin: 2rem 0; box-shadow: var(--shadow); border: 1px solid var(--border-color);">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.75rem;">📊 No Reports Found</h2>
+                            <p style="color: var(--text-light); font-size: 1.1rem;">Generate repository analysis reports using the parallel agent system</p>
+                        </div>
+
+                        <div style="background: var(--light-bg); border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                🚀 Quick Start
+                            </h3>
+                            <p style="margin-bottom: 1rem;">Run these commands to generate comprehensive repository analysis reports:</p>
+                            
+                            <div style="background: var(--dark-bg); color: white; padding: 1rem; border-radius: 0.5rem; font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace; font-size: 0.875rem; margin-bottom: 1rem;">
+                                <div style="color: #10b981; margin-bottom: 0.5rem;"># Navigate to your project directory</div>
+                                cd /path/to/your/project<br><br>
+                                
+                                <div style="color: #10b981; margin-bottom: 0.5rem;"># Run parallel analysis (recommended)</div>
+                                claude --file /Volumes/tkr-riffic/@tkr-projects/tkr-project-kit/.claude/commands/rr_review.md<br><br>
+                                
+                                <div style="color: #10b981; margin-bottom: 0.5rem;"># Merge findings into comprehensive report</div>
+                                claude --file /Volumes/tkr-riffic/@tkr-projects/tkr-project-kit/.claude/commands/rr_merge-findings.md
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    🛡️ Security Analysis
+                                </h4>
+                                <p style="color: var(--text-light); font-size: 0.875rem; line-height: 1.5;">
+                                    Identifies vulnerabilities, security misconfigurations, and compliance issues
+                                </p>
+                            </div>
+
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    🧪 Quality Analysis
+                                </h4>
+                                <p style="color: var(--text-light); font-size: 0.875rem; line-height: 1.5;">
+                                    Evaluates code quality, testing coverage, and maintainability metrics
+                                </p>
+                            </div>
+
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    🏗️ Architecture Review
+                                </h4>
+                                <p style="color: var(--text-light); font-size: 0.875rem; line-height: 1.5;">
+                                    Analyzes system design, patterns, and scalability considerations
+                                </p>
+                            </div>
+
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    📦 Dependencies
+                                </h4>
+                                <p style="color: var(--text-light); font-size: 0.875rem; line-height: 1.5;">
+                                    Reviews dependencies for vulnerabilities, outdated versions, and licensing
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem;">
+                            <h4 style="color: var(--success-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                💡 What You'll Get
+                            </h4>
+                            <ul style="margin: 0; padding-left: 1.5rem; color: #065f46;">
+                                <li style="margin: 0.5rem 0;">Comprehensive security vulnerability assessment</li>
+                                <li style="margin: 0.5rem 0;">Code quality metrics and improvement recommendations</li>
+                                <li style="margin: 0.5rem 0;">Architecture analysis with scalability insights</li>
+                                <li style="margin: 0.5rem 0;">Dependency analysis with CVE detection</li>
+                                <li style="margin: 0.5rem 0;">Prioritized action plan with timeline estimates</li>
+                                <li style="margin: 0.5rem 0;">Interactive dashboard for easy report navigation</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 0.75rem; padding: 1.5rem;">
+                            <h4 style="color: var(--warning-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                ⚙️ Expected File Structure
+                            </h4>
+                            <p style="color: #92400e; font-size: 0.875rem; margin-bottom: 1rem;">After running the analysis, you should see these files:</p>
+                            <div style="background: white; padding: 1rem; border-radius: 0.5rem; font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace; font-size: 0.875rem; color: #92400e;">
+                                reports/<br>
+                                ├── merged-analysis.md<br>
+                                ├── merged-findings.json<br>
+                                ├── security/<br>
+                                │   ├── analysis-report.md<br>
+                                │   ├── findings.json<br>
+                                │   └── metrics.json<br>
+                                ├── quality/<br>
+                                │   ├── analysis-report.md<br>
+                                │   ├── findings.json<br>
+                                │   └── metrics.json<br>
+                                └── overview/<br>
+                                    ├── analysis-report.md<br>
+                                    ├── findings.json<br>
+                                    └── metrics.json
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="refresh-button" onclick="loadReports()" style="font-size: 1rem; padding: 1rem 2rem;">
+                                🔄 Check for Reports
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                // Hide navigation when showing instructions
+                const navigation = document.getElementById('navigation');
+                if (navigation) {
+                    navigation.style.display = 'none';
+                }
+            }
+
+            setupEventListeners() {
+                // Navigation handling
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('nav-link')) {
+                        e.preventDefault();
+                        
+                        // Remove active class from all nav links and sections
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        document.querySelectorAll('.report-section').forEach(s => s.classList.remove('active'));
+                        
+                        // Add active class to clicked nav link and corresponding section
+                        e.target.classList.add('active');
+                        const sectionId = e.target.getAttribute('data-section');
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.classList.add('active');
+                            this.currentSection = sectionId;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Global function for finding toggle
+        function toggleFinding(findingId) {
+            const content = document.getElementById(`content-${findingId}`);
+            const icon = document.getElementById(`icon-${findingId}`);
+            
+            if (content && icon) {
+                content.classList.toggle('expanded');
+                icon.classList.toggle('rotated');
+            }
+        }
+
+        // Global function for refresh
+        function loadReports() {
+            if (window.dashboard) {
+                window.dashboard.loadReports();
+            }
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dashboard = new ReportDashboard();
+            window.dashboard.init();
+        });
+    </script>
+</body>
+</html>

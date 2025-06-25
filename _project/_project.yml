@@ -1,290 +1,366 @@
-# TKR Portfolio Project
-# Core project configuration for the TKR Portfolio
+# TKR Portfolio
+# Core project configuration for Tucker's UX/UI Design Portfolio
 
 # Project metadata
 project:
   name: "TKR Portfolio"
-  version: "0.1.0"
-  description: "A portfolio website showcasing Tucker Harley's projects and skills"
-  author: "Tucker Harley"
-  role: "UX Designer & Developer"
-  timestamp: "2025-02-06"
-  status: "in-progress"
-  
-  # External systems and references
-  references:
-    design_system: "Storybook"
-    component_library: "Shadcn UI / Radix UI"
-    deployment_url: "https://tuckertucker.github.io/tkr-portfolio/"
-    storybook_url: "https://tuckertucker.github.io/tkr-portfolio/storybook/"
-  
-  # Repository information
-  repository:
-    type: "git"
-    url: "https://github.com/tuckertucker/tkr-portfolio"
-    branch: "main"
-
-# Technology Stack
-tech_stack:
-  frontend:
-    framework: "React"
-    language: "JavaScript"
-    build_tool: "Vite"
-    package_manager: "npm"
-    key_libraries:
-      - name: "React"
-        version: "^19.1.0"
-        purpose: "UI library for building component-based interfaces"
-      - name: "TailwindCSS"
-        version: "^3.4.3"
-        purpose: "Utility-first CSS framework"
-      - name: "Radix UI"
-        version: "^2.1.6"
-        purpose: "Accessible UI components"
-      - name: "Embla Carousel"
-        version: "^8.6.0"
-        purpose: "Image carousel functionality"
-      - name: "Lucide React"
-        version: "^0.493.0"
-        purpose: "Modern icon library"
-      - name: "Class Variance Authority"
-        version: "^0.7.1"
-        purpose: "Component variant management"
-      - name: "Storybook"
-        version: "^8.6.12"
-        purpose: "Component documentation and design system"
-  
-  # Deployment details
+  version: "1.0.0"
+  description: "A modern React-based portfolio website showcasing UX/UI design work and development projects with dual deployment strategy (portfolio + Storybook component library)"
+  author: "Sean 'Tucker' Harley"
+  role: "Portfolio Website"
+  timestamp: "2025-06-25"
+  status: "production"
   deployment:
-    strategy: "GitHub Pages"
-    bundling: "Vite build"
-    cdn: "GitHub Pages CDN"
-    base_path: "/tkr-portfolio/"
-    branches:
-      main: "Production deployment"
-      gh-pages: "Storybook deployment"
+    live_url: "https://tuckertucker.github.io/tkr-portfolio/"
+    storybook_url: "https://tuckertucker.github.io/tkr-portfolio/storybook/"
+    hosting: "GitHub Pages"
+    custom_domain: true
 
 # Directory structure
 directories:
   - path: "../"
     description: "Root project directory"
+    files:
+      - "package.json": "Node.js dependencies and build scripts"
+      - "vite.config.js": "Vite build configuration with custom Storybook integration"
+      - "tailwind.config.js": "Tailwind CSS configuration with custom theme"
+      - "components.json": "shadcn/ui component configuration"
+      - "CNAME": "Custom domain configuration for GitHub Pages"
+      - ".eslintrc.js": "ESLint configuration for code quality"
+      - "vitest.workspace.js": "Testing workspace configuration"
     subdirectories:
-      - path: "_project/"
-        description: "Project context and grounding information"
-        subdirectories:
-          - path: "_claude/"
-            description: "Claude AI agent configuration directory"
-            files:
-              - "claude.local.md": "Project specific Claude configuration"
-          - path: "_ref/"
-            description: "Reference materials for packages and/or libraries used in the project to assist the coding agents."
-            subdirectories:
-              - path: "tkr-project-yaml/"
-                description: "Templates and specifications for project YAML files"
-                files:
-                  - "specification-guide.md": "Detailed guide for completing YAML documentation"
-                subdirectories:
-                  - path: "templates/"
-                    description: "YAML templates for different documentation types"
-                    files:
-                      - "component-template.yaml": "Template for individual UI components"
-                      - "template-core-project.yaml": "Template for core project configuration"
-              - path: "nutrien/"
-                description: "Nutrien project reference materials and assets"
-              - path: "vidflex/"
-                description: "Vidflex project documentation PDFs"
-              - path: "github_pages_info/"
-                description: "GitHub Pages deployment documentation"
-          - path: "_specs/"
-            description: "Project planning documents including wireframes, architecture docs, and implementation guidelines"
-            subdirectories:
-              - path: "html_slides/"
-                description: "Documentation and guidelines for HTML slides implementation"
-                files:
-                  - "usage_guidelines.md": "Instructions for HTML slides usage"
-              - path: "html_slides_implementation.md"
-                description: "Technical implementation details for HTML slides"
-              - path: "tucker-slides/"
-                description: "Tucker project slide specifications"
-                files:
-                  - "tucker-slide-wireframe.png": "Visual wireframe for Tucker slides"
-                  - "Spark Art Desc.txt": "Content for The Spark and The Art slide"
-              - path: "ui_wireframes/"
-                description: "UI wireframes and design mockups"
-                files:
-                  - "app.svg": "Application wireframe"
-                  - "project_dropdown.png": "Project dropdown UI design"
-                  - "wireframes.png": "General UI wireframes"
-        files:
-          - "_project.yml": "Core project configuration file (this file)"
       - path: "src/"
-        description: "Source code directory"
+        description: "Source code for React application"
         subdirectories:
           - path: "components/"
-            description: "React components organized by type"
+            description: "React component library organized by function"
             subdirectories:
-              - path: "custom/": "Project-specific components"
-              - path: "feature/": "Feature components (carousels, project pickers)"
-              - path: "html-slides/": "Interactive HTML slide components"
-              - path: "layout/": "Layout components (header, footer)"
-              - path: "ui/": "Base UI components from shadcn/ui"
+              - path: "layout/"
+                description: "Core layout components"
+                files:
+                  - "header.jsx": "Site header with navigation and branding"
+                  - "footer.jsx": "Site footer with contact links"
+              - path: "ui/"
+                description: "Reusable UI components (shadcn/ui based)"
+                files:
+                  - "button.jsx": "Button component with variants"
+                  - "card.jsx": "Card container component"
+                  - "carousel.jsx": "Image carousel component"
+                  - "dropdown-menu.jsx": "Dropdown menu component"
+                  - "theme-toggle.jsx": "Dark/light mode toggle"
+              - path: "custom/"
+                description: "Brand-specific and custom components"
+                files:
+                  - "branding.jsx": "Brand logo and identity elements"
+                  - "project-card.jsx": "Project showcase card"
+                  - "color-block.jsx": "Design system color display"
+                  - "bullet-list.jsx": "Styled list component"
+              - path: "feature/"
+                description: "Core application features"
+                files:
+                  - "custom-project-picker.jsx": "Project selection interface"
+                  - "image-carousel.jsx": "Advanced image gallery"
+                  - "content-section.jsx": "Content layout component"
+                  - "description.jsx": "Rich text description component"
+              - path: "html-slides/"
+                description: "Specialized presentation slide components"
+                files:
+                  - "AgenticAIKanban.jsx": "AI task management project showcase"
+                  - "NutrienShowcase.jsx": "Nutrien UX project presentation"
+                  - "PortfolioShowcase.jsx": "Portfolio project presentation"
+                  - "WorldplayShowcase.jsx": "Worldplay project presentation"
+                  - "DesignSystem.jsx": "Design system documentation slide"
+                  - "TechStack.jsx": "Technology stack presentation"
+                  - "ProcessTimeline.jsx": "Design process timeline"
+                  - "BornToTheWorld.jsx": "Creative project showcase"
+                  - "TheSparkAndTheArt.jsx": "Art project presentation"
+                  - "TheOffHoursCreative.jsx": "Creative work showcase"
+                  - "slide-wrapper.jsx": "Consistent slide presentation framework"
           - path: "hooks/"
-            description: "Custom React hooks"
+            description: "Custom React hooks for state management"
             files:
-              - "useProjects.js": "Hook for loading project data"
-              - "useTheme.jsx": "Theme management hook"
-              - "SelectedProjectContext.jsx": "Context for selected project state"
-          - path: "stories/"
-            description: "Storybook component stories"
-        files:
-          - "App.jsx": "Main application component"
-          - "main.jsx": "Application entry point"
-          - "index.css": "Global styles and Tailwind imports"
+              - "SelectedProjectContext.jsx": "Project selection state context"
+              - "useProjects.js": "Project data fetching and management"
+              - "useTheme.jsx": "Theme (dark/light mode) management"
+          - path: "lib/"
+            description: "Utility functions and configurations"
+            files:
+              - "utils.js": "Common utility functions"
       - path: "public/"
-        description: "Static assets directory"
-        subdirectories:
-          - path: "data/"
-            description: "JSON data files"
-            files:
-              - "projects.json": "Project configuration and metadata"
-          - path: "images/": "Project images and assets"
-          - path: "slides/": "Project-specific slide images organized by project"
+        description: "Static assets and data"
         files:
-          - "*.svg": "Company and project logos"
+          - "data/projects.json": "Project portfolio data (5 complete projects)"
+        subdirectories:
+          - path: "images/"
+            description: "Image assets organized by project"
+            subdirectories:
+              - path: "taskboard/": "Agentic AI Kanban project images"
+              - path: "tkr-portfolio/": "Portfolio project images"
+              - path: "tucker/": "Personal brand images"
+          - path: "slides/"
+            description: "Project-specific presentation materials"
       - path: "stories/"
-        description: "Storybook story files organized by component type"
-
-# Global Design Tokens
-global:
-  design_tokens:
-    colors:
-      primary: "#3b82f6"    # Blue-500
-      secondary: "#10b981"  # Emerald-500
-      accent: "#8b5cf6"     # Violet-500
-      text:
-        primary: "#1f2937"  # Gray-800
-        secondary: "#6b7280"  # Gray-500
-      background:
-        light: "#ffffff"
-        dark: "#111827"     # Gray-900
-      semantic:
-        success: "#10b981"  # Emerald-500
-        warning: "#f59e0b"  # Amber-500
-        error: "#ef4444"    # Red-500
-        info: "#3b82f6"     # Blue-500
-    
-    typography:
-      font_family: "system-ui, sans-serif"
-      adobe_fonts:
-        - "ellograph-cf"
-        - "graphite-std"
-      base_size: "16px"
-      scale_ratio: 1.25
-      weights:
-        regular: 400
-        medium: 500
-        bold: 700
-    
-    spacing:
-      base: "8px"
-      scale:
-        xs: "4px"    # 0.5x base
-        sm: "8px"    # 1x base
-        md: "16px"   # 2x base
-        lg: "24px"   # 3x base
-        xl: "32px"   # 4x base
-  
-  # Accessibility standards
-  accessibility:
-    compliance: "WCAG 2.1 AA"
-    color_contrast:
-      minimum_ratio: "4.5:1"
-    keyboard_navigation: true
-    screen_reader_support: true
-    focus_indicators:
-      style: "outline"
-      color: "#3b82f6"
-      width: "2px"
-  
-  # Responsive design configuration
-  responsive:
-    breakpoints:
-      mobile: "max-width: 599px"
-      tablet: "600px to 1023px"
-      desktop: "min-width: 1024px"
-    strategy: "mobile-first"
-    container_widths:
-      max_width: "1280px"
-      padding: "16px"
+        description: "Storybook component documentation"
+        subdirectories:
+          - path: "theme/"
+            description: "Design system documentation"
+            files:
+              - "Colors.stories.jsx": "Color palette documentation"
+              - "Typography.stories.jsx": "Typography system documentation"
+          - path: "navigation/"
+            description: "Navigation component stories"
+          - path: "content/"
+            description: "Content component stories"
+          - path: "header/"
+            description: "Header component stories"
+          - path: "footer/"
+            description: "Footer component stories"
+      - path: "_project/"
+        description: "Project management and AI assistant configuration"
+        subdirectories:
+          - path: "_claude/"
+            description: "Claude AI agent configuration"
+            files:
+              - "claude.local.md": "Project-specific AI assistant configuration"
+            subdirectories:
+              - path: "scripts/"
+                description: "Automation scripts for development workflow"
+          - path: "_ref/"
+            description: "Reference materials and templates"
+            subdirectories:
+              - path: "tkr-project-yaml/"
+                description: "Project documentation templates and specifications"
+          - path: "_codex/"
+            description: "Project documentation and guides"
+            files:
+              - "AGENTS.md": "AI agent configuration documentation"
+          - path: "repo-review/"
+            description: "Automated repository analysis system"
+            files:
+              - "README.md": "Repository review system documentation"
+            subdirectories:
+              - path: "agents/"
+                description: "Specialized analysis agents"
+                files:
+                  - "overview-agent.md": "Architecture and structure analyst"
+                  - "security-agent.md": "Security vulnerability scanner"
+                  - "a11y-agent.md": "Accessibility compliance checker"
+                  - "performance-agent.md": "Performance optimization analyst"
+                  - "quality-agent.md": "Code quality and tech debt assessor"
+                  - "deps-agent.md": "Dependency and license analyzer"
+              - path: "reports/"
+                description: "Automated analysis dashboard"
+                files:
+                  - "dashboard.html": "Analysis results dashboard"
+                  - "server.js": "Local development server for reports"
+              - path: "templates/"
+                description: "Standardized reporting schemas"
 
 # Project purpose
 purpose:
-  summary: "To showcase Tucker Harley's portfolio of work, skills, and experience as a UX Designer and Developer through an interactive website built with modern web technologies."
+  summary: "To showcase Tucker's UX/UI design capabilities and development expertise through a modern, interactive portfolio website with comprehensive project case studies and component documentation."
   goals:
-    - "Present project showcases with detailed descriptions and visual examples"
-    - "Demonstrate technical skills through well-structured React code and components"
-    - "Implement interactive features like image carousels and HTML slides"
-    - "Provide an accessible and responsive user experience"
-    - "Create a design system using Storybook for component documentation"
+    - "Present professional UX/UI design work with detailed case studies"
+    - "Demonstrate modern React development skills and architecture"
+    - "Provide comprehensive component documentation through Storybook"
+    - "Showcase brand identity and design system capabilities"
+    - "Enable easy project navigation and content discovery"
+    - "Maintain high performance and accessibility standards"
+    - "Support both portfolio presentation and technical documentation"
 
-# Featured Projects
-projects:
-  - name: "Tucker"
-    type: "personal"
-    description: "Personal profile with creative projects showcase"
-    features:
-      - "Interactive HTML slides for creative projects"
-      - "Born to the World music project"
-      - "The Spark and The Art podcast"
-      - "The Off Hours Creative projects"
-  - name: "Agentic AI Kanban"
-    type: "professional"
-    description: "AI-powered task management and kanban board"
-    features:
-      - "AI agent integration"
-      - "Task automation"
-      - "Smart prioritization"
-  - name: "Nutrien Safety Portal"
-    type: "enterprise"
-    description: "Enterprise safety document management system"
-    features:
-      - "Document management"
-      - "User permissions"
-      - "Safety compliance tracking"
-  - name: "Worldplay Analytics Dashboard"
-    type: "professional"
-    description: "Video analytics and dashboard platform"
-    features:
-      - "Real-time analytics"
-      - "Video performance metrics"
-      - "Custom reporting"
-  - name: "Shaw Phone Portal"
-    type: "enterprise"
-    description: "Telecommunications customer portal"
-    features:
-      - "Account management"
-      - "Service configuration"
-      - "Billing integration"
-
-# Development Scripts
-scripts:
+# Technology stack
+technologies:
+  frontend:
+    framework: 
+      name: "React 19.1.0"
+      context7_id: "/reactjs/react.dev"
+      description: "Latest React with modern features and concurrent rendering"
+    build_tool: 
+      name: "Vite 6.2.0"
+      context7_id: "/vitejs/vite"
+      description: "Next generation frontend tooling with fast dev server and HMR"
+    styling: 
+      name: "Tailwind CSS 3.4.3"
+      context7_id: "/tailwindlabs/tailwindcss.com"
+      description: "Utility-first CSS framework for rapid UI development"
+    ui_library: 
+      name: "shadcn/ui with Radix UI primitives"
+      context7_ids:
+        - "/shadcn-ui/ui"
+        - "/radix-ui/primitives"
+      description: "Accessible component library with customizable design system"
+    routing: 
+      name: "React Router DOM 7.5.0"
+      context7_id: "/remix-run/react-router"
+      description: "Declarative routing for React applications"
+    icons: 
+      name: "Lucide React"
+      context7_id: "/lucide-icons/lucide"
+      description: "Beautiful & consistent icon toolkit, fork of Feather Icons"
+    carousel: 
+      name: "Embla Carousel React"
+      context7_id: "/davidjerleke/embla-carousel"
+      description: "Lightweight carousel library with fluid motion and swipe precision"
+  
   development:
-    - command: "npm run dev:portfolio"
-      description: "Start local development server"
-    - command: "npm run dev:storybook"
-      description: "Start Storybook development server"
-  build:
-    - command: "npm run build:portfolio"
-      description: "Build production-ready portfolio"
-    - command: "npm run build-storybook"
-      description: "Build static Storybook"
+    language: "JavaScript (ES Modules)"
+    testing: 
+      frameworks:
+        - name: "Vitest 3.1.1"
+          context7_id: "/vitest-dev/vitest"
+          description: "Next generation testing framework powered by Vite"
+        - name: "Playwright"
+          context7_id: "/microsoft/playwright"
+          description: "Framework for Web Testing and Automation across browsers"
+    linting: 
+      name: "ESLint 9.21.0"
+      context7_id: "/eslint/eslint"
+      description: "Find and fix problems in JavaScript code"
+    documentation: 
+      name: "Storybook 9.0.5"
+      context7_id: "/storybookjs/storybook"
+      description: "Industry standard workshop for building and documenting UI components"
+    css_processing:
+      name: "PostCSS"
+      context7_id: "/postcss/postcss"
+      description: "Transforming styles with JS plugins"
+    utility_libraries:
+      - name: "Class Variance Authority"
+        context7_id: "/joe-bell/cva"
+        description: "CVA for building a component variant API"
+      - name: "Tailwind Merge"
+        context7_id: "/dcastil/tailwind-merge"
+        description: "Merge Tailwind CSS classes without style conflicts"
+    
   deployment:
-    - command: "npm run deploy:portfolio"
-      description: "Deploy portfolio to GitHub Pages"
-    - command: "npm run deploy:storybook"
-      description: "Deploy Storybook to gh-pages branch"
-  testing:
-    - command: "npm run test"
-      description: "Run test suite"
-    - command: "npm run lint"
-      description: "Run ESLint"
+    hosting: "GitHub Pages"
+    domain: "Custom domain via CNAME"
+    strategy: "Dual deployment (Portfolio + Storybook)"
+    automation: "GitHub Actions"
+
+# Context7 documentation references
+documentation:
+  context7_libraries:
+    core_frameworks:
+      - id: "/reactjs/react.dev"
+        name: "React"
+        version: "19.1.0"
+        snippets: 2791
+        trust_score: 9.0
+      - id: "/vitejs/vite"
+        name: "Vite"
+        version: "6.2.0"
+        snippets: 629
+        trust_score: 8.3
+      - id: "/tailwindlabs/tailwindcss.com"
+        name: "Tailwind CSS"
+        version: "3.4.3"
+        snippets: 2026
+        trust_score: 8.0
+    
+    ui_components:
+      - id: "/shadcn-ui/ui"
+        name: "shadcn/ui"
+        snippets: 1132
+        trust_score: 7.7
+      - id: "/radix-ui/primitives"
+        name: "Radix UI Primitives"
+        snippets: 13
+        trust_score: 8.7
+      - id: "/lucide-icons/lucide"
+        name: "Lucide Icons"
+        snippets: 154
+        trust_score: 7.5
+      - id: "/davidjerleke/embla-carousel"
+        name: "Embla Carousel"
+        snippets: 903
+        trust_score: 8.2
+    
+    routing_state:
+      - id: "/remix-run/react-router"
+        name: "React Router"
+        version: "7.5.0"
+        snippets: 842
+        trust_score: 7.5
+    
+    development_tools:
+      - id: "/storybookjs/storybook"
+        name: "Storybook"
+        version: "9.0.5"
+        snippets: 3321
+        trust_score: 8.8
+      - id: "/eslint/eslint"
+        name: "ESLint"
+        version: "9.21.0"
+        snippets: 3075
+        trust_score: 9.1
+      - id: "/vitest-dev/vitest"
+        name: "Vitest"
+        version: "3.1.1"
+        snippets: 1445
+        trust_score: 8.3
+      - id: "/microsoft/playwright"
+        name: "Playwright"
+        snippets: 3449
+        trust_score: 9.9
+    
+    build_styling:
+      - id: "/postcss/postcss"
+        name: "PostCSS"
+        snippets: 50
+        trust_score: 9.6
+      - id: "/joe-bell/cva"
+        name: "Class Variance Authority"
+        snippets: 67
+        trust_score: 9.1
+      - id: "/dcastil/tailwind-merge"
+        name: "Tailwind Merge"
+        snippets: 96
+        trust_score: 8.3
+
+# Portfolio projects
+projects:
+  count: 5
+  featured:
+    - name: "Agentic AI Kanban"
+      type: "Full-stack Development"
+      description: "AI-powered task management system"
+      
+    - name: "Nutrien UX Showcase"
+      type: "UX Design"
+      description: "Enterprise agriculture platform redesign"
+      
+    - name: "Portfolio Website"
+      type: "Full-stack Development"
+      description: "This portfolio website with Storybook integration"
+      
+    - name: "Worldplay Platform"
+      type: "UX/UI Design"
+      description: "Creative collaboration platform design"
+      
+    - name: "Shaw Communication"
+      type: "Brand & UI Design"
+      description: "Telecommunications brand and interface design"
+
+# Brand identity
+brand:
+  primary_colors:
+    - "Tucker Blue: #3B82F6"
+    - "Tucker Green: #10B981"
+    - "Tucker Purple: #8B5CF6"
+  
+  project_colors:
+    - "Taskboard: #F59E0B (Amber)"
+    - "Nutrien: #10B981 (Emerald)"
+    - "Shaw: #EF4444 (Red)"
+    - "Worldplay: #8B5CF6 (Violet)"
+  
+  typography:
+    primary: "Ellograph CF"
+    secondary: "Graphite Std"
+    fallback: "Inter, system fonts"
+  
+  themes:
+    - "Light mode with warm neutrals"
+    - "Dark mode with cool grays"
+    - "High contrast for accessibility"

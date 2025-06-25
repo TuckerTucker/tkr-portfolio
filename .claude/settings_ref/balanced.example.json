@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install)",
+      "Bash(npm test:*)",
+      "Bash(npm audit fix)",
+      "Bash(git add .)",
+      "Bash(git commit -m:*)",
+      "Bash(git push origin:*)",
+      "Bash(docker build:*)",
+      "Bash(docker run:*)",
+      "Edit(src/**)",
+      "Edit(tests/**)",
+      "Edit(docs/**)",
+      "Create(src/**)",
+      "Read",
+      "Write(src/**)",
+      "Replace(src/**)",
+      "WebFetch(domain:docs.*)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:registry.npmjs.org)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Edit(.env)",
+      "Edit(secrets/**)",
+      "WebFetch(domain:*.onion)"
+    ]
+  }
+}

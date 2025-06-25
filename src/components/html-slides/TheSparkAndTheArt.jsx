@@ -12,7 +12,7 @@ const TheSparkAndTheArt = ({ className = "" }) => {
     <div className={`flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-8 h-full ${className}`}>
       <div className="flex-1 md:flex-[1.2] min-h-[300px] md:min-h-[400px]">
         <img
-          src={`${import.meta.env.BASE_URL}images/the-spark-the-art.png`}
+          src={`${import.meta.env.BASE_URL}images/tucker/the-spark-the-art.png`}
           alt="The Spark & The Art podcast logo"
           className="w-full h-full object-contain rounded-lg"
         />

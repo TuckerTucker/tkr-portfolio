@@ -11,6 +11,10 @@ import SkillsMatrix from './SkillsMatrix';
 import BornToTheWorld from './BornToTheWorld';
 import TheSparkAndTheArt from './TheSparkAndTheArt';
 import TheOffHoursCreative from './TheOffHoursCreative';
+import AgenticAIKanban from './AgenticAIKanban';
+import PortfolioShowcase from './PortfolioShowcase';
+import WorldplayShowcase from './WorldplayShowcase';
+import NutrienShowcase from './NutrienShowcase';
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -25,6 +29,10 @@ const ThemedSkillsMatrix = withSlideTheme(SkillsMatrix);
 const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
 const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
 const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
+const ThemedAgenticAIKanban = withSlideTheme(AgenticAIKanban);
+const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
+const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
+const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
 
 // Export component registry map
 const htmlSlideComponents = {
@@ -39,6 +47,10 @@ const htmlSlideComponents = {
   BornToTheWorld: ThemedBornToTheWorld,
   TheSparkAndTheArt: ThemedTheSparkAndTheArt,
   TheOffHoursCreative: ThemedTheOffHoursCreative,
+  AgenticAIKanban: ThemedAgenticAIKanban,
+  PortfolioShowcase: ThemedPortfolioShowcase,
+  WorldplayShowcase: ThemedWorldplayShowcase,
+  NutrienShowcase: ThemedNutrienShowcase,
 };
 
 export default htmlSlideComponents;
