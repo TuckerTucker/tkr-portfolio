@@ -48,7 +48,11 @@ This command systematically updates the `_project/_project.yml` file to accurate
    - Modify purpose statement if project focus has shifted
    - Ensure alignment with actual implementation
 
-6. **Validate and Format**:
+6. **Refresh Context7 documentation ids**
+   - Review the project libraries and packages
+   - Use context7 mcp server to find their documentation ids
+
+7. **Validate and Format**:
    - Check YAML syntax and structure
    - Ensure compliance with specification guide
    - Validate all paths and references

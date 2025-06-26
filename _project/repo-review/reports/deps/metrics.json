@@ -1,0 +1,148 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-06-25T00:00:00Z",
+    "project_name": "tkr-portfolio",
+    "project_version": "0.0.0",
+    "analyzer": "deps-agent",
+    "analyzer_version": "1.0.0",
+    "analysis_duration_ms": 15000,
+    "analysis_depth": 3
+  },
+  "dependency_counts": {
+    "total_dependencies": 537,
+    "direct_dependencies": 37,
+    "production_dependencies": 179,
+    "development_dependencies": 357,
+    "optional_dependencies": 61,
+    "peer_dependencies": 14,
+    "peer_optional_dependencies": 0,
+    "bundled_dependencies": 0
+  },
+  "package_manager_info": {
+    "type": "npm",
+    "lockfile_present": true,
+    "lockfile_type": "package-lock.json",
+    "node_modules_size_bytes": 385875968,
+    "node_modules_size_mb": 368,
+    "package_count_in_node_modules": 537
+  },
+  "security_metrics": {
+    "total_vulnerabilities": 1,
+    "critical_vulnerabilities": 0,
+    "high_vulnerabilities": 0,
+    "moderate_vulnerabilities": 0,
+    "low_vulnerabilities": 1,
+    "info_vulnerabilities": 0,
+    "packages_with_vulnerabilities": 1,
+    "fix_available": 1,
+    "security_score": 95
+  },
+  "update_metrics": {
+    "total_outdated": 26,
+    "major_updates_available": 3,
+    "minor_updates_available": 15,
+    "patch_updates_available": 8,
+    "packages_up_to_date": 11,
+    "freshness_score": 75
+  },
+  "license_metrics": {
+    "packages_with_license_info": 298,
+    "packages_without_license_info": 239,
+    "unique_licenses": 8,
+    "copyleft_licenses": 0,
+    "permissive_licenses": 298,
+    "commercial_compatible": 298,
+    "license_compliance_score": 100
+  },
+  "maintenance_metrics": {
+    "well_maintained_packages": 35,
+    "moderately_maintained_packages": 2,
+    "poorly_maintained_packages": 0,
+    "deprecated_packages": 0,
+    "maintenance_score": 90
+  },
+  "bundle_metrics": {
+    "estimated_bundle_size_kb": 2048,
+    "tree_shakeable_packages": 30,
+    "non_tree_shakeable_packages": 7,
+    "duplicate_dependencies": 4,
+    "bundle_efficiency_score": 80
+  },
+  "risk_assessment": {
+    "high_risk_packages": 1,
+    "medium_risk_packages": 3,
+    "low_risk_packages": 33,
+    "critical_path_dependencies": [
+      "react",
+      "react-dom",
+      "vite",
+      "tailwindcss"
+    ],
+    "overall_risk_score": 15
+  },
+  "performance_impact": {
+    "install_time_estimate_seconds": 45,
+    "build_time_impact": "medium",
+    "runtime_performance_impact": "low",
+    "cold_start_impact": "low"
+  },
+  "ecosystem_health": {
+    "react_ecosystem_packages": 15,
+    "build_tool_packages": 8,
+    "testing_packages": 6,
+    "linting_packages": 4,
+    "ui_library_packages": 4,
+    "ecosystem_diversity_score": 85
+  },
+  "technical_debt_indicators": {
+    "packages_multiple_major_versions_behind": 3,
+    "packages_with_known_issues": 1,
+    "packages_requiring_migration": 2,
+    "technical_debt_score": 25
+  },
+  "automation_readiness": {
+    "auto_updatable_packages": 30,
+    "requires_manual_intervention": 7,
+    "breaking_change_risk": 3,
+    "automation_score": 75
+  },
+  "trend_analysis": {
+    "weekly_update_frequency": 2.3,
+    "monthly_security_patches": 0.1,
+    "ecosystem_growth_trend": "stable",
+    "maintenance_trend": "improving"
+  },
+  "recommendations": {
+    "immediate_actions": 1,
+    "short_term_actions": 4,
+    "medium_term_actions": 3,
+    "long_term_actions": 3
+  },
+  "compliance_status": {
+    "license_compliant": true,
+    "security_policy_compliant": false,
+    "update_policy_compliant": false,
+    "documentation_compliant": true
+  },
+  "health_scores": {
+    "security": 95,
+    "freshness": 75,
+    "maintenance": 90,
+    "license_compliance": 100,
+    "bundle_efficiency": 80,
+    "risk_management": 85,
+    "automation_readiness": 75,
+    "ecosystem_health": 85,
+    "overall_health": 88
+  },
+  "benchmark_comparison": {
+    "industry_average_dependencies": 450,
+    "industry_average_vulnerabilities": 3,
+    "industry_average_outdated": 35,
+    "project_vs_industry": {
+      "dependencies": "above_average",
+      "security": "better_than_average",
+      "freshness": "better_than_average"
+    }
+  }
+}

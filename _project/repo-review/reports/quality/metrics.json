@@ -1,0 +1,232 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-06-25T00:00:00Z",
+    "analyzer_version": "1.0.0",
+    "repository_path": "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio",
+    "analysis_depth": 3,
+    "scan_duration_ms": 15000
+  },
+  "codebase_metrics": {
+    "total_files": 42,
+    "total_lines_of_code": 4074,
+    "total_components": 42,
+    "javascript_files": 42,
+    "typescript_files": 0,
+    "test_files": 0,
+    "story_files": 12,
+    "config_files": 6
+  },
+  "quality_scores": {
+    "overall_quality": 6.5,
+    "code_patterns": 8.0,
+    "testing_coverage": 0.0,
+    "code_quality": 2.0,
+    "duplication": 5.0,
+    "documentation": 6.0,
+    "maintainability": 7.5,
+    "type_safety": 4.0,
+    "performance": 7.0
+  },
+  "component_analysis": {
+    "average_component_size": 97,
+    "median_component_size": 85,
+    "largest_component": {
+      "file": "src/components/feature/custom-project-picker.jsx",
+      "lines": 162
+    },
+    "smallest_component": {
+      "file": "src/lib/utils.js",
+      "lines": 7
+    },
+    "components_by_size": {
+      "small_0_50": 8,
+      "medium_51_100": 22,
+      "large_101_150": 9,
+      "extra_large_151_plus": 3
+    }
+  },
+  "architecture_metrics": {
+    "component_organization": {
+      "feature_components": 7,
+      "ui_components": 6,
+      "layout_components": 2,
+      "html_slide_components": 15,
+      "custom_components": 7,
+      "story_components": 5
+    },
+    "hook_usage": {
+      "custom_hooks": 3,
+      "context_providers": 2,
+      "total_hook_implementations": 5
+    },
+    "import_patterns": {
+      "relative_imports": 35,
+      "absolute_imports": 12,
+      "alias_imports": 28,
+      "external_imports": 67
+    }
+  },
+  "testing_metrics": {
+    "test_coverage": 0.0,
+    "unit_tests": 0,
+    "integration_tests": 0,
+    "component_tests": 0,
+    "e2e_tests": 0,
+    "test_infrastructure": {
+      "vitest_configured": true,
+      "playwright_configured": true,
+      "storybook_test_addon": true,
+      "coverage_tool": "v8"
+    },
+    "testable_components": 42,
+    "complex_components_needing_tests": 8
+  },
+  "code_quality_metrics": {
+    "eslint_violations": {
+      "total_errors": 2506,
+      "total_warnings": 23,
+      "error_density": 0.61,
+      "warning_density": 0.006
+    },
+    "error_categories": {
+      "unused_variables": 15,
+      "node_globals": 8,
+      "generated_code": 2460,
+      "missing_dependencies": 5,
+      "react_specific": 18
+    },
+    "code_style": {
+      "consistent_naming": true,
+      "proper_file_organization": true,
+      "consistent_imports": true,
+      "proper_component_structure": true
+    }
+  },
+  "duplication_metrics": {
+    "total_duplicated_lines": 234,
+    "duplication_percentage": 5.7,
+    "clone_instances": 13,
+    "largest_clone": {
+      "tokens": 336,
+      "lines": 34,
+      "files": [
+        "src/components/html-slides/TheOffHoursCreative.jsx",
+        "src/components/html-slides/TheSparkAndTheArt.jsx"
+      ]
+    },
+    "duplication_by_category": {
+      "html_slides": 8,
+      "theme_components": 3,
+      "layout_components": 2
+    }
+  },
+  "documentation_metrics": {
+    "jsdoc_coverage": 0.6,
+    "components_with_jsdoc": 24,
+    "components_with_proptypes": 30,
+    "inline_comments": 156,
+    "readme_quality": "basic",
+    "api_documentation": false,
+    "architecture_docs": false
+  },
+  "maintainability_metrics": {
+    "cyclomatic_complexity": {
+      "average": 3.2,
+      "median": 2.0,
+      "maximum": 8,
+      "high_complexity_components": 2
+    },
+    "coupling_metrics": {
+      "average_dependencies": 4.5,
+      "highly_coupled_components": 3,
+      "loosely_coupled_components": 32
+    },
+    "cohesion_score": 8.5,
+    "code_churn": {
+      "recent_changes": "high",
+      "stability_index": 7.0
+    }
+  },
+  "performance_metrics": {
+    "bundle_size": "not_measured",
+    "lazy_loading": {
+      "implemented": false,
+      "opportunities": 15
+    },
+    "memoization": {
+      "react_memo_usage": 0,
+      "use_callback_usage": 2,
+      "use_memo_usage": 1
+    },
+    "rendering_optimizations": {
+      "virtual_scrolling": false,
+      "code_splitting": false,
+      "tree_shaking": true
+    }
+  },
+  "security_metrics": {
+    "dependencies_with_vulnerabilities": 0,
+    "unsafe_patterns": 0,
+    "direct_dom_manipulation": 2,
+    "eval_usage": 0,
+    "dangerous_html": 0
+  },
+  "dependency_metrics": {
+    "total_dependencies": 14,
+    "dev_dependencies": 24,
+    "outdated_dependencies": 0,
+    "unused_dependencies": 0,
+    "dependency_freshness": 9.0,
+    "major_frameworks": [
+      "react@19.1.0",
+      "react-dom@19.1.0",
+      "react-router-dom@7.5.0"
+    ]
+  },
+  "build_metrics": {
+    "build_tool": "vite",
+    "build_time": "not_measured",
+    "build_size": "not_measured",
+    "build_warnings": 0,
+    "build_errors": 0,
+    "hot_reload": true,
+    "source_maps": true
+  },
+  "trends": {
+    "code_growth": "steady",
+    "complexity_trend": "stable",
+    "test_coverage_trend": "concerning",
+    "documentation_trend": "improving",
+    "refactoring_opportunities": "high"
+  },
+  "recommendations_by_priority": {
+    "critical": [
+      "Add comprehensive test suite",
+      "Fix ESLint configuration",
+      "Address code duplication in HTML slides"
+    ],
+    "high": [
+      "Implement type safety strategy",
+      "Add error boundaries",
+      "Performance optimization"
+    ],
+    "medium": [
+      "Improve documentation coverage",
+      "Implement code splitting",
+      "Bundle size optimization"
+    ],
+    "low": [
+      "TypeScript migration",
+      "PWA features",
+      "Advanced performance patterns"
+    ]
+  },
+  "risk_assessment": {
+    "technical_debt_level": "medium-high",
+    "maintenance_risk": "medium",
+    "scalability_risk": "low",
+    "performance_risk": "low",
+    "security_risk": "low",
+    "overall_project_health": "good_with_concerns"
+  }
+}

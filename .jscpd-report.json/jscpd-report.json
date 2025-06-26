@@ -1,0 +1,1605 @@
+{
+  "statistics": {
+    "detectionDate": "2025-06-25T21:18:28.738Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "src/components/ui/theme-toggle.jsx": {
+            "lines": 44,
+            "tokens": 249,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/dropdown-menu.jsx": {
+            "lines": 166,
+            "tokens": 796,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/carousel.jsx": {
+            "lines": 108,
+            "tokens": 610,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/card.jsx": {
+            "lines": 76,
+            "tokens": 361,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/button.jsx": {
+            "lines": 0,
+            "tokens": 15,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/layout/header.jsx": {
+            "lines": 11,
+            "tokens": 73,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/layout/footer.jsx": {
+            "lines": 36,
+            "tokens": 226,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/slide-wrapper.jsx": {
+            "lines": 7,
+            "tokens": 36,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/index.js": {
+            "lines": 55,
+            "tokens": 456,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/WorldplayShowcase.jsx": {
+            "lines": 21,
+            "tokens": 231,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UserPersona.jsx": {
+            "lines": 107,
+            "tokens": 948,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UserFlow.jsx": {
+            "lines": 121,
+            "tokens": 1031,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UsabilityMetrics.jsx": {
+            "lines": 220,
+            "tokens": 1888,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TheSparkAndTheArt.jsx": {
+            "lines": 57,
+            "tokens": 510,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 108,
+            "duplicatedTokens": 827,
+            "percentage": 189.47,
+            "percentageTokens": 162.16,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TheOffHoursCreative.jsx": {
+            "lines": 47,
+            "tokens": 442,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 57,
+            "duplicatedTokens": 477,
+            "percentage": 121.28,
+            "percentageTokens": 107.92,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TechStack.jsx": {
+            "lines": 20,
+            "tokens": 232,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/SkillsMatrix.jsx": {
+            "lines": 160,
+            "tokens": 1270,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/ProcessTimeline.jsx": {
+            "lines": 47,
+            "tokens": 353,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/PortfolioShowcase.jsx": {
+            "lines": 66,
+            "tokens": 497,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 128,
+            "duplicatedTokens": 1030,
+            "percentage": 193.94,
+            "percentageTokens": 207.24,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/NutrienShowcase.jsx": {
+            "lines": 15,
+            "tokens": 152,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/DesignSystem.jsx": {
+            "lines": 92,
+            "tokens": 683,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/BornToTheWorld.jsx": {
+            "lines": 41,
+            "tokens": 389,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 38,
+            "duplicatedTokens": 350,
+            "percentage": 92.68,
+            "percentageTokens": 89.97,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/BeforeAfter.jsx": {
+            "lines": 46,
+            "tokens": 344,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/AgenticAIKanban.jsx": {
+            "lines": 42,
+            "tokens": 369,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 39,
+            "duplicatedTokens": 330,
+            "percentage": 92.86,
+            "percentageTokens": 89.43,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/image-carousel.jsx": {
+            "lines": 103,
+            "tokens": 739,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/description.jsx": {
+            "lines": 6,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/custom-project-picker.jsx": {
+            "lines": 83,
+            "tokens": 485,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/content-section.jsx": {
+            "lines": 6,
+            "tokens": 33,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/bullet-list-container.jsx": {
+            "lines": 8,
+            "tokens": 49,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-info.jsx": {
+            "lines": 4,
+            "tokens": 52,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-card.jsx": {
+            "lines": 44,
+            "tokens": 253,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-card-list.jsx": {
+            "lines": 11,
+            "tokens": 56,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/card-header.jsx": {
+            "lines": 1,
+            "tokens": 26,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/bullet-list.jsx": {
+            "lines": 4,
+            "tokens": 53,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/branding.jsx": {
+            "lines": 2,
+            "tokens": 45,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Page.jsx": {
+            "lines": 3,
+            "tokens": 57,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Header.jsx": {
+            "lines": 5,
+            "tokens": 69,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Button.jsx": {
+            "lines": 1,
+            "tokens": 30,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/lib/utils.js": {
+            "lines": 5,
+            "tokens": 50,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/hooks/useTheme.jsx": {
+            "lines": 0,
+            "tokens": 3,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/hooks/useProjects.js": {
+            "lines": 31,
+            "tokens": 264,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/hooks/SelectedProjectContext.jsx": {
+            "lines": 0,
+            "tokens": 7,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/App.jsx": {
+            "lines": 27,
+            "tokens": 202,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 1949,
+          "tokens": 14694,
+          "sources": 43,
+          "clones": 6,
+          "duplicatedLines": 185,
+          "duplicatedTokens": 1507,
+          "percentage": 9.49,
+          "percentageTokens": 10.26,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "jsx": {
+        "sources": {
+          "src/components/ui/theme-toggle.jsx": {
+            "lines": 130,
+            "tokens": 854,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 56,
+            "duplicatedTokens": 312,
+            "percentage": 43.08,
+            "percentageTokens": 36.53,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/dropdown-menu.jsx": {
+            "lines": 220,
+            "tokens": 1098,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/carousel.jsx": {
+            "lines": 194,
+            "tokens": 1304,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/card.jsx": {
+            "lines": 100,
+            "tokens": 470,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/ui/button.jsx": {
+            "lines": 54,
+            "tokens": 311,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/layout/header.jsx": {
+            "lines": 51,
+            "tokens": 332,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 90,
+            "percentage": 19.61,
+            "percentageTokens": 27.11,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/layout/footer.jsx": {
+            "lines": 91,
+            "tokens": 682,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 90,
+            "percentage": 10.99,
+            "percentageTokens": 13.2,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/slide-wrapper.jsx": {
+            "lines": 44,
+            "tokens": 288,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/WorldplayShowcase.jsx": {
+            "lines": 45,
+            "tokens": 421,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UserPersona.jsx": {
+            "lines": 167,
+            "tokens": 1361,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UserFlow.jsx": {
+            "lines": 195,
+            "tokens": 1579,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/UsabilityMetrics.jsx": {
+            "lines": 299,
+            "tokens": 2502,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TheSparkAndTheArt.jsx": {
+            "lines": 88,
+            "tokens": 730,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 49,
+            "duplicatedTokens": 277,
+            "percentage": 55.68,
+            "percentageTokens": 37.95,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TheOffHoursCreative.jsx": {
+            "lines": 78,
+            "tokens": 619,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 26,
+            "duplicatedTokens": 147,
+            "percentage": 33.33,
+            "percentageTokens": 23.75,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/TechStack.jsx": {
+            "lines": 90,
+            "tokens": 729,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/SkillsMatrix.jsx": {
+            "lines": 250,
+            "tokens": 1980,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/ProcessTimeline.jsx": {
+            "lines": 99,
+            "tokens": 677,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/PortfolioShowcase.jsx": {
+            "lines": 92,
+            "tokens": 653,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/NutrienShowcase.jsx": {
+            "lines": 37,
+            "tokens": 334,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/DesignSystem.jsx": {
+            "lines": 189,
+            "tokens": 1440,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/BornToTheWorld.jsx": {
+            "lines": 67,
+            "tokens": 549,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 48,
+            "duplicatedTokens": 266,
+            "percentage": 71.64,
+            "percentageTokens": 48.45,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/BeforeAfter.jsx": {
+            "lines": 147,
+            "tokens": 1140,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/html-slides/AgenticAIKanban.jsx": {
+            "lines": 68,
+            "tokens": 527,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 25,
+            "duplicatedTokens": 136,
+            "percentage": 36.76,
+            "percentageTokens": 25.81,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/image-carousel.jsx": {
+            "lines": 153,
+            "tokens": 1076,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 16,
+            "duplicatedTokens": 113,
+            "percentage": 10.46,
+            "percentageTokens": 10.5,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/description.jsx": {
+            "lines": 37,
+            "tokens": 244,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/custom-project-picker.jsx": {
+            "lines": 161,
+            "tokens": 1039,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 16,
+            "duplicatedTokens": 113,
+            "percentage": 9.94,
+            "percentageTokens": 10.88,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/content-section.jsx": {
+            "lines": 48,
+            "tokens": 281,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/feature/bullet-list-container.jsx": {
+            "lines": 39,
+            "tokens": 218,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-info.jsx": {
+            "lines": 46,
+            "tokens": 295,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-card.jsx": {
+            "lines": 92,
+            "tokens": 541,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/project-card-list.jsx": {
+            "lines": 66,
+            "tokens": 428,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/color-block.jsx": {
+            "lines": 43,
+            "tokens": 264,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/card-header.jsx": {
+            "lines": 52,
+            "tokens": 355,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/bullet-list.jsx": {
+            "lines": 38,
+            "tokens": 254,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/components/custom/branding.jsx": {
+            "lines": 36,
+            "tokens": 265,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Page.jsx": {
+            "lines": 68,
+            "tokens": 717,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Header.jsx": {
+            "lines": 55,
+            "tokens": 453,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/Button.jsx": {
+            "lines": 38,
+            "tokens": 251,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/hooks/useTheme.jsx": {
+            "lines": 69,
+            "tokens": 521,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/hooks/SelectedProjectContext.jsx": {
+            "lines": 41,
+            "tokens": 260,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/main.jsx": {
+            "lines": 18,
+            "tokens": 159,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/App.jsx": {
+            "lines": 69,
+            "tokens": 583,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 3964,
+          "tokens": 28784,
+          "sources": 42,
+          "clones": 7,
+          "duplicatedLines": 128,
+          "duplicatedTokens": 772,
+          "percentage": 3.23,
+          "percentageTokens": 2.68,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "css": {
+        "sources": {
+          "src/stories/page.css": {
+            "lines": 67,
+            "tokens": 364,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/header.css": {
+            "lines": 31,
+            "tokens": 189,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/stories/button.css": {
+            "lines": 29,
+            "tokens": 195,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/index.css": {
+            "lines": 221,
+            "tokens": 2149,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 348,
+          "tokens": 2897,
+          "sources": 4,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 6261,
+      "tokens": 46375,
+      "sources": 89,
+      "clones": 13,
+      "duplicatedLines": 313,
+      "duplicatedTokens": 2279,
+      "percentage": 5,
+      "percentageTokens": 4.91,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "jsx",
+      "lines": 15,
+      "fragment": "(props) {\n  return (\n    <svg\n      {...props}\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width=\"24\"\n      height=\"24\"\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth=\"2\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n    >\n      <path",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/ui/theme-toggle.jsx",
+        "start": 92,
+        "end": 106,
+        "startLoc": {
+          "line": 92,
+          "column": 9,
+          "position": 598
+        },
+        "endLoc": {
+          "line": 106,
+          "column": 5,
+          "position": 676
+        }
+      },
+      "secondFile": {
+        "name": "src/components/ui/theme-toggle.jsx",
+        "start": 64,
+        "end": 78,
+        "startLoc": {
+          "line": 64,
+          "column": 8,
+          "position": 385
+        },
+        "endLoc": {
+          "line": 78,
+          "column": 7,
+          "position": 463
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 15,
+      "fragment": "(props) {\n  return (\n    <svg\n      {...props}\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width=\"24\"\n      height=\"24\"\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth=\"2\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n    >\n      <rect",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/ui/theme-toggle.jsx",
+        "start": 112,
+        "end": 126,
+        "startLoc": {
+          "line": 112,
+          "column": 13,
+          "position": 703
+        },
+        "endLoc": {
+          "line": 126,
+          "column": 5,
+          "position": 781
+        }
+      },
+      "secondFile": {
+        "name": "src/components/ui/theme-toggle.jsx",
+        "start": 64,
+        "end": 78,
+        "startLoc": {
+          "line": 64,
+          "column": 8,
+          "position": 385
+        },
+        "endLoc": {
+          "line": 78,
+          "column": 7,
+          "position": 463
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 11,
+      "fragment": "const handleDownload = () => {\n    const link = document.createElement('a');\n    link.href = '/assets/resume.pdf';\n    link.download = 'Tucker_Harley_Resume.pdf';\n    document.body.appendChild(link);\n    link.click();\n    document.body.removeChild(link);\n  };\n\n  return (\n    <footer",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/layout/footer.jsx",
+        "start": 8,
+        "end": 18,
+        "startLoc": {
+          "line": 8,
+          "column": 3,
+          "position": 81
+        },
+        "endLoc": {
+          "line": 18,
+          "column": 7,
+          "position": 171
+        }
+      },
+      "secondFile": {
+        "name": "src/components/layout/header.jsx",
+        "start": 19,
+        "end": 29,
+        "startLoc": {
+          "line": 19,
+          "column": 3,
+          "position": 105
+        },
+        "endLoc": {
+          "line": 29,
+          "column": 7,
+          "position": 195
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 35,
+      "fragment": "}\n          alt=\"The Off-Hours Creative logo\"\n          className=\"w-full h-full object-contain rounded-lg\"\n        />\n      </div>\n      \n      <div className=\"flex-1 flex flex-col justify-between p-6 rounded-lg\" style={{ backgroundColor: 'var(--slide-card-bg)', border: '1px solid var(--slide-card-border)' }}>\n        <div>\n          <h2 className=\"font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-6\" style={{ color: 'var(--slide-title)' }}>\n            The Off-Hours Creative\n          </h2>\n          \n          <div className=\"space-y-4 text-base md:text-lg leading-relaxed\" style={{ color: 'var(--slide-text)' }}>\n            <p>\n              Doing creative work outside of a day job help keep me sane and fulfilled. I created a group for people, with full-time jobs, who have creative aspirations.\n            </p>\n            \n            <div>\n              <p className=\"mb-2\" style={{ color: 'var(--slide-title)' }}>Successes include:</p>\n              <ul className=\"list-disc list-inside space-y-1 text-sm md:text-base\">\n                {successes.map((success, index) => (\n                  <li key={index}>{success}</li>\n                ))}\n              </ul>\n            </div>\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/TheOffHoursCreative.jsx",
+        "start": 15,
+        "end": 49,
+        "startLoc": {
+          "line": 15,
+          "column": 38,
+          "position": 124
+        },
+        "endLoc": {
+          "line": 49,
+          "column": 2,
+          "position": 460
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 15,
+        "end": 38,
+        "startLoc": {
+          "line": 15,
+          "column": 37,
+          "position": 163
+        },
+        "endLoc": {
+          "line": 38,
+          "column": 6,
+          "position": 448
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 24,
+      "fragment": "}>{success}</li>\n                ))}\n              </ul>\n            </div>\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/TheOffHoursCreative.jsx",
+        "start": 36,
+        "end": 59,
+        "startLoc": {
+          "line": 36,
+          "column": 6,
+          "position": 386
+        },
+        "endLoc": {
+          "line": 59,
+          "column": 2,
+          "position": 527
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 42,
+        "end": 69,
+        "startLoc": {
+          "line": 42,
+          "column": 2,
+          "position": 481
+        },
+        "endLoc": {
+          "line": 69,
+          "column": 2,
+          "position": 634
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 27,
+      "fragment": "</li>\n                ))}\n              </ul>\n            </div>\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}\n          >\n            <a\n              href=\"https://www.offhourscreative.com",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/TheOffHoursCreative.jsx",
+        "start": 36,
+        "end": 62,
+        "startLoc": {
+          "line": 36,
+          "column": 2,
+          "position": 391
+        },
+        "endLoc": {
+          "line": 62,
+          "column": 33,
+          "position": 538
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 46,
+        "end": 72,
+        "startLoc": {
+          "line": 46,
+          "column": 19,
+          "position": 498
+        },
+        "endLoc": {
+          "line": 72,
+          "column": 68,
+          "position": 645
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 27,
+      "fragment": " }}>\n            <p>\n              A meta-presentation showcasing the design and development process behind this very portfolio website.\n            </p>            \n            <p>\n              Built with React 19, Vite, and Tailwind CSS, featuring a comprehensive design system and interactive HTML slides.\n            </p>\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8 flex gap-3\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"flex-1 md:flex-initial transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/PortfolioShowcase.jsx",
+        "start": 22,
+        "end": 48,
+        "startLoc": {
+          "line": 22,
+          "column": 20,
+          "position": 212
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 2,
+          "position": 424
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 42,
+        "end": 69,
+        "startLoc": {
+          "line": 42,
+          "column": 22,
+          "position": 479
+        },
+        "endLoc": {
+          "line": 69,
+          "column": 2,
+          "position": 634
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 26,
+      "fragment": "}}\n          >\n            <a\n              href=\"/storybook\"\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n            >\n              View Storybook\n            </a>\n          </Button>\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"flex-1 md:flex-initial transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/PortfolioShowcase.jsx",
+        "start": 48,
+        "end": 73,
+        "startLoc": {
+          "line": 48,
+          "column": 13,
+          "position": 423
+        },
+        "endLoc": {
+          "line": 73,
+          "column": 2,
+          "position": 561
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 42,
+        "end": 69,
+        "startLoc": {
+          "line": 42,
+          "column": 2,
+          "position": 480
+        },
+        "endLoc": {
+          "line": 69,
+          "column": 2,
+          "position": 634
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 39,
+      "fragment": "}\n          alt=\"Born to the World album cover\"\n          className=\"w-full h-full object-contain rounded-lg\"\n        />\n      </div>\n      \n      <div className=\"flex-1 flex flex-col justify-between p-6 rounded-lg\" style={{ backgroundColor: 'var(--slide-card-bg)', border: '1px solid var(--slide-card-border)' }}>\n        <div>\n          <h2 className=\"font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-6\" style={{ color: 'var(--slide-title)' }}>\n            Born to the World\n          </h2>\n          \n          <div className=\"space-y-4 text-base md:text-lg leading-relaxed\" style={{ color: 'var(--slide-text)' }}>\n            <p>\n              I've been a songwriter since I was seventeen. When I turned forty, in 2011, I released my first collection of studio recordings.\n            </p>            \n            <p>\n              <em>Born to the World</em> is five original songs of love-soaked heartache and wanderlust (including a lullaby).\n            </p>\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/BornToTheWorld.jsx",
+        "start": 10,
+        "end": 48,
+        "startLoc": {
+          "line": 10,
+          "column": 55,
+          "position": 103
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 2,
+          "position": 453
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/PortfolioShowcase.jsx",
+        "start": 10,
+        "end": 69,
+        "startLoc": {
+          "line": 10,
+          "column": 37,
+          "position": 103
+        },
+        "endLoc": {
+          "line": 69,
+          "column": 2,
+          "position": 634
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 24,
+      "fragment": ">\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}\n          >\n            <a\n              href=\"https://music.apple.com/us/album/born-to-the-world-ep/1588573507",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/BornToTheWorld.jsx",
+        "start": 28,
+        "end": 51,
+        "startLoc": {
+          "line": 28,
+          "column": 2,
+          "position": 334
+        },
+        "endLoc": {
+          "line": 51,
+          "column": 65,
+          "position": 464
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/TheSparkAndTheArt.jsx",
+        "start": 49,
+        "end": 72,
+        "startLoc": {
+          "line": 49,
+          "column": 4,
+          "position": 515
+        },
+        "endLoc": {
+          "line": 72,
+          "column": 68,
+          "position": 645
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 40,
+      "fragment": "}\n          alt=\"Agentic AI Kanban board interface screenshot\"\n          className=\"w-full h-full object-contain rounded-lg\"\n        />\n      </div>\n      \n      <div className=\"flex-1 flex flex-col justify-between p-6 rounded-lg\" style={{ backgroundColor: 'var(--slide-card-bg)', border: '1px solid var(--slide-card-border)' }}>\n        <div>\n          <h2 className=\"font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-6\" style={{ color: 'var(--slide-title)' }}>\n            Agentic AI Kanban\n          </h2>\n          \n          <div className=\"space-y-4 text-base md:text-lg leading-relaxed\" style={{ color: 'var(--slide-text)' }}>\n            <p>\n              A lightweight, file-based kanban board system designed for AI agents and human-in-the-loop collaboration.\n            </p>            \n            <p>\n              Features MCP Server integration, JSON-based architecture for easy AI parsing, and real-time collaboration with webhooks.\n            </p>\n\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/AgenticAIKanban.jsx",
+        "start": 10,
+        "end": 49,
+        "startLoc": {
+          "line": 10,
+          "column": 33,
+          "position": 103
+        },
+        "endLoc": {
+          "line": 49,
+          "column": 2,
+          "position": 433
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/PortfolioShowcase.jsx",
+        "start": 10,
+        "end": 69,
+        "startLoc": {
+          "line": 10,
+          "column": 37,
+          "position": 103
+        },
+        "endLoc": {
+          "line": 69,
+          "column": 2,
+          "position": 634
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 26,
+      "fragment": ".\n            </p>\n\n          </div>\n        </div>\n        \n        <div className=\"mt-6 md:mt-8\">\n          <Button\n            asChild\n            variant=\"outline\"\n            size=\"lg\"\n            className=\"w-full md:w-auto transition-all\"\n            style={{ \n              backgroundColor: 'var(--slide-button-bg)',\n              borderColor: 'var(--slide-button-border)',\n              color: 'var(--slide-button-text)'\n            }}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-hover-bg)';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.backgroundColor = 'var(--slide-button-bg)';\n            }}\n          >\n            <a\n              href=\"https://github.com/TuckerTucker/taskboardai",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/html-slides/AgenticAIKanban.jsx",
+        "start": 27,
+        "end": 52,
+        "startLoc": {
+          "line": 27,
+          "column": 9,
+          "position": 308
+        },
+        "endLoc": {
+          "line": 52,
+          "column": 44,
+          "position": 444
+        }
+      },
+      "secondFile": {
+        "name": "src/components/html-slides/BornToTheWorld.jsx",
+        "start": 27,
+        "end": 72,
+        "startLoc": {
+          "line": 27,
+          "column": 2,
+          "position": 329
+        },
+        "endLoc": {
+          "line": 72,
+          "column": 68,
+          "position": 645
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 17,
+      "fragment": ");\n\n  // Check if the screen is mobile-sized\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth < 768); // 768px is the standard md breakpoint\n    };\n    \n    checkMobile(); // Check on initial render\n    window.addEventListener('resize', checkMobile); // Check on resize\n    \n    return () => {\n      window.removeEventListener('resize', checkMobile);\n    };\n  }, []);\n\n  // Add click outside listener to close dropdown",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/components/feature/custom-project-picker.jsx",
+        "start": 21,
+        "end": 37,
+        "startLoc": {
+          "line": 21,
+          "column": 5,
+          "position": 168
+        },
+        "endLoc": {
+          "line": 37,
+          "column": 48,
+          "position": 281
+        }
+      },
+      "secondFile": {
+        "name": "src/components/feature/image-carousel.jsx",
+        "start": 48,
+        "end": 64,
+        "startLoc": {
+          "line": 48,
+          "column": 6,
+          "position": 309
+        },
+        "endLoc": {
+          "line": 64,
+          "column": 3,
+          "position": 422
+        }
+      }
+    }
+  ]
+}

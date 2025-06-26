@@ -1,0 +1,262 @@
+{
+  "analysis_metadata": {
+    "analysis_date": "2025-06-25",
+    "project_name": "tkr-portfolio",
+    "analyzer_version": "1.0.0",
+    "analysis_depth": 3
+  },
+  "summary": {
+    "total_dependencies": 537,
+    "production_dependencies": 179,
+    "development_dependencies": 357,
+    "optional_dependencies": 61,
+    "peer_dependencies": 14,
+    "direct_dependencies": 37,
+    "node_modules_size_mb": 368,
+    "vulnerabilities_count": 1,
+    "outdated_packages_count": 26,
+    "overall_health_score": 88
+  },
+  "vulnerabilities": [
+    {
+      "package": "brace-expansion",
+      "severity": "low",
+      "cvss_score": 3.1,
+      "cwe": "CWE-400",
+      "description": "Regular Expression Denial of Service vulnerability",
+      "affected_versions": "1.0.0 - 1.1.11 || 2.0.0 - 2.0.1",
+      "fix_available": true,
+      "github_advisory": "https://github.com/advisories/GHSA-v6h2-p8h4-qcjw",
+      "impact": "Low - requires specific conditions to exploit",
+      "recommendation": "Run npm audit fix to update to safe version"
+    }
+  ],
+  "outdated_packages": [
+    {
+      "package": "@chromatic-com/storybook",
+      "current": "4.0.0",
+      "wanted": "4.0.1",
+      "latest": "4.0.1",
+      "priority": "medium"
+    },
+    {
+      "package": "@eslint/js",
+      "current": "9.24.0",
+      "wanted": "9.29.0",
+      "latest": "9.29.0",
+      "priority": "medium"
+    },
+    {
+      "package": "@radix-ui/react-dropdown-menu",
+      "current": "2.1.6",
+      "wanted": "2.1.15",
+      "latest": "2.1.15",
+      "priority": "medium"
+    },
+    {
+      "package": "@radix-ui/react-slot",
+      "current": "1.1.2",
+      "wanted": "1.2.3",
+      "latest": "1.2.3",
+      "priority": "medium"
+    },
+    {
+      "package": "tailwindcss",
+      "current": "3.4.3",
+      "wanted": "3.4.17",
+      "latest": "4.1.10",
+      "priority": "high",
+      "note": "Major version available with breaking changes"
+    },
+    {
+      "package": "vite",
+      "current": "6.3.5",
+      "wanted": "6.3.5",
+      "latest": "7.0.0",
+      "priority": "high",
+      "note": "Major version available"
+    },
+    {
+      "package": "globals",
+      "current": "15.15.0",
+      "wanted": "15.15.0",
+      "latest": "16.2.0",
+      "priority": "high",
+      "note": "Major version available"
+    },
+    {
+      "package": "lucide-react",
+      "current": "0.487.0",
+      "wanted": "0.487.0",
+      "latest": "0.523.0",
+      "priority": "high",
+      "note": "Frequent updates indicate active development"
+    }
+  ],
+  "license_analysis": {
+    "compliant": true,
+    "packages_with_license_info": 298,
+    "license_distribution": {
+      "MIT": "~85%",
+      "Apache-2.0": "~5%",
+      "ISC": "~5%",
+      "BSD": "~3%",
+      "Other": "~2%"
+    },
+    "commercial_use_permitted": true,
+    "copyleft_licenses_detected": false,
+    "attribution_required": false
+  },
+  "dependency_risk_assessment": [
+    {
+      "package": "react",
+      "version": "19.1.0",
+      "risk_level": "low",
+      "reasoning": "Latest stable version, well-maintained core dependency"
+    },
+    {
+      "package": "@radix-ui/react-dropdown-menu",
+      "version": "2.1.6",
+      "risk_level": "low",
+      "reasoning": "Trusted UI library with regular updates available"
+    },
+    {
+      "package": "@radix-ui/react-slot",
+      "version": "1.1.2",
+      "risk_level": "low",
+      "reasoning": "Trusted UI library component"
+    },
+    {
+      "package": "tailwindcss",
+      "version": "3.4.3",
+      "risk_level": "medium",
+      "reasoning": "Major version 4.x available with potential breaking changes"
+    },
+    {
+      "package": "vite",
+      "version": "6.3.5",
+      "risk_level": "medium",
+      "reasoning": "Critical build tool with major version available"
+    },
+    {
+      "package": "storybook",
+      "version": "9.0.5",
+      "risk_level": "medium",
+      "reasoning": "Development tool multiple patch versions behind"
+    },
+    {
+      "package": "brace-expansion",
+      "version": "varies",
+      "risk_level": "high",
+      "reasoning": "Has known security vulnerability"
+    }
+  ],
+  "bundle_analysis": {
+    "node_modules_size_mb": 368,
+    "development_footprint": "large",
+    "production_impact": "medium",
+    "tree_shaking_supported": true,
+    "optimization_opportunities": [
+      {
+        "category": "unused_dependencies",
+        "impact": "high",
+        "description": "No unused direct dependencies detected",
+        "status": "good"
+      },
+      {
+        "category": "storybook_optimization",
+        "impact": "medium",
+        "description": "Consider lazy loading Storybook addons",
+        "recommendation": "Review Storybook configuration for optimization"
+      },
+      {
+        "category": "icon_optimization",
+        "impact": "medium",
+        "description": "Lucide React icon imports",
+        "recommendation": "Import only needed icons to reduce bundle size"
+      }
+    ]
+  },
+  "maintenance_priorities": {
+    "immediate": [
+      {
+        "action": "security_fix",
+        "description": "Fix brace-expansion vulnerability",
+        "command": "npm audit fix",
+        "priority": "critical"
+      }
+    ],
+    "short_term": [
+      {
+        "action": "update_storybook",
+        "description": "Update Storybook packages to 9.0.13",
+        "priority": "high"
+      },
+      {
+        "action": "update_radix",
+        "description": "Update Radix UI components",
+        "priority": "medium"
+      },
+      {
+        "action": "update_testing",
+        "description": "Update Vitest and Playwright",
+        "priority": "medium"
+      }
+    ],
+    "medium_term": [
+      {
+        "action": "tailwind_migration",
+        "description": "Plan migration to Tailwind CSS v4.x",
+        "priority": "high",
+        "note": "Breaking changes expected"
+      },
+      {
+        "action": "vite_migration",
+        "description": "Evaluate migration to Vite v7.x",
+        "priority": "medium"
+      }
+    ],
+    "long_term": [
+      {
+        "action": "automated_updates",
+        "description": "Implement Dependabot or Renovate",
+        "priority": "medium"
+      },
+      {
+        "action": "security_monitoring",
+        "description": "Set up continuous security scanning",
+        "priority": "high"
+      }
+    ]
+  },
+  "recommended_tools": [
+    {
+      "name": "npm-check-updates",
+      "purpose": "Automated dependency updates",
+      "command": "npx npm-check-updates -u"
+    },
+    {
+      "name": "license-checker",
+      "purpose": "License compliance monitoring",
+      "command": "npx license-checker --summary"
+    },
+    {
+      "name": "webpack-bundle-analyzer",
+      "purpose": "Bundle size analysis",
+      "command": "npm install --save-dev webpack-bundle-analyzer"
+    },
+    {
+      "name": "snyk",
+      "purpose": "Security vulnerability scanning",
+      "command": "npx snyk test"
+    }
+  ],
+  "health_scores": {
+    "security": 95,
+    "freshness": 75,
+    "maintenance": 90,
+    "license_compliance": 100,
+    "bundle_efficiency": 80,
+    "overall": 88
+  }
+}

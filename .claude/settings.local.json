@@ -44,8 +44,8 @@
       "Search(pattern:*)",
       "Bash(./context7_mcp_add)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
-      
+      "mcp__context7__get-library-docs",
+      "Bash(ls:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

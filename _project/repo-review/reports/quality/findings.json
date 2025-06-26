@@ -1,0 +1,271 @@
+{
+  "summary": {
+    "overall_score": 6.5,
+    "total_files_analyzed": 42,
+    "total_lines_of_code": 4074,
+    "critical_issues": 4,
+    "major_issues": 8,
+    "minor_issues": 12,
+    "analysis_date": "2025-06-25",
+    "repository": "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio"
+  },
+  "code_patterns": {
+    "architecture_score": 8.0,
+    "strengths": [
+      {
+        "category": "Component Architecture",
+        "description": "Well-organized component structure with clear separation of concerns",
+        "files": ["src/components/feature/", "src/components/ui/", "src/components/layout/"]
+      },
+      {
+        "category": "Custom Hooks",
+        "description": "Proper separation of state logic using custom hooks",
+        "files": ["src/hooks/useProjects.js", "src/hooks/useTheme.jsx", "src/hooks/SelectedProjectContext.jsx"]
+      },
+      {
+        "category": "HOC Pattern",
+        "description": "Well-implemented higher-order component for theme wrapping",
+        "files": ["src/components/html-slides/slide-wrapper.jsx"]
+      }
+    ],
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "Coupling",
+        "description": "Some components tightly coupled to specific data structures",
+        "files": ["src/components/feature/custom-project-picker.jsx"],
+        "recommendation": "Extract data transformation logic to separate utility functions"
+      },
+      {
+        "severity": "low",
+        "category": "Magic Numbers",
+        "description": "Hard-coded breakpoints and sizes throughout components",
+        "files": ["src/components/feature/custom-project-picker.jsx"],
+        "recommendation": "Extract constants to theme configuration or constants file"
+      }
+    ]
+  },
+  "testing": {
+    "coverage_score": 0.0,
+    "critical_gaps": [
+      {
+        "category": "No Tests",
+        "severity": "critical",
+        "description": "Zero test coverage - no test files found in codebase",
+        "impact": "High risk of regressions, difficult to refactor safely",
+        "recommendation": "Implement comprehensive testing strategy starting with utility functions and custom hooks"
+      }
+    ],
+    "test_infrastructure": {
+      "configured": true,
+      "tools": ["vitest", "playwright", "@storybook/addon-vitest"],
+      "missing": ["test files", "test utilities", "mocks"]
+    },
+    "recommended_test_structure": {
+      "unit_tests": ["src/lib/utils.js", "src/hooks/*.js"],
+      "component_tests": ["CustomProjectPicker", "ImageCarousel", "ThemeToggle"],
+      "integration_tests": ["Project selection flow", "Theme switching", "Data fetching"]
+    }
+  },
+  "code_quality": {
+    "linting_score": 2.0,
+    "eslint_errors": 2506,
+    "eslint_warnings": 23,
+    "error_categories": [
+      {
+        "category": "Unused Variables",
+        "count": 15,
+        "severity": "medium",
+        "files": ["src/App.jsx", "src/components/html-slides/DesignSystem.jsx", "src/components/html-slides/TechStack.jsx"]
+      },
+      {
+        "category": "Node.js Globals",
+        "count": 8,
+        "severity": "high",
+        "files": ["vite.config.js", "vitest.workspace.js", "_project/repo-review/reports/server.js"],
+        "description": "__dirname, require used in browser context"
+      },
+      {
+        "category": "Generated Code Issues",
+        "count": 2460,
+        "severity": "low",
+        "files": ["storybook-static/**/*.js"],
+        "description": "ESLint running on generated/build files"
+      }
+    ],
+    "type_safety": {
+      "typescript_files": 0,
+      "proptypes_coverage": 0.75,
+      "runtime_validation": "partial"
+    }
+  },
+  "code_duplication": {
+    "duplication_score": 5.0,
+    "total_clones": 13,
+    "critical_duplications": [
+      {
+        "category": "HTML Slide Components",
+        "instances": 8,
+        "token_range": "78-336",
+        "files": [
+          "src/components/html-slides/TheOffHoursCreative.jsx",
+          "src/components/html-slides/TheSparkAndTheArt.jsx",
+          "src/components/html-slides/PortfolioShowcase.jsx",
+          "src/components/html-slides/BornToTheWorld.jsx",
+          "src/components/html-slides/AgenticAIKanban.jsx"
+        ],
+        "recommendation": "Create base SlideComponent abstraction"
+      },
+      {
+        "category": "Theme Toggle Logic",
+        "instances": 3,
+        "token_range": "78",
+        "files": ["src/components/ui/theme-toggle.jsx"],
+        "recommendation": "Extract common theme toggle logic"
+      },
+      {
+        "category": "Layout Patterns",
+        "instances": 2,
+        "token_range": "90",
+        "files": ["src/components/layout/footer.jsx", "src/components/layout/header.jsx"],
+        "recommendation": "Create shared layout component base"
+      }
+    ]
+  },
+  "documentation": {
+    "documentation_score": 6.0,
+    "jsdoc_coverage": 0.6,
+    "documented_components": 24,
+    "total_components": 42,
+    "strengths": [
+      "Good JSDoc coverage for complex components",
+      "Inline comments explaining business logic",
+      "PropTypes documentation for most components"
+    ],
+    "gaps": [
+      {
+        "category": "Architecture Documentation",
+        "severity": "medium",
+        "description": "No ADRs or architectural decisions documented"
+      },
+      {
+        "category": "API Documentation",
+        "severity": "medium",  
+        "description": "No formal API documentation for data structures"
+      },
+      {
+        "category": "Setup Instructions",
+        "severity": "low",
+        "description": "Basic README with minimal setup information"
+      }
+    ]
+  },
+  "maintainability": {
+    "maintainability_score": 7.5,
+    "metrics": {
+      "average_component_size": 97,
+      "largest_component_size": 162,
+      "components_over_150_lines": 3,
+      "cyclomatic_complexity": "low",
+      "coupling": "medium",
+      "cohesion": "high"
+    },
+    "complex_components": [
+      {
+        "file": "src/components/feature/custom-project-picker.jsx",
+        "lines": 162,
+        "complexity_factors": ["responsive logic", "event handling", "multiple useEffect hooks"]
+      },
+      {
+        "file": "src/components/feature/image-carousel.jsx", 
+        "lines": 158,
+        "complexity_factors": ["carousel logic", "touch events", "keyboard navigation"]
+      }
+    ]
+  },
+  "technical_debt": {
+    "high_priority": [
+      {
+        "item": "Implement comprehensive testing strategy",
+        "effort": "high",
+        "risk": "critical",
+        "timeline": "2 weeks"
+      },
+      {
+        "item": "Fix ESLint configuration and resolve 2,506 errors",
+        "effort": "medium",
+        "risk": "high", 
+        "timeline": "1 week"
+      },
+      {
+        "item": "Refactor HTML slide components to reduce duplication",
+        "effort": "medium",
+        "risk": "medium",
+        "timeline": "1 week"
+      },
+      {
+        "item": "Add type safety with TypeScript or complete PropTypes",
+        "effort": "high",
+        "risk": "medium",
+        "timeline": "3 weeks"
+      }
+    ],
+    "medium_priority": [
+      {
+        "item": "Performance optimization with lazy loading",
+        "effort": "medium",
+        "risk": "low",
+        "timeline": "1 week"
+      },
+      {
+        "item": "Add error boundaries for better error handling",
+        "effort": "low",
+        "risk": "low",
+        "timeline": "3 days"
+      },
+      {
+        "item": "Implement code splitting for routes",
+        "effort": "medium", 
+        "risk": "low",
+        "timeline": "1 week"
+      }
+    ],
+    "low_priority": [
+      {
+        "item": "Full TypeScript migration",
+        "effort": "high",
+        "risk": "low",
+        "timeline": "4 weeks"
+      },
+      {
+        "item": "Bundle size optimization",
+        "effort": "medium",
+        "risk": "low", 
+        "timeline": "1 week"
+      },
+      {
+        "item": "Progressive Web App features",
+        "effort": "high",
+        "risk": "low",
+        "timeline": "2 weeks"
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate": [
+      "Update .eslintrc to exclude generated files and fix Node.js globals",
+      "Add first unit tests for utility functions and custom hooks",
+      "Implement PR template and code review checklist"
+    ],
+    "short_term": [
+      "Achieve 60% test coverage focusing on critical components",
+      "Refactor HTML slide components to use base abstraction",
+      "Complete PropTypes coverage for all components"
+    ],
+    "long_term": [
+      "Plan TypeScript migration strategy",
+      "Implement advanced performance optimization patterns",
+      "Create comprehensive developer documentation site"
+    ]
+  }
+}
