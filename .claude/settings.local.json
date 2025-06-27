@@ -45,7 +45,12 @@
       "Bash(./context7_mcp_add)",
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "mcp__knowledge-graph__create_entities",
+      "mcp__knowledge-graph__create_relations",
+      "mcp__knowledge-graph__add_observations",
+      "mcp__knowledge-graph__read_graph",
+      "mcp__knowledge-graph__visualize_graph"
     ],
     "deny": [
       "Bash(rm -rf /)",

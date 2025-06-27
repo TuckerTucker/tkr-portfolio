@@ -1,0 +1,33 @@
+{
+  "name": "mcp-knowledge-graph",
+  "version": "1.0.3",
+  "description": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+  "license": "MIT",
+  "author": "Shane Holloman",
+  "homepage": "https://github.com/shaneholloman/mcp-knowledge-graph",
+  "bugs": "https://github.com/shaneholloman/mcp-knowledge-graph/issues",
+  "type": "module",
+  "bin": {
+    "mcp-knowledge-graph": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js && shx cp visualization-template.html dist/",
+    "prepare": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.0.1",
+    "@types/cytoscape": "^3.21.9",
+    "cytoscape": "^3.32.0",
+    "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^22.9.3",
+    "shx": "^0.3.4",
+    "typescript": "^5.6.2"
+  }
+}

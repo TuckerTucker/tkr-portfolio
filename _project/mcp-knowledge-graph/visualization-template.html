@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualization</title>
+    <script src="https://unpkg.com/cytoscape@3.32.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/layout-base@1.0.2/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base@1.0.3/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .controls {
+            background: white;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        select, button {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        #cy {
+            width: 100%;
+            height: calc(100vh - 140px);
+            background: white;
+        }
+        .legend {
+            position: absolute;
+            top: 160px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 1000;
+        }
+        .legend h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.3rem 0;
+            font-size: 0.85rem;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+        
+        /* Entity type colors */
+        .software_project { background-color: #3498db; }
+        .software_component { background-color: #2ecc71; }
+        .programming_language { background-color: #e74c3c; }
+        .framework { background-color: #9b59b6; }
+        .system_design { background-color: #f39c12; }
+        .data_model { background-color: #1abc9c; }
+        .project_standard { background-color: #34495e; }
+        .technical_debt { background-color: #e67e22; }
+        .improvement_area { background-color: #27ae60; }
+        .visualization_library { background-color: #8e44ad; }
+        .desktop_tool { background-color: #95a5a6; }
+        .database_tool { background-color: #16a085; }
+        .technical_aspect { background-color: #d35400; }
+        .research_project { background-color: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LocalKG Knowledge Graph</h1>
+    </div>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label for="layout-select">Layout:</label>
+            <select id="layout-select">
+                <option value="cose" selected>COSE</option>
+                <option value="cose-bilkent">COSE Bilkent</option>
+                <option value="circle">Circle</option>
+                <option value="grid">Grid</option>
+                <option value="breadthfirst">Breadth First</option>
+                <option value="concentric">Concentric</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label for="filter-select">Filter by Type:</label>
+            <select id="filter-select">
+                <option value="">All Types</option>
+                <option value="software_project">Software Project</option>
+                <option value="software_component">Software Component</option>
+                <option value="programming_language">Programming Language</option>
+                <option value="framework">Framework</option>
+                <option value="technical_debt">Technical Debt</option>
+                <option value="improvement_area">Improvement Area</option>
+            </select>
+        </div>
+        
+        <button id="fit-graph">Fit to View</button>
+        <button id="reset-zoom">Reset Zoom</button>
+        <button id="export-png">Export PNG</button>
+        <button id="export-svg">Export SVG</button>
+    </div>
+    
+    <div id="cy"></div>
+    
+    <div class="legend">
+        <h3>Entity Types</h3>
+        <div id="legend-items"></div>
+    </div>
+
+    <script>
+        // Register COSE Bilkent layout extension
+        if (typeof cytoscape !== 'undefined' && typeof cytoscapeCoseBilkent !== 'undefined') {
+            cytoscape.use(cytoscapeCoseBilkent);
+        }
+        
+        // Graph data will be injected here
+        const graphData = {{GRAPH_DATA}};
+        
+        // Transform data for Cytoscape
+        const nodes = graphData.entities.map(entity => ({
+            data: {
+                id: entity.name,
+                label: entity.name,
+                type: entity.entityType,
+                observations: entity.observations
+            },
+            classes: entity.entityType
+        }));
+        
+        const edges = graphData.relations.map((relation, index) => ({
+            data: {
+                id: `edge-${index}`,
+                source: relation.from,
+                target: relation.to,
+                label: relation.relationType,
+                relationType: relation.relationType
+            }
+        }));
+        
+        // Initialize Cytoscape
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: [...nodes, ...edges],
+            
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': 'data(type)',
+                        'label': 'data(label)',
+                        'text-valign': 'center',
+                        'text-halign': 'center',
+                        'font-size': '12px',
+                        'font-weight': 'bold',
+                        'text-wrap': 'wrap',
+                        'text-max-width': '100px',
+                        'width': '60px',
+                        'height': '60px',
+                        'border-width': '2px',
+                        'border-color': '#333',
+                        'color': '#fff',
+                        'text-outline-width': '1px',
+                        'text-outline-color': '#000'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 2,
+                        'line-color': '#666',
+                        'target-arrow-color': '#666',
+                        'target-arrow-shape': 'triangle',
+                        'curve-style': 'bezier',
+                        'label': 'data(label)',
+                        'font-size': '10px',
+                        'text-rotation': 'autorotate',
+                        'text-margin-y': -10
+                    }
+                },
+                
+                // Entity type specific styles
+                {
+                    selector: 'node.software_project',
+                    style: { 'background-color': '#3498db' }
+                },
+                {
+                    selector: 'node.software_component',
+                    style: { 'background-color': '#2ecc71' }
+                },
+                {
+                    selector: 'node.programming_language',
+                    style: { 'background-color': '#e74c3c' }
+                },
+                {
+                    selector: 'node.framework',
+                    style: { 'background-color': '#9b59b6' }
+                },
+                {
+                    selector: 'node.system_design',
+                    style: { 'background-color': '#f39c12' }
+                },
+                {
+                    selector: 'node.data_model',
+                    style: { 'background-color': '#1abc9c' }
+                },
+                {
+                    selector: 'node.project_standard',
+                    style: { 'background-color': '#34495e' }
+                },
+                {
+                    selector: 'node.technical_debt',
+                    style: { 'background-color': '#e67e22' }
+                },
+                {
+                    selector: 'node.improvement_area',
+                    style: { 'background-color': '#27ae60' }
+                },
+                {
+                    selector: 'node.visualization_library',
+                    style: { 'background-color': '#8e44ad' }
+                },
+                {
+                    selector: 'node.desktop_tool',
+                    style: { 'background-color': '#95a5a6' }
+                },
+                {
+                    selector: 'node.database_tool',
+                    style: { 'background-color': '#16a085' }
+                },
+                {
+                    selector: 'node.technical_aspect',
+                    style: { 'background-color': '#d35400' }
+                },
+                {
+                    selector: 'node.research_project',
+                    style: { 'background-color': '#c0392b' }
+                },
+                
+                // Hover and selection styles
+                {
+                    selector: 'node:selected',
+                    style: {
+                        'border-width': '4px',
+                        'border-color': '#fff',
+                        'overlay-color': '#3498db',
+                        'overlay-opacity': 0.3
+                    }
+                },
+                {
+                    selector: 'edge:selected',
+                    style: {
+                        'width': 4,
+                        'line-color': '#3498db',
+                        'target-arrow-color': '#3498db'
+                    }
+                }
+            ],
+            
+            layout: {
+                name: 'cose',
+                animate: true,
+                animationDuration: 1000,
+                fit: true,
+                padding: 30
+            }
+        });
+        
+        // Generate legend
+        const entityTypes = [...new Set(graphData.entities.map(e => e.entityType))];
+        const legendContainer = document.getElementById('legend-items');
+        
+        entityTypes.forEach(type => {
+            const item = document.createElement('div');
+            item.className = 'legend-item';
+            item.innerHTML = `
+                <div class="legend-color ${type}"></div>
+                <span>${type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+            `;
+            legendContainer.appendChild(item);
+        });
+        
+        // Event handlers
+        cy.on('tap', 'node', function(evt) {
+            const node = evt.target;
+            const data = node.data();
+            
+            alert(`Entity: ${data.label}\nType: ${data.type}\n\nObservations:\n${data.observations.join('\n\n')}`);
+        });
+        
+        cy.on('tap', 'edge', function(evt) {
+            const edge = evt.target;
+            const data = edge.data();
+            
+            alert(`Relationship: ${data.source} → ${data.target}\nType: ${data.relationType}`);
+        });
+        
+        // Control handlers
+        document.getElementById('layout-select').addEventListener('change', function(e) {
+            const layoutName = e.target.value;
+            try {
+                const layout = cy.layout({
+                    name: layoutName,
+                    animate: true,
+                    animationDuration: 1000,
+                    fit: true,
+                    padding: 30
+                });
+                layout.run();
+            } catch (error) {
+                console.warn(`Layout ${layoutName} not available, falling back to cose:`, error);
+                const fallbackLayout = cy.layout({
+                    name: 'cose',
+                    animate: true,
+                    animationDuration: 1000,
+                    fit: true,
+                    padding: 30
+                });
+                fallbackLayout.run();
+                // Reset dropdown to working layout
+                e.target.value = 'cose';
+            }
+        });
+        
+        document.getElementById('filter-select').addEventListener('change', function(e) {
+            const filterType = e.target.value;
+            
+            if (filterType === '') {
+                cy.elements().show();
+            } else {
+                cy.elements().hide();
+                cy.nodes(`[type="${filterType}"]`).show();
+                cy.nodes(`[type="${filterType}"]`).connectedEdges().show();
+                cy.nodes(`[type="${filterType}"]`).connectedEdges().connectedNodes().show();
+            }
+            
+            cy.fit();
+        });
+        
+        document.getElementById('fit-graph').addEventListener('click', function() {
+            cy.fit();
+        });
+        
+        document.getElementById('reset-zoom').addEventListener('click', function() {
+            cy.zoom(1);
+            cy.center();
+        });
+        
+        document.getElementById('export-png').addEventListener('click', function() {
+            const png64 = cy.png({ scale: 2, full: true });
+            const link = document.createElement('a');
+            link.href = png64;
+            link.download = 'knowledge-graph.png';
+            link.click();
+        });
+        
+        document.getElementById('export-svg').addEventListener('click', function() {
+            const svgContent = cy.svg({ scale: 2, full: true });
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'knowledge-graph.svg';
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+        
+        // Initial fit
+        cy.ready(function() {
+            cy.fit();
+        });
+    </script>
+</body>
+</html>
