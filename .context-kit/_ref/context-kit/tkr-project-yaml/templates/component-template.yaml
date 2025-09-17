@@ -1,0 +1,387 @@
+# React 19 Component Template
+# This template provides a structure for documenting modern React functional components.
+# Optimized for React 19 with hooks, props-based state management, and TypeScript.
+# Replace placeholder values with your actual component details.
+
+component:
+  # Basic component information
+  name: "ComponentName"                       # Required: Technical name (PascalCase)
+  metadata:
+    display_name: "Human-Readable Name"       # Required: User-friendly name
+    description: "Component description"       # Required: Explain the component's purpose
+    category: "category_name"                  # Required: UI category (e.g., navigation, form, display, reactflow)
+    status: "ready"                            # Required: Component status (draft, ready, deprecated)
+    created: "YYYY-MM-DD"                      # Optional: Creation date
+    last_updated: "YYYY-MM-DD"                 # Optional: Last update date
+    owner: "Team or Person Name"               # Optional: Who maintains this component
+    dependencies:                              # Optional: Other components this depends on
+      - "react@^19.1.1"
+      - "reactflow@^11.11.4"                  # If ReactFlow component
+    project_reference: "../core-project.yaml"  # Required: Reference to the core project configuration
+    framework: "React 19 functional component" # Required: Framework and version
+  
+  # React component properties
+  type: "FunctionalComponent"                  # Required: React component type
+  props_interface:                             # Required: TypeScript props interface
+    name: "ComponentNameProps"                # Required: Props interface name
+    properties:
+      children:
+        type: "React.ReactNode"
+        description: "Child elements"
+        required: false
+      className:
+        type: "string"
+        description: "Additional CSS classes"
+        required: false
+      onClick:
+        type: "() => void"
+        description: "Click handler function"
+        required: false
+  
+  # HTML and accessibility attributes
+  html_attributes:                             # Optional: HTML attributes
+    role: "semantic_role"                      # Optional: ARIA role
+    "aria-label": "Accessibility label"       # Optional: Accessibility label
+    
+    # Visual styling
+    styling:                                   # Required: Visual appearance
+      background_color: "token.reference"      # Use design tokens from core project
+      color: "token.reference"
+      padding: "token.reference"
+      margin: "token.reference"
+      border:                                  # Optional: Border properties
+        width: "1px"
+        style: "solid"
+        color: "token.reference"
+        radius: "token.reference"
+      shadow: "token.reference"                # Optional: Shadow property
+    
+    # Component dimensions
+    dimensions:                                # Optional: Size specifications
+      width: "size_value"                      # Optional: Width specification
+      height: "size_value"                     # Optional: Height specification
+      min_width: "size_value"                  # Optional: Minimum width
+      max_width: "size_value"                  # Optional: Maximum width
+  
+  # Component state management (React 19 patterns)
+  state_management:
+    pattern: "props-based"                     # Required: State management pattern (props-based, useState, context)
+    local_state:                               # Optional: useState hooks
+      - name: "loading"
+        type: "boolean"
+        initial_value: false
+        description: "Loading state for async operations"
+      - name: "error"
+        type: "string | null"
+        initial_value: null
+        description: "Error message state"
+    
+    # Props-based state (preferred pattern)
+    external_state:                            # Required: State managed by parent
+      - name: "selectedNode"
+        type: "Node | null"
+        source: "parent_component"
+        description: "Currently selected node from parent"
+      - name: "onClose"
+        type: "() => void"
+        source: "parent_callback"
+        description: "Callback to notify parent of close action"
+    
+    # State update patterns
+    state_updates:
+      pattern: "props_down_callbacks_up"       # Required: Data flow pattern
+      description: "Props flow down from parent, events bubble up via callbacks"
+    
+    # CSS transitions and animations
+    animations:                                # Optional: CSS transitions
+      hover_transform:                         # Hover state animation
+        property: "transform"
+        duration: "0.2s"
+        easing: "ease"
+        value: "scale(1.05)"
+      loading_fade:                            # Loading state transition
+        property: "opacity"
+        duration: "0.3s"
+        easing: "ease-in-out"
+        value: "0.7"
+  
+  # Accessibility specifications (WCAG 2.1 AA compliance)
+  accessibility:
+    semantic_role: "aria_role"                # Required: ARIA role
+    aria_attributes:                           # Required: ARIA attributes for dynamic content
+      aria_expanded: "boolean"                # For expandable components
+      aria_selected: "boolean"                # For selectable items
+      aria_describedby: "string"              # For additional descriptions
+    keyboard_interactions:                     # Required: Keyboard support
+      - key: "Enter"
+        action: "Activate primary action"
+        handler: "onKeyDown={(e) => e.key === 'Enter' && onClick?.()}"
+      - key: "Escape"
+        action: "Close component or cancel action"
+        handler: "onKeyDown={(e) => e.key === 'Escape' && onClose?.()}"
+    focus_management:                          # Required: Focus handling
+      focusable: true
+      focus_trap: false                        # Set to true for modals
+      auto_focus: false                        # Set to true for first interactive element
+    screen_reader:
+      announcements:
+        on_selection: "Selected {itemName}"
+        on_error: "Error: {errorMessage}"
+        on_loading: "Loading content"
+  
+  # Responsive behavior (CSS-based responsive design)
+  responsive:
+    strategy: "css_custom_properties"          # Required: Responsive strategy
+    breakpoints:                               # Required: Responsive breakpoints
+      mobile: "max-width: 768px"
+      tablet: "min-width: 769px and max-width: 1024px"
+      desktop: "min-width: 1025px"
+    
+    responsive_properties:                     # Required: Properties that change
+      - property: "padding"
+        mobile: "0.5rem"
+        tablet: "1rem"
+        desktop: "1.5rem"
+      - property: "font-size"
+        mobile: "0.875rem"
+        tablet: "1rem"
+        desktop: "1.125rem"
+    
+    # Mobile-first CSS approach
+    css_approach: "mobile_first"               # Required: CSS methodology
+    container_queries: false                   # Optional: Use CSS container queries
+  
+  # Performance considerations (React 19 optimizations)
+  performance:
+    rendering:
+      memo_usage: "React.memo for expensive renders" # Optional: Memoization strategy
+      callback_memoization: "useCallback for event handlers" # Optional: useCallback usage
+      effect_optimization: "useEffect with proper dependencies" # Required: Effect management
+      concurrent_features: "React 19 concurrent rendering" # Required: Concurrent features usage
+    
+    optimization_techniques:
+      lazy_loading: "React.lazy for code splitting" # Optional: Code splitting
+      virtual_scrolling: "For large lists"     # Optional: ReactFlow or large data sets
+      debounced_search: "For search inputs"    # Optional: Input debouncing
+      prop_stability: "Stable prop references to prevent re-renders" # Required: Prop optimization
+  
+  # Error handling (React 19 error boundaries and patterns)
+  error_handling:
+    error_boundary:                            # Required: Error boundary strategy
+      use_error_boundary: true
+      fallback_component: "ErrorFallback"
+      error_logging: "Console and external service"
+    
+    local_error_handling:                     # Required: Component-level error handling
+      - error_type: "network_error"
+        strategy: "try_catch_with_user_feedback"
+        fallback: "Show error message with retry button"
+        user_message: "Failed to load data. Please try again."
+      - error_type: "validation_error"
+        strategy: "form_validation_display"
+        fallback: "Highlight invalid fields"
+        user_message: "Please check the highlighted fields"
+    
+    # Security considerations
+    security:
+      input_sanitization: "Built-in React XSS protection + custom validation"
+      prop_validation: "TypeScript interfaces + runtime validation"
+      safe_html_rendering: "Avoid dangerouslySetInnerHTML, use safe alternatives"
+  
+  # Data requirements and handling (React 19 data patterns)
+  data:
+    data_source:                               # Required: Data source pattern
+      pattern: "props_from_parent"             # Required: Data flow pattern
+      live_data: "KnowledgeGraphService API"   # Optional: Live data source
+      mock_fallback: "Static mock data"        # Required: Development fallback
+    
+    required_props:                            # Required: Required prop data
+      - name: "nodes"
+        type: "Node[]"
+        description: "ReactFlow nodes for visualization"
+        validation: "Array of valid Node objects"
+      - name: "edges"
+        type: "Edge[]"
+        description: "ReactFlow edges for connections"
+        validation: "Array of valid Edge objects"
+    
+    optional_props:                            # Optional: Optional prop data
+      - name: "selectedNode"
+        type: "Node | null"
+        description: "Currently selected node"
+        default: null
+    
+    data_transformation:                       # Optional: Data processing
+      - stage: "incoming_props"
+        process: "Validate and normalize data structure"
+      - stage: "render_preparation"
+        process: "Transform for ReactFlow or display format"
+  
+  # Event handling (React 19 event patterns)
+  events:
+    callback_props:                            # Required: Callback props for parent communication
+      - name: "onNodeClick"
+        type: "(event: React.MouseEvent, node: Node) => void"
+        description: "Notifies parent when node is clicked"
+        usage: "onClick={(e) => onNodeClick?.(e, node)}"
+      - name: "onClose"
+        type: "() => void"
+        description: "Notifies parent to close component"
+        usage: "onClick={onClose}"
+    
+    internal_events:                           # Optional: Internal event handling
+      - event: "click"
+        handler: "handleClick"
+        description: "Internal click processing before calling parent callback"
+      - event: "keydown"
+        handler: "handleKeyDown"
+        description: "Keyboard interaction handling"
+    
+    # Event delegation and performance
+    event_optimization:
+      delegation: "Use event delegation for lists"
+      memoization: "useCallback for event handlers to prevent re-renders"
+  
+  # Visual content and styling (CSS Custom Properties)
+  content:
+    layout_pattern:                            # Required: Layout methodology
+      type: "flexbox"                         # Required: CSS layout type
+      direction: "column"                     # Required: Flex direction
+      alignment: "center"                     # Optional: Alignment
+    
+    content_areas:                             # Optional: Content regions
+      - name: "header"
+        placement: "top"
+        content: "Component title and controls"
+        styling: "padding: var(--spacing-md)"
+      - name: "main"
+        placement: "center"
+        content: "Primary component content"
+        styling: "flex: 1"
+      - name: "footer"
+        placement: "bottom"
+        content: "Actions and status"
+        styling: "padding: var(--spacing-sm)"
+    
+    # CSS Custom Properties integration
+    design_tokens:                             # Required: Design token usage
+      colors: "var(--color-primary)"
+      spacing: "var(--spacing-md)"
+      typography: "var(--font-size-base)"
+      borders: "var(--border-radius-md)"
+    
+    iconography:                               # Optional: Icon integration
+      icon_source: "Unicode emojis or SVG icons"
+      accessibility: "Icons paired with text labels"
+  
+  # Component composition (React 19 composition patterns)
+  composition:
+    composition_pattern: "compound_components" # Required: Composition strategy
+    
+    child_components:                          # Optional: Child components
+      - name: "NodeIcon"
+        type: "functional_component"
+        purpose: "Display node type icon"
+        props: ["type", "size"]
+      - name: "NodeLabel"
+        type: "functional_component"
+        purpose: "Display node name"
+        props: ["children", "bold"]
+    
+    children_handling:                         # Required: Children prop handling
+      accepts_children: true
+      children_type: "React.ReactNode"
+      validation: "React.Children utilities for child validation"
+    
+    # Slot-based composition
+    slots:                                     # Optional: Named slots pattern
+      - name: "header"
+        description: "Header content slot"
+        required: false
+      - name: "content"
+        description: "Main content slot"
+        required: true
+  
+  # Testing specifications (React 19 testing patterns)
+  testing:
+    test_framework: "vitest + react-testing-library" # Required: Testing framework
+    
+    unit_tests:                                # Required: Unit test scenarios
+      - scenario: "renders_with_required_props"
+        description: "Component renders successfully with minimal props"
+        props: '{"nodes": [], "edges": []}'
+        assertions: "expect(screen.getByRole('...')).toBeInTheDocument()"
+      - scenario: "handles_click_events"
+        description: "Calls onClick prop when button is clicked"
+        setup: "Mock onClick function"
+        action: "fireEvent.click()"
+        assertion: "expect(mockOnClick).toHaveBeenCalled()"
+    
+    integration_tests:                         # Required: Integration testing
+      - scenario: "parent_child_communication"
+        description: "Verifies data flow between parent and child"
+        components: ["App", "NodeDetailPanel"]
+        test_pattern: "Props down, events up"
+    
+    accessibility_tests:                       # Required: A11y testing
+      - test: "keyboard_navigation"
+        description: "All interactive elements accessible via keyboard"
+        tool: "@testing-library/user-event"
+      - test: "screen_reader_support"
+        description: "Proper ARIA labels and semantic HTML"
+        tool: "jest-axe"
+    
+    visual_tests:                              # Optional: Visual regression
+      tool: "storybook + chromatic"
+      critical_states: ["default", "loading", "error", "selected"]
+  
+  # Documentation and examples (Development-focused)
+  examples:
+    - name: "basic_usage"
+      description: "Basic component usage with minimal props"
+      code: |
+        <ComponentName
+          nodes={[]}
+          edges={[]}
+          onNodeClick={(e, node) => console.log('Clicked:', node)}
+        />
+      use_case: "Default implementation"
+    
+    - name: "with_selection"
+      description: "Component with selected node state"
+      code: |
+        <ComponentName
+          nodes={nodes}
+          edges={edges}
+          selectedNode={selectedNode}
+          onNodeClick={handleNodeClick}
+          onClose={handleClose}
+        />
+      use_case: "Interactive selection with detail panel"
+    
+    - name: "loading_state"
+      description: "Component showing loading state"
+      code: |
+        <ComponentName
+          loading={true}
+          error={null}
+          nodes={[]}
+          edges={[]}
+        />
+      use_case: "During data fetch operations"
+  
+  # Code references (React 19 file structure)
+  code_references:                             # Required: Links to implementation
+    component_file: ".context-kit/knowledge-graph/src/ui/components/ComponentName.tsx" # Required: Main component
+    props_interface: ".context-kit/knowledge-graph/src/ui/types/ComponentProps.ts" # Optional: Shared props
+    styles: ".context-kit/knowledge-graph/src/ui/styles.css" # Required: Component styles
+    tests: ".context-kit/knowledge-graph/tests/components/ComponentName.test.tsx" # Optional: Test files
+    stories: ".context-kit/knowledge-graph/src/ui/components/ComponentName.stories.tsx" # Optional: Storybook
+    usage_examples: ".context-kit/knowledge-graph/src/ui/App.tsx" # Required: Real usage examples
+    
+  # Development integration
+  dev_integration:                             # Required: Development workflow
+    hot_reload: "Vite HMR support"
+    type_checking: "TypeScript strict mode"
+    linting: "ESLint + Prettier"
+    dev_server: "npm run dev:ui (port 42001)"

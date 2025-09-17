@@ -1,0 +1,506 @@
+# State Management Template
+# This template provides structure for documenting React 19 state management patterns.
+# Optimized for centralized state, props-based communication, and URL routing.
+# Replace placeholder values with your actual state management implementation.
+
+state_management:
+  # Basic state management information
+  name: "StateManagementPattern"               # Required: Pattern name (PascalCase)
+  metadata:
+    display_name: "Human-Readable State Pattern Name" # Required: User-friendly name
+    description: "State management pattern description" # Required: Explain the pattern's purpose
+    category: "centralized_state"              # Required: Pattern category (centralized_state, local_state, url_state, context_state)
+    complexity: "moderate"                     # Required: Complexity level (simple, moderate, complex)
+    status: "ready"                           # Required: Pattern status (draft, ready, deprecated)
+    created: "YYYY-MM-DD"                     # Optional: Creation date
+    last_updated: "YYYY-MM-DD"                # Optional: Last update date
+    owner: "Team or Person Name"              # Optional: Who maintains this pattern
+    dependencies:                             # Required: React dependencies
+      - "react@^19.1.1"
+      - "typescript@>=4.5.0"
+    project_reference: "../core-project.yaml" # Required: Reference to core project config
+    framework: "React 19 hooks and state"     # Required: Framework and version
+
+  # State architecture
+  architecture:                               # Required: State management architecture
+    pattern_type: "centralized_with_props"    # Required: Primary pattern type
+    data_flow: "props_down_callbacks_up"      # Required: Data flow direction
+    state_ownership: "parent_component"       # Required: Where state is owned
+    communication: "props_based"              # Required: Component communication method
+    
+    hierarchy:                                # Required: State hierarchy
+      root_level: "App component"             # Root state container
+      intermediate_level: "Feature components" # Optional: Intermediate state
+      leaf_level: "UI components"             # Leaf components (stateless)
+    
+    persistence:                              # Optional: State persistence
+      url_state: "Hash-based routing for view state"
+      local_storage: "User preferences"
+      session_storage: "Temporary state"
+      database: "SQLite for long-term data"
+
+  # State structure
+  state_schema:                               # Required: State structure definition
+    centralized_state:                        # Required: Main application state
+      - name: "currentView"
+        type: "ViewType"
+        initial_value: "getInitialView()"
+        description: "Current application view (graph | logs)"
+        persistence: "url_hash"
+      
+      - name: "selectedFlow"
+        type: "FlowType"
+        initial_value: "full"
+        description: "Selected flow type (full | module)"
+        persistence: "component_state"
+      
+      - name: "loading"
+        type: "boolean"
+        initial_value: true
+        description: "Global loading state"
+        persistence: "none"
+      
+      - name: "error"
+        type: "string | null"
+        initial_value: null
+        description: "Global error state"
+        persistence: "none"
+      
+      - name: "selectedNode"
+        type: "Node | null"
+        initial_value: null
+        description: "Currently selected node"
+        persistence: "none"
+    
+    derived_state:                            # Optional: Computed/derived state
+      - name: "filteredNodes"
+        type: "Node[]"
+        computation: "useMemo(() => filterNodes(allNodes, searchQuery, filterType), [allNodes, searchQuery, filterType])"
+        description: "Nodes after applying search and filters"
+      
+      - name: "nodeTypeStats"
+        type: "NodeTypeMap"
+        computation: "useMemo(() => calculateNodeStats(allNodes), [allNodes])"
+        description: "Statistics about node types and counts"
+    
+    local_state:                              # Optional: Component-local state
+      - component: "SearchAndFilter"
+        state:
+          - name: "searchQuery"
+            type: "string"
+            initial_value: ""
+            description: "Current search query"
+      
+      - component: "LogFilters"
+        state:
+          - name: "logService"
+            type: "string"
+            initial_value: ""
+            description: "Selected log service filter"
+
+  # State update patterns
+  update_patterns:                            # Required: State update strategies
+    synchronous_updates:                      # Required: Immediate state updates
+      - pattern: "direct_setter"
+        usage: "setLoading(false)"
+        description: "Direct state setter for simple values"
+        use_case: "Boolean flags, string values"
+      
+      - pattern: "functional_update"
+        usage: "setNodes(prev => [...prev, newNode])"
+        description: "Functional update for arrays and objects"
+        use_case: "Immutable updates to complex state"
+    
+    asynchronous_updates:                     # Required: Async state updates
+      - pattern: "async_effect"
+        usage: "useEffect(() => { async function fetchData() {...} }, [])"
+        description: "useEffect with async function for data fetching"
+        use_case: "Initial data loading, API calls"
+      
+      - pattern: "callback_with_cleanup"
+        usage: "useEffect(() => { const cleanup = setupListener(); return cleanup; }, [])"
+        description: "Effect with cleanup for subscriptions"
+        use_case: "Event listeners, intervals, websockets"
+    
+    batched_updates:                          # Optional: Performance optimization
+      - pattern: "react_batch"
+        usage: "Multiple setState calls in same event handler"
+        description: "React automatically batches synchronous updates"
+        use_case: "Multiple related state changes"
+
+  # Props-based communication
+  props_communication:                        # Required: Inter-component communication
+    data_props:                               # Required: Data flowing down
+      - name: "nodes"
+        type: "Node[]"
+        source: "App component"
+        consumers: ["ReactFlow", "SearchAndFilter", "Legend"]
+        description: "Current nodes for visualization"
+      
+      - name: "edges"
+        type: "Edge[]"
+        source: "App component"
+        consumers: ["ReactFlow"]
+        description: "Current edges for visualization"
+      
+      - name: "selectedNode"
+        type: "Node | null"
+        source: "App component"
+        consumers: ["NodeDetailPanel"]
+        description: "Currently selected node"
+    
+    callback_props:                           # Required: Events flowing up
+      - name: "onNodeClick"
+        type: "(event: React.MouseEvent, node: Node) => void"
+        source: "ReactFlow"
+        handler: "App component"
+        description: "Node selection callback"
+        implementation: "const onNodeClick = useCallback((_, node) => setSelectedNode(node), [])"
+      
+      - name: "onSearch"
+        type: "(query: string) => void"
+        source: "SearchAndFilter"
+        handler: "App component"
+        description: "Search query callback"
+        implementation: "const handleSearch = useCallback((query) => setSearchQuery(query), [])"
+      
+      - name: "onViewChange"
+        type: "(view: ViewType) => void"
+        source: "ViewSelector"
+        handler: "App component"
+        description: "View change callback"
+        implementation: "const handleViewChange = useCallback((view) => { setCurrentView(view); window.location.hash = view === 'logs' ? 'logs' : ''; }, [])"
+    
+    prop_drilling_avoidance:                  # Optional: Avoiding prop drilling
+      max_depth: 3                           # Maximum prop passing depth
+      alternatives: ["React Context", "State lifting", "Component composition"]
+      guidelines: "Lift state to nearest common ancestor, avoid passing through more than 3 levels"
+
+  # URL state integration
+  url_state:                                  # Optional: URL-based state management
+    routing_strategy: "hash_based"            # Required: URL routing approach
+    
+    url_parameters:                           # Required: URL state mapping
+      - parameter: "view"
+        state_mapping: "currentView"
+        format: "hash"
+        example: "#logs"
+        default: "graph"
+        description: "Current application view"
+      
+      - parameter: "node"
+        state_mapping: "selectedNode.id"
+        format: "query_param"
+        example: "?node=component-button"
+        default: null
+        description: "Selected node ID for deep linking"
+    
+    url_synchronization:                      # Required: URL sync implementation
+      read_from_url:
+        implementation: |
+          const getInitialView = (): ViewType => {
+            const hash = window.location.hash.slice(1);
+            return hash === 'logs' ? 'logs' : 'graph';
+          };
+        trigger: "component_mount"
+      
+      write_to_url:
+        implementation: |
+          const handleViewChange = (view: ViewType) => {
+            setCurrentView(view);
+            window.location.hash = view === 'logs' ? 'logs' : '';
+          };
+        trigger: "state_change"
+      
+      browser_navigation:
+        implementation: |
+          useEffect(() => {
+            const handleHashChange = () => {
+              const newView = getInitialView();
+              if (newView !== currentView) {
+                setCurrentView(newView);
+              }
+            };
+            window.addEventListener('hashchange', handleHashChange);
+            return () => window.removeEventListener('hashchange', handleHashChange);
+          }, [currentView]);
+        description: "Support for browser back/forward buttons"
+
+  # Performance optimization
+  performance:                                # Required: Performance strategies
+    memoization:                              # Required: React memoization
+      - hook: "useMemo"
+        usage: "const filteredNodes = useMemo(() => filterNodes(nodes, query), [nodes, query])"
+        purpose: "Expensive computations"
+        dependencies: ["nodes", "query"]
+      
+      - hook: "useCallback"
+        usage: "const handleClick = useCallback((node) => setSelectedNode(node), [])"
+        purpose: "Event handler stability"
+        dependencies: "[]"
+      
+      - component: "React.memo"
+        usage: "export default React.memo(ExpensiveComponent)"
+        purpose: "Component re-render prevention"
+        condition: "props comparison"
+    
+    state_optimization:                       # Required: State update optimization
+      - pattern: "batch_updates"
+        description: "Group related state updates together"
+        implementation: "React automatically batches in event handlers"
+      
+      - pattern: "lazy_initialization"
+        description: "Lazy initial state for expensive computations"
+        implementation: "useState(() => expensiveCalculation())"
+      
+      - pattern: "ref_for_mutations"
+        description: "Use refs for values that don't trigger re-renders"
+        implementation: "useRef for DOM references, mutable values"
+    
+    effect_optimization:                      # Required: useEffect optimization
+      - pattern: "dependency_minimization"
+        description: "Minimize effect dependencies"
+        implementation: "Extract stable values, use refs for changing values"
+      
+      - pattern: "effect_cleanup"
+        description: "Proper cleanup for subscriptions"
+        implementation: "Return cleanup function from effects"
+
+  # Error handling
+  error_handling:                             # Required: Error state management
+    error_boundaries:                         # Required: Error boundary strategy
+      implementation: "ErrorBoundary component wrapping main features"
+      fallback: "User-friendly error message with retry option"
+      logging: "Console logging and external error service"
+    
+    async_error_handling:                     # Required: Async operation errors
+      - operation: "data_fetching"
+        pattern: "try_catch_with_state"
+        implementation: |
+          try {
+            setLoading(true);
+            const data = await fetchData();
+            setData(data);
+            setError(null);
+          } catch (err) {
+            setError(err.message);
+          } finally {
+            setLoading(false);
+          }
+        recovery: "Retry button, fallback to cached data"
+      
+      - operation: "state_updates"
+        pattern: "validation_before_update"
+        implementation: "Validate data before updating state"
+        recovery: "Revert to previous valid state"
+    
+    error_state_management:                   # Required: Error state handling
+      global_errors: "Centralized error state in App component"
+      component_errors: "Local error state for component-specific errors"
+      user_feedback: "Toast notifications, inline error messages"
+
+  # Testing strategies
+  testing:                                    # Required: Testing approaches
+    state_testing:                            # Required: State logic testing
+      - test_type: "hook_testing"
+        framework: "@testing-library/react-hooks"
+        focus: "Custom hooks in isolation"
+        example: "Testing useLocalStorage hook"
+      
+      - test_type: "component_state"
+        framework: "@testing-library/react"
+        focus: "Component state changes"
+        example: "Testing form input updates"
+    
+    integration_testing:                      # Required: Integration tests
+      - scenario: "parent_child_communication"
+        description: "Props down, callbacks up"
+        components: ["App", "SearchAndFilter", "ReactFlow"]
+        focus: "Data flow and event handling"
+      
+      - scenario: "url_state_sync"
+        description: "URL and component state synchronization"
+        focus: "Browser navigation and state updates"
+    
+    performance_testing:                      # Optional: Performance tests
+      - metric: "re_render_count"
+        tool: "React DevTools Profiler"
+        threshold: "Minimize unnecessary re-renders"
+      
+      - metric: "state_update_time"
+        tool: "Performance.now() measurements"
+        threshold: "<16ms for smooth 60fps"
+
+  # Development patterns
+  development:                                # Required: Development guidelines
+    state_organization:                       # Required: Code organization
+      - principle: "colocation"
+        description: "Keep state close to where it's used"
+        implementation: "Local state in components, lift up when sharing needed"
+      
+      - principle: "single_responsibility"
+        description: "Each state piece has single purpose"
+        implementation: "Separate loading, error, and data states"
+      
+      - principle: "immutability"
+        description: "Never mutate state directly"
+        implementation: "Use spread operator, immer for complex updates"
+    
+    debugging:                                # Required: Debugging strategies
+      - tool: "React DevTools"
+        usage: "Inspect component state and props"
+        focus: "State changes and re-render causes"
+      
+      - tool: "console.log"
+        usage: "Log state changes in useEffect"
+        focus: "State update flow and timing"
+      
+      - pattern: "state_logging"
+        implementation: "Custom hook for state change logging"
+        usage: "Development environment only"
+    
+    best_practices:                           # Required: Development best practices
+      - practice: "stable_prop_references"
+        description: "Prevent unnecessary re-renders"
+        implementation: "useCallback, useMemo, constant objects outside render"
+      
+      - practice: "effect_dependencies"
+        description: "Accurate dependency arrays"
+        implementation: "Include all used values in dependencies"
+      
+      - practice: "state_initialization"
+        description: "Proper initial state values"
+        implementation: "Provide sensible defaults, use lazy initialization"
+
+  # Migration and refactoring
+  migration:                                  # Optional: Migration strategies
+    from_class_components:                    # Optional: Class to functional migration
+      state_migration: "this.state → useState"
+      lifecycle_migration: "componentDidMount → useEffect"
+      callback_migration: "class methods → useCallback"
+    
+    from_redux:                               # Optional: Redux to React state migration
+      action_migration: "Actions → callback props"
+      reducer_migration: "Reducers → useState + useReducer"
+      selector_migration: "Selectors → derived state with useMemo"
+    
+    state_refactoring:                        # Optional: State structure changes
+      splitting_state: "Large state objects → multiple useState calls"
+      combining_state: "Related state → single useReducer"
+      lifting_state: "Local → parent component when sharing needed"
+
+  # Code references
+  code_references:                            # Required: Implementation files
+    main_implementation: ".context-kit/knowledge-graph/src/ui/App.tsx"
+    state_hooks: ".context-kit/knowledge-graph/src/ui/hooks/"
+    component_examples: ".context-kit/knowledge-graph/src/ui/components/"
+    types: ".context-kit/knowledge-graph/src/ui/types/"
+    tests: ".context-kit/knowledge-graph/tests/state/"
+    
+  # Documentation and examples
+  examples:                                   # Required: Usage examples
+    - name: "centralized_state"
+      description: "Main App component with centralized state"
+      code: |
+        function App() {
+          const [nodes, setNodes, onNodesChange] = useNodesState([]);
+          const [currentView, setCurrentView] = useState<ViewType>(getInitialView);
+          const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+          
+          const handleNodeClick = useCallback((_, node) => {
+            setSelectedNode(node);
+          }, []);
+          
+          return (
+            <div>
+              <ReactFlow
+                nodes={nodes}
+                onNodeClick={handleNodeClick}
+              />
+              <NodeDetailPanel
+                node={selectedNode}
+                onClose={() => setSelectedNode(null)}
+              />
+            </div>
+          );
+        }
+      use_case: "Main application state management"
+    
+    - name: "props_based_communication"
+      description: "Child component receiving props and calling callbacks"
+      code: |
+        interface NodeDetailPanelProps {
+          node: Node | null;
+          onClose: () => void;
+        }
+        
+        function NodeDetailPanel({ node, onClose }: NodeDetailPanelProps) {
+          if (!node) return null;
+          
+          return (
+            <div className="detail-panel">
+              <h3>{node.data.label}</h3>
+              <button onClick={onClose}>Close</button>
+            </div>
+          );
+        }
+      use_case: "Props-based component communication"
+    
+    - name: "url_state_integration"
+      description: "URL hash-based view state management"
+      code: |
+        function App() {
+          const getInitialView = (): ViewType => {
+            const hash = window.location.hash.slice(1);
+            return hash === 'logs' ? 'logs' : 'graph';
+          };
+          
+          const [currentView, setCurrentView] = useState<ViewType>(getInitialView);
+          
+          const handleViewChange = (view: ViewType) => {
+            setCurrentView(view);
+            window.location.hash = view === 'logs' ? 'logs' : '';
+          };
+          
+          useEffect(() => {
+            const handleHashChange = () => {
+              const newView = getInitialView();
+              if (newView !== currentView) {
+                setCurrentView(newView);
+              }
+            };
+            
+            window.addEventListener('hashchange', handleHashChange);
+            return () => window.removeEventListener('hashchange', handleHashChange);
+          }, [currentView]);
+          
+          return (
+            <div>
+              <ViewSelector currentView={currentView} onViewChange={handleViewChange} />
+              {currentView === 'graph' ? <GraphView /> : <LogsView />}
+            </div>
+          );
+        }
+      use_case: "Browser navigation and deep linking support"
+
+  # Troubleshooting
+  troubleshooting:                            # Optional: Common issues and solutions
+    common_issues:
+      - issue: "Unnecessary re-renders"
+        symptoms: "Performance issues, excessive console logs"
+        solutions: ["Use React.memo", "Stabilize prop references", "Check dependency arrays"]
+      
+      - issue: "Stale closures"
+        symptoms: "Outdated values in callbacks"
+        solutions: ["Update dependencies", "Use refs for mutable values", "Functional state updates"]
+      
+      - issue: "URL state out of sync"
+        symptoms: "Browser back/forward doesn't work"
+        solutions: ["Add hashchange listener", "Synchronize state on mount", "Update URL on state change"]
+    
+    debugging_checklist:
+      - "Check React DevTools for unnecessary re-renders"
+      - "Verify all useEffect dependencies are included"
+      - "Ensure callback props are stable (useCallback)"
+      - "Confirm URL state synchronization is bidirectional"
+      - "Test browser navigation (back/forward buttons)"

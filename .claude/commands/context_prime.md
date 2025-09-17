@@ -1,53 +1,74 @@
 # Context Prime
 
-Establish comprehensive understanding of the project before making changes.
+Rapidly establish project context by reading the consolidated _context-kit.yml file.
 
 ## Description
-This command initiates a thorough review of the project structure, documentation, and existing implementation to build context. It ensures informed decision-making by understanding the project's architecture, conventions, and current state before writing any code.
+This command provides instant project context by reading the AI-optimized _context-kit.yml file that contains consolidated project information, architecture patterns, and key metadata. Simple and fast context loading in seconds.
 
 ## Usage
-`context_prime [focus_area]`
+`context_prime [section]`
 
 ## Variables
-- PROJECT_ROOT: Starting directory for review (default: current directory)
-- FOCUS_AREA: Specific aspect to prioritize (default: general overview)
-- DEPTH: How deep to analyze (default: comprehensive)
+- PROJECT_ROOT: Project directory (default: current directory)
+- SECTION: Specific section to focus on - "structure", "stack", "patterns", "integrations" (default: all)
 
-## Parallel Agents
-- Use an agent for each of the steps and run them in parallel
+## Context Loading Strategy
+- Primary source: `.context-kit/_context-kit.yml` - comprehensive project metadata
+- Optional: Recent README.md files for supplementary context
+- Graceful fallback if _context-kit.yml doesn't exist
+- Focus on actionable information for immediate productivity
 
-## Steps
-1. Review project documentation:
-   - Check `@project` or `_project` directory for specifications
-   - Read README files and architectural docs
-   - Identify project goals and constraints
-2. Analyze codebase structure:
-   - Map directory organization
-   - Identify key components and their relationships
-   - Note naming conventions and patterns
-3. Understand implementation details:
-   - Review core modules and entry points
-   - Identify frameworks and dependencies
-   - Note coding standards and practices
-4. Identify packages and libraries used by the project and find their context7 ids
-   - If the context7 mcp server isn't available remind the user to run @_project/claude/scripts/context7_mcp_add
-5. Document findings:
-   - Project purpose and scope
-   - Technology stack
-   - Key architectural decisions
-   - Current state and progress
-6. Identify areas needing attention or clarification
+## Implementation
+
+1. **Read Primary Source**:
+   - Load `.context-kit/_context-kit.yml` as the authoritative project context
+   - Parse structured sections: project, structure, patterns, stack, integrations, architecture
+   
+2. **Optional Supplementary Context**:
+   - Main `README.md` if _context-kit.yml is missing or incomplete
+   - Package.json/requirements.txt for dependency context
+   
+3. **Section Filtering** (if SECTION specified):
+   - Extract only the requested section from _context-kit.yml
+   - Useful for focused context when working on specific areas
+
+## Expected _context-kit.yml Structure
+The command expects these key sections in _context-kit.yml:
+- `project`: Basic metadata (name, type, description, version)
+- `structure`: Directory layout and key paths
+- `patterns`: File naming, architecture patterns, conventions
+- `stack`: Technology stack, languages, frameworks, key libraries
+- `integrations`: External services, APIs, deployment targets
+- `architecture`: Core patterns, design principles
+- `task_locations`: Common task patterns and file locations
+- `common_patterns`: Reusable solutions and approaches
 
 ## Examples
-### Example 1: New project onboarding
-Complete review of an unfamiliar codebase to understand its purpose, structure, and implementation approach.
 
-### Example 2: Feature-specific context
-Focused review of authentication system before implementing new security features.
+### Load full project context
+```
+/context_prime
+```
 
-## Notes
-- No coding during context priming - only observation and understanding
-- Pay attention to both explicit documentation and implicit patterns
-- Look for TODOs, FIXMEs, and other developer notes
-- Understanding comes before implementation
-- Consider both technical and business context
+### Focus on project structure
+```
+/context_prime structure
+```
+
+### Focus on technology stack
+```
+/context_prime stack
+```
+
+## Fallback Behavior
+If `.context-kit/_context-kit.yml` doesn't exist:
+1. Read main `README.md` for basic project understanding
+2. Suggest running `/project-yaml` command to generate the consolidated YAML
+3. Provide limited context from available documentation
+
+## Implementation Notes
+- Single-file primary source for maximum speed and simplicity
+- _context-kit.yml should be generated/updated by project-yaml-builder agent
+- Extensible design - additional sources can be added later
+- Error handling for missing or malformed YAML files
+- Clear messaging about context source and completeness

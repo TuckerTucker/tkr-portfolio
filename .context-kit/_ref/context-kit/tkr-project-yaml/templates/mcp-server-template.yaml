@@ -1,0 +1,282 @@
+# MCP Server Template
+# This template provides structure for documenting Model Context Protocol servers.
+# Replace placeholder values with your actual MCP server specifications.
+# Comments throughout explain the purpose and usage of each section.
+
+mcp_server:
+  # Basic server information
+  name: "knowledge-graph"                    # Required: Technical name (kebab-case)
+  metadata:
+    display_name: "Human-Readable Server Name" # Required: User-friendly name
+    description: "Server description"         # Required: Explain the server's purpose
+    version: "1.2.0"                          # Required: Server version using semver
+    status: "draft|ready|deprecated"          # Required: Server status
+    created: "YYYY-MM-DD"                     # Optional: Creation date
+    last_updated: "YYYY-MM-DD"                # Optional: Last update date
+    owner: "Team or Person Name"              # Optional: Who maintains this server
+    project_reference: "../core-project.yaml" # Required: Reference to core project config
+  
+  # MCP protocol configuration
+  protocol:
+    version: "1.0.0"                          # Required: MCP protocol version
+    transport: "STDIO|TCP|WebSocket"          # Required: Transport mechanism
+    encoding: "JSON"                          # Required: Message encoding format
+    
+    # Connection details
+    connection:
+      command: "tsx src/mcp/server.ts"         # Required: Command to start server
+      args: []                                # Optional: Command line arguments
+      env:                                    # Optional: Environment variables
+        NODE_ENV: "production"
+        DB_PATH: "knowledge-graph.db"
+      working_directory: ".context-kit/knowledge-graph/" # Required: Server working directory
+  
+  # Server capabilities and tools
+  capabilities:
+    tools:                                    # Required: Tools provided by server
+      - name: "create_entity"                 # Required: Tool identifier
+        description: "Create a new entity in the knowledge graph" # Required: What the tool does
+        parameters:                           # Required: Tool parameters schema
+          type: "object"
+          properties:
+            type:
+              type: "string"
+              description: "Entity type (module, component, pattern, etc.)"
+            name:
+              type: "string"
+              description: "Entity name"
+            data:
+              type: "object"
+              description: "Entity data and metadata"
+          required: ["type", "name"]
+      
+      - name: "create_relation"
+        description: "Create a relationship between two entities"
+        parameters:
+          type: "object"
+          properties:
+            from_id:
+              type: "string"
+              description: "Source entity ID"
+            to_id:
+              type: "string"
+              description: "Target entity ID"
+            type:
+              type: "string"
+              description: "Relation type (contains, implements, uses, etc.)"
+            properties:
+              type: "object"
+              description: "Relation properties and metadata"
+          required: ["from_id", "to_id", "type"]
+      
+      - name: "search_entities"
+        description: "Search entities using FTS5 full-text search"
+        parameters:
+          type: "object"
+          properties:
+            query:
+              type: "string"
+              description: "Search query for entity names and data"
+            entity_type:
+              type: "string"
+              description: "Optional entity type filter"
+            limit:
+              type: "number"
+              description: "Maximum number of results (default: 50)"
+          required: ["query"]
+      
+      - name: "query"
+        description: "Execute custom SQL queries with safety validation"
+        parameters:
+          type: "object"
+          properties:
+            sql:
+              type: "string"
+              description: "SQL query to execute (SELECT only)"
+            params:
+              type: "array"
+              description: "Query parameters for prepared statements"
+          required: ["sql"]
+        
+        # Security and validation
+        security:
+          input_validation: "Validation approach" # Required: How inputs are validated
+          path_restrictions: ["Allowed paths"]   # Required: Path allowlist
+          rate_limiting: "Rate limiting policy"   # Optional: Rate limiting rules
+    
+    resources:                                # Optional: Resources provided
+      - name: "resource_name"                 # Required: Resource identifier
+        description: "Resource description"   # Required: What the resource provides
+        type: "file|data|service"             # Required: Resource type
+        access_pattern: "How resource is accessed" # Required: Access method
+    
+    prompts:                                  # Optional: Prompts provided
+      - name: "prompt_name"                   # Required: Prompt identifier
+        description: "Prompt description"     # Required: What the prompt does
+        template: "Prompt template"           # Required: Prompt structure
+  
+  # Data management and persistence
+  data:
+    storage:
+      type: "SQLite+FTS5"                     # Required: Storage mechanism with full-text search
+      location: ".context-kit/knowledge-graph/knowledge-graph.db" # Required: Database file location
+      format: "SQLite database with entity/relation/observation tables" # Required: Data format
+      
+      # Backup and recovery
+      backup:
+        enabled: true                         # Optional: Backup enabled
+        frequency: "daily|weekly|on_change"   # Optional: Backup schedule
+        retention: "30 days"                  # Optional: Backup retention
+    
+    schema:                                   # Required: Data schema definition
+      entities:                               # Required: Entity table schema
+        table: "entities"
+        columns: ["id TEXT PRIMARY KEY", "type TEXT", "name TEXT", "data TEXT", "created_at DATETIME", "updated_at DATETIME", "version INTEGER"]
+        fts_index: "entities_fts USING fts5(name, data, content='entities', content_rowid='rowid')"
+        description: "Core entities in the knowledge graph"
+      
+      relations:                              # Required: Relations table schema
+        table: "relations"
+        columns: ["id TEXT PRIMARY KEY", "from_id TEXT", "to_id TEXT", "type TEXT", "properties TEXT", "created_at DATETIME"]
+        foreign_keys: ["FOREIGN KEY (from_id) REFERENCES entities(id)", "FOREIGN KEY (to_id) REFERENCES entities(id)"]
+        description: "Relationships between entities"
+      
+      observations:                           # Required: Observations table schema
+        table: "observations"
+        columns: ["id TEXT PRIMARY KEY", "entity_id TEXT", "content TEXT", "metadata TEXT", "created_at DATETIME"]
+        foreign_keys: ["FOREIGN KEY (entity_id) REFERENCES entities(id)"]
+        fts_index: "observations_fts USING fts5(content, content='observations', content_rowid='rowid')"
+        description: "Contextual observations about entities"
+  
+  # Security and safety measures
+  security:
+    # Input validation and sanitization
+    input_validation:
+      strategy: "JSON schema validation"      # Required: Validation approach
+      sanitization: "Input cleaning rules"   # Required: How inputs are cleaned
+      error_handling: "Safe error responses" # Required: Error handling approach
+    
+    # Path security
+    path_security:
+      allowlist: ["List of allowed paths"]    # Required: Allowed directories
+      traversal_protection: "Prevention method" # Required: Path traversal protection
+      symlink_handling: "How symlinks are handled" # Optional: Symlink policy
+    
+    # Access control
+    access_control:
+      authentication: "Auth method if any"    # Optional: Authentication approach
+      authorization: "Authz method if any"    # Optional: Authorization approach
+      rate_limiting:                          # Optional: Rate limiting configuration
+        requests_per_minute: 60
+        burst_limit: 10
+    
+    # Data protection
+    data_protection:
+      encryption_at_rest: "Encryption method" # Optional: Storage encryption
+      encryption_in_transit: "TLS 1.3"       # Required: Transport encryption
+      sensitive_data: "How PII is handled"    # Optional: Sensitive data handling
+  
+  # Performance and scalability
+  performance:
+    # Resource limits
+    limits:
+      memory_limit: "512MB"                   # Optional: Memory limit
+      cpu_usage: "moderate"                   # Optional: CPU usage profile
+      concurrent_requests: 10                 # Optional: Concurrent request limit
+    
+    # Optimization strategies
+    optimization:
+      caching: "Caching strategy"             # Optional: Caching approach
+      batching: "Request batching support"    # Optional: Batch processing
+      streaming: "Streaming support"          # Optional: Streaming capabilities
+    
+    # Monitoring
+    monitoring:
+      health_check: "Health check endpoint"   # Optional: Health monitoring
+      metrics: ["List of tracked metrics"]    # Optional: Performance metrics
+      logging: "Logging configuration"        # Optional: Log configuration
+  
+  # Error handling and recovery
+  error_handling:
+    strategies:                               # Required: Error handling strategies
+      - error_type: "validation_error"        # Required: Error type
+        response: "Error response approach"   # Required: How error is handled
+        recovery: "Recovery method"           # Optional: Recovery approach
+        logging: "What is logged"             # Optional: Logging behavior
+    
+    fallbacks:                                # Required: Fallback behaviors
+      service_unavailable: "Fallback action" # Required: Service failure handling
+      data_corruption: "Recovery action"     # Optional: Data corruption handling
+      network_issues: "Network failure handling" # Optional: Network error handling
+  
+  # Integration with Claude Code
+  claude_integration:
+    settings_location: ".claude/settings.local.json" # Required: Configuration file
+    permissions:                              # Required: Required permissions
+      - "mcp__context-kit__*"             # Required: MCP tool permissions for all knowledge graph tools
+      - "Read"                                # Required: File reading permissions
+      - "Write"                               # Required: File writing permissions for database updates
+    
+    commands:                                 # Optional: Related Claude commands
+      - command: "command-name"               # Optional: Command identifier
+        description: "Command purpose"        # Optional: What command does
+        usage: "How to use command"           # Optional: Usage instructions
+  
+  # Development and testing
+  development:
+    # Local development
+    setup:
+      install_command: "npm install"          # Required: Installation command
+      build_command: "npm run build"          # Required: TypeScript compilation
+      start_mcp_command: "tsx src/mcp/server.ts" # Required: Start MCP server
+      start_ui_command: "npm run dev:ui"      # Optional: Start UI dev server
+      start_api_command: "npm run serve"      # Optional: Start HTTP API server
+      test_command: "npm test"                # Optional: Test command
+    
+    # Testing strategy
+    testing:
+      unit_tests:                             # Optional: Unit testing
+        framework: "Jest|Mocha|Vitest"        # Optional: Test framework
+        coverage_target: "80%"                # Optional: Coverage goal
+      
+      integration_tests:                      # Optional: Integration testing
+        claude_integration: "How Claude integration is tested" # Optional: Integration tests
+        tool_validation: "How tools are validated" # Optional: Tool testing
+      
+      manual_testing:                         # Optional: Manual testing procedures
+        - scenario: "Test scenario"           # Required: Test case
+          steps: ["Step 1", "Step 2"]        # Required: Test steps
+          expected: "Expected outcome"        # Required: Expected result
+  
+  # Documentation and examples
+  examples:
+    tool_usage:                               # Required: Tool usage examples
+      - tool: "create_entity"
+        example: 'Create a React component entity: {"type": "component", "name": "Button", "data": {"props": ["onClick", "children"], "file": "src/components/Button.tsx"}}'
+        use_case: "When analyzing code structure and creating knowledge graph nodes"
+      
+      - tool: "create_relation"
+        example: 'Link component to module: {"from_id": "module-ui", "to_id": "component-button", "type": "contains", "properties": {"path": "src/components/"}}'
+        use_case: "When establishing relationships between code entities"
+      
+      - tool: "search_entities"
+        example: 'Search for React components: {"query": "React component", "entity_type": "component", "limit": 10}'
+        use_case: "When looking for specific entities in the knowledge graph"
+      
+      - tool: "query"
+        example: 'Find all components in a module: {"sql": "SELECT e.* FROM entities e JOIN relations r ON e.id = r.to_id WHERE r.from_id = ? AND r.type = 'contains'", "params": ["module-ui"]}'
+        use_case: "When performing complex queries across the knowledge graph"
+    
+    configuration:                            # Optional: Configuration examples
+      - scenario: "Configuration scenario"   # Required: Config example
+        settings: "Configuration details"     # Required: Settings for scenario
+        purpose: "Why this configuration"     # Optional: Configuration purpose
+  
+  # Code references and implementation
+  code_references:                            # Optional: Links to implementation
+    server_entry: ".context-kit/knowledge-graph/src/mcp/server.ts" # Required: Server entry point
+    database_core: ".context-kit/knowledge-graph/src/core/database.ts" # Required: Database operations
+    schema_files: ".context-kit/knowledge-graph/schemas/" # Required: Database schema definitions
+    ui_integration: ".context-kit/knowledge-graph/src/ui/" # Optional: ReactFlow UI components
+    tests: ".context-kit/knowledge-graph/tests/"   # Optional: Test files
+    setup_script: ".context-kit/scripts/setup-context-kit-mcp" # Required: Setup automation

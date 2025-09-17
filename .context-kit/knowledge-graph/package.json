@@ -1,0 +1,74 @@
+{
+  "name": "@tkr-context-kit/knowledge-graph",
+  "version": "0.1.0",
+  "description": "Context kit system for app state management and AI-assisted development",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:simple": "tsc src/index.ts src/core/knowledge-graph-simple.ts --outDir dist --target es2020 --module esnext --moduleResolution bundler --declaration --skipLibCheck",
+    "dev": "tsx watch src/index.ts",
+    "dev:api": "tsx watch src/api/http-server.ts",
+    "serve": "tsx src/api/http-server.ts",
+    "services:start": "./scripts/manage-ports.sh start",
+    "services:stop": "./scripts/manage-ports.sh stop", 
+    "services:restart": "./scripts/manage-ports.sh restart",
+    "services:status": "./scripts/manage-ports.sh status",
+    "analyze": "tsx -e \"import('./dist/examples/usage-examples.js')\"",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "test:simple": "node -e \"const kg = require('./dist/core/knowledge-graph-simple.js'); console.log('Simple knowledge graph loaded successfully');\"",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.0.0",
+    "glob": "^10.0.0",
+    "nanoid": "^5.0.0",
+    "pino": "^8.16.0",
+    "pino-pretty": "^10.2.0",
+    "typescript": ">=4.5.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.0.0",
+    "@types/pino": "^6.3.12",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.0.0",
+    "vitest": "^1.0.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.5.0"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "README.md"
+  ],
+  "keywords": [
+    "context-kit",
+    "app-state",
+    "ai-assisted",
+    "sqlite",
+    "mcp",
+    "code-generation"
+  ],
+  "author": "TKR Project Kit",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkr-projects/tkr-context-kit.git",
+    "directory": ".context-kit/knowledge-graph"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

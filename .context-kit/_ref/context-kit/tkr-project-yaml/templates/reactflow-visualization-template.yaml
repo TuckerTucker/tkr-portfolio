@@ -1,0 +1,424 @@
+# ReactFlow Visualization Component Template
+# This template provides structure for documenting ReactFlow-based visualization components.
+# Optimized for ReactFlow 11+ with React 19, TypeScript, and custom node types.
+# Replace placeholder values with your actual ReactFlow component details.
+
+reactflow_visualization:
+  # Basic visualization information
+  name: "VisualizationName"                    # Required: Technical name (PascalCase)
+  metadata:
+    display_name: "Human-Readable Visualization Name" # Required: User-friendly name
+    description: "ReactFlow visualization description" # Required: Explain the visualization's purpose
+    category: "knowledge_graph"                # Required: Visualization category (knowledge_graph, flow_diagram, network, hierarchy)
+    complexity: "interactive"                  # Required: Complexity level (simple, interactive, complex)
+    status: "ready"                           # Required: Component status (draft, ready, deprecated)
+    created: "YYYY-MM-DD"                     # Optional: Creation date
+    last_updated: "YYYY-MM-DD"                # Optional: Last update date
+    owner: "Team or Person Name"              # Optional: Who maintains this visualization
+    dependencies:                             # Required: ReactFlow dependencies
+      - "react@^19.1.1"
+      - "reactflow@^11.11.4" 
+      - "typescript@>=4.5.0"
+    project_reference: "../core-project.yaml" # Required: Reference to core project config
+    framework: "ReactFlow 11 with React 19"   # Required: Framework and version
+
+  # ReactFlow configuration
+  reactflow_config:
+    version: "11.11.4"                        # Required: ReactFlow version
+    features:                                 # Required: ReactFlow features used
+      - "custom_nodes"                        # Custom node types
+      - "custom_edges"                        # Custom edge types
+      - "controls"                            # Zoom/pan controls
+      - "background"                          # Background grid/pattern
+      - "minimap"                             # Optional: Minimap
+      - "node_toolbar"                        # Optional: Node toolbar
+    
+    default_settings:                         # Required: Default ReactFlow settings
+      fit_view: true
+      nodes_draggable: true
+      nodes_connectable: false
+      nodes_focusable: true
+      edges_focusable: true
+      attribution_position: "top-right"
+      
+  # Node type definitions
+  node_types:                                 # Required: Custom node types
+    - name: "ModuleNode"                      # Required: Node type name
+      component: "BaseNode"                   # Required: Base component
+      description: "Module representation in knowledge graph" # Required: Purpose
+      visual_props:                           # Required: Visual properties
+        color: "#3B82F6"                      # Node background color
+        icon: "📦"                           # Node icon
+        shape: "rounded_rectangle"            # Node shape
+        size: "120x80"                        # Default size
+      data_props:                             # Required: Data properties
+        - name: "label"
+          type: "string"
+          description: "Display name for the module"
+        - name: "description"
+          type: "string"
+          description: "Module description"
+        - name: "metadata"
+          type: "object"
+          description: "Additional module metadata"
+    
+    - name: "ComponentNode"
+      component: "BaseNode"
+      description: "Component representation in knowledge graph"
+      visual_props:
+        color: "#10B981"
+        icon: "⚙️"
+        shape: "rounded_rectangle"
+        size: "120x80"
+      data_props:
+        - name: "label"
+          type: "string"
+          description: "Component name"
+        - name: "props"
+          type: "string[]"
+          description: "Component props list"
+    
+    - name: "DefaultNode"
+      component: "BaseNode"
+      description: "Fallback node for unknown types"
+      visual_props:
+        color: "#374151"
+        icon: "❓"
+        shape: "rounded_rectangle"
+        size: "120x80"
+      data_props:
+        - name: "label"
+          type: "string"
+          description: "Node label"
+
+  # Edge type definitions
+  edge_types:                                 # Required: Custom edge types
+    - name: "contains"
+      description: "Containment relationship"
+      visual_props:
+        color: "#3B82F6"
+        stroke_width: "2px"
+        style: "solid"
+        animation: false
+    
+    - name: "implements"
+      description: "Implementation relationship"
+      visual_props:
+        color: "#10B981"
+        stroke_width: "2px"
+        style: "dashed"
+        animation: false
+    
+    - name: "uses"
+      description: "Usage relationship"
+      visual_props:
+        color: "#F59E0B"
+        stroke_width: "1px"
+        style: "solid"
+        animation: false
+    
+    - name: "depends_on"
+      description: "Dependency relationship"
+      visual_props:
+        color: "#EF4444"
+        stroke_width: "2px"
+        style: "dotted"
+        animation: false
+
+  # Layout algorithms
+  layout_algorithms:                          # Required: Layout strategies
+    - name: "circular"
+      description: "Circular layout for overview visualization"
+      implementation: "trigonometric positioning"
+      parameters:
+        center_x: 400
+        center_y: 300
+        min_radius: 200
+        node_spacing: "dynamic based on node count"
+      use_case: "Full graph overview with equal node importance"
+    
+    - name: "hierarchical"
+      description: "Hierarchical layout for module-component relationships"
+      implementation: "parent-child positioning with fixed offsets"
+      parameters:
+        module_spacing: 300
+        component_y_offset: 150
+        component_spacing: 100
+      use_case: "Module flow showing containment relationships"
+    
+    - name: "grid"
+      description: "Grid layout for structured display"
+      implementation: "calculated rows/columns with fixed spacing"
+      parameters:
+        column_width: 200
+        row_height: 150
+        grid_gap: 50
+      use_case: "Fallback layout for consistent positioning"
+
+  # Data transformation
+  data_pipeline:                              # Required: Data flow
+    input_format:                             # Required: Expected input data
+      entities: "Entity[]"                    # Entity array
+      relations: "Relation[]"                 # Relation array
+      metadata: "GraphMetadata"               # Graph metadata
+    
+    transformation_steps:                     # Required: Data processing steps
+      - step: "entity_to_nodes"
+        description: "Convert entities to ReactFlow nodes"
+        process: "Map entity properties to node data and position"
+      - step: "relations_to_edges"
+        description: "Convert relations to ReactFlow edges"
+        process: "Create edge connections with proper styling"
+      - step: "apply_layout"
+        description: "Apply selected layout algorithm"
+        process: "Calculate node positions based on layout type"
+    
+    output_format:                            # Required: ReactFlow format
+      nodes: "Node<NodeData>[]"               # ReactFlow nodes
+      edges: "Edge<EdgeData>[]"               # ReactFlow edges
+
+  # Interactive features
+  interactions:                               # Required: User interactions
+    node_interactions:                        # Required: Node interactions
+      - action: "click"
+        handler: "onNodeClick"
+        description: "Select node and show details"
+        effect: "Update selected state, trigger parent callback"
+      - action: "hover"
+        handler: "onNodeMouseEnter/Leave"
+        description: "Visual feedback on hover"
+        effect: "Apply hover styling, show tooltip"
+      - action: "double_click"
+        handler: "onNodeDoubleClick"
+        description: "Focus on node or expand"
+        effect: "Center view on node, zoom if needed"
+    
+    edge_interactions:                        # Optional: Edge interactions
+      - action: "click"
+        handler: "onEdgeClick"
+        description: "Highlight relationship"
+        effect: "Show relationship details"
+    
+    canvas_interactions:                      # Required: Canvas-level interactions
+      - action: "pan"
+        description: "Drag to pan the view"
+        implementation: "ReactFlow built-in"
+      - action: "zoom"
+        description: "Mouse wheel or controls to zoom"
+        implementation: "ReactFlow built-in"
+      - action: "fit_view"
+        description: "Fit all nodes in view"
+        implementation: "ReactFlow fitView method"
+
+  # Search and filtering
+  search_capabilities:                        # Required: Search functionality
+    text_search:
+      target: "node labels and descriptions"
+      implementation: "string.includes() filtering"
+      case_sensitive: false
+    
+    type_filtering:
+      target: "node types"
+      implementation: "node.type === selectedType"
+      options: ["all", "module", "component", "pattern", "agent"]
+    
+    visual_feedback:
+      filtered_out: "reduce opacity to 0.3"
+      highlighted: "add border highlight"
+      no_results: "show 'no results' message"
+
+  # Performance optimization
+  performance:                                # Required: Performance strategies
+    rendering_optimization:
+      large_graphs: "Virtualization or node culling for >500 nodes"
+      smooth_animations: "requestAnimationFrame for layout transitions"
+      memory_management: "Cleanup event listeners and refs"
+    
+    data_optimization:
+      memoization: "useMemo for node/edge arrays"
+      callback_stability: "useCallback for event handlers"
+      prop_optimization: "Stable prop references to prevent re-renders"
+    
+    layout_optimization:
+      incremental_layout: "Only recalculate positions when data changes"
+      cached_positions: "Store calculated positions to avoid recalculation"
+      debounced_updates: "Debounce layout updates during interactive changes"
+
+  # Accessibility
+  accessibility:                              # Required: A11y support
+    keyboard_navigation:
+      tab_order: "Logical tab order through nodes"
+      arrow_keys: "Navigate between connected nodes"
+      enter_key: "Select/activate focused node"
+      escape_key: "Clear selection or exit mode"
+    
+    screen_reader:
+      aria_labels: "Descriptive labels for nodes and edges"
+      live_regions: "Announce selection and navigation changes"
+      semantic_structure: "Proper heading hierarchy"
+    
+    visual_accessibility:
+      color_blind: "Color coding supplemented with icons and patterns"
+      high_contrast: "Sufficient contrast ratios for all elements"
+      focus_indicators: "Clear focus ring for keyboard users"
+
+  # Styling and theming
+  styling:                                    # Required: Visual styling
+    css_custom_properties:                    # Required: Design tokens
+      node_colors: "var(--node-{type}-color)"
+      spacing: "var(--spacing-md)"
+      borders: "var(--border-radius-md)"
+      fonts: "var(--font-size-base)"
+    
+    responsive_design:                        # Required: Responsive behavior
+      mobile: "Touch-friendly controls, larger hit areas"
+      tablet: "Optimized for touch and mouse"
+      desktop: "Full feature set with precision controls"
+    
+    dark_mode:                                # Optional: Dark mode support
+      supported: true
+      implementation: "CSS custom properties toggle"
+      node_adjustments: "Adjusted colors for dark backgrounds"
+
+  # Integration patterns
+  integration:                                # Required: Component integration
+    parent_communication:                     # Required: Props-based communication
+      data_props: ["nodes", "edges", "selectedFlow"]
+      event_props: ["onNodeClick", "onEdgeClick", "onSelectionChange"]
+      state_props: ["loading", "error", "selectedNode"]
+    
+    service_integration:                      # Required: External service integration
+      data_service: "KnowledgeGraphService"
+      api_endpoints: ["/api/entities", "/api/relations"]
+      fallback_data: "Mock data for development"
+    
+    url_integration:                          # Optional: URL state integration
+      route_params: "Hash-based view state"
+      deep_linking: "Support for direct node linking"
+      browser_history: "Back/forward navigation support"
+
+  # Testing strategy
+  testing:                                    # Required: Testing approaches
+    unit_tests:
+      - component: "Node rendering with different types"
+        framework: "vitest + react-testing-library"
+        focus: "Props handling and event firing"
+      - component: "Layout algorithm calculations"
+        framework: "vitest"
+        focus: "Position calculation accuracy"
+    
+    integration_tests:
+      - scenario: "Full data flow from service to visualization"
+        components: ["KnowledgeGraphService", "ReactFlow", "NodeTypes"]
+        focus: "Data transformation and rendering"
+    
+    visual_tests:
+      - scenario: "Layout consistency across different data sets"
+        tool: "storybook + chromatic"
+        focus: "Visual regression detection"
+    
+    performance_tests:
+      - scenario: "Large graph rendering (1000+ nodes)"
+        metrics: ["render time", "memory usage", "interaction latency"]
+        thresholds: ["<2s initial render", "<100ms interaction response"]
+
+  # Development workflow
+  development:                                # Required: Development setup
+    dev_server:
+      command: "npm run dev:ui"
+      port: 42001
+      hot_reload: "Vite HMR"
+    
+    api_server:
+      command: "npm run serve"
+      port: 42003
+      purpose: "Backend API for live data"
+    
+    mock_data:
+      location: ".context-kit/knowledge-graph/src/ui/services/mockData.ts"
+      purpose: "Development fallback when API unavailable"
+    
+    debugging:
+      react_devtools: "Component tree and props inspection"
+      reactflow_devtools: "Node and edge state debugging"
+      network_tab: "API request/response debugging"
+
+  # Code references
+  code_references:                            # Required: Implementation files
+    main_component: ".context-kit/knowledge-graph/src/ui/App.tsx"
+    node_types: ".context-kit/knowledge-graph/src/ui/components/NodeTypes.tsx"
+    layout_service: ".context-kit/knowledge-graph/src/ui/services/KnowledgeGraphService.ts"
+    data_types: ".context-kit/knowledge-graph/src/core/types.ts"
+    styles: ".context-kit/knowledge-graph/src/ui/styles.css"
+    tests: ".context-kit/knowledge-graph/tests/ui/"
+    
+  # Documentation and examples
+  examples:                                   # Required: Usage examples
+    - name: "basic_knowledge_graph"
+      description: "Basic knowledge graph with modules and components"
+      code: |
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onNodeClick={onNodeClick}
+          nodeTypes={NodeTypes}
+          fitView
+        >
+          <Controls />
+          <Background />
+        </ReactFlow>
+      use_case: "Standard knowledge graph visualization"
+    
+    - name: "filtered_view"
+      description: "Knowledge graph with search and filtering"
+      code: |
+        <div className="knowledge-graph-container">
+          <SearchAndFilter
+            onSearch={handleSearch}
+            onFilter={handleFilter}
+            nodeTypes={availableNodeTypes}
+          />
+          <ReactFlow
+            nodes={filteredNodes}
+            edges={filteredEdges}
+            onNodeClick={onNodeClick}
+            nodeTypes={NodeTypes}
+          />
+        </div>
+      use_case: "Interactive exploration with filtering"
+    
+    - name: "layout_switching"
+      description: "Multiple layout algorithms with switcher"
+      code: |
+        <div>
+          <FlowSelector
+            selectedFlow={selectedFlow}
+            onFlowChange={setSelectedFlow}
+          />
+          <ReactFlow
+            nodes={layoutNodes}
+            edges={edges}
+            onNodeClick={onNodeClick}
+            nodeTypes={NodeTypes}
+            key={selectedFlow}
+          />
+        </div>
+      use_case: "Different views of the same data"
+
+  # Deployment and optimization
+  deployment:                                 # Optional: Deployment considerations
+    build_optimization:
+      code_splitting: "React.lazy for large visualizations"
+      bundle_analysis: "webpack-bundle-analyzer for size optimization"
+      asset_optimization: "SVG optimization and image compression"
+    
+    cdn_resources:
+      reactflow_cdn: "Consider CDN for ReactFlow if needed"
+      font_loading: "Preload fonts for better performance"
+    
+    monitoring:
+      performance_metrics: "Core Web Vitals tracking"
+      error_tracking: "Component error boundary monitoring"
+      user_analytics: "Interaction pattern analysis"

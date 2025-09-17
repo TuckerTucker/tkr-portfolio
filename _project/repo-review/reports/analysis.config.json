@@ -1,7 +1,0 @@
-{
-  "repo_path": "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio",
-  "analysis_date": "2025-06-25",
-  "output_format": "markdown+json",
-  "report_sections": ["executive_summary", "findings", "recommendations", "metrics"],
-  "agents": ["overview", "security", "quality", "deps"]
-}

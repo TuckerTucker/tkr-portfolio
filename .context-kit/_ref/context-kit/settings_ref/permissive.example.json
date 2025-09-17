@@ -1,9 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "includeCoAuthoredBy":false,
-  "defaultMode":"acceptEdits",
+  "includeCoAuthoredBy": false,
+  "defaultMode": "acceptEdits",
   "additionalDirectories": [
     ".context-kit/knowledge-graph",
+    "custom-projects/**"
   ],
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
@@ -47,10 +48,9 @@
       "Bash(grep:*)",
       "Bash(find:*)",
       "Bash(search:*)",
-      "Search(pattern:*)",
       "Bash(tree:*)",
       "Bash(ls:*)",
-      "Bash(node:*)",
+      "Search(pattern:*)",
       "mcp__context-kit__get_stats",
       "mcp__context-kit__create_entity",
       "mcp__context-kit__create_relation",
@@ -101,5 +101,17 @@
         ]
       }
     ]
-  }
+  },
+  "ignorePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "*.log",
+    "dist/**",
+    "build/**",
+    ".venv/**",
+    "__pycache__/**",
+    "coverage/**",
+    "*.tmp",
+    "*.temp"
+  ]
 }

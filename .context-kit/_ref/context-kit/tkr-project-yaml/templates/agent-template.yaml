@@ -1,0 +1,144 @@
+# Claude Code Agent Template
+# This template provides structure for documenting specialized Claude Code agents.
+# Replace placeholder values with your actual agent specifications.
+# Comments throughout explain the purpose and usage of each section.
+
+agent:
+  # Basic agent information
+  name: "agent-name"                          # Required: Technical name (kebab-case)
+  metadata:
+    display_name: "Human-Readable Agent Name" # Required: User-friendly name
+    description: "Agent description"          # Required: Explain the agent's purpose
+    category: "analyzer|consolidator|builder" # Required: Agent category
+    status: "draft|ready|deprecated"          # Required: Agent status
+    created: "YYYY-MM-DD"                     # Optional: Creation date
+    last_updated: "YYYY-MM-DD"                # Optional: Last update date
+    owner: "Team or Person Name"              # Optional: Who maintains this agent
+    dependencies:                             # Optional: Other agents this depends on
+      - "dependency-agent-name"
+    project_reference: "../core-project.yaml" # Required: Reference to core project config
+  
+  # Agent purpose and capabilities
+  purpose:
+    primary_function: "What this agent does"  # Required: Main responsibility
+    specialization: "Area of expertise"       # Required: What domain it specializes in
+    output_format: "YAML|JSON|Markdown|Text"  # Required: Expected output format
+    token_optimization: "How it minimizes tokens" # Required: Efficiency approach
+  
+  # Tool access and permissions
+  tools:
+    allowed_tools:                            # Required: Tools this agent can use
+      - "Read"                                # File reading
+      - "Write"                               # File writing
+      - "Glob"                                # Pattern matching
+      - "Grep"                                # Text searching
+      - "LS"                                  # Directory listing
+      - "Task"                                # Sub-agent invocation
+    
+    restricted_tools:                         # Optional: Tools explicitly not allowed
+      - "Bash"                                # Shell command execution
+      - "WebFetch"                            # Web content fetching
+    
+    mcp_tools:                               # Optional: MCP-specific tools
+      - "mcp__context-kit__*"             # Knowledge graph operations
+      - "mcp__context7__*"                    # Context7 documentation
+  
+  # Agent workflow and execution pattern
+  workflow:
+    execution_pattern: "sequential|parallel|hybrid" # Required: How tasks are executed
+    steps:                                   # Required: Agent execution steps
+      - step: 1
+        name: "Step name"                     # Required: Step identifier
+        description: "What this step does"    # Required: Step purpose
+        tools_used: ["Tool1", "Tool2"]       # Required: Tools used in this step
+        output: "What this step produces"     # Required: Step output
+    
+    dependencies:                            # Optional: Execution dependencies
+      input_requirements:                    # Required: What agent needs to start
+        - "Input requirement description"
+      prerequisite_steps:                    # Optional: Steps that must run first
+        - "Prerequisite description"
+  
+  # Input and output specifications
+  data_flow:
+    inputs:                                  # Required: What data agent receives
+      - name: "input_name"                   # Required: Input identifier
+        type: "data_type"                    # Required: Input data type
+        description: "Input description"     # Required: Input purpose
+        required: true                       # Required: Whether input is mandatory
+        source: "Where input comes from"     # Optional: Input source
+    
+    outputs:                                 # Required: What data agent produces
+      - name: "output_name"                  # Required: Output identifier
+        type: "data_type"                    # Required: Output data type
+        description: "Output description"    # Required: Output purpose
+        format: "File format or structure"   # Required: Output format
+        location: "Where output is saved"    # Optional: Output destination
+  
+  # Quality and validation
+  quality_assurance:
+    validation:                              # Required: How output is validated
+      - check: "Validation check description" # Required: What is validated
+        method: "How validation is performed" # Required: Validation method
+    
+    error_handling:                          # Required: Error handling approach
+      scenarios:                             # Required: Error scenarios
+        - error: "error_type"                # Required: Type of error
+          action: "response_action"          # Required: How agent responds
+          recovery: "recovery_method"        # Optional: Recovery approach
+    
+    performance:                             # Optional: Performance considerations
+      token_efficiency: "Efficiency measures" # Optional: Token optimization
+      execution_time: "Expected duration"    # Optional: Time expectations
+  
+  # Integration with other agents
+  integration:
+    consolidation_role:                      # Optional: Role in consolidation pattern
+      feeds_into: "consolidator-agent-name"  # Optional: Which consolidator receives output
+      consolidation_order: 1                # Optional: Execution order in workflow
+    
+    communication:                           # Optional: Inter-agent communication
+      shared_context: "What context is shared" # Optional: Shared data or state
+      coordination: "How agents coordinate"   # Optional: Coordination method
+  
+  # Security and safety
+  security:
+    path_validation:                         # Required: Path security measures
+      allowed_paths: ["List of safe paths"]  # Required: Allowlist of directories
+      traversal_protection: "How path traversal is prevented" # Required: Security method
+    
+    input_sanitization:                      # Required: Input cleaning approach
+      strategy: "Sanitization strategy"      # Required: How inputs are cleaned
+      validation_rules: ["List of rules"]    # Required: Validation patterns
+    
+    error_disclosure:                        # Required: Safe error handling
+      sensitive_info: "How sensitive data is protected" # Required: Data protection
+      safe_fallbacks: "Safe fallback behaviors" # Required: Safe error responses
+  
+  # Testing and validation
+  testing:
+    unit_tests:                              # Optional: Agent-specific tests
+      scenarios:                             # Optional: Test scenarios
+        - description: "test_description"    # Required: What is being tested
+          inputs: "test_inputs"              # Required: Test inputs
+          expected: "expected_outcome"       # Required: Expected result
+    
+    integration_tests:                       # Optional: Integration with other agents
+      - scenario: "Integration scenario"     # Required: What integration is tested
+        dependencies: ["Other agents involved"] # Required: Dependent agents
+        expected: "Expected outcome"         # Required: Expected result
+  
+  # Documentation and examples
+  examples:
+    - name: "example_name"                   # Required: Example identifier
+      description: "example_description"     # Required: What this example shows
+      input: "example_input"                 # Required: Example input
+      output: "example_output"               # Required: Example output
+      use_case: "When to use this example"   # Optional: Usage context
+  
+  # Code references and implementation
+  code_references:                           # Optional: Links to implementation
+    agent_file: ".claude/agents/{agent-name}.md" # Required: Agent definition file
+    tests: "tests/agents/{agent-name}.test.js"   # Optional: Agent tests
+    examples: "examples/agents/{agent-name}/"    # Optional: Usage examples
+    related_scripts: ["List of related scripts"] # Optional: Supporting scripts

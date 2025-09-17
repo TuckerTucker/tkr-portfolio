@@ -1,0 +1,1 @@
+run the kg-initial-analyzer agent
