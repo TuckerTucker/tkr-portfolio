@@ -6,30 +6,35 @@
     "subtitle": "About the designer",
     "logoUrl": "Tucker.svg",
     "description": "I'm a UX Designer & Developer who crafts user-centered digital experiences. With a background in songwriting, podcasting, and creative community building, I bring a unique perspective to design that combines analytical thinking with creative storytelling.",
-    "bullets": ["UX Designer with 8+ years experience", "Full-stack developer (React, Node.js, Python)", "Creator & host of The Spark & The Art podcast", "Singer-songwriter and creative community builder"],
+    "bullets": [
+      "UX Designer with 8+ years experience",
+      "Full-stack developer (React, Node.js, Python)",
+      "Creator & host of The Spark & The Art podcast",
+      "Singer-songwriter and creative community builder"
+    ],
     "slides": [
-      { 
-        "type": "video", 
+      {
+        "type": "video",
         "src": "slides/tucker/designing_stuff.mp4",
-        "alt": "Born to the World album showcase" 
+        "alt": "Born to the World album showcase"
       },
-      { 
-        "type": "html", 
-        "component": "BornToTheWorld", 
+      {
+        "type": "html",
+        "component": "BornToTheWorld",
         "props": {},
-        "alt": "Born to the World album showcase" 
+        "alt": "Born to the World album showcase"
       },
-      { 
-        "type": "html", 
-        "component": "TheSparkAndTheArt", 
+      {
+        "type": "html",
+        "component": "TheSparkAndTheArt",
         "props": {},
-        "alt": "The Spark & The Art podcast showcase" 
+        "alt": "The Spark & The Art podcast showcase"
       },
-      { 
-        "type": "html", 
-        "component": "TheOffHoursCreative", 
+      {
+        "type": "html",
+        "component": "TheOffHoursCreative",
         "props": {},
-        "alt": "The Off-Hours Creative community showcase" 
+        "alt": "The Off-Hours Creative community showcase"
       }
     ]
   },
@@ -40,44 +45,18 @@
     "subtitle": "a kanban for human in the loop AI coding",
     "logoUrl": "taskboard.svg",
     "description": "TaskBoardAI is a lightweight, file-based kanban board system designed for AI agents and human-in-the-loop collaboration. It bridges the gap between AI assistants and human project management, allowing both to maintain and manipulate shared project boards with synchronized updates.",
-    "bullets": ["MCP Server integration for AI assistant compatibility", "JSON-based architecture for easy AI parsing", "Rich markdown with subtasks and dependencies", "Real-time collaboration with webhooks"],
+    "bullets": [
+      "MCP Server integration for AI assistant compatibility",
+      "JSON-based architecture for easy AI parsing",
+      "Rich markdown with subtasks and dependencies",
+      "Real-time collaboration with webhooks"
+    ],
     "slides": [
-      { 
-        "type": "html", 
-        "component": "ProcessTimeline", 
-        "props": {
-          "title": "Project Development Process",
-          "description": "The key phases in developing the AI-powered kanban board project",
-          "stages": [
-            {
-              "name": "Research",
-              "description": "Studied existing kanban tools and identified opportunities for AI integration",
-              "deliverable": "Competitive Analysis"
-            },
-            {
-              "name": "Planning",
-              "description": "Defined project scope, features, and technical architecture",
-              "deliverable": "Project Roadmap"
-            },
-            {
-              "name": "Design",
-              "description": "Created wireframes, user flows, and visual design for the application",
-              "deliverable": "UI/UX Prototypes"
-            },
-            {
-              "name": "Development",
-              "description": "Built the React front-end, Node.js backend, and integrated AI capabilities",
-              "deliverable": "MVP Release"
-            },
-            {
-              "name": "Testing",
-              "description": "Conducted user testing and gathered feedback for improvements",
-              "deliverable": "Usability Report"
-            }
-          ],
-          "activeStage": 3
-        },
-        "alt": "Development process timeline for the Agentic AI Kanban project" 
+      {
+        "type": "html",
+        "component": "AgenticAIKanban",
+        "props": {},
+        "alt": "Agentic AI Kanban board interface showcase"
       }
     ]
   },
@@ -87,7 +66,7 @@
     "color": "#6366f1",
     "subtitle": "Meta-showcase of this very portfolio",
     "logoUrl": "Tucker.svg",
-    "description": "A meta-presentation showcasing the design and development process behind this very portfolio website. From initial concept through technical implementation, this project demonstrates modern React development, design system creation, and component-driven architecture.",
+    "description": "A meta-presentation showcasing the design and development process behind the portfolio website you are looking at.",
     "bullets": [
       "React 19 + Vite modern development stack",
       "Comprehensive design system with Tailwind CSS",
@@ -96,190 +75,214 @@
       "AI-friendly documentation and project structure"
     ],
     "slides": [
-      { 
-        "type": "html", 
-        "component": "TechStack", 
-        "props": {
-          "title": "Portfolio Tech Stack",
-          "technologies": [
-            { "name": "React 19", "description": "Latest React with concurrent features", "icon": "/images/tech_stack/React-icon.svg" },
-            { "name": "Vite", "description": "Fast build tool and dev server", "icon": "/images/tech_stack/Vitejs-logo.svg" },
-            { "name": "Tailwind CSS", "description": "Utility-first CSS framework", "icon": "/images/tech_stack/Tailwind_CSS_Logo.svg" },
-            { "name": "Storybook", "description": "Component development environment", "icon": "/images/tech_stack/icon-storybook-default.png" },
-            { "name": "Radix UI", "description": "Accessible component primitives", "icon": { "light": "/images/tech_stack/radix-ui-light.svg", "dark": "/images/tech_stack/radix-ui-dark.svg" } },
-            { "name": "GitHub Pages", "description": "Static site hosting", "icon": { "light": "/images/tech_stack/github-mark.svg", "dark": "/images/tech_stack/github-mark-white.svg" } }
-          ]
-        },
-        "alt": "Technology stack powering the TKR Portfolio" 
+      {
+        "type": "html",
+        "component": "PortfolioShowcase",
+        "props": {},
+        "alt": "Portfolio website showcase with interface screenshot"
       },
-      { 
-        "type": "html", 
-        "component": "DesignSystem", 
-        "props": {
-          "title": "Portfolio Design System",
-          "colors": [
-            {
-              "name": "Primary Colors",
-              "variants": [
-                { "name": "Primary", "hex": "#6366f1" },
-                { "name": "Primary Light", "hex": "#818cf8" },
-                { "name": "Primary Dark", "hex": "#4f46e5" }
-              ]
-            },
-            {
-              "name": "Secondary Colors", 
-              "variants": [
-                { "name": "Secondary", "hex": "#10b981" },
-                { "name": "Accent", "hex": "#8b5cf6" },
-                { "name": "Neutral", "hex": "#64748b" }
-              ]
-            }
-          ],
-          "typography": [
-            {
-              "name": "Display & Headings",
-              "variants": [
-                {
-                  "name": "Display",
-                  "specs": "48px/1.1 graphite-std",
-                  "fontFamily": "graphite-std",
-                  "fontSize": "3rem",
-                  "fontWeight": "700",
-                  "lineHeight": "1.1",
-                  "sample": "Sean Tucker Harley"
-                },
-                {
-                  "name": "H1 Heading",
-                  "specs": "32px/1.2 graphite-std",
-                  "fontFamily": "graphite-std",
-                  "fontSize": "2rem",
-                  "fontWeight": "600",
-                  "lineHeight": "1.2",
-                  "sample": "UX Design Portfolio"
-                },
-                {
-                  "name": "H2 Section",
-                  "specs": "24px/1.3 graphite-std", 
-                  "fontFamily": "graphite-std",
-                  "fontSize": "1.5rem",
-                  "fontWeight": "500",
-                  "lineHeight": "1.3",
-                  "sample": "Featured Projects"
-                }
-              ]
-            },
-            {
-              "name": "Body & UI Text",
-              "variants": [
-                {
-                  "name": "Body Regular",
-                  "specs": "16px/1.6 ellograph-cf",
-                  "fontFamily": "ellograph-cf",
-                  "fontSize": "1rem", 
-                  "fontWeight": "400",
-                  "lineHeight": "1.6",
-                  "sample": "Crafting user-centered digital experiences with modern web technologies."
-                },
-                {
-                  "name": "Body Small",
-                  "specs": "14px/1.5 ellograph-cf",
-                  "fontFamily": "ellograph-cf",
-                  "fontSize": "0.875rem",
-                  "fontWeight": "400", 
-                  "lineHeight": "1.5",
-                  "sample": "React components built with accessibility and performance in mind."
-                },
-                {
-                  "name": "UI Labels",
-                  "specs": "12px/1.4 system-ui",
-                  "fontFamily": "system-ui",
-                  "fontSize": "0.75rem",
-                  "fontWeight": "500",
-                  "lineHeight": "1.4", 
-                  "sample": "VIEW PROJECT • DARK MODE • STORYBOOK"
-                }
-              ]
-            }
-          ],
-          "components": [
-            { "name": "View Component Library", "description": "Explore all components in Storybook", "link": "/storybook" },
-            { "name": "Theme Components", "description": "Colors, Typography, and Design Tokens", "link": "/storybook/?path=/story/theme-colors--default" },
-            { "name": "Navigation Components", "description": "Project Picker and Header", "link": "/storybook/?path=/story/navigation-customprojectpicker--default" },
-            { "name": "Content Components", "description": "Image Carousel and HTML Slides", "link": "/storybook/?path=/story/content-imagecarousel--default" }
-          ]
+      {
+        "type": "html",
+        "component": "TechStack",
+    "props": {
+      "title": "Portfolio Tech Stack",
+      "technologies": [
+        {
+          "name": "React 19",
+          "description": "Latest React with concurrent features",
+          "icon": "/images/tech_stack/React-icon.svg"
         },
-        "alt": "Design system tokens and components" 
-      },
-      { 
-        "type": "html", 
-        "component": "ProcessTimeline", 
-        "props": {
-          "title": "Portfolio Development Process",
-          "description": "The key phases in creating this portfolio website",
-          "stages": [
-            {
-              "name": "Planning",
-              "description": "Defined project goals, target audience, and technical requirements",
-              "deliverable": "Project Brief"
-            },
-            {
-              "name": "Design",
-              "description": "Created design system, wireframes, and visual identity",
-              "deliverable": "Design System"
-            },
-            {
-              "name": "Development",
-              "description": "Built React components, implemented responsive design, and integrated tools",
-              "deliverable": "Working Prototype"
-            },
-            {
-              "name": "Documentation",
-              "description": "Created Storybook documentation and AI-friendly project structure",
-              "deliverable": "Component Library"
-            },
-            {
-              "name": "Deployment",
-              "description": "Set up GitHub Pages with automated deployment pipeline",
-              "deliverable": "Live Portfolio"
-            }
-          ],
-          "activeStage": 4
+        {
+          "name": "Vite",
+          "description": "Fast build tool and dev server",
+          "icon": "/images/tech_stack/Vitejs-logo.svg"
         },
-        "alt": "Development timeline for the TKR Portfolio project" 
-      },
-      { 
-        "type": "html", 
-        "component": "BeforeAfter", 
-        "props": {
-          "title": "Portfolio Evolution",
-          "before": {
-            "title": "Initial Concept",
-            "description": "Static HTML portfolio with limited interactivity",
-            "features": ["Basic HTML/CSS", "No component system", "Manual updates", "Single theme"]
-          },
-          "after": {
-            "title": "Final Implementation", 
-            "description": "Dynamic React application with modern tooling",
-            "features": ["Component-driven architecture", "Design system integration", "Automated deployment", "Dark mode support"]
+        {
+          "name": "Tailwind CSS",
+          "description": "Utility-first CSS framework",
+          "icon": "/images/tech_stack/Tailwind_CSS_Logo.svg"
+        },
+        {
+          "name": "Storybook",
+          "description": "Component development environment",
+          "icon": "/images/tech_stack/icon-storybook-default.png"
+        },
+        {
+          "name": "Radix UI",
+          "description": "Accessible component primitives",
+          "icon": {
+            "light": "/images/tech_stack/radix-ui-light.svg",
+            "dark": "/images/tech_stack/radix-ui-dark.svg"
           }
         },
-        "alt": "Before and after comparison of portfolio approaches" 
+        {
+          "name": "GitHub Pages",
+          "description": "Static site hosting",
+          "icon": {
+            "light": "/images/tech_stack/github-mark.svg",
+            "dark": "/images/tech_stack/github-mark-white.svg"
+          }
+        }
+      ]
+        },
+        "alt": "Technology stack powering the TKR Portfolio"
       },
-      { 
-        "type": "html", 
-        "component": "UserFlow", 
-        "props": {
-          "title": "Portfolio User Journey",
-          "description": "How visitors navigate and explore the portfolio",
-          "steps": [
-            { "title": "Landing", "description": "Visitor arrives and sees project overview" },
-            { "title": "Browse", "description": "Explores different projects using the dropdown" },
-            { "title": "Engage", "description": "Views interactive slides and project details" },
-            { "title": "Learn", "description": "Discovers skills and experience through content" },
-            { "title": "Connect", "description": "Finds contact information and next steps" }
+      {
+        "type": "html",
+        "component": "DesignSystem",
+    "props": {
+      "title": "Portfolio Design System",
+      "colors": [
+        {
+          "name": "Primary Colors",
+          "variants": [
+            {
+              "name": "Primary",
+              "hex": "#6366f1"
+            },
+            {
+              "name": "Primary Light",
+              "hex": "#818cf8"
+            },
+            {
+              "name": "Primary Dark",
+              "hex": "#4f46e5"
+            }
           ]
         },
-        "alt": "User flow diagram for portfolio navigation" 
+        {
+          "name": "Secondary Colors",
+          "variants": [
+            {
+              "name": "Secondary",
+              "hex": "#10b981"
+            },
+            {
+              "name": "Accent",
+              "hex": "#8b5cf6"
+            },
+            {
+              "name": "Neutral",
+              "hex": "#64748b"
+            }
+          ]
+        },
+        {
+          "name": "Brand Colors",
+          "variants": [
+            {
+              "name": "Tucker",
+              "hex": "#613CB0"
+            },
+            {
+              "name": "TKR Portfolio",
+              "hex": "#6366f1"
+            },
+            {
+              "name": "Agentic AI Kanban",
+              "hex": "#FF8800"
+            },
+            {
+              "name": "Nutrien",
+              "hex": "#3b5f18"
+            },
+            {
+              "name": "Worldplay",
+              "hex": "#00a4e4"
+            }
+          ]
+        }
+      ],
+      "typography": [
+        {
+          "name": "Display & Headings",
+          "variants": [
+            {
+              "name": "Display",
+              "specs": "48px/1.1 graphite-std",
+              "fontFamily": "graphite-std",
+              "fontSize": "3rem",
+              "fontWeight": "700",
+              "lineHeight": "1.1",
+              "sample": "Sean Tucker Harley"
+            },
+            {
+              "name": "H1 Heading",
+              "specs": "32px/1.2 graphite-std",
+              "fontFamily": "graphite-std",
+              "fontSize": "2rem",
+              "fontWeight": "600",
+              "lineHeight": "1.2",
+              "sample": "UX Design Portfolio"
+            },
+            {
+              "name": "H2 Section",
+              "specs": "24px/1.3 graphite-std",
+              "fontFamily": "graphite-std",
+              "fontSize": "1.5rem",
+              "fontWeight": "500",
+              "lineHeight": "1.3",
+              "sample": "Featured Projects"
+            }
+          ]
+        },
+        {
+          "name": "Body & UI Text",
+          "variants": [
+            {
+              "name": "Body Regular",
+              "specs": "16px/1.6 ellograph-cf",
+              "fontFamily": "ellograph-cf",
+              "fontSize": "1rem",
+              "fontWeight": "400",
+              "lineHeight": "1.6",
+              "sample": "Crafting user-centered digital experiences with modern web technologies."
+            },
+            {
+              "name": "Body Small",
+              "specs": "14px/1.5 ellograph-cf",
+              "fontFamily": "ellograph-cf",
+              "fontSize": "0.875rem",
+              "fontWeight": "400",
+              "lineHeight": "1.5",
+              "sample": "React components built with accessibility and performance in mind."
+            },
+            {
+              "name": "UI Labels",
+              "specs": "12px/1.4 system-ui",
+              "fontFamily": "system-ui",
+              "fontSize": "0.75rem",
+              "fontWeight": "500",
+              "lineHeight": "1.4",
+              "sample": "VIEW PROJECT • DARK MODE • STORYBOOK"
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "View Component Library",
+          "description": "Explore all components in Storybook",
+          "link": "/storybook"
+        },
+        {
+          "name": "Theme Components",
+          "description": "Colors, Typography, and Design Tokens",
+          "link": "/storybook/?path=/story/theme-colors--default"
+        },
+        {
+          "name": "Navigation Components",
+          "description": "Project Picker and Header",
+          "link": "/storybook/?path=/story/navigation-customprojectpicker--default"
+        },
+        {
+          "name": "Content Components",
+          "description": "Image Carousel and HTML Slides",
+          "link": "/storybook/?path=/story/content-imagecarousel--default"
+        }
+      ]
+        },
+        "alt": "Design system tokens and components"
       }
     ]
   },
@@ -297,8 +300,12 @@
       "Improved document organization to prevent errors in safety audits"
     ],
     "slides": [
-      { "type": "image", "src": "slides/nutrien/final_interface.png", "alt": "Final Design - Visual connection between global standards and local branch files" },
-      { "type": "image", "src": "slides/nutrien/multi_file_uploader.png", "alt": "Multi-file Uploader - Consistent component sizing across all breakpoints" }
+      {
+        "type": "html",
+        "component": "NutrienShowcase",
+        "props": {},
+        "alt": "Nutrien Safety Portal multi-file uploader showcase"
+      }
     ]
   },
   {
@@ -308,23 +315,17 @@
     "subtitle": "Analytics Dashboard — Discovery Process",
     "logoUrl": "worldplay.svg",
     "description": "Worldplay needed a comprehensive analytics dashboard to help the internal customer support teams understand the live stream events in real-time. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
-    "bullets": ["Real-time analytics visualization", "Custom report builder", "Audience segmentation tools"],
+    "bullets": [
+      "Real-time analytics visualization",
+      "Custom report builder",
+      "Audience segmentation tools"
+    ],
     "slides": [
-      { 
-        "type": "html", 
-        "component": "TechStack", 
-        "props": {
-          "title": "Analytics Stack",
-          "technologies": [
-            { "name": "D3.js", "description": "Data Visualization" },
-            { "name": "React", "description": "UI Framework" },
-            { "name": "GraphQL", "description": "API Layer" },
-            { "name": "AWS Lambda", "description": "Serverless Functions" },
-            { "name": "Elasticsearch", "description": "Data Storage" },
-            { "name": "Kibana", "description": "Data Exploration" }
-          ]
-        },
-        "alt": "Analytics technology stack for Worldplay dashboard" 
+      {
+        "type": "html",
+        "component": "WorldplayShowcase",
+        "props": {},
+        "alt": "Worldplay analytics dashboard showcase"
       }
     ]
   }
