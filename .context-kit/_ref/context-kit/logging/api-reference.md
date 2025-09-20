@@ -1,4 +1,29 @@
-# API Reference - Centralized Logging System
+# API Reference - Consolidated Logging System
+
+## 🎯 New Consolidated Structure
+
+**All logging components are now located in `.context-kit/logging-client/`**
+
+### Component Locations
+- **Browser Client**: `.context-kit/logging-client/browser/`
+- **Shell Integration**: `.context-kit/logging-client/shell/`
+- **Build Plugins**: `.context-kit/logging-client/plugins/`
+- **Configuration**: `.context-kit/logging-client/config/`
+- **Setup Scripts**: `.context-kit/logging-client/installation-scripts/`
+- **Tests**: `.context-kit/logging-client/tests/`
+- **Interface Spec**: `.context-kit/logging-client/logging-interfaces.json`
+
+### Quick Setup
+```bash
+# Complete setup wizard
+.context-kit/logging-client/setup-logging.sh
+
+# Individual components
+.context-kit/logging-client/installation-scripts/enable-terminal.sh
+.context-kit/logging-client/installation-scripts/enable-node-options.sh
+```
+
+---
 
 ## Implementation Status Overview
 

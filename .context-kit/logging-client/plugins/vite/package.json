@@ -1,0 +1,30 @@
+{
+  "name": "@tkr-context-kit/vite-plugin-logging",
+  "version": "1.0.0",
+  "description": "Vite plugin for automatic browser logging client injection",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "logging",
+    "development",
+    "tkr-context-kit"
+  ],
+  "author": "Tucker",
+  "license": "MIT",
+  "peerDependencies": {
+    "vite": "^4.0.0 || ^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "index.js",
+    "html-injector.js",
+    "middleware.js"
+  ]
+}

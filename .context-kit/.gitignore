@@ -1,5 +1,6 @@
 analysis/*.yml
-
+*.backup.*
+.pids
 
 # Build artifacts
 dist/

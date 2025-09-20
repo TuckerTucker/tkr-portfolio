@@ -15,12 +15,13 @@ if ! init_project_env; then
     exit 1
 fi
 
-# Default ports from tkr-context-kit port allocation
+# Current tkr-context-kit port allocation (updated for new architecture)
 PORTS_TO_CHECK=(
-    42001  # Dashboard
-    42003  # Knowledge Graph API
-    42005  # Logging Service
-    42007  # MCP Tools
+    42001  # Dashboard (React SPA)
+    42003  # Knowledge Graph API (Backend)
+    42005  # Logging Service (Future)
+    42007  # MCP Tools (Future)
+    42009  # Auto Logging Monitoring (Future)
 )
 
 # Function to check if port is in use
@@ -82,8 +83,12 @@ fi
 # Read ports from YAML if specified
 if [[ -n "$YAML_FILE" ]] && [[ -f "$YAML_FILE" ]]; then
     if command -v yq >/dev/null 2>&1; then
-        # Extract ports from YAML using yq
-        YAML_PORTS=$(yq eval '.development.ports.services | to_entries | .[].value' "$YAML_FILE" 2>/dev/null || true)
+        # Extract ports from current _context-kit.yml structure
+        YAML_PORTS=$(yq eval '.ops.ports | to_entries | .[].value' "$YAML_FILE" 2>/dev/null | grep -E '^[0-9]+$' || true)
+        if [[ -z "$YAML_PORTS" ]]; then
+            # Try alternative structure paths
+            YAML_PORTS=$(yq eval '.struct.**.port' "$YAML_FILE" 2>/dev/null | grep -E '^[0-9]+$' || true)
+        fi
         if [[ -n "$YAML_PORTS" ]]; then
             PORTS_TO_CHECK=()
             while IFS= read -r port; do
@@ -91,6 +96,9 @@ if [[ -n "$YAML_FILE" ]] && [[ -f "$YAML_FILE" ]]; then
                     PORTS_TO_CHECK+=("$port")
                 fi
             done <<< "$YAML_PORTS"
+            print_status "info" "Using ports from YAML file: ${PORTS_TO_CHECK[*]}"
+        else
+            print_status "warning" "No ports found in YAML file, using defaults"
         fi
     else
         print_status "warning" "yq not found. Install with: brew install yq"
@@ -129,21 +137,25 @@ if [[ ${#CONFLICTS[@]} -gt 0 ]]; then
         for port in "${CONFLICTS[@]}"; do
             # Find next available port in the same range
             case $port in
-                4200[0-9])
+                42001)  # Dashboard
                     RANGE_START=42001
-                    RANGE_END=42099
+                    RANGE_END=42010
                     ;;
-                4210[0-9])
-                    RANGE_START=42100
-                    RANGE_END=42199
+                42003)  # Knowledge Graph API
+                    RANGE_START=42001
+                    RANGE_END=42010
                     ;;
-                4220[0-9])
-                    RANGE_START=42200
-                    RANGE_END=42299
+                42005)  # Logging Service
+                    RANGE_START=42005
+                    RANGE_END=42015
+                    ;;
+                42007)  # MCP Tools
+                    RANGE_START=42007
+                    RANGE_END=42020
                     ;;
                 *)
                     RANGE_START=$((port + 1))
-                    RANGE_END=$((port + 100))
+                    RANGE_END=$((port + 50))
                     ;;
             esac
             

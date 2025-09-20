@@ -132,7 +132,7 @@ export function setupScriptExecutionTools(
   });
 
   toolHandlers.set('check_ports', async (args) => {
-    const { ports = [42001, 42002, 42003, 42004, 42005] } = args;
+    const { ports = [42001, 42003, 42005, 42007, 42009] } = args;
     
     try {
       const portStatus = await checkPorts(ports);

@@ -23,7 +23,7 @@ Reserved for essential system-wide services and management tools.
 | Port | Service | Description | Protocol |
 |------|---------|-------------|----------|
 | 42000 | Main Dashboard | Central management portal and service directory | HTTP |
-| 42001 | UI Dev Server | Knowledge graph UI development server (Vite) | HTTP |
+| 42001 | Dashboard UI | Main project dashboard interface (Vite) | HTTP |
 | 42002 | Logging API | Centralized log aggregation and query service | HTTP |
 | 42003 | HTTP API Server | Knowledge graph HTTP API for UI communication | HTTP |
 | 42004 | Configuration API | Dynamic configuration management | HTTP |
@@ -104,7 +104,7 @@ Services using non-standard ports that should be migrated to the 42xxx range.
 ## Current Project-Kit Services
 
 ### Active Services:
-- **42001**: Vite development server for knowledge graph UI (`.context-kit/knowledge-graph/`)
+- **42001**: Vite development server for dashboard UI (`.context-kit/dashboard/`)
 - **42003**: HTTP API server for knowledge graph operations
 - **STDIO**: Project-kit MCP server (consolidated, not using TCP port)
 - **STDIO**: Context7 MCP server (third-party library resolution)
@@ -115,7 +115,7 @@ Services using non-standard ports that should be migrated to the 42xxx range.
 development:
   ports:
     services:
-      ui_dev_server: 42001    # Vite dev server
+      dashboard: 42001    # Vite dev server
       api_server: 42003       # HTTP API server
     
   mcp_servers:
@@ -192,7 +192,7 @@ The system automatically reads port assignments from `.context-kit/_context-kit.
 development:
   ports:
     services:
-      ui_dev_server: 42001   # Vite development server  
+      dashboard: 42001   # Dashboard development server  
       api_server: 42003      # HTTP API server
       dashboard: 42000       # Future: Main project dashboard
       api_gateway: 42100     # Future: API gateway
@@ -209,7 +209,7 @@ Service configuration is managed through the centralized `_context-kit.yml` syst
 development:
   ports:
     services:
-      ui_dev_server: 42001   # Knowledge graph UI (Vite)
+      dashboard: 42001   # Dashboard UI (Vite)
       api_server: 42003      # Knowledge graph HTTP API
       dashboard: 42000       # Future: Main project dashboard
       api_gateway: 42100     # Future: API services
@@ -242,7 +242,7 @@ server {
     listen 80;
     
     location / {
-        proxy_pass http://localhost:42001;  # UI dev server
+        proxy_pass http://localhost:42001;  # Dashboard UI server
     }
     
     location /api {

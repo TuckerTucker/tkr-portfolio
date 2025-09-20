@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKR Browser Logging Client Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .stats {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .status.enabled {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.disabled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>TKR Browser Logging Client Test</h1>
+
+    <div class="test-section">
+        <h2>Status</h2>
+        <div id="status" class="status">Not initialized</div>
+        <button onclick="initializeLogging()">Initialize Logging</button>
+        <button onclick="checkStatus()">Check Status</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Console Tests</h2>
+        <p>These will appear in DevTools console AND be sent to logging backend:</p>
+        <button onclick="testConsoleLog()">console.log()</button>
+        <button onclick="testConsoleInfo()">console.info()</button>
+        <button onclick="testConsoleWarn()">console.warn()</button>
+        <button onclick="testConsoleError()">console.error()</button>
+        <button onclick="testConsoleDebug()">console.debug()</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Logging Tests</h2>
+        <button onclick="testManualLog()">Manual INFO</button>
+        <button onclick="testManualError()">Manual ERROR</button>
+        <button onclick="testWithMetadata()">Log with Metadata</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Error Tests</h2>
+        <button onclick="testGlobalError()">Trigger Global Error</button>
+        <button onclick="testUnhandledRejection()">Unhandled Promise Rejection</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Control Tests</h2>
+        <button onclick="flushLogs()">Flush Logs</button>
+        <button onclick="disableLogging()">Disable Logging</button>
+        <button onclick="enableLogging()">Enable Logging</button>
+        <button onclick="restoreConsole()">Restore Console</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Statistics</h2>
+        <button onclick="showStats()">Show Statistics</button>
+        <div id="stats" class="stats">Click "Show Statistics" to view current stats</div>
+    </div>
+
+    <!-- Load the combined logging client -->
+    <script src="logging-client-combined.js"></script>
+
+    <script>
+        // Test functions
+        function initializeLogging() {
+            if (window.TkrLogging) {
+                window.TkrLogging.init({
+                    service: 'test-page',
+                    component: 'test-component',
+                    batchSize: 5,
+                    flushInterval: 3000
+                });
+                updateStatus();
+                console.log('🔥 TKR Logging initialized manually');
+            } else {
+                alert('TkrLogging not available');
+            }
+        }
+
+        function checkStatus() {
+            updateStatus();
+        }
+
+        function updateStatus() {
+            const statusEl = document.getElementById('status');
+            if (window.TkrLogging && window.TkrLogging._initialized) {
+                const stats = window.TkrLogging.getStats();
+                if (stats.enabled) {
+                    statusEl.textContent = `Enabled - Session: ${stats.session?.sessionId?.slice(0, 8)}...`;
+                    statusEl.className = 'status enabled';
+                } else {
+                    statusEl.textContent = 'Initialized but disabled';
+                    statusEl.className = 'status disabled';
+                }
+            } else {
+                statusEl.textContent = 'Not initialized';
+                statusEl.className = 'status disabled';
+            }
+        }
+
+        // Console method tests
+        function testConsoleLog() {
+            console.log('🔵 Test console.log message', { timestamp: new Date().toISOString() });
+        }
+
+        function testConsoleInfo() {
+            console.info('ℹ️ Test console.info message', { data: [1, 2, 3] });
+        }
+
+        function testConsoleWarn() {
+            console.warn('⚠️ Test console.warn message', { warning: 'This is a test warning' });
+        }
+
+        function testConsoleError() {
+            console.error('❌ Test console.error message', new Error('Test error object'));
+        }
+
+        function testConsoleDebug() {
+            console.debug('🐛 Test console.debug message', { debug: true });
+        }
+
+        // Manual logging tests
+        function testManualLog() {
+            if (window.TkrLogging) {
+                window.TkrLogging.log('INFO', 'Manual INFO log test', {
+                    source: 'test-button',
+                    timestamp: Date.now()
+                });
+                console.log('✅ Manual INFO log sent');
+            }
+        }
+
+        function testManualError() {
+            if (window.TkrLogging) {
+                window.TkrLogging.log('ERROR', 'Manual ERROR log test', {
+                    errorCode: 'TEST_ERROR',
+                    details: 'This is a test error from manual logging'
+                });
+                console.log('✅ Manual ERROR log sent');
+            }
+        }
+
+        function testWithMetadata() {
+            if (window.TkrLogging) {
+                window.TkrLogging.log('INFO', 'Log with rich metadata', {
+                    userId: 12345,
+                    action: 'button_click',
+                    page: 'test-page',
+                    coordinates: { x: 100, y: 200 },
+                    browserInfo: {
+                        userAgent: navigator.userAgent,
+                        language: navigator.language,
+                        cookieEnabled: navigator.cookieEnabled
+                    }
+                });
+                console.log('✅ Log with metadata sent');
+            }
+        }
+
+        // Error tests
+        function testGlobalError() {
+            // This will trigger a global error
+            setTimeout(() => {
+                throw new Error('Test global error - this is intentional!');
+            }, 100);
+            console.log('🔥 Global error triggered (check console in 100ms)');
+        }
+
+        function testUnhandledRejection() {
+            // This will trigger an unhandled promise rejection
+            Promise.reject(new Error('Test unhandled rejection - this is intentional!'));
+            console.log('🔥 Unhandled promise rejection triggered');
+        }
+
+        // Control tests
+        async function flushLogs() {
+            if (window.TkrLogging) {
+                await window.TkrLogging.flush();
+                console.log('✅ Logs flushed');
+            }
+        }
+
+        function disableLogging() {
+            if (window.TkrLogging) {
+                window.TkrLogging.disable();
+                updateStatus();
+                console.log('🔴 Logging disabled');
+            }
+        }
+
+        function enableLogging() {
+            if (window.TkrLogging) {
+                window.TkrLogging.enable();
+                updateStatus();
+                console.log('🟢 Logging enabled');
+            }
+        }
+
+        function restoreConsole() {
+            if (window.TkrLogging) {
+                window.TkrLogging.restore();
+                updateStatus();
+                console.log('🔄 Console restored to original state');
+            }
+        }
+
+        function showStats() {
+            if (window.TkrLogging) {
+                const stats = window.TkrLogging.getStats();
+                document.getElementById('stats').textContent = JSON.stringify(stats, null, 2);
+            }
+        }
+
+        // Auto-update status every 2 seconds
+        setInterval(updateStatus, 2000);
+
+        // Initial status check
+        setTimeout(updateStatus, 500);
+
+        // Test auto-initialization
+        console.log('🚀 Test page loaded - logging should auto-initialize');
+        console.log('📝 Open DevTools to see console output');
+        console.log('📊 Check logging dashboard at http://localhost:42001');
+    </script>
+</body>
+</html>

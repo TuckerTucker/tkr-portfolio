@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Context-Kit Service Stop Script
+# Stops all running context-kit services
+
+set -euo pipefail
+
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly START_ALL_SCRIPT="${SCRIPT_DIR}/start-all"
+
+# Stop all services
+exec "$START_ALL_SCRIPT" --kill "$@"

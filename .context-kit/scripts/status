@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Context-Kit Service Status Script
+# Shows status of all context-kit services
+
+set -euo pipefail
+
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly START_ALL_SCRIPT="${SCRIPT_DIR}/start-all"
+
+# Show service status
+exec "$START_ALL_SCRIPT" --status "$@"

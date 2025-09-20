@@ -1,0 +1,60 @@
+{
+  "name": "@tkr-context-kit/logging-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive integration tests for TKR Logging system",
+  "type": "module",
+  "scripts": {
+    "test": "node run-all-tests.js",
+    "test:terminal": "bash terminal.test.sh",
+    "test:browser": "node browser.test.js",
+    "test:vite": "node vite.test.js",
+    "test:webpack": "node webpack.test.js",
+    "test:integration": "node integration.test.js",
+    "test:performance": "node performance.test.js",
+    "test:quick": "npm run test:terminal && npm run test:browser",
+    "test:ci": "npm run test -- --ci",
+    "test:verbose": "npm run test -- --verbose",
+    "clean": "rm -rf temp/ output/ node_modules/.cache",
+    "setup": "npm install && npm run clean"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "node-fetch": "^3.3.0",
+    "jsdom": "^22.1.0",
+    "webpack": "^5.88.0",
+    "html-webpack-plugin": "^5.5.0",
+    "memory-fs": "^0.5.0",
+    "vite": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkr-riffic/tkr-project-kit.git",
+    "directory": ".context-kit/tests/logging"
+  },
+  "keywords": [
+    "testing",
+    "logging",
+    "integration",
+    "performance",
+    "browser",
+    "terminal",
+    "vite",
+    "webpack"
+  ],
+  "author": "Tucker",
+  "license": "MIT",
+  "files": [
+    "*.js",
+    "*.sh",
+    "package.json",
+    "README.md"
+  ]
+}
