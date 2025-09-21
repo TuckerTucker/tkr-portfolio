@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "test": "open test.html",
-    "serve": "python3 -m http.server 8080",
+    "serve": "python3 -m http.server 42080",
     "minify": "echo 'Manual minification - see logging-client.min.js'"
   },
   "keywords": [

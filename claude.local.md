@@ -38,7 +38,7 @@ meta:
   desc: "Multi-service Claude Code enhancement toolkit: React dashboard + SQLite knowledge graph + comprehensive logging + MCP integration"
   ver: "3.4.0"
   author: "Tucker github.com/tuckertucker"
-  ts: "2025-09-19"
+  ts: "2025-09-20"
   status: production
   entry: "./setup"
   stack: &tech "TS+React18+SQLite+MCP+SOA+Logging+Orchestration"
@@ -90,12 +90,12 @@ deps: &deps
 
 # Multi-service structure (max_depth: 5)
 struct:
-  _: {n: 723, t: {ts: 120, tsx: 25, js: 180, md: 95, json: 85, yml: 15, sh: 45}, mods: 4}
+  _: {n: 723, t: {ts: 65, tsx: 3, js: 150, md: 52, json: 40, yml: 15, sh: 18}, mods: 4}
 
-  .claude: {n: 32, t: {md: 25, json: 3, sh: 2}, agents: 12, commands: 10}
+  .claude: {n: 23, t: {md: 15, json: 3, sh: 2}, agents: 12, commands: 10}
 
   .context-kit:
-    _: {n: 680, t: {ts: 120, tsx: 25, js: 180, md: 90, json: 80, yml: 15, sh: 40}}
+    _: {n: 320, t: {ts: 65, tsx: 3, js: 150, md: 45, json: 35, yml: 8, sh: 14}}
 
     dashboard: {n: 35, port: 42001, pkg: "@tkr-context-kit/dashboard", stack: "React18+Vite+Tailwind"}
     knowledge-graph: {n: 45, port: 42003, pkg: "@tkr-context-kit/knowledge-graph", stack: "TS+SQLite+HTTP"}
@@ -103,7 +103,7 @@ struct:
     mcp: {n: 8, stack: "MCP+STDIO"}
     _ref: {n: 17, templates: 5}
     _specs: {n: 5}
-    scripts: {n: 10, core: [start-all, stop-all, status, check-ports]}
+    scripts: {n: 12, core: [start-all, stop-all, status, check-ports]}
     analysis: {n: 2}
 
   setup: tracked
@@ -139,9 +139,8 @@ design:
 
 # Architecture (compressed)
 arch:
-  stack:
-    <<: *tech
-    desc: "SOA with integrated logging/monitoring"
+  stack: *tech
+  desc: "SOA with integrated logging/monitoring"
   mods: ["Dashboard (React)", "KG (SQLite API)", "Logging", "MCP"]
   lang: "TS strict + JS + Bash"
   runtime: "Node.js ES2020 + Browser"
@@ -189,7 +188,7 @@ semantic:
 
 # Evolution notes
 notes:
-  v13: ["FORMAT v13: Enhanced compression + current file counts", "FILE COUNT: Updated to 723 files (2025-09-19)", "OPTIMIZATION: Aggressive token compression while preserving accuracy", "STRUCTURE: Complete multi-service architecture synthesis"]
+  v13: ["FORMAT v13: Enhanced compression + current file counts", "FILE COUNT: Updated to 723 files (2025-09-20)", "OPTIMIZATION: Aggressive token compression while preserving accuracy", "STRUCTURE: Complete multi-service architecture synthesis"]
   prev: ["Multi-service SOA with coordinated lifecycle", "Port consistency: 42xxx allocation", "Comprehensive multi-env logging", "SQLite knowledge graph + FTS5", "React dashboard + real-time monitoring", "MCP integration for AI context", "TypeScript strict throughout", "Automated orchestration"]
 
 

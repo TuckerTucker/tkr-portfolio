@@ -90,7 +90,7 @@ console.log('\nTest 6: Configuration options');
 try {
   const configs = [
     { enabled: false },
-    { clientUrl: 'http://custom:8080/client.js' },
+    { clientUrl: 'http://custom:42080/client.js' },
     { injectPosition: 'body-start' },
     { enabled: true, clientUrl: 'http://test.com/client.js', injectPosition: 'head-start' }
   ];

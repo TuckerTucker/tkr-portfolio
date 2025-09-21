@@ -7,7 +7,7 @@ const AppWithServices: React.FC = () => {
   const [entities, setEntities] = useState<any[]>([]);
   const [relations, setRelations] = useState<any[]>([]);
   const [logs, setLogs] = useState<any[]>([]);
-  const [tools, setTools] = useState<any[]>([]);
+  const [logStats, setLogStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [usingMockData, setUsingMockData] = useState(false);
@@ -26,14 +26,13 @@ const AppWithServices: React.FC = () => {
     try {
       setLoading(true);
 
-      // Fetch all data in parallel
-      const [servicesRes, entitiesRes, relationsRes, logsRes, toolsRes] = await Promise.allSettled([
+      // Fetch all data in parallel - request 100 logs by default + stats for accurate totals
+      const [servicesRes, entitiesRes, relationsRes, logsRes, statsRes] = await Promise.allSettled([
         fetch(`${API_BASE}/health`).then(r => r.ok ? r.json() : { services: [] }),
         fetch(`${API_BASE}/entities`).then(r => r.ok ? r.json() : { data: [] }),
         fetch(`${API_BASE}/relations`).then(r => r.ok ? r.json() : { data: [] }),
-        fetch(`${API_BASE}/api/logs/stream`).then(r => r.ok ? r.json() : { data: [] }),
-        // MCP tools endpoint doesn't exist yet, so mock it
-        Promise.resolve({ data: [] })
+        fetch(`${API_BASE}/api/logs/stream?limit=100`).then(r => r.ok ? r.json() : { data: [] }),
+        fetch(`${API_BASE}/api/logs/stats`).then(r => r.ok ? r.json() : null)
       ]);
 
       // Transform backend data to match Dashboard props interface
@@ -136,8 +135,8 @@ const AppWithServices: React.FC = () => {
         setLogs(transformLogs(logsRes.value.data));
       }
 
-      if (toolsRes.status === 'fulfilled' && toolsRes.value.data) {
-        setTools(transformTools(toolsRes.value.data));
+      if (statsRes.status === 'fulfilled' && statsRes.value) {
+        setLogStats(statsRes.value);
       }
 
       setError(null);
@@ -176,7 +175,7 @@ const AppWithServices: React.FC = () => {
   };
 
   const transformLogs = (backendLogs: any[]): any[] => {
-    return backendLogs.map((log, index) => ({
+    const transformed = backendLogs.map((log, index) => ({
       id: log.id || `log-${index}`, // Generate ID if missing
       timestamp: log.timestamp ? new Date(log.timestamp * 1000).toISOString() : new Date().toISOString(), // Convert Unix timestamp to ISO string
       level: (log.level?.toUpperCase() || 'INFO') as 'FATAL' | 'ERROR' | 'WARN' | 'INFO' | 'DEBUG', // Keep uppercase and ensure valid type
@@ -185,26 +184,31 @@ const AppWithServices: React.FC = () => {
       message: log.message || '',
       metadata: log.data ? JSON.parse(log.data) : log.metadata, // Parse data field if it's a JSON string
       stackTrace: log.stackTrace
-    }));
-  };
+    }))
+    // Filter out dashboard-related API calls to avoid clutter
+    .filter(log => {
+      // Check if this is a dashboard-related API call
+      if (log.component === 'RequestHandler' && log.metadata?.path) {
+        const path = log.metadata.path;
+        const method = log.metadata.method;
 
-  const transformTools = (backendTools: any[]): any[] => {
-    return backendTools.map(tool => ({
-      id: tool.id || tool.name,
-      name: tool.name,
-      description: tool.description || '',
-      category: tool.category || 'General',
-      parameters: tool.parameters || tool.inputSchema?.properties ?
-        Object.entries(tool.inputSchema?.properties || {}).map(([name, schema]: [string, any]) => ({
-          name,
-          type: schema.type || 'string',
-          required: tool.inputSchema?.required?.includes(name) || false,
-          description: schema.description || '',
-          default: schema.default
-        })) : [],
-      lastUsed: tool.lastUsed ? new Date(tool.lastUsed) : undefined,
-      executionCount: tool.executionCount || 0
-    }));
+        // Filter out log retrieval and dashboard monitoring calls
+        const isDashboardApiCall =
+          path.startsWith('/api/logs') ||  // Log retrieval calls
+          path === '/health' ||            // Health check calls
+          path === '/stats' ||             // Stats calls
+          (path.startsWith('/api/health') && method === 'GET'); // Service health checks
+
+        if (isDashboardApiCall) {
+          console.log(`🔇 Filtering out dashboard API call: ${method} ${path}`);
+          return false;
+        }
+      }
+      return true;
+    });
+
+    // Sort by timestamp (most recent first)
+    return transformed.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
   };
 
   // Event handlers
@@ -221,27 +225,29 @@ const AppWithServices: React.FC = () => {
     }
   };
 
-  const handleLogFilter = (filters: any) => {
+  const handleLogFilter = async (filters: any) => {
     console.log('Applying log filters:', filters);
-    // Could implement server-side filtering here
-  };
-
-  const handleToolExecute = async (toolId: string, params: Record<string, any>) => {
-    console.log('Executing tool:', toolId, params);
-    try {
-      const response = await fetch(`${API_BASE}/api/mcp/execute`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ toolName: toolId, input: params })
-      });
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Tool execution result:', result);
-        // Could show result in a notification or modal
+    // If this is a live feed refresh (has refresh timestamp), fetch new logs
+    if (filters.refresh) {
+      try {
+        console.log('🔴 Live feed: Fetching latest logs...');
+        // For live feed, fetch fresh logs with a larger limit to catch recent ones
+        const logsRes = await fetch(`${API_BASE}/api/logs/stream?limit=200`);
+        if (logsRes.ok) {
+          const logsData = await logsRes.json();
+          if (logsData.data && Array.isArray(logsData.data)) {
+            const newLogs = transformLogs(logsData.data);
+            console.log(`🔴 Live feed: Got ${newLogs.length} logs, updating UI...`);
+            setLogs(newLogs);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch live logs:', err);
+        // Fallback to full data fetch if log-only fetch fails
+        fetchAllData();
       }
-    } catch (err) {
-      console.error('Failed to execute tool:', err);
     }
+    // Could implement server-side filtering here for other filter types
   };
 
   const handleEntitySelect = (entityId: string) => {
@@ -289,10 +295,9 @@ const AppWithServices: React.FC = () => {
       entities={entities}
       relations={relations}
       logs={logs}
-      tools={tools}
+      logStats={logStats}
       onServiceRefresh={handleServiceRefresh}
       onLogFilter={handleLogFilter}
-      onToolExecute={handleToolExecute}
       onEntitySelect={handleEntitySelect}
       usingMockData={usingMockData}
     />

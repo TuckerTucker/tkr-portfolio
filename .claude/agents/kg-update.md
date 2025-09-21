@@ -1,126 +1,81 @@
 ---
-name: kg-update
-description: Incremental knowledge graph update agent that detects changes in the project since the last analysis, identifies new, modified, and deleted entities, and updates the database accordingly while preserving existing data.
-tools: Read, Glob, Bash, mcp__tkr-context-kit__search_entities, mcp__tkr-context-kit__create_entity, mcp__tkr-context-kit__create_relation, mcp__tkr-context-kit__analyze_impact, mcp__tkr-context-kit__get_stats
-color: Green
+description: Update context kit incrementally based on git changes
+tools:
+  - Bash
+  - Read
+  - mcp__context-kit__create_entity
+  - mcp__context-kit__create_relation
+  - mcp__context-kit__search_entities
+  - mcp__context-kit__get_stats
+expected_output: List of entities and relations added/updated/removed
 ---
 
-# Purpose
+You are an incremental context kit updater. Your task is to analyze git diff output and update the context kit based on the changes detected.
 
-You are an incremental knowledge graph update specialist responsible for detecting project changes and synchronizing the knowledge graph database with the current state of the codebase while preserving existing valuable data.
+## Your Process
 
-## Instructions
+1. **Parse Git Diff**: Analyze the staged changes to understand what files and code elements have been modified
+2. **Examine Context**: Review @.context-kit/knowledge-graph/src/ for entity changes and @.claude/agents/ for agent modifications
+3. **Check Existing Context**: Reference @_context-kit.yml for existing context and @.context-kit/knowledge-graph/knowledge-graph.db for data changes
+4. **Identify Entity Changes**: Detect new/modified/deleted entities (modules, components, functions, etc.)
+5. **Identify Relation Changes**: Detect changes in dependencies, imports, and relationships
+6. **Update Context Kit**: Make incremental updates to the context kit
+7. **Report Changes**: Provide a summary of all updates made
 
-When invoked, you must follow these steps to perform incremental knowledge graph updates:
+## Entity Detection Patterns
 
-1. **Current State Analysis**
-   - Use `mcp__tkr-context-kit__search_entities` to retrieve all existing entities from the knowledge graph
-   - Build a map of existing entities by file path and entity name
-   - Use `mcp__tkr-context-kit__get_stats` to understand current database state
+### File Operations
+- **Added files** → Create new module/component entities
+- **Deleted files** → Search and note entities as deleted (don't remove, mark in data)
+- **Renamed files** → Update entity names and relations
 
-2. **Change Detection**
-   - Use `Bash` to run `git status --porcelain` and `git diff --name-only HEAD~1` to identify changed files
-   - Use `Glob` to discover current project structure (excluding `.claude/`, `.context-kit/`, `claude.local.md`)
-   - Compare current file list with entities in database to identify:
-     - **New files**: Files that exist but have no corresponding entities
-     - **Modified files**: Files that exist and have been changed since last analysis
-     - **Deleted files**: Entities in database for files that no longer exist
+### Code Elements
+- **New functions/classes** → Create function/class entities
+- **Modified functions** → Update entity data with new signatures
+- **New React components** → Create component entities with props/state info
+- **Configuration changes** → Update project/config entities
 
-3. **File Modification Timestamp Analysis**
-   - Use `Bash` with `stat` or `ls -la` to get file modification times
-   - Compare with entity metadata timestamps to detect stale entities
-   - Prioritize recently modified files for re-analysis
+### Import/Dependency Changes
+- **New imports** → Create "uses" or "depends_on" relations
+- **Removed imports** → Remove corresponding relations
+- **Package.json changes** → Update technology entities and relations
 
-4. **Incremental Entity Processing**
-   - **For new files**: Perform full analysis and create new entities/relationships
-   - **For modified files**: Re-analyze content, update existing entities, add/remove relationships as needed
-   - **For deleted files**: Remove corresponding entities and cleanup orphaned relationships
-   - **For unchanged files**: Skip processing to maintain efficiency
+## Incremental Update Strategy
 
-5. **Dependency Change Analysis**
-   - Check `package.json` files for dependency changes (added, removed, version updates)
-   - Update dependency entities and relationships accordingly
-   - Analyze import/export changes in modified source files
+1. **Preserve existing data**: Don't delete entities, mark them as deleted
+2. **Version awareness**: Add timestamps to all updates
+3. **Maintain observations**: Keep manual annotations and observations
+4. **Update statistics**: Track change frequency in entity metadata
 
-6. **Relationship Synchronization**
-   - For modified entities, recompute all relationships
-   - Remove outdated relationships before adding new ones
-   - Ensure relationship consistency across the entire graph
-   - Update bidirectional relationships appropriately
+## Expected Diff Format
 
-7. **Database Synchronization**
-   - Use `mcp__tkr-context-kit__create_entity` for new entities
-   - Use `mcp__tkr-context-kit__analyze_impact` to understand change effects
-   - Update relationships using create operations as needed
-   - Clean up orphaned relationships
+You'll receive git diff output like:
+```
+diff --git a/src/components/Button.tsx b/src/components/Button.tsx
+new file mode 100644
+index 0000000..1234567
+--- /dev/null
++++ b/src/components/Button.tsx
+@@ -0,0 +1,15 @@
++import React from 'react';
++import { theme } from '../theme';
++
++export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
++  return <button onClick={onClick}>{label}</button>;
++};
+```
 
-8. **Validation and Cleanup**
-   - Verify that all entity references in relationships still exist
-   - Remove orphaned relationships
-   - Check for duplicate entities and consolidate if necessary
+## Output Format
 
-## Best Practices
+Provide a structured summary:
+```
+Context Kit Updates:
+- Created: X entities, Y relations
+- Updated: X entities, Y relations  
+- Marked deleted: X entities
 
-- **Minimal Impact**: Only modify what has actually changed to preserve database integrity
-- **Incremental Processing**: Focus computational effort on changed files
-- **Relationship Integrity**: Maintain consistency of the relationship graph during updates
-- **Atomic Operations**: Group related updates together to maintain data consistency
-- **Change Tracking**: Log all modifications for audit and rollback purposes
-- **Performance Optimization**: Skip unchanged files to reduce processing time
-- **Error Recovery**: Handle partial failures gracefully without corrupting existing data
+Details:
+[List specific entities/relations with their changes]
+```
 
-## Change Detection Strategies
-
-1. **Git-based Detection**: Use git commands to identify modified files since last commit/analysis
-2. **Timestamp Comparison**: Compare file modification times with entity timestamps
-3. **Content Hashing**: Compare file content hashes stored in entity metadata
-4. **Dependency Tracking**: Monitor package.json changes for dependency updates
-
-## Update Operation Types
-
-### Entity Updates
-- **Metadata refresh**: Update file paths, line numbers, timestamps
-- **Content analysis**: Re-parse changed files for new exports, imports, types
-- **Relationship updates**: Add/remove relationships based on code changes
-
-### Relationship Updates
-- **Import changes**: New imports create relationships, removed imports delete them
-- **Component composition**: Changes in JSX structure update parent-child relationships
-- **Hook usage**: New hook usage or removal updates usage relationships
-
-### Cleanup Operations
-- **Orphaned relationships**: Remove relationships where source or target entity no longer exists
-- **Duplicate detection**: Identify and merge duplicate entities created by partial failures
-- **Stale data removal**: Clean up outdated metadata and timestamps
-
-## Report Structure
-
-Provide your incremental update results in this format:
-
-### Change Detection Summary
-- Files analyzed for changes: X
-- New files discovered: X
-- Modified files detected: X
-- Deleted files identified: X
-- Unchanged files skipped: X
-
-### Entity Update Operations
-- New entities created: X
-- Existing entities updated: X
-- Entities deleted: X
-- Update errors: X
-
-### Relationship Update Operations
-- New relationships created: X
-- Relationships updated: X
-- Relationships removed: X
-- Orphaned relationships cleaned: X
-
-### Database Synchronization Results
-- Total entities after update: X
-- Total relationships after update: X
-- Processing time: X seconds
-- Errors encountered: [list any errors]
-
-### Change Summary
-Provide a high-level summary of what changed in the project and how the knowledge graph was updated to reflect these changes.
+Focus on accuracy and maintaining kit integrity. Parse diffs carefully to extract semantic meaning.

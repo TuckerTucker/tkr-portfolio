@@ -1,10 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "includeCoAuthoredBy":false,
-  "defaultMode":"acceptEdits",
-  "additionalDirectories": [
-    ".context-kit/knowledge-graph",
-  ],
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
     "DISABLE_PROMPT_CACHING": "0",
@@ -12,6 +7,7 @@
     "OTEL_METRIC_EXPORT_INTERVAL": "10000",
     "NODE_ENV": "development"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(npm:*)",
@@ -77,7 +73,15 @@
       "mcp__context-kit__stop_services",
       "mcp__context-kit__service_status",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "Bash(chmod:*)",
+      "Bash(.context-kit/scripts/stop-all:*)",
+      "Bash(./.context-kit/scripts/check-ports.sh:*)",
+      "mcp__tkr-context-kit__get_stats",
+      "mcp__tkr-context-kit__search_entities",
+      "mcp__tkr-context-kit__create_entity",
+      "mcp__tkr-context-kit__create_relation",
+      "mcp__tkr-context-kit__get_component_dependencies"
     ],
     "deny": [
       "Bash(rm -rf /)",
@@ -101,5 +105,9 @@
         ]
       }
     ]
-  }
+  },
+  "defaultMode": "acceptEdits",
+  "additionalDirectories": [
+    ".context-kit/knowledge-graph"
+  ]
 }

@@ -27,7 +27,7 @@ console.log('\nTest 2: Custom configuration');
 try {
   const plugin2 = new TkrLoggingPlugin({
     enabled: true,
-    clientUrl: 'http://localhost:8080/logging.js',
+    clientUrl: 'http://localhost:42080/logging.js',
     chunks: ['app', 'vendor'],
     debug: true
   });

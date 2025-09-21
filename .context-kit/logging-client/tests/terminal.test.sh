@@ -60,7 +60,7 @@ setup_test_env() {
 
 # Start a mock logging server for testing
 start_mock_server() {
-    local port=42999
+    local port=42099
     local server_log="$TEST_OUTPUT_DIR/mock-server.log"
 
     # Kill any existing mock server
@@ -115,7 +115,7 @@ class LoggingHandler(http.server.BaseHTTPRequestHandler):
         pass  # Suppress default logging
 
 if __name__ == "__main__":
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 42999
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 42099
     with socketserver.TCPServer(("", port), LoggingHandler) as httpd:
         httpd.serve_forever()
 EOF
@@ -243,7 +243,7 @@ test_project_detection() {
     # Set up test configuration
     export TKR_LOG_ENABLED="true"
     export TKR_LOG_PROJECT_ONLY="true"
-    export TKR_LOG_ENDPOINT="http://localhost:42999/api/logs/batch"
+    export TKR_LOG_ENDPOINT="http://localhost:42099/api/logs/batch"
     export TKR_LOG_DEBUG="false"
 
     # Source the shell script in a subshell to test functions

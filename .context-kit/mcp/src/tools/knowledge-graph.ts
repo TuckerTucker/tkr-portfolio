@@ -373,6 +373,21 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('search_entities', async (args) => {
     const { query, limit = 20 } = args;
+
+    // Handle wildcard queries by getting all entities
+    if (query === '*' || query === '') {
+      const allEntities = kg.getAllEntities();
+      const limitedResults = allEntities.slice(0, limit);
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `Search results for "${query}" (showing ${limitedResults.length} of ${allEntities.length} total):\n${JSON.stringify(limitedResults, null, 2)}`
+          }
+        ]
+      };
+    }
+
     const results = kg.search(query);
     return {
       content: [

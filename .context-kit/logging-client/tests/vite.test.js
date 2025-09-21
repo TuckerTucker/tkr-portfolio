@@ -26,7 +26,7 @@ const TEST_CONFIG = {
   vite: {
     root: path.join(__dirname, 'temp'),
     server: {
-      port: 42997,
+      port: 42097,
       host: 'localhost'
     },
     logLevel: 'silent'

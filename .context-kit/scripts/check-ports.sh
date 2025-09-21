@@ -84,11 +84,7 @@ fi
 if [[ -n "$YAML_FILE" ]] && [[ -f "$YAML_FILE" ]]; then
     if command -v yq >/dev/null 2>&1; then
         # Extract ports from current _context-kit.yml structure
-        YAML_PORTS=$(yq eval '.ops.ports | to_entries | .[].value' "$YAML_FILE" 2>/dev/null | grep -E '^[0-9]+$' || true)
-        if [[ -z "$YAML_PORTS" ]]; then
-            # Try alternative structure paths
-            YAML_PORTS=$(yq eval '.struct.**.port' "$YAML_FILE" 2>/dev/null | grep -E '^[0-9]+$' || true)
-        fi
+        YAML_PORTS=$(yq eval '.ops.port_allocation | to_entries | .[].value' "$YAML_FILE" 2>/dev/null || true)
         if [[ -n "$YAML_PORTS" ]]; then
             PORTS_TO_CHECK=()
             while IFS= read -r port; do

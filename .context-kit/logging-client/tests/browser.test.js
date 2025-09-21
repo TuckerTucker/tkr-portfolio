@@ -26,7 +26,7 @@ const TEST_CONFIG = {
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   },
   server: {
-    port: 42998,
+    port: 42098,
     timeout: 5000
   },
   performance: {
@@ -35,7 +35,7 @@ const TEST_CONFIG = {
     maxMemoryMB: 10
   },
   logging: {
-    endpoint: 'http://localhost:42998/api/logs/batch',
+    endpoint: 'http://localhost:42098/api/logs/batch',
     batchSize: 3,
     flushInterval: 1000
   }
@@ -425,7 +425,7 @@ async function testPerformanceMonitoring() {
   // Test performance threshold enforcement
   await page.evaluate(() => {
     window.TkrLogging.init({
-      endpoint: 'http://localhost:42998/api/logs/batch',
+      endpoint: 'http://localhost:42098/api/logs/batch',
       performanceThreshold: 0.1 // Very low threshold
     });
   });
