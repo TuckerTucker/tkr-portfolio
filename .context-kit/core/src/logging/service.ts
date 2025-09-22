@@ -703,11 +703,12 @@ export class LoggingService {
             entry.id,
             entry.timestamp,
             entry.level,
-            entry.message,
             entry.service,
-            entry.source,
-            JSON.stringify(entry.metadata),
-            entry.indexed_content
+            entry.message,
+            JSON.stringify(entry.metadata || {}),
+            process.pid.toString(),
+            entry.session?.sessionId || null,
+            entry.trace?.traceId || null
           );
         }
       });

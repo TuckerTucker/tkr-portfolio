@@ -83,14 +83,14 @@ export class ProjectKitMCPServer {
       // Initialize core services with database connection
       this.knowledgeGraph = new KnowledgeGraph(this.dbConnection);
 
-      // Skip LoggingService initialization to prevent database schema issues
-      // this.loggingService = new LoggingService(this.dbConnection, {
-      //   batchInterval: 0, // Disable batch flushing
-      //   flushInterval: 0, // Disable periodic flushing
-      //   enableAnalytics: false, // Disable analytics to reduce database writes
-      //   maxLogEntries: 0 // Don't persist logs to database
-      // });
-      this.loggingService = undefined;
+      // Initialize LoggingService with MCP-optimized configuration
+      this.loggingService = new LoggingService(this.dbConnection, {
+        serviceName: 'mcp-server',
+        batchInterval: 1000, // Moderate batching for performance
+        flushInterval: 5000, // Regular flushing
+        enableAnalytics: true, // Enable analytics for monitoring
+        maxLogEntries: 10000 // Reasonable limit for MCP context
+      });
 
       // Setup handlers after services are initialized
       this.setupHandlers();
@@ -108,12 +108,12 @@ export class ProjectKitMCPServer {
       const tools = [];
 
       // Add knowledge graph tools - pass core services
-      if (this.knowledgeGraph) {
+      if (this.knowledgeGraph && this.loggingService) {
         const kgTools = setupKnowledgeGraphTools(
           this.config,
           this.toolHandlers,
           this.knowledgeGraph,
-          this.loggingService // Can be undefined
+          this.loggingService // Now guaranteed to be defined
         );
         tools.push(...kgTools);
       }

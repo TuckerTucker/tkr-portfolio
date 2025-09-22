@@ -393,8 +393,8 @@ export class CommonStatements {
   insertLogEntry(): Database.Statement {
     return this.stmtManager.get('insertLogEntry', `
       INSERT INTO log_entries (
-        id, timestamp, level, message, service, source, metadata, indexed_content
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        id, timestamp, level, service, message, metadata, process_id, session_id, trace_id
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
   }
 

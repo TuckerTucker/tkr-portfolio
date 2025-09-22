@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Automatic terminal logging enablement for Context-Kit
+# This script attempts to add logging to the current shell
+
+CONTEXT_KIT_LOGGER="$(dirname "$0")/../logging-client/tkr-logger.sh"
+
+if [[ -f "$CONTEXT_KIT_LOGGER" ]] && [[ "$PWD" == *"tkr-project-kit"* ]]; then
+    # Attempt to source in current shell context
+    if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$ZSH_VERSION" ]]; then
+        # Script is being sourced - safe to enable logging
+        source "$CONTEXT_KIT_LOGGER"
+        echo "✅ Terminal logging auto-enabled"
+    else
+        # Script is being executed - provide instructions
+        echo "To enable terminal logging, run:"
+        echo "source $(dirname "$0")/enable-terminal-logging"
+    fi
+else
+    echo "⚠️ Auto-logging only available in tkr-project-kit project directory"
+fi

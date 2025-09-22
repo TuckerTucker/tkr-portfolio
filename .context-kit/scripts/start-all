@@ -128,20 +128,32 @@ setup_terminal_logging() {
 
     if [[ -f "$terminal_logger" ]]; then
         log_debug "Setting up terminal logging..."
-        # Source terminal logging for this shell session, ignoring color variable conflicts
-        if source "$terminal_logger" 2>/dev/null; then
+
+        # Try to source terminal logging with proper variable isolation
+        (
+            # Run in subshell to avoid variable conflicts
+            unset RED GREEN YELLOW BLUE PURPLE CYAN WHITE NC 2>/dev/null || true
+            if source "$terminal_logger" 2>/dev/null; then
+                # Export the functions to parent shell if possible
+                export -f tkr_log tkr_info tkr_warn tkr_error tkr_debug 2>/dev/null || true
+            fi
+        ) && {
             log_info "Terminal logging enabled - commands will be automatically captured"
-        else
-            log_debug "Failed to source terminal logging (likely due to variable conflicts)"
-        fi
+            return 0
+        }
+
+        log_debug "Failed to source terminal logging in current session (variable conflicts)"
+        return 1
     else
         log_debug "Terminal logging not available at: $terminal_logger"
+        return 1
     fi
 }
 
 setup_parent_shell_logging() {
     local terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger.sh"
     local enable_script="${CONTEXT_KIT_DIR}/scripts/enable-terminal-logging"
+    local auto_enable_script="${CONTEXT_KIT_DIR}/scripts/auto-enable-logging"
 
     if [[ -f "$terminal_logger" ]]; then
         # Create a convenient enable script
@@ -156,12 +168,47 @@ echo "📊 View logs at: http://localhost:42001"
 EOF
         chmod +x "$enable_script"
 
+        # Create auto-enable script that tries to source automatically
+        cat > "$auto_enable_script" << 'EOF'
+#!/usr/bin/env bash
+# Automatic terminal logging enablement for Context-Kit
+# This script attempts to add logging to the current shell
+
+CONTEXT_KIT_LOGGER="$(dirname "$0")/../logging-client/tkr-logger.sh"
+
+if [[ -f "$CONTEXT_KIT_LOGGER" ]] && [[ "$PWD" == *"tkr-project-kit"* ]]; then
+    # Attempt to source in current shell context
+    if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$ZSH_VERSION" ]]; then
+        # Script is being sourced - safe to enable logging
+        source "$CONTEXT_KIT_LOGGER"
+        echo "✅ Terminal logging auto-enabled"
+    else
+        # Script is being executed - provide instructions
+        echo "To enable terminal logging, run:"
+        echo "source $(dirname "$0")/enable-terminal-logging"
+    fi
+else
+    echo "⚠️ Auto-logging only available in tkr-project-kit project directory"
+fi
+EOF
+        chmod +x "$auto_enable_script"
+
         echo
-        log_info "To enable terminal logging in your shell, run:"
+        # Try to auto-enable if we're in the right context
+        if [[ "$0" == *"start-all"* ]] && [[ -n "${BASH_SOURCE[0]:-$ZSH_NAME}" ]]; then
+            log_info "Attempting to auto-enable terminal logging..."
+            if source "$enable_script" 2>/dev/null; then
+                log_success "✅ Terminal logging auto-enabled for this session!"
+            else
+                log_warning "Auto-enable failed - manual setup required"
+            fi
+        fi
+
+        log_info "Terminal logging options:"
         echo
-        echo -e "${GREEN}source ${enable_script}${NC}"
-        echo
-        echo -e "${CYAN}Or manually:${NC} source ${terminal_logger}"
+        echo -e "  ${GREEN}Automatic:${NC} source ${auto_enable_script}"
+        echo -e "  ${GREEN}Manual:${NC}    source ${enable_script}"
+        echo -e "  ${CYAN}Direct:${NC}    source ${terminal_logger}"
         echo
         echo -e "${YELLOW}Terminal logging will capture commands and send them to the dashboard${NC}"
     fi
@@ -526,8 +573,8 @@ main() {
     # Setup
     setup_directories
 
-    # Setup terminal logging if available
-    setup_terminal_logging
+    # Setup terminal logging if available (non-fatal)
+    setup_terminal_logging || true
 
     # Handle special modes
     if [[ "$show_status" == "true" ]]; then

@@ -53,10 +53,23 @@ export function setupScriptExecutionTools(
       inputSchema: {
         type: 'object',
         properties: {
-          ports: { 
-            type: 'array', 
+          ports: {
+            type: 'array',
             items: { type: 'number' },
-            description: 'Specific ports to check (optional)' 
+            description: 'Specific ports to check (optional)'
+          }
+        }
+      }
+    },
+    {
+      name: 'enable_terminal_logging',
+      description: 'Enable terminal logging for the current shell session',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          auto_source: {
+            type: 'boolean',
+            description: 'Generate a script that can be sourced to enable logging (default: true)'
           }
         }
       }
@@ -133,10 +146,10 @@ export function setupScriptExecutionTools(
 
   toolHandlers.set('check_ports', async (args) => {
     const { ports = [42001, 42003, 42005, 42007, 42009] } = args;
-    
+
     try {
       const portStatus = await checkPorts(ports);
-      
+
       let output = 'Port availability (42xxx range):\n\n';
       portStatus.forEach(({ port, available, process }) => {
         output += `Port ${port}: ${available ? '✅ Available' : '❌ In use'}\n`;
@@ -159,6 +172,32 @@ export function setupScriptExecutionTools(
           {
             type: 'text',
             text: `Failed to check ports: ${error instanceof Error ? error.message : String(error)}`
+          }
+        ]
+      };
+    }
+  });
+
+  toolHandlers.set('enable_terminal_logging', async (args) => {
+    const { auto_source = true } = args;
+
+    try {
+      const result = await enableTerminalLogging(projectRoot, auto_source);
+
+      return {
+        content: [
+          {
+            type: 'text',
+            text: result.message
+          }
+        ]
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `Failed to enable terminal logging: ${error instanceof Error ? error.message : String(error)}`
           }
         ]
       };
@@ -280,23 +319,23 @@ function checkSinglePort(port: number): Promise<{
 }> {
   return new Promise((resolve) => {
     const { spawn } = require('child_process');
-    
+
     // Use lsof to check if port is in use (Unix/macOS)
     const child = spawn('lsof', ['-i', `:${port}`], { stdio: 'pipe' });
-    
+
     let output = '';
-    
+
     child.stdout?.on('data', (data: Buffer) => {
       output += data.toString();
     });
-    
+
     child.on('close', (code: number) => {
       if (code === 0 && output.trim()) {
         // Port is in use
         const lines = output.split('\n');
         const processLine = lines[1]; // First data line after header
         const process = processLine ? processLine.split(/\s+/)[0] : 'Unknown process';
-        
+
         resolve({
           port,
           available: false,
@@ -310,7 +349,7 @@ function checkSinglePort(port: number): Promise<{
         });
       }
     });
-    
+
     child.on('error', () => {
       // If lsof fails, assume port is available
       resolve({
@@ -319,4 +358,62 @@ function checkSinglePort(port: number): Promise<{
       });
     });
   });
+}
+
+async function enableTerminalLogging(projectRoot: string, autoSource: boolean): Promise<{
+  message: string;
+  success: boolean;
+}> {
+  try {
+    const loggerScript = join(projectRoot, '.context-kit/logging-client/tkr-logger.sh');
+    const enableScript = join(projectRoot, '.context-kit/scripts/enable-terminal-logging');
+
+    // Check if the logger script exists
+    if (!require('fs').existsSync(loggerScript)) {
+      return {
+        message: `Terminal logging script not found at: ${loggerScript}`,
+        success: false
+      };
+    }
+
+    if (autoSource) {
+      // Create or update the enable script
+      const scriptContent = `#!/usr/bin/env bash
+# Auto-generated helper script to enable terminal logging
+# Source this script to enable terminal logging in your shell
+
+source "${loggerScript}"
+echo "✅ Terminal logging enabled - commands will be captured and sent to dashboard"
+echo "📊 View logs at: http://localhost:42001"
+`;
+
+      require('fs').writeFileSync(enableScript, scriptContent, { mode: 0o755 });
+
+      return {
+        message: `Terminal logging can be enabled by running:
+
+source ${enableScript}
+
+Or manually:
+source ${loggerScript}
+
+The script has been updated and is ready to use.`,
+        success: true
+      };
+    } else {
+      return {
+        message: `To enable terminal logging manually, run:
+
+source ${loggerScript}
+
+This will enable automatic command capture for the current shell session.`,
+        success: true
+      };
+    }
+  } catch (error) {
+    return {
+      message: `Error setting up terminal logging: ${error instanceof Error ? error.message : String(error)}`,
+      success: false
+    };
+  }
 }

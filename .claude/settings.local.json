@@ -83,7 +83,8 @@
       "Bash(touch:*)",
       "Bash(tsx:*)",
       "Bash(npx tsx:*)",
-      "Bash(claude mcp:*)"
+      "Bash(claude mcp:*)",
+      "Bash(gtimeout:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

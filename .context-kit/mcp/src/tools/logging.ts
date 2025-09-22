@@ -111,6 +111,50 @@ export function setupLoggingTools(
   // Use the provided core logging service
   const logger = loggingService;
 
+  // Add defensive check for logger methods
+  const safeLogger = {
+    debug: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof logger.debug === 'function') {
+          return logger.debug(message, metadata);
+        }
+        console.log('[DEBUG]', message, metadata);
+      } catch (error) {
+        console.log('[DEBUG ERROR]', message, metadata, error);
+      }
+    },
+    info: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof logger.info === 'function') {
+          return logger.info(message, metadata);
+        }
+        console.log('[INFO]', message, metadata);
+      } catch (error) {
+        console.log('[INFO ERROR]', message, metadata, error);
+      }
+    },
+    warn: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof logger.warn === 'function') {
+          return logger.warn(message, metadata);
+        }
+        console.warn('[WARN]', message, metadata);
+      } catch (error) {
+        console.log('[WARN ERROR]', message, metadata, error);
+      }
+    },
+    error: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof logger.error === 'function') {
+          return logger.error(message, metadata);
+        }
+        console.error('[ERROR]', message, metadata);
+      } catch (error) {
+        console.log('[ERROR ERROR]', message, metadata, error);
+      }
+    }
+  };
+
   const tools: ToolDefinition[] = [
     // Query logs with filters
     {
@@ -295,13 +339,13 @@ export function setupLoggingTools(
   // Register tool handlers
   toolHandlers.set('log_query', async (args: any) => {
     const params = logQuerySchema.parse(args);
-    logger.debug('Querying logs', { filters: params });
+    safeLogger.debug('Querying logs', { filters: params });
 
     try {
       const coreFilters = convertToLogFilters(params);
       const logs = await logger.getLogs(coreFilters);
 
-      logger.info('Log query completed', { resultCount: logs.length });
+      safeLogger.info('Log query completed', { resultCount: logs.length });
       return {
         content: [
           {
@@ -315,14 +359,14 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Log query failed', { error: error.message });
+      safeLogger.error('Log query failed', { error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('log_search', async (args: any) => {
     const parsedParams = logSearchSchema.parse(args);
-    logger.debug('Searching logs', { query: parsedParams.query });
+    safeLogger.debug('Searching logs', { query: parsedParams.query });
 
     try {
       // Convert to core search query
@@ -340,7 +384,7 @@ export function setupLoggingTools(
 
       const results = await logger.searchLogs(searchQuery);
 
-      logger.info('Log search completed', {
+      safeLogger.info('Log search completed', {
         query: parsedParams.query,
         resultCount: results.length
       });
@@ -358,7 +402,7 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Log search failed', {
+      safeLogger.error('Log search failed', {
         query: parsedParams.query,
         error: error.message
       });
@@ -368,7 +412,7 @@ export function setupLoggingTools(
 
   toolHandlers.set('log_trace', async (args: any) => {
     const { traceId } = logTraceSchema.parse(args);
-    logger.debug('Tracing request by trace ID', { traceId });
+    safeLogger.debug('Tracing request by trace ID', { traceId });
 
     try {
       const trace = await logger.searchLogs({
@@ -384,7 +428,7 @@ export function setupLoggingTools(
           : 0
       }));
 
-      logger.info('Request trace completed', { traceId, entryCount: trace.length });
+      safeLogger.info('Request trace completed', { traceId, entryCount: trace.length });
       return {
         content: [
           {
@@ -401,17 +445,17 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Request trace failed', { traceId, error: error.message });
+      safeLogger.error('Request trace failed', { traceId, error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('service_health', async (args: any) => {
     const params = serviceHealthSchema.parse(args);
-    logger.debug('Getting service health metrics', params);
+    safeLogger.debug('Getting service health metrics', params);
 
     // For now, return a simplified health check
-    logger.warn('Service health metrics not fully implemented with core module');
+    safeLogger.warn('Service health metrics not fully implemented with core module');
 
     return {
       content: [
@@ -430,10 +474,10 @@ export function setupLoggingTools(
 
   toolHandlers.set('error_trends', async (args: any) => {
     const { timeWindow } = errorTrendsSchema.parse(args);
-    logger.debug('Getting error trends', { timeWindow });
+    safeLogger.debug('Getting error trends', { timeWindow });
 
     // For now, return a simplified response
-    logger.warn('Error trends analysis not fully implemented with core module');
+    safeLogger.warn('Error trends analysis not fully implemented with core module');
 
     return {
       content: [
@@ -451,7 +495,7 @@ export function setupLoggingTools(
 
   toolHandlers.set('get_recent_errors', async (args: any) => {
     const { limit } = recentErrorsSchema.parse(args);
-    logger.debug('Getting recent errors', { limit });
+    safeLogger.debug('Getting recent errors', { limit });
 
     try {
       const errors = await logger.getLogs({
@@ -460,7 +504,7 @@ export function setupLoggingTools(
         timeRange: { start: Date.now() - 3600000, end: Date.now() }
       }, limit || 20);
 
-      logger.info('Recent errors retrieved', { count: errors.length });
+      safeLogger.info('Recent errors retrieved', { count: errors.length });
       return {
         content: [
           {
@@ -474,19 +518,19 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Failed to get recent errors', { error: error.message });
+      safeLogger.error('Failed to get recent errors', { error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('get_log_services', async () => {
-    logger.debug('Getting available log services');
+    safeLogger.debug('Getting available log services');
 
     try {
       // For now, return a basic set of known services
       const services = ['mcp-server', 'dashboard', 'knowledge-graph', 'logging-client'];
 
-      logger.info('Log services retrieved', { count: services.length });
+      safeLogger.info('Log services retrieved', { count: services.length });
       return {
         content: [
           {
@@ -500,13 +544,13 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Failed to get log services', { error: error.message });
+      safeLogger.error('Failed to get log services', { error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('log_stats', async () => {
-    logger.debug('Getting log statistics');
+    safeLogger.debug('Getting log statistics');
 
     try {
       // Get basic stats from core logging service
@@ -521,7 +565,7 @@ export function setupLoggingTools(
         note: 'Detailed statistics not yet implemented with core module'
       };
 
-      logger.info('Log statistics retrieved', stats);
+      safeLogger.info('Log statistics retrieved', stats);
       return {
         content: [
           {
@@ -531,17 +575,17 @@ export function setupLoggingTools(
         ]
       };
     } catch (error) {
-      logger.error('Failed to get log statistics', { error: error.message });
+      safeLogger.error('Failed to get log statistics', { error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('log_cleanup', async (args: any) => {
     const { retentionDays } = logCleanupSchema.parse(args);
-    logger.debug('Log cleanup requested', { retentionDays });
+    safeLogger.debug('Log cleanup requested', { retentionDays });
 
     // For now, return a message that cleanup is not implemented
-    logger.warn('Log cleanup not yet implemented with core module');
+    safeLogger.warn('Log cleanup not yet implemented with core module');
 
     return {
       content: [

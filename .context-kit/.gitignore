@@ -66,6 +66,9 @@ temp/
 
 # Database files
 *.db
+*.db-shm
+*.db-wal
+
 *.sqlite
 *.sqlite3
 
@@ -97,6 +100,8 @@ mcp/dist/
 # Knowledge graph data
 knowledge-graph/*.db
 mcp/*.db
+
+
 
 # Development and debug files
 debug.log

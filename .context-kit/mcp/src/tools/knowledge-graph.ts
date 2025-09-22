@@ -18,6 +18,50 @@ export function setupKnowledgeGraphTools(
   const kg = knowledgeGraph;
   const logger = loggingService;
 
+  // Add defensive check for logger methods
+  const safeLogger = {
+    debug: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof safeLogger.debug === 'function') {
+          return safeLogger.debug(message, metadata);
+        }
+        console.log('[DEBUG]', message, metadata);
+      } catch (error) {
+        console.log('[DEBUG ERROR]', message, metadata, error);
+      }
+    },
+    info: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof safeLogger.info === 'function') {
+          return safeLogger.info(message, metadata);
+        }
+        console.log('[INFO]', message, metadata);
+      } catch (error) {
+        console.log('[INFO ERROR]', message, metadata, error);
+      }
+    },
+    warn: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof safeLogger.warn === 'function') {
+          return safeLogger.warn(message, metadata);
+        }
+        console.warn('[WARN]', message, metadata);
+      } catch (error) {
+        console.log('[WARN ERROR]', message, metadata, error);
+      }
+    },
+    error: (message: string, metadata?: any) => {
+      try {
+        if (logger && typeof safeLogger.error === 'function') {
+          return safeLogger.error(message, metadata);
+        }
+        console.error('[ERROR]', message, metadata);
+      } catch (error) {
+        console.log('[ERROR ERROR]', message, metadata, error);
+      }
+    }
+  };
+
   const tools: ToolDefinition[] = [
     {
       name: 'create_entity',
@@ -231,7 +275,7 @@ export function setupKnowledgeGraphTools(
   // Register tool handlers
   toolHandlers.set('create_entity', async (args) => {
     const { type, name, data } = args;
-    logger.debug('Creating entity', { type, name });
+    safeLogger.debug('Creating entity', { type, name });
 
     const entity = await kg.createEntity({
       type,
@@ -243,7 +287,7 @@ export function setupKnowledgeGraphTools(
       }
     });
 
-    logger.info('Entity created', { entityId: entity.id, type, name });
+    safeLogger.info('Entity created', { entityId: entity.id, type, name });
     return {
       content: [
         {
@@ -256,7 +300,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('create_relation', async (args) => {
     const { fromId, toId, type, properties = {} } = args;
-    logger.debug('Creating relation', { fromId, toId, type });
+    safeLogger.debug('Creating relation', { fromId, toId, type });
 
     const relation = await kg.createRelation({
       from_id: fromId,
@@ -265,7 +309,7 @@ export function setupKnowledgeGraphTools(
       properties
     });
 
-    logger.info('Relation created', { relationId: relation.id, fromId, toId, type });
+    safeLogger.info('Relation created', { relationId: relation.id, fromId, toId, type });
     return {
       content: [
         {
@@ -278,7 +322,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('analyze_state_mutations', async (args) => {
     const { storeName } = args;
-    logger.warn('State mutation analysis not yet implemented with core module', { storeName });
+    safeLogger.warn('State mutation analysis not yet implemented with core module', { storeName });
     // TODO: Implement with core module patterns analysis
     return {
       content: [
@@ -292,7 +336,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('trace_workflow', async (args) => {
     const { workflowName, format = 'tree' } = args;
-    logger.warn('Workflow tracing not yet implemented with core module', { workflowName });
+    safeLogger.warn('Workflow tracing not yet implemented with core module', { workflowName });
     // TODO: Implement with core module relation traversal
     return {
       content: [
@@ -306,7 +350,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('trace_user_flow', async (args) => {
     const { interaction } = args;
-    logger.warn('User flow tracing not yet implemented with core module', { interaction });
+    safeLogger.warn('User flow tracing not yet implemented with core module', { interaction });
     // TODO: Implement with core module relation traversal
     return {
       content: [
@@ -320,7 +364,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('analyze_impact', async (args) => {
     const { entityName, changeType = 'modify', maxDepth } = args;
-    logger.warn('Impact analysis not yet implemented with core module', { entityName, changeType });
+    safeLogger.warn('Impact analysis not yet implemented with core module', { entityName, changeType });
     // TODO: Implement with core module relation analysis
     return {
       content: [
@@ -334,7 +378,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('find_patterns', async (args) => {
     const { componentName } = args;
-    logger.warn('Pattern finding not yet implemented with core module', { componentName });
+    safeLogger.warn('Pattern finding not yet implemented with core module', { componentName });
     // TODO: Implement with core module pattern analysis
     return {
       content: [
@@ -348,7 +392,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('generate_code', async (args) => {
     const { spec } = args;
-    logger.warn('Code generation not yet implemented with core module', { spec });
+    safeLogger.warn('Code generation not yet implemented with core module', { spec });
     // TODO: Implement with core module pattern generation
     return {
       content: [
@@ -362,7 +406,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('validate_consistency', async (args) => {
     const { workflowName } = args;
-    logger.warn('Workflow validation not yet implemented with core module', { workflowName });
+    safeLogger.warn('Workflow validation not yet implemented with core module', { workflowName });
     // TODO: Implement with core module validation capabilities
     return {
       content: [
@@ -376,7 +420,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('search_entities', async (args) => {
     const { query, limit = 20 } = args;
-    logger.debug('Searching entities', { query, limit });
+    safeLogger.debug('Searching entities', { query, limit });
 
     try {
       let results: Entity[] = [];
@@ -392,7 +436,7 @@ export function setupKnowledgeGraphTools(
         results = entities.filter(entity => entity !== null) as Entity[];
       }
 
-      logger.info('Entity search completed', { query, resultCount: results.length });
+      safeLogger.info('Entity search completed', { query, resultCount: results.length });
       return {
         content: [
           {
@@ -402,14 +446,14 @@ export function setupKnowledgeGraphTools(
         ]
       };
     } catch (error) {
-      logger.error('Entity search failed', { query, error: error.message });
+      safeLogger.error('Entity search failed', { query, error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('get_component_dependencies', async (args) => {
     const { componentName } = args;
-    logger.warn('Component dependency analysis not yet implemented with core module', { componentName });
+    safeLogger.warn('Component dependency analysis not yet implemented with core module', { componentName });
     // TODO: Implement with core module relation traversal
     return {
       content: [
@@ -422,7 +466,7 @@ export function setupKnowledgeGraphTools(
   });
 
   toolHandlers.set('analyze_state_patterns', async (args) => {
-    logger.warn('State pattern analysis not yet implemented with core module');
+    safeLogger.warn('State pattern analysis not yet implemented with core module');
     // TODO: Implement with core module pattern analysis
     return {
       content: [
@@ -436,7 +480,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('generate_test_scenarios', async (args) => {
     const { componentName } = args;
-    logger.warn('Test scenario generation not yet implemented with core module', { componentName });
+    safeLogger.warn('Test scenario generation not yet implemented with core module', { componentName });
     // TODO: Implement with core module test generation
     return {
       content: [
@@ -450,7 +494,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('analyze_project', async (args) => {
     const { patterns = ['**/*.ts', '**/*.tsx'], includeTests = false } = args;
-    logger.warn('Project analysis not yet implemented with core module', { patterns, includeTests });
+    safeLogger.warn('Project analysis not yet implemented with core module', { patterns, includeTests });
     // TODO: Implement with core module static analysis capabilities
     return {
       content: [
@@ -464,7 +508,7 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('analyze_storybook', async (args) => {
     const { storiesPattern } = args;
-    logger.warn('Storybook analysis not yet implemented with core module', { storiesPattern });
+    safeLogger.warn('Storybook analysis not yet implemented with core module', { storiesPattern });
     // TODO: Implement with core module static analysis capabilities
     return {
       content: [
@@ -478,12 +522,12 @@ export function setupKnowledgeGraphTools(
 
   toolHandlers.set('query', async (args) => {
     const { sql, params = [] } = args;
-    logger.debug('Executing custom SQL query', { sql, paramCount: params.length });
+    safeLogger.debug('Executing custom SQL query', { sql, paramCount: params.length });
 
     try {
       // Note: Raw SQL queries should be used carefully - accessing via db connection
       const results = (kg as any).db.query(sql, params);
-      logger.info('Custom query executed', { sql, resultCount: results.length });
+      safeLogger.info('Custom query executed', { sql, resultCount: results.length });
 
       return {
         content: [
@@ -494,17 +538,17 @@ export function setupKnowledgeGraphTools(
         ]
       };
     } catch (error) {
-      logger.error('Custom query failed', { sql, error: error.message });
+      safeLogger.error('Custom query failed', { sql, error: error.message });
       throw error;
     }
   });
 
   toolHandlers.set('get_stats', async (args) => {
-    logger.debug('Getting knowledge graph statistics');
+    safeLogger.debug('Getting knowledge graph statistics');
 
     try {
       const stats = await kg.getStats();
-      logger.info('Retrieved knowledge graph statistics', stats);
+      safeLogger.info('Retrieved knowledge graph statistics', stats);
 
       return {
         content: [
@@ -515,7 +559,7 @@ export function setupKnowledgeGraphTools(
         ]
       };
     } catch (error) {
-      logger.error('Failed to get knowledge graph statistics', { error: error.message });
+      safeLogger.error('Failed to get knowledge graph statistics', { error: error.message });
       throw error;
     }
   });
