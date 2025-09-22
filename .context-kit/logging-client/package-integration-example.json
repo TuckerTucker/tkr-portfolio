@@ -1,7 +1,0 @@
-{
-  "name": "my-project",
-  "scripts": {
-    "start": "node -r ./.context-kit/logging-client/auto-init.js index.js",
-    "dev": "node -r ./.context-kit/logging-client/auto-init.js server.js"
-  }
-}
