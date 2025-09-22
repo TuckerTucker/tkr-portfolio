@@ -12,7 +12,7 @@
     "dev:portfolio": "vite",
     "build:portfolio": "vite build",
     "deploy:portfolio": "npm run clean && npm run build:storybook && npm run build:portfolio && gh-pages -d dist",
-    "dev:storybook": "storybook dev -p 6006",
+    "dev:storybook": "storybook dev -p 42006",
     "build:storybook": "storybook build",
     "deploy:storybook": "npm run build:storybook && ./deploy-storybook"
   },

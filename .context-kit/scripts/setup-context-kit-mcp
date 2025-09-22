@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# Setup script for Context Kit MCP server with Claude Code
+# This script installs and configures the comprehensive context kit MCP server locally
+
+set -e
+
+# Source shared utilities - utils.sh is now self-locating
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/utils.sh"
+
+# Initialize project environment
+if ! init_project_env; then
+    print_status "error" "Failed to initialize project environment"
+    exit 1
+fi
+
+print_status "info" "🧠 Setting up Context Kit MCP Server for Claude Code"
+echo "======================================================="
+
+# Use centralized path management - MCP server is at .context-kit/mcp/
+MCP_DIR="$PROJECT_ROOT/.context-kit/mcp"
+
+# Check if MCP server directory exists
+if [ ! -d "$MCP_DIR" ]; then
+    print_status "error" "❌ Error: MCP server directory not found at $MCP_DIR"
+    debug_paths
+    exit 1
+fi
+
+echo "📁 Found MCP server directory at: $MCP_DIR"
+
+# Navigate to the MCP server directory
+cd "$MCP_DIR"
+
+# Check if package.json exists
+if [ ! -f "package.json" ]; then
+    echo "❌ Error: package.json not found in $MCP_DIR"
+    exit 1
+fi
+
+# Install dependencies
+echo "📦 Installing dependencies..."
+npm install
+
+# Build the TypeScript project
+echo "🔨 Building TypeScript project..."
+npm run build
+
+# Check if build was successful
+if [ ! -f "dist/server.js" ]; then
+    echo "❌ Error: Build failed - dist/server.js not found"
+    exit 1
+fi
+
+echo "✅ Build successful"
+
+# Create memory directory if it doesn't exist
+MEMORY_DIR="$HOME/.claude-memory"
+if [ ! -d "$MEMORY_DIR" ]; then
+    echo "📂 Creating memory directory at $MEMORY_DIR"
+    mkdir -p "$MEMORY_DIR"
+fi
+
+# Configure the MCP server with Claude Code
+echo "⚙️  Configuring MCP server with Claude Code..."
+
+# Remove existing context-kit MCP server if it exists
+if claude mcp get tkr-context-kit >/dev/null 2>&1; then
+    echo "🔄 Removing existing tkr-context-kit MCP server..."
+    claude mcp remove tkr-context-kit
+fi
+
+# Add the context kit MCP server
+echo "➕ Adding tkr-context-kit MCP server..."
+claude mcp add tkr-context-kit -- npm run mcp-server --prefix="$MCP_DIR"
+
+# Verify the configuration
+echo "🔍 Verifying configuration..."
+if claude mcp get tkr-context-kit >/dev/null 2>&1; then
+    echo "✅ Context Kit MCP server configured successfully!"
+    echo ""
+    echo "📋 Configuration details:"
+    claude mcp get tkr-context-kit
+    echo ""
+    echo "💾 Database location: $MCP_DIR/knowledge-graph.db"
+    echo "🎉 Setup complete! You can now use the context kit in Claude Code."
+    echo ""
+    echo "Available tools:"
+    echo "  • create_entity - Create new entities in the knowledge graph"
+    echo "  • create_relation - Create relationships between entities"
+    echo "  • analyze_state_mutations - Find state mutations for stores"
+    echo "  • trace_workflow - Trace workflow execution paths"
+    echo "  • trace_user_flow - Trace user interaction flows"
+    echo "  • analyze_impact - Analyze impact of changes"
+    echo "  • find_patterns - Find similar patterns across components"
+    echo "  • generate_code - Generate code from patterns"
+    echo "  • validate_consistency - Validate workflow consistency"
+    echo "  • search_entities - Full-text search across the context kit"
+    echo "  • get_component_dependencies - Get component dependency graphs"
+    echo "  • analyze_state_patterns - Analyze state management patterns"
+    echo "  • generate_test_scenarios - Generate test scenarios for components"
+    echo "  • analyze_project - Perform static code analysis"
+    echo "  • analyze_storybook - Analyze Storybook stories and patterns"
+    echo "  • query - Execute custom SQL queries"
+    echo "  • get_stats - Get context kit statistics"
+else
+    echo "❌ Error: Failed to configure tkr-context-kit MCP server"
+    exit 1
+fi

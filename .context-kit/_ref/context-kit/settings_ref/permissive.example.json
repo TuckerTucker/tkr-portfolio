@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
+  "defaultMode": "acceptEdits",
+  "additionalDirectories": [
+    ".context-kit/knowledge-graph",
+    "custom-projects/**"
+  ],
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "DISABLE_PROMPT_CACHING": "0",
+    "MCP_TIMEOUT": "30000",
+    "OTEL_METRIC_EXPORT_INTERVAL": "10000",
+    "NODE_ENV": "development"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(git:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(poetry:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(kubectl:*)",
+      "Bash(terraform:*)",
+      "Bash(make:*)",
+      "Bash(cargo:*)",
+      "Bash(go:*)",
+      "Edit",
+      "Create",
+      "Read",
+      "Write",
+      "Replace",
+      "Delete",
+      "Grep",
+      "Glob",
+      "LS",
+      "WebFetch",
+      "GitCommit",
+      "GitPush",
+      "TaskOutput",
+      "KillTask",
+      "Bash(mkdir:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(search:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Search(pattern:*)",
+      "mcp__context-kit__get_stats",
+      "mcp__context-kit__create_entity",
+      "mcp__context-kit__create_relation",
+      "mcp__context-kit__search_entities",
+      "mcp__context-kit__analyze_state_mutations",
+      "mcp__context-kit__trace_workflow",
+      "mcp__context-kit__trace_user_flow",
+      "mcp__context-kit__analyze_impact",
+      "mcp__context-kit__find_patterns",
+      "mcp__context-kit__generate_code",
+      "mcp__context-kit__validate_consistency",
+      "mcp__context-kit__get_component_dependencies",
+      "mcp__context-kit__analyze_state_patterns",
+      "mcp__context-kit__generate_test_scenarios",
+      "mcp__context-kit__analyze_project",
+      "mcp__context-kit__analyze_storybook",
+      "mcp__context-kit__query",
+      "mcp__context-kit__run_script",
+      "mcp__context-kit__list_available_scripts",
+      "mcp__context-kit__check_ports",
+      "mcp__context-kit__start_dev_server",
+      "mcp__context-kit__build_ui",
+      "mcp__context-kit__run_tests",
+      "mcp__context-kit__stop_services",
+      "mcp__context-kit__service_status",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(sudo rm:*)",
+      "Bash(format:*)",
+      "Bash(dd:*)",
+      "Edit(/etc/**)",
+      "Edit(/usr/**)",
+      "Edit(~/.ssh/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/hooks.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "*.log",
+    "dist/**",
+    "build/**",
+    ".venv/**",
+    "__pycache__/**",
+    "coverage/**",
+    "*.tmp",
+    "*.temp"
+  ]
+}

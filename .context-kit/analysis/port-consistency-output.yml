@@ -1,0 +1,129 @@
+port_consistency_analysis:
+  timestamp: "2025-01-22T15:45:00Z"
+  status: "completed"  # completed | failed | warnings
+
+  current_allocation:
+    total_ports: 6
+    compliant: 6
+    non_compliant: 0
+    conflicts: 1
+
+  port_inventory:
+    allocated:
+      - port: 42001
+        service: "dashboard"
+        status: "compliant"
+        location: ".context-kit/dashboard/package.json"
+        description: "React Vite development server"
+        usage: "Vite dev server for dashboard UI"
+
+      - port: 42003
+        service: "knowledge_graph"
+        status: "compliant"
+        location: ".context-kit/knowledge-graph/src/api/"
+        description: "Knowledge graph HTTP API server"
+        usage: "Backend API and logging endpoints"
+
+      - port: 42006
+        service: "storybook"
+        status: "compliant"
+        location: "package.json"
+        description: "Storybook development server (updated)"
+        usage: "Component documentation and testing"
+
+      - port: 42005
+        service: "logging_service"
+        status: "compliant"
+        location: ".context-kit/_context-kit.yml"
+        description: "Reserved for future logging service"
+        usage: "Centralized log aggregation (future)"
+
+      - port: 42007
+        service: "mcp_tools"
+        status: "compliant"
+        location: ".context-kit/_context-kit.yml"
+        description: "Reserved for future MCP tools"
+        usage: "MCP tooling interfaces (future)"
+
+      - port: 42009
+        service: "auto_logging_monitoring"
+        status: "compliant"
+        location: ".context-kit/_context-kit.yml"
+        description: "Reserved for auto logging monitoring"
+        usage: "Automatic logging monitoring (future)"
+
+  issues_found:
+
+    - type: "port_conflict"
+      port: 42001
+      service: "dashboard"
+      description: "Port 42001 currently in use by running node process"
+      files: ["vite.config.js", ".context-kit/dashboard/package.json"]
+      severity: "high"
+      impact: "Service startup conflicts"
+
+  changes_made:
+    - file: "package.json"
+      type: "port_update"
+      old_port: 6006
+      new_port: 42006
+      service: "storybook"
+      description: "Updated Storybook to use 42xxx port scheme"
+
+  validation:
+    script_run: true
+    script_result: "PASS_WITH_WARNINGS"
+    remaining_conflicts:
+      - port: 42001
+        reason: "Currently in use by running node process (PID 40087)"
+        resolution: "Stop running dashboard service or restart"
+        note: "Configuration is compliant, runtime conflict only"
+
+  recommendations:
+    - "Port consistency achieved - all services now use 42xxx range"
+    - "Stop running services before starting development to avoid conflicts"
+    - "Update documentation to reflect new Storybook port (42006)"
+    - "Consider adding port environment variables for flexible configuration"
+    - "Add port checking to CI/CD pipeline startup scripts"
+    - "YAML configuration now properly integrated with port checking script"
+
+  configuration_summary:
+    compliant_services:
+      dashboard:
+        port: 42001
+        files:
+          - ".context-kit/dashboard/package.json"
+          - "vite.config.js"
+        status: "ACTIVE - correctly configured"
+
+      knowledge_graph:
+        port: 42003
+        files:
+          - ".context-kit/knowledge-graph/src/api/http-server.ts"
+          - ".context-kit/knowledge-graph/src/api/http-server-simple.ts"
+        status: "CONFIGURED - proper 42xxx allocation"
+
+    updated_services:
+      storybook:
+        old_port: 6006
+        new_port: 42006
+        files:
+          - "package.json"
+        status: "UPDATED - now compliant with 42xxx scheme"
+
+  port_allocation_map:
+    42001: "Dashboard (React Vite development server)"
+    42003: "Knowledge Graph (HTTP API and logging)"
+    42006: "Storybook (Component documentation)"
+    42005: "Available (reserved for logging service)"
+    42007: "Available (reserved for MCP tools)"
+    42009: "Available (reserved for auto logging monitoring)"
+
+  next_available_ports:
+    - 42002
+    - 42004
+    - 42005
+    - 42007
+    - 42008
+    - 42009
+    - 42010

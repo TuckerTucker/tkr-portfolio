@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
+  "defaultMode": "reviewEdits",
+  "additionalDirectories": [
+    ".context-kit/knowledge-graph"
+  ],
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "DISABLE_PROMPT_CACHING": "0",
+    "MCP_TIMEOUT": "30000",
+    "NODE_ENV": "development"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install)",
+      "Bash(npm test:*)",
+      "Bash(npm audit fix)",
+      "Bash(git add .)",
+      "Bash(git commit -m:*)",
+      "Bash(git push origin:*)",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(docker build:*)",
+      "Bash(docker run:*)",
+      "Edit(src/**)",
+      "Edit(tests/**)",
+      "Edit(docs/**)",
+      "Edit(.context-kit/**)",
+      "Create(src/**)",
+      "Create(tests/**)",
+      "Read",
+      "Write(src/**)",
+      "Write(tests/**)",
+      "Replace(src/**)",
+      "Grep",
+      "Glob",
+      "LS",
+      "WebFetch(domain:docs.*)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "mcp__context-kit__get_stats",
+      "mcp__context-kit__search_entities",
+      "mcp__context-kit__analyze_project",
+      "mcp__context-kit__query",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Edit(.env)",
+      "Edit(secrets/**)",
+      "Edit(/etc/**)",
+      "Edit(/usr/**)",
+      "Edit(~/.ssh/**)",
+      "WebFetch(domain:*.onion)",
+      "Delete"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/hooks.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "*.log",
+    "dist/**",
+    "build/**",
+    "coverage/**"
+  ]
+}

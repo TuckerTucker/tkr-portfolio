@@ -1,0 +1,256 @@
+{
+  "version": "1.0.0",
+  "description": "Shared interface contracts for parallel logging integration",
+  "endpoints": {
+    "httpEndpoint": "http://localhost:42003/api/logs",
+    "batchEndpoint": "http://localhost:42003/api/logs/batch",
+    "clientScriptUrl": "http://localhost:42003/api/logging-client.js",
+    "healthEndpoint": "http://localhost:42003/health"
+  },
+  "logFormat": {
+    "required": {
+      "level": {
+        "type": "string",
+        "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
+      },
+      "message": {
+        "type": "string",
+        "maxLength": 10000
+      },
+      "service": {
+        "type": "string",
+        "maxLength": 100
+      }
+    },
+    "optional": {
+      "component": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "metadata": {
+        "type": "object",
+        "maxSize": "10KB"
+      },
+      "timestamp": {
+        "type": "number",
+        "description": "Unix timestamp in seconds"
+      },
+      "sessionId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "traceId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    }
+  },
+  "batchFormat": {
+    "logs": {
+      "type": "array",
+      "maxItems": 100,
+      "items": "logFormat"
+    },
+    "metadata": {
+      "batchId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "source": {
+        "type": "string",
+        "enum": ["browser", "terminal", "node", "shell"]
+      }
+    }
+  },
+  "environmentVariables": {
+    "TKR_LOG_ENDPOINT": {
+      "type": "string",
+      "default": "http://localhost:42003/api/logs",
+      "description": "HTTP endpoint for log submission"
+    },
+    "TKR_LOG_LEVEL": {
+      "type": "string",
+      "default": "INFO",
+      "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
+      "description": "Minimum log level to capture"
+    },
+    "TKR_LOG_BATCH_SIZE": {
+      "type": "number",
+      "default": 10,
+      "min": 1,
+      "max": 100,
+      "description": "Number of logs to batch before sending"
+    },
+    "TKR_LOG_FLUSH_INTERVAL": {
+      "type": "number",
+      "default": 5000,
+      "min": 1000,
+      "max": 60000,
+      "description": "Milliseconds between batch flushes"
+    },
+    "TKR_LOG_ENABLED": {
+      "type": "boolean",
+      "default": true,
+      "description": "Master switch for logging"
+    },
+    "TKR_LOG_PROJECT_ONLY": {
+      "type": "boolean",
+      "default": true,
+      "description": "Only log in directories with .context-kit"
+    }
+  },
+  "browserAPI": {
+    "global": "TkrLogging",
+    "methods": {
+      "init": {
+        "params": {
+          "config": {
+            "endpoint": "string",
+            "batchSize": "number",
+            "flushInterval": "number",
+            "captureErrors": "boolean",
+            "sessionTracking": "boolean"
+          }
+        },
+        "returns": "void"
+      },
+      "log": {
+        "params": {
+          "level": "string",
+          "message": "string",
+          "metadata": "object"
+        },
+        "returns": "void"
+      },
+      "flush": {
+        "params": {},
+        "returns": "Promise<void>"
+      },
+      "disable": {
+        "params": {},
+        "returns": "void"
+      },
+      "enable": {
+        "params": {},
+        "returns": "void"
+      }
+    }
+  },
+  "shellAPI": {
+    "functions": {
+      "tkr_should_log": {
+        "description": "Check if logging should be active",
+        "returns": "boolean (0 or 1 exit code)"
+      },
+      "tkr_send_log": {
+        "params": ["level", "message", "service"],
+        "description": "Send a single log entry"
+      },
+      "tkr_log_pipe": {
+        "params": ["service"],
+        "description": "Pipe command output through logging"
+      },
+      "tkr_prompt_indicator": {
+        "description": "Return indicator for prompt if logging active",
+        "returns": "string (emoji or empty)"
+      }
+    }
+  },
+  "vitePluginAPI": {
+    "name": "tkr-logging",
+    "config": {
+      "enabled": {
+        "type": "boolean",
+        "default": "process.env.NODE_ENV === 'development'"
+      },
+      "clientUrl": {
+        "type": "string",
+        "default": "http://localhost:42003/api/logging-client.js"
+      },
+      "injectPosition": {
+        "type": "string",
+        "enum": ["head-start", "head-end", "body-start", "body-end"],
+        "default": "head-end"
+      }
+    }
+  },
+  "webpackPluginAPI": {
+    "name": "TkrLoggingPlugin",
+    "config": {
+      "enabled": {
+        "type": "boolean",
+        "default": "process.env.NODE_ENV === 'development'"
+      },
+      "clientUrl": {
+        "type": "string",
+        "default": "http://localhost:42003/api/logging-client.js"
+      },
+      "chunks": {
+        "type": "array",
+        "default": ["main"],
+        "description": "Which chunks to inject logging into"
+      }
+    }
+  },
+  "nodeOptionsAPI": {
+    "require": ".context-kit/logging-client/auto-init-enhanced.js",
+    "config": {
+      "processFilter": {
+        "type": "array",
+        "default": ["npm", "yarn", "node", "tsx", "ts-node"],
+        "description": "Process names to enable logging for"
+      },
+      "skipPatterns": {
+        "type": "array",
+        "default": ["node_modules", ".git", "dist", "build"],
+        "description": "Path patterns to skip logging"
+      }
+    }
+  },
+  "territories": {
+    "agentA": ".context-kit/logging-client/shell/",
+    "agentB": ".context-kit/logging-client/browser/",
+    "agentC": ".context-kit/logging-client/plugins/vite/",
+    "agentD": ".context-kit/logging-client/plugins/webpack/",
+    "agentE": ".context-kit/logging-client/src/",
+    "agentF": ".context-kit/knowledge-graph/src/api/logging-endpoints.js",
+    "agentG": ".context-kit/logging-client/installation-scripts/",
+    "agentH": ".context-kit/logging-client/node-options/",
+    "agentI": ".context-kit/logging-client/config/",
+    "agentJ": ".context-kit/logging-client/tests/",
+    "agentK": ".context-kit/logging-client/setup-logging.sh"
+  },
+  "qualityGates": {
+    "wave1": {
+      "criteria": [
+        "All components build successfully",
+        "Interface contracts match this specification",
+        "Basic unit tests pass",
+        "No file conflicts between territories"
+      ]
+    },
+    "wave2": {
+      "criteria": [
+        "Integration with Wave 1 components verified",
+        "End-to-end flow tested",
+        "No regression in existing features",
+        "Performance within 1ms overhead"
+      ]
+    },
+    "wave3": {
+      "criteria": [
+        "All tests passing",
+        "Performance benchmarks met (<1% CPU)",
+        "Documentation complete",
+        "Clean uninstall verified"
+      ]
+    }
+  },
+  "performanceTargets": {
+    "logOverhead": "< 1ms per log call",
+    "batchLatency": "< 100ms to send batch",
+    "cpuUsage": "< 1% additional CPU",
+    "memoryUsage": "< 10MB additional memory",
+    "networkBandwidth": "< 10KB/s average"
+  }
+}

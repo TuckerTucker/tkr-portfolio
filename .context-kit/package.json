@@ -1,0 +1,33 @@
+{
+  "name": "tkr-project-kit",
+  "version": "3.4.0",
+  "description": "Multi-service Claude Code enhancement toolkit with integrated services, MCP server, and comprehensive logging ecosystem",
+  "private": true,
+  "workspaces": [
+    "core",
+    "dashboard",
+    "knowledge-graph",
+    "logging-client",
+    "mcp"
+  ],
+  "scripts": {
+    "build": "../setup",
+    "build:core": "cd core && npm run build",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build:knowledge-graph": "cd knowledge-graph && npm run build",
+    "build:logging-client": "cd logging-client && npm run build",
+    "build:mcp": "cd mcp && npm run build",
+    "dev": "./scripts/start-all",
+    "install:all": "npm install && npm run install:workspaces",
+    "install:workspaces": "npm install --workspaces"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuckertucker/tkr-project-kit.git"
+  },
+  "author": "Tucker",
+  "license": "MIT"
+}
