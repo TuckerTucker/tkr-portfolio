@@ -339,7 +339,7 @@ start_knowledge_graph() {
         npm install >> "$log_file" 2>&1
     fi
 
-    # Start the service
+    # Start the service - using dev:api to start HTTP server
     nohup npm run dev:api >> "$log_file" 2>&1 &
     local pid=$!
     echo "$pid" > "$pid_file"

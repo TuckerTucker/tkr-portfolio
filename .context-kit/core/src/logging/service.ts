@@ -702,7 +702,7 @@ export class LoggingService {
           stmt.run(
             entry.id,
             entry.timestamp,
-            entry.level,
+            this.normalizeLogLevel(entry.level),
             entry.service,
             entry.message,
             JSON.stringify(entry.metadata || {}),
@@ -769,5 +769,12 @@ export class LoggingService {
     }
 
     return flattened;
+  }
+
+  /**
+   * Normalize log level to lowercase for database storage
+   */
+  private normalizeLogLevel(level: LogLevel): string {
+    return level.toLowerCase();
   }
 }

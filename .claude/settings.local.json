@@ -86,7 +86,9 @@
       "Bash(claude mcp:*)",
       "Bash(gtimeout:*)",
       "Bash(yq eval:*)",
-      "mcp__tkr-context-kit__query"
+      "mcp__tkr-context-kit__query",
+      "mcp__tkr-context-kit__service_status",
+      "mcp__tkr-context-kit__start_dev_server"
     ],
     "deny": [
       "Bash(rm -rf /)",
