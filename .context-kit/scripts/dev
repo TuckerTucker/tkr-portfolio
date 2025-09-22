@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Context-Kit Development Startup Script
+# Quick start script for development with common options
+
+set -euo pipefail
+
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly START_ALL_SCRIPT="${SCRIPT_DIR}/start-all"
+
+# Default options for development
+exec "$START_ALL_SCRIPT" --verbose --no-cleanup "$@"

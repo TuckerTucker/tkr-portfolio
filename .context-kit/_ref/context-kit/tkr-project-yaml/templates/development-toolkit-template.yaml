@@ -1,0 +1,308 @@
+# Development Toolkit Project Template
+# This template is specifically designed for development toolkits like tkr-context-kit.
+# It focuses on agent architecture, MCP integration, and project analysis capabilities.
+# Replace placeholder values with your actual toolkit specifications.
+
+project:
+  name: "toolkit-name"                        # Required: Toolkit name
+  type: "development-toolkit"                 # Required: Project type
+  description: "Toolkit description"          # Required: What the toolkit does
+  entry_point: "setup"                       # Required: Initial setup script
+  primary_commands: ["./setup", "npm run build"] # Required: Key commands
+  version: "1.0.0"                            # Required: Version using semver
+  author: "Team or Person Name"               # Required: Creator
+  timestamp: "YYYY-MM-DD"                     # Required: Last update date
+  status: "production-ready"                  # Required: Current status
+
+structure:
+  key_paths:
+    ".claude/": "Claude Code configuration and specialized agents"
+    ".claude/agents/": "Analysis agents (consolidator, specialized analyzers)"
+    ".claude/commands/": "Custom Claude Code commands"
+    ".claude/settings.local.json": "Claude Code local configuration with MCP permissions"
+    ".context-kit/": "Main project assets and utilities"
+    ".context-kit/mcp-{service}/": "MCP servers for persistent AI memory"
+    ".context-kit/scripts/": "Setup and utility automation scripts"
+    ".context-kit/_ref/": "Reference documentation and templates"
+    ".context-kit/_specs/": "Project specifications and requirements"
+    "setup": "Main setup script (self-destructing after execution)"
+  
+  find_patterns:
+    agent: ".claude/agents/{agent-name}.md"
+    command: ".claude/commands/{command-name}.md"
+    script: ".context-kit/scripts/{script-name}"
+    template: ".context-kit/_ref/{category}/{template-name}"
+    mcp_server: ".context-kit/mcp-{service}/{file}.ts"
+    spec: ".context-kit/_specs/{spec-name}.md"
+
+patterns:
+  file_naming: "kebab-case for scripts, camelCase for JS/TS, underscore-prefixed for meta directories"
+  directory_structure: "modular-toolkit with specialized components"
+  agent_architecture: "specialized analyzers with consolidation pattern"
+  configuration: "YAML-driven with runtime fallbacks"
+  security_model: "path validation with allowlist protection"
+  port_allocation: "42xxx range with conflict detection"
+  imports: "ES6 modules in TS, CommonJS for Node servers"
+  error_handling: "comprehensive try-catch with graceful degradation"
+  mcp_integration: "STDIO transport with JSON schema validation"
+
+stack:
+  language: "TypeScript strict mode + Bash scripting"
+  runtime: "Node.js ES2020 with NodeNext module resolution"
+  protocol: "MCP (Model Context Protocol) over STDIO"
+  persistence: "SQLite+FTS5 full-text search with database storage"
+  build: "Vite with React plugin and source maps"
+  ui: "React 19 with vanilla CSS and custom properties"
+  visualization: "ReactFlow with custom node types and layouts"
+  routing: "URL hash-based view switching with browser navigation"
+  security: "Path allowlist validation with input sanitization"
+  
+  key_libs:
+    - "@modelcontextprotocol/sdk@^0.5.0": "AI model integration protocol"
+    - "react@^19.1.1": "Modern React with concurrent features"
+    - "react-dom@^19.1.1": "React DOM rendering"
+    - "reactflow@^11.11.4": "Interactive graph visualization"
+    - "better-sqlite3@^9.0.0": "SQLite database with FTS5 search"
+    - "vite@^7.0.6": "Fast build tool with HMR"
+    - "typescript@>=4.5.0": "Type-safe JavaScript compilation"
+    - "nanoid@^5.0.0": "URL-safe unique string ID generator"
+    - "glob@^10.0.0": "File pattern matching"
+
+integrations:
+  # MCP (Model Context Protocol) Integration
+  ai_models:
+    type: "MCP protocol over STDIO"
+    location: ".context-kit/knowledge-graph/"
+    entry: "src/mcp/server.ts"
+    db_path: ".context-kit/knowledge-graph/knowledge-graph.db"
+    storage: "SQLite+FTS5 with entity/relation/observation tables"
+  
+  # ReactFlow UI Integration
+  ui_viz:
+    type: "ReactFlow with Vite dev server"
+    port: "42001 (Vite dev server)"
+    api_port: "42003 (HTTP API server)"
+    layouts: [circular, grid, hierarchical]
+    node_types: [module, component, pattern, agent, technology, workflow, architecture_pattern, command, config, database, project]
+    edge_types: [contains, implements, uses, depends_on, built_with, powered_by]
+    routing: "Hash-based navigation (#graph, #logs)"
+    
+  # Claude Code Agent Integration
+  claude_code:
+    agents: ".claude/agents/"
+    commands: ".claude/commands/"
+    config: ".claude/settings.local.json"
+    permissions: ["Read", "Write", "Task", "Bash(node:*)", "Bash(npm:*)", "mcp__context-kit__*", "mcp__context7__resolve-library-id"]
+    
+  external_services:
+    - service: "External Service Name"
+      purpose: "Service purpose"
+      location: "Integration code location"
+
+architecture:
+  core_patterns:
+    - "MCP server architecture for persistent AI memory"
+    - "Agent specialization with consolidation workflows"
+    - "Self-destructing setup for clean installation"
+    - "Security-first design with path validation"
+  
+  agent_architecture:
+    specialization: "Multiple specialized analyzers (structure, ui, api, code, dependency)"
+    consolidation: "Single consolidator agent synthesizes all findings"
+    workflow: "Parallel analysis → Sequential consolidation → Output generation"
+    communication: "File-based communication through analysis outputs"
+  
+  mcp_architecture:
+    transport: "STDIO with JSON schema validation"
+    security: "Path allowlist with traversal protection"
+    storage: "JSONL line-delimited JSON for efficiency"
+    memory_management: "Incremental updates with graceful degradation"
+  
+  security_architecture:
+    input_validation: "JSON schema validation for all tool inputs"
+    path_security: "Allowlist-based directory access control"
+    error_handling: "Safe error responses without sensitive information disclosure"
+
+task_locations:
+  add_new_agent:
+    files: [".claude/agents/{agent-name}.md"]
+    pattern: "Define purpose → List tools → Set responsibilities"
+    
+  setup_project:
+    files: ["setup", ".context-kit/scripts/setup-{service}-mcp"]
+    pattern: "Run setup → Configure paths → Install MCP servers"
+    
+  analyze_codebase:
+    files: [".claude/commands/project-yaml.md"]
+    pattern: "Run /project-yaml command → Generate consolidated YAML"
+    
+  create_mcp_server:
+    files: [".context-kit/mcp-{service}/", ".claude/settings.local.json"]
+    pattern: "Setup MCP server → Configure Claude → Create tools"
+    
+  add_mcp_tool:
+    files: [".context-kit/knowledge-graph/src/mcp/server.ts"]
+    pattern: "Define tool schema → Implement handler → Add to server tools array"
+  
+  modify_ui:
+    files: [".context-kit/knowledge-graph/src/ui/"]
+    pattern: "Edit React components → Update styles.css → Test ReactFlow visualization"
+  
+  run_ui_dev:
+    files: [".context-kit/knowledge-graph/"]
+    pattern: "cd .context-kit/knowledge-graph → npm run dev → Open localhost:42001"
+
+when_creating:
+  new_agent:
+    check_patterns: ".claude/agents/project-yaml-consolidator.md"
+    follow_structure: "Purpose → Tools → Instructions → Best practices"
+    
+  new_script:
+    example: ".context-kit/scripts/setup-context-kit-mcp"
+    pattern: "Source utils → Validate inputs → Execute with error handling"
+    
+  new_command:
+    location: ".claude/commands/"
+    pattern: "Define invocation → Set parameters → Document usage"
+    example: ".claude/commands/project-yaml.md"
+    
+  new_mcp_tool:
+    example: ".context-kit/knowledge-graph/src/mcp/server.ts"
+    pattern: "Define tool schema → Implement handler → Add to tools array"
+  
+  new_react_component:
+    example: ".context-kit/knowledge-graph/src/ui/components/"
+    pattern: "Props interface → functional component → styling → integration"
+  
+  new_reactflow_layout:
+    example: ".context-kit/knowledge-graph/src/ui/services/KnowledgeGraphService.ts"
+    pattern: "Data transformation → layout algorithm → ReactFlow nodes/edges"
+
+semantic_keys:
+  ~mcp: "Model Context Protocol for AI model integration"
+  ~agent_analyzer: "Specialized Claude Code agent for project analysis with consolidation"
+  ~kg: "Comprehensive app state management system using SQLite with ReactFlow visualization"
+  ~port_42xxx: "Organized port allocation schema (UI:42001, API:42003) for tkr-context-kit services"
+  ~security_validation: "Path traversal protection with allowlist directories"
+  ~reactflow_viz: "Interactive graph visualization with multiple layouts and custom node types"
+  ~self_destructing: "Setup script that removes itself after successful execution"
+  ~sqlite_storage: "SQLite database with FTS5 for efficient knowledge graph persistence"
+  ~consolidator_pattern: "Multiple specialized agents (docs-context7, dir-structure, design-system) feeding into single consolidator"
+  ~hash_routing: "URL hash-based view switching with browser navigation support"
+  ~centralized_state: "React state management pattern with props-based communication"
+  ~component_separation: "UI component modularization with single responsibility principle"
+
+common_patterns:
+  port_management: "Use conflict detection for 42xxx range allocation"
+  path_validation: "Always validate against allowlist in MCP server"
+  agent_invocation: "Use Task tool with specific agent parameters"
+  kg_persistence: "Store as entities/relations/observations in SQLite"
+  error_recovery: "Log errors and provide graceful fallback options"
+  security_first: "Validate all inputs and prevent directory traversal"
+  ui_component_creation: "React functional components with TypeScript interfaces"
+  data_viz: "ReactFlow with custom node types, dynamic legend and export capabilities"
+  mcp_tool_definition: "JSON schema validation with comprehensive error handling" 
+  project_analysis: "Run /project-yaml command for updated synthesis analysis"
+  incremental_updates: "Update context incrementally based on git diff analysis"
+  state_management: "Lift state up for cross-component communication"
+  url_routing: "Use URL hash for view state persistence and browser navigation"
+  component_separation: "Separate UI logic from data management for reusability"
+
+# Development toolkit specific configurations
+toolkit_config:
+  # Port allocation schema for development services
+  ports:
+    base_range: "42000-42999"                # Reserved port range
+    services:
+      ui_dev_server: 42001                   # Vite dev server for ReactFlow UI
+      knowledge_graph_mcp: 42002             # Knowledge graph MCP server (STDIO)
+      api_server: 42003                      # HTTP API server for logs/data
+      context7: 42200                        # Context7 MCP server
+      analysis_dashboard: 42300              # Analysis visualization
+      development_server: 42400             # Development tools server
+    
+    conflict_resolution:
+      auto_increment: true                   # Auto-find next available port
+      check_script: ".context-kit/scripts/check-ports.sh"
+      fallback_range: "42950-42999"
+  
+  # Agent workflow configuration
+  agent_workflows:
+    project_analysis:
+      sequence: ["structure", "ui", "api", "code", "dependency", "consolidator"]
+      parallel_execution: ["structure", "ui", "api", "code", "dependency"]
+      consolidation_agent: "project-yaml-consolidator"
+      output_location: ".context-kit/_context-kit.yml"
+  
+  # MCP server configuration
+  mcp_servers:
+    knowledge_graph:
+      location: ".context-kit/knowledge-graph/"
+      setup_script: ".context-kit/scripts/setup-context-kit-mcp"
+      config_key: "knowledge-graph"
+      ui_dev_server: "npm run dev:ui (port 42001)"
+      api_server: "npm run serve (port 42003)"
+      database: "SQLite+FTS5 with knowledge-graph.db"
+    
+    context7:
+      location: "External service"
+      setup_script: ".context-kit/scripts/context7_mcp_add"
+      config_key: "context7"
+
+# Security configuration for development toolkit
+security:
+  # Input validation and sanitization
+  input_validation:
+    strategy: "Path allowlist validation with input sanitization"
+    allowed_paths: [".context-kit/", ".claude/", "package.json", "README.md"]
+    sanitization: "Remove/escape path traversal attempts and dangerous characters"
+    validation_rules: ["No parent directory references", "Alphanumeric plus safe chars only"]
+  
+  # MCP server security
+  mcp_security:
+    transport: "STDIO with JSON schema validation"
+    path_traversal_protection: "Allowlist validation with safe path resolution"
+    error_handling: "Comprehensive try-catch with safe fallbacks"
+    sensitive_data: "No secrets or credentials in responses"
+  
+  # Agent security
+  agent_security:
+    tool_restrictions: "Agents limited to safe tools only"
+    file_access: "Read/write limited to project directories"
+    execution_limits: "No arbitrary code execution"
+
+# Testing strategy for development toolkit
+testing:
+  agent_testing:
+    unit_tests: "Test each agent's core functionality"
+    integration_tests: "Test agent workflows and consolidation"
+    validation_tests: "Test output format and content validation"
+  
+  mcp_testing:
+    tool_validation: "Test each MCP tool with various inputs"
+    security_testing: "Test path validation and input sanitization"
+    error_handling: "Test graceful degradation and error responses"
+  
+  workflow_testing:
+    setup_process: "Test complete setup and installation"
+    project_analysis: "Test full project analysis workflow"
+    configuration_updates: "Test configuration management"
+
+architecture_notes:
+  - "Self-contained toolkit that enhances Claude Code capabilities with AI integration"
+  - "MCP server provides persistent memory across AI conversations with SQLite storage"
+  - "Agent system enables specialized analysis (docs, structure, design) with consolidation"
+  - "Security-focused with comprehensive input validation and path management"
+  - "ReactFlow knowledge graph enables complex project understanding and visualization"
+  - "React 19 UI with TypeScript strict mode for type safety and modern development"
+  - "SQLite storage with FTS5 enables efficient full-text search across entities"
+  - "Robust path management system prevents path doubling issues with self-locating scripts"
+  - "Port management system using 42xxx range (UI:42001, API:42003) for service isolation"
+  - "Comprehensive dependency mapping with Context7 integration for library references"
+  - "Multi-layout ReactFlow visualization (circular, grid, hierarchical) for different use cases"
+  - "Fallback patterns ensure development continues even when live services are unavailable"
+  - "Agent consolidation pattern synthesizes specialized analysis into unified project understanding"
+  - "Template-driven development with comprehensive reference documentation and examples"
+  - "URL hash-based routing provides browser navigation support and view state persistence"
+  - "Centralized state management in App component enables cross-component communication"
+  - "Component separation of concerns improves reusability and maintainability"

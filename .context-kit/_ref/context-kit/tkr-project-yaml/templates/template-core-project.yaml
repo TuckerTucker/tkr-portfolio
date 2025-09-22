@@ -1,0 +1,467 @@
+# Core Project YAML Template
+# This template provides a comprehensive structure for your project-wide specifications.
+# Replace the placeholder values with your actual project details.
+# Comments throughout the file explain the purpose of each section.
+
+# Project Metadata - High-level information about the project
+project:
+  name: "Project Name"                      # Required: Name of your project
+  type: "web-app|library|tool|framework|platform|development-toolkit"  # Required: Project type
+  version: "0.1.0"                          # Required: Project version using semver
+  description: "Project description"        # Required: Brief description of project purpose
+  entry_point: "src/main.ts|setup|index.js" # Required: Where code execution begins
+  primary_commands: ["build", "test", "dev", "lint"] # Required: Key commands
+  author: "Team or Person Name"             # Required: Creator or team responsible
+  timestamp: "YYYY-MM-DD"                   # Required: Date of last update
+  status: "draft|in-progress|production-ready" # Required: Current status
+  
+  # External systems and references - Links to related documentation
+  references:
+    design_system: "URL or reference"       # Optional: Link to your design system
+    component_library: "URL or reference"   # Optional: Link to component library docs
+    api_docs: "URL or reference"            # Optional: Link to API documentation
+    architecture: "URL or reference"        # Optional: Link to architecture documentation
+  
+  # Repository information - Details about the code repository
+  repository:
+    type: "git"                            # Optional: Version control system
+    url: "Repository URL"                  # Optional: URL to the repository
+    branch: "main"                         # Optional: Primary branch name
+  
+  # Project infrastructure - Where the application is hosted/deployed
+  infrastructure:
+    hosting: "Provider name"               # Optional: Cloud/hosting provider
+    ci_cd: "CI/CD tool or service"         # Optional: CI/CD pipeline details
+    environments:                          # Optional: List of deployment environments
+      - name: "development"
+        url: "Dev environment URL"
+      - name: "staging"
+        url: "Staging environment URL"
+      - name: "production"
+        url: "Production environment URL"
+
+# Technology Stack and Architecture - Technical foundation of the project
+stack:
+  # Frontend technology details
+  frontend:
+    framework: "Framework name"               # Required: Primary frontend framework
+    language: "Programming language"          # Required: Primary frontend language
+    build_tool: "Build tool"                  # Optional: Build tool/bundler
+    package_manager: "Package manager"        # Optional: Package manager
+    key_libraries:                            # Optional: Important libraries
+      - name: "Library name"
+        version: "^1.0.0"                     # Use semver format
+        purpose: "Why this library is used"
+  
+  # Backend technology details
+  backend:
+    framework: "Framework name"               # Required if backend exists
+    language: "Programming language"          # Required if backend exists
+    database: "Database technology"           # Optional: Primary database
+    apis:                                     # Optional: API specifications
+      - type: "REST or GraphQL"
+        base_url: "/api/v1"
+        documentation: "URL to API docs"
+  
+  # Deployment details
+  deployment:
+    strategy: "Deployment strategy"           # Optional: How the app is deployed
+    bundling: "Bundling strategy"             # Optional: Code splitting approach
+    cdn: "CDN if applicable"                  # Optional: CDN information
+  
+  # Core technology details
+  language: "TypeScript strict mode|JavaScript|Python" # Required: Primary language
+  runtime: "Node.js|Browser|Python|Deno"    # Required: Runtime environment
+  framework: "React|Vue|Angular|Express"     # Optional: Primary framework
+  build: "Vite|Webpack|TypeScript compiler"  # Optional: Build system
+  
+  # Key libraries with semantic purpose
+  key_libs:
+    - "@library/name@^1.0.0": "Purpose description" # Library with version and purpose
+  
+  # Development configuration
+  development:
+    ports:
+      # Development port allocation following tkr-context-kit 42xxx schema
+      base_range: "42000-42999"               # Optional: Reserved port range
+      services:                               # Required: Service port assignments
+        main: 42200                           # Primary application port
+        api: 42100                            # API service port
+        dev_server: 42300                     # Development server
+        dashboard: 42000                      # Optional: Admin/monitoring
+        testing: 42900                        # Optional: Test services
+      
+      conflict_resolution:                     # Optional: Port conflict handling
+        auto_increment: true                  # Auto-find next available port
+        check_script: "scripts/check-ports.sh" # Port availability checker
+        fallback_range: "42950-42999"        # Emergency port range
+
+# Project Structure - Navigation and organization patterns
+structure:
+  key_paths:
+    "src/": "Application source code"
+    "tests/": "Test files parallel to src structure"
+    "docs/": "Human documentation (if relevant to code)" 
+    
+  find_patterns:
+    component: "src/components/{category}/{ComponentName}.tsx"
+    page: "src/pages/{PageName}.tsx"
+    api_endpoint: "src/api/{resource}.ts"
+    test: "tests/{path}/{name}.test.ts"
+
+# Architecture Patterns - Conventions and design patterns
+patterns:
+  file_naming: "PascalCase components, camelCase utilities, kebab-case files"
+  directory_structure: "atomic-design|feature-based|domain-driven"
+  import_conventions: "@/ for src/, relative for same module"
+  error_handling: "comprehensive try-catch with graceful degradation"
+  
+  # Agent Architecture Patterns (for development toolkits)
+  agent_architecture: "specialized analyzers with consolidation pattern"
+  security_model: "path validation with allowlist protection"
+  mcp_integration: "STDIO transport with JSON schema validation"
+
+# Integration Details - External systems and services
+integrations:
+  # MCP (Model Context Protocol) Integration Pattern
+  ai_models:
+    type: "MCP protocol over STDIO"
+    location: ".context-kit/mcp-{service-name}/"
+    entry: "index.ts"
+    memory_path: "$HOME/.claude-memory/{service}.jsonl"
+    
+  # Claude Code Agent Integration
+  claude_code:
+    agents: ".claude/agents/"
+    commands: ".claude/commands/"
+    config: ".claude/settings.local.json"
+    permissions: ["Read", "Write", "Task", "mcp__*"]
+    
+  # API integrations
+  api:
+    type: "REST|GraphQL with React Query"
+    location: "src/api/"
+    client: "src/api/client.ts"
+    
+  external_services:
+    - service: "Service Name"
+      purpose: "What it's used for"
+      location: "Where integration code lives"
+
+# Architecture Details - Core architectural patterns
+architecture:
+  core_patterns:
+    - "MCP server architecture for persistent AI memory"
+    - "Agent specialization with consolidation workflows"
+    - "Security-first design with path validation"
+  
+  ui_architecture:
+    layout: "HTML templates with vanilla JS components"
+    styling: "CSS custom properties with component scoping"
+    interaction_patterns: "Class-based component architecture"
+  
+  mcp_architecture:
+    transport: "STDIO with JSON schema validation"
+    security: "Path allowlist with traversal protection"
+    storage: "JSONL line-delimited JSON for efficiency"
+
+# Task-Oriented Helpers - Common workflows and patterns
+task_locations:
+  add_new_component:
+    files: ["src/components/{ComponentName}.tsx"]
+    pattern: "Create component → Add tests → Update exports"
+    
+  setup_project:
+    files: ["setup", ".context-kit/scripts/"]
+    pattern: "Run setup → Configure paths → Install dependencies"
+    
+  # Agent and MCP Tasks
+  add_new_agent:
+    files: [".claude/agents/{agent-name}.md"]
+    pattern: "Define purpose → List tools → Set responsibilities"
+    
+  setup_mcp_server:
+    files: [".context-kit/mcp-{service}/", ".claude/settings.local.json"]
+    pattern: "Setup MCP server → Configure Claude → Create tools"
+
+when_creating:
+  new_component:
+    check_patterns: "src/components/ui/Button.tsx"
+    follow_structure: "Props interface → component → export"
+    
+  # Agent and MCP Patterns
+  new_agent:
+    check_patterns: ".claude/agents/project-yaml-consolidator.md"
+    follow_structure: "Purpose → Tools → Instructions → Best practices"
+    
+  new_mcp_tool:
+    example: ".context-kit/mcp-knowledge-graph/index.ts"
+    pattern: "Define tool schema → Implement handler → Add to tools array"
+
+# Semantic Compression - Tilde-prefixed keys for complex concepts
+semantic_keys:
+  ~mcp: "Model Context Protocol for AI model integration"
+  ~agent_analyzer: "Specialized Claude Code agent for project analysis"
+  ~security_validation: "Path traversal protection with allowlist directories"
+  ~consolidator_pattern: "Multiple specialized agents feeding into single consolidator"
+
+# Common Patterns - Quick reference for standard approaches
+common_patterns:
+  agent_invocation: "Use Task tool with specific agent parameters"
+  path_validation: "Always validate against allowlist in MCP server"
+  security_first: "Validate all inputs and prevent directory traversal"
+  project_analysis: "Run /project-yaml command for updated analysis"
+
+# Global Specifications - Project-wide standards and configurations
+global:
+  # Design tokens - Project-wide design variables
+  design_tokens:
+    # Color palette
+    colors:
+      primary: "#hexcode"                    # Required: Primary brand color
+      secondary: "#hexcode"                  # Required: Secondary brand color
+      accent: "#hexcode"                     # Optional: Accent color
+      text:                                  # Text colors
+        primary: "#hexcode"
+        secondary: "#hexcode"
+      background:                            # Background colors
+        light: "#hexcode"
+        dark: "#hexcode"
+      semantic:                              # Semantic/meaning colors
+        success: "#hexcode"
+        warning: "#hexcode"
+        error: "#hexcode"
+        info: "#hexcode"
+    
+    # Typography system
+    typography:
+      font_family: "Font stack"              # Required: Primary font family
+      base_size: "16px"                      # Required: Base font size
+      scale_ratio: 1.25                      # Optional: Type scale ratio
+      weights:                               # Font weights
+        regular: 400
+        medium: 500
+        bold: 700
+    
+    # Spacing system
+    spacing:
+      base: "8px"                           # Required: Base spacing unit
+      scale:                                # Spacing scale (multiples of base)
+        xs: "4px"    # 0.5x base
+        sm: "8px"    # 1x base
+        md: "16px"   # 2x base
+        lg: "24px"   # 3x base
+        xl: "32px"   # 4x base
+    
+    # Animation definitions
+    animation:
+      duration:
+        fast: "150ms"
+        normal: "300ms"
+        slow: "500ms"
+      easing:
+        default: "cubic-bezier(0.4, 0, 0.2, 1)"
+        in: "cubic-bezier(0.4, 0, 1, 1)"
+        out: "cubic-bezier(0, 0, 0.2, 1)"
+  
+  # Accessibility standards
+  accessibility:
+    compliance: "WCAG 2.1 AA"               # Required: Accessibility standard
+    color_contrast:
+      minimum_ratio: "4.5:1"                # Required: Minimum contrast ratio
+    keyboard_navigation: true                # Required: Keyboard nav support
+    screen_reader_support: true              # Required: Screen reader support
+    focus_indicators:
+      style: "outline"                       # Required: Focus indicator style
+      color: "#hexcode"
+      width: "2px"
+  
+  # Responsive design configuration
+  responsive:
+    breakpoints:                             # Required: Device breakpoints
+      mobile: "max-width: 599px"
+      tablet: "600px to 1023px"
+      desktop: "min-width: 1024px"
+    strategy: "mobile-first"                 # Required: Responsive strategy
+    container_widths:
+      max_width: "1280px"
+      padding: "16px"
+  
+  # Error handling patterns
+  error_handling:
+    strategies:
+      client: "Error handling approach"      # Required: Client-side error strategy
+      server: "Error handling approach"      # Required: Server-side error strategy
+    error_states:                            # Standard error states
+      form:
+        inline: true
+        color: "semantic.error"
+      api:
+        toast: true
+        position: "top-right"
+        timeout: 5000
+    fallbacks:                               # Standard fallbacks
+      images: "/assets/placeholder.png"
+      data: "skeleton loading states"
+
+  # Performance targets
+  performance:
+    metrics:                                # Key performance metrics
+      fcp: "< 1s"    # First Contentful Paint
+      lcp: "< 2.5s"  # Largest Contentful Paint
+      fid: "< 100ms" # First Input Delay
+      cls: "< 0.1"   # Cumulative Layout Shift
+    optimization:                           # Standard optimization approaches
+      image_formats: ["webp", "jpg"]
+      lazy_loading: true
+      code_splitting: "route-based"
+      assets_caching: "service-worker"
+
+  # Internationalization configuration
+  i18n:
+    default_language: "en"                  # Required: Default language
+    supported_languages: ["en", "es"]       # Required: Supported languages
+    rtl_support: false                      # Required: RTL language support
+    date_format: "YYYY-MM-DD"               # Optional: Standard date format
+    number_format:
+      decimal_separator: "."
+      thousands_separator: ","
+
+# Data Flow Architecture - How data flows through the application
+data_flow:
+  # Core data patterns
+  patterns:
+    core_strategy: "Data management approach" # Required: Primary data strategy
+    data_fetching: "Fetching mechanism"       # Required: How data is fetched
+    state_updates: "State update pattern"     # Required: How state is updated
+  
+  # Data sources
+  sources:
+    api:
+      base_url: "https://api.example.com/v1"  # Optional: API base URL
+      authentication: "Authentication method"  # Optional: Auth approach
+  
+  # Caching strategy
+  caching:
+    strategy: "Cache strategy"                # Optional: How caching is handled
+    invalidation:
+      events: ["List of invalidation events"] # Optional: When cache is invalidated
+  
+  # Real-time data handling
+  real_time:
+    strategy: "Real-time approach"           # Optional: Real-time data strategy
+    fallback: "Fallback approach"            # Optional: Alternative if real-time fails
+
+# Deployment and DevOps Configuration
+deployment:
+  # Environment configurations
+  environments:
+    development:
+      url: "Dev URL"                         # Required for each environment
+      auto_deploy: true                      # Optional: Auto deployment setting
+      branch: "Branch name"                  # Optional: Linked branch
+    staging:
+      url: "Staging URL"
+      auto_deploy: true
+      branch: "Branch name"
+    production:
+      url: "Production URL"
+      auto_deploy: false
+      branch: "Branch name"
+  
+  # Build process steps
+  build_process:
+    steps:                                   # Optional: Build pipeline steps
+      - name: "Step name"
+        command: "Command to execute"
+  
+  # Monitoring configuration
+  monitoring:
+    services:                                # Optional: Monitoring tools
+      - name: "Service name"
+        provider: "Provider name"
+    alerts:                                  # Optional: Alert configurations
+      - trigger: "Alert condition"
+        notification: "Notification method"
+
+# Testing Strategy - Comprehensive testing approach
+testing:
+  # Unit testing configuration
+  unit:
+    framework: "Test framework"              # Required: Unit test framework
+    coverage_targets:                        # Optional: Coverage goals
+      statements: 80
+      branches: 75
+      functions: 80
+      lines: 80
+  
+  # Integration testing configuration
+  integration:
+    framework: "Test framework"              # Required: Integration test framework
+    key_flows:                               # Optional: Critical integration paths
+      - "Flow description"
+  
+  # End-to-end testing configuration
+  e2e:
+    framework: "Test framework"              # Required: E2E test framework
+    critical_paths:                          # Optional: Critical user journeys
+      - "Path description"
+  
+  # Accessibility testing
+  accessibility:
+    tools:                                   # Optional: A11y testing tools
+      - "Tool name"
+    manual_checklist:                        # Optional: Manual checks
+      - "Check description"
+  
+  # Performance testing
+  performance:
+    tools:                                   # Optional: Performance testing tools
+      - "Tool name"
+    budgets:                                 # Optional: Performance budgets
+      - metric: "Metric name"
+        budget: "Budget value"
+
+# Security Considerations
+security:
+  # Input validation and sanitization
+  input_validation:
+    strategy: "Path allowlist validation with input sanitization" # Required for MCP servers
+    allowed_paths: ["List of allowed directory paths"]            # Required: Path allowlist
+    sanitization: "Remove/escape dangerous characters"            # Required: Input cleaning
+  
+  # Authentication configuration
+  authentication:
+    method: "Auth method"                    # Required: Authentication approach
+    session_duration: "12h"                  # Optional: Session timeout
+    refresh_mechanism: "Refresh approach"    # Optional: Token refresh strategy
+  
+  # Authorization configuration
+  authorization:
+    roles:                                   # Optional: User roles
+      - name: "Role name"
+        permissions: ["List of permissions"]
+  
+  # Data protection
+  data_protection:
+    encryption:
+      in_transit: "TLS 1.3"                  # Required: Transport encryption
+      at_rest: "Encryption method"           # Required: Storage encryption
+    pii_handling:                            # Optional: PII handling rules
+      fields:
+        - name: "Field name"
+          treatment: "Protection method"
+  
+  # MCP Server Security
+  mcp_security:
+    transport: "STDIO with JSON schema validation"              # Required for MCP
+    path_traversal_protection: "Allowlist validation"           # Required: Prevent directory traversal
+    error_handling: "Comprehensive try-catch with safe fallbacks" # Required: Safe error handling
+  
+  # Compliance standards
+  compliance:
+    standards:                               # Optional: Compliance requirements
+      - "Standard name"
+    audit_logging:                           # Optional: Audit logging config
+      events:
+        - "Event description"

@@ -1,0 +1,362 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tkr-project-kit/schemas/logging-config.json",
+  "title": "TKR Logging Configuration Schema",
+  "description": "JSON schema for validating TKR logging system configuration",
+  "type": "object",
+
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Configuration schema version"
+    },
+
+    "endpoints": {
+      "type": "object",
+      "properties": {
+        "httpEndpoint": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "HTTP endpoint for single log submission"
+        },
+        "batchEndpoint": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "HTTP endpoint for batch log submission"
+        },
+        "clientScriptUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "URL to download browser client script"
+        },
+        "healthEndpoint": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "Health check endpoint"
+        }
+      },
+      "required": ["httpEndpoint", "batchEndpoint"],
+      "additionalProperties": false
+    },
+
+    "logLevels": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
+          "description": "Default minimum log level"
+        },
+        "available": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "priority": {
+          "type": "object",
+          "properties": {
+            "DEBUG": { "type": "integer", "minimum": 0 },
+            "INFO": { "type": "integer", "minimum": 0 },
+            "WARN": { "type": "integer", "minimum": 0 },
+            "ERROR": { "type": "integer", "minimum": 0 },
+            "FATAL": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["default", "available", "priority"],
+      "additionalProperties": false
+    },
+
+    "batching": {
+      "type": "object",
+      "properties": {
+        "batchSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Number of logs to batch before sending"
+        },
+        "flushInterval": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 60000,
+          "description": "Milliseconds between batch flushes"
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Maximum items in a single batch"
+        },
+        "timeout": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 300000,
+          "description": "Timeout for batch operations in milliseconds"
+        }
+      },
+      "required": ["batchSize", "flushInterval"],
+      "additionalProperties": false
+    },
+
+    "behavior": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Master switch for logging system"
+        },
+        "projectOnly": {
+          "type": "boolean",
+          "description": "Only log in directories with .context-kit"
+        },
+        "failSilently": {
+          "type": "boolean",
+          "description": "Continue execution if logging fails"
+        },
+        "logToConsole": {
+          "type": "boolean",
+          "description": "Also output logs to console"
+        },
+        "captureOutput": {
+          "type": "boolean",
+          "description": "Capture command output for logging"
+        },
+        "successCommands": {
+          "type": "boolean",
+          "description": "Log successful commands, not just errors"
+        },
+        "showIndicator": {
+          "type": "boolean",
+          "description": "Show visual indicator when logging is active"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "performance": {
+      "type": "object",
+      "properties": {
+        "threshold": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 100,
+          "description": "Performance threshold in milliseconds"
+        },
+        "maxRetries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Maximum retry attempts for failed requests"
+        },
+        "retryDelay": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 10000,
+          "description": "Delay between retries in milliseconds"
+        },
+        "httpTimeout": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 30000,
+          "description": "HTTP request timeout in milliseconds"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "session": {
+      "type": "object",
+      "properties": {
+        "tracking": {
+          "type": "boolean",
+          "description": "Enable session tracking"
+        },
+        "generateId": {
+          "type": "boolean",
+          "description": "Auto-generate session IDs"
+        },
+        "idPrefix": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+          "description": "Prefix for generated session IDs"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "services": {
+      "type": "object",
+      "properties": {
+        "browser": {
+          "type": "object",
+          "properties": {
+            "service": { "type": "string" },
+            "component": { "type": "string" },
+            "autoCapture": {
+              "type": "object",
+              "properties": {
+                "console": { "type": "boolean" },
+                "unhandledErrors": { "type": "boolean" },
+                "express": { "type": "boolean" },
+                "react": { "type": "boolean" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "shell": {
+          "type": "object",
+          "properties": {
+            "service": { "type": "string" },
+            "component": { "type": "string" },
+            "monitoredCommands": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "excludePattern": {
+              "type": "string",
+              "description": "Regex pattern for excluding paths"
+            }
+          },
+          "additionalProperties": false
+        },
+        "node": {
+          "type": "object",
+          "properties": {
+            "service": { "type": "string" },
+            "component": { "type": "string" },
+            "processFilter": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "skipPatterns": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "vite": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "injectPosition": {
+              "type": "string",
+              "enum": ["head-start", "head-end", "body-start", "body-end"]
+            },
+            "development": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        },
+        "webpack": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "chunks": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "development": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "format": {
+      "type": "object",
+      "properties": {
+        "maxMessageLength": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 100000
+        },
+        "maxServiceLength": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 1000
+        },
+        "maxComponentLength": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 1000
+        },
+        "maxMetadataSize": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 1048576
+        },
+        "timestampFormat": {
+          "type": "string",
+          "enum": ["unix", "iso", "locale"]
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "colors": {
+      "type": "object",
+      "patternProperties": {
+        "^(DEBUG|INFO|WARN|ERROR|FATAL|RESET)$": {
+          "type": "string",
+          "pattern": "^\\\\033\\[[0-9;]*m$"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "indicators": {
+      "type": "object",
+      "properties": {
+        "prompt": { "type": "string", "maxLength": 10 },
+        "enabled": { "type": "string", "maxLength": 10 },
+        "disabled": { "type": "string", "maxLength": 10 },
+        "error": { "type": "string", "maxLength": 10 }
+      },
+      "additionalProperties": false
+    },
+
+    "debugging": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "logFile": { "type": "string" },
+        "verbose": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "validation": {
+      "type": "object",
+      "properties": {
+        "strictMode": { "type": "boolean" },
+        "validateEndpoints": { "type": "boolean" },
+        "validateFormats": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": [
+    "version",
+    "endpoints",
+    "logLevels",
+    "batching",
+    "behavior"
+  ],
+
+  "additionalProperties": false
+}

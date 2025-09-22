@@ -1,0 +1,125 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "description": "Default configuration values for TKR logging system across all components",
+
+  "endpoints": {
+    "httpEndpoint": "http://localhost:42003/api/logs",
+    "batchEndpoint": "http://localhost:42003/api/logs/batch",
+    "clientScriptUrl": "http://localhost:42003/api/logging-client.js",
+    "healthEndpoint": "http://localhost:42003/health"
+  },
+
+  "logLevels": {
+    "default": "INFO",
+    "available": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
+    "priority": {
+      "DEBUG": 0,
+      "INFO": 1,
+      "WARN": 2,
+      "ERROR": 3,
+      "FATAL": 4
+    }
+  },
+
+  "batching": {
+    "batchSize": 10,
+    "flushInterval": 5000,
+    "maxItems": 100,
+    "timeout": 30000
+  },
+
+  "behavior": {
+    "enabled": true,
+    "projectOnly": true,
+    "failSilently": true,
+    "logToConsole": true,
+    "captureOutput": true,
+    "successCommands": true,
+    "showIndicator": true
+  },
+
+  "performance": {
+    "threshold": 1,
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "httpTimeout": 5000
+  },
+
+  "session": {
+    "tracking": true,
+    "generateId": true,
+    "idPrefix": "session"
+  },
+
+  "services": {
+    "browser": {
+      "service": "browser",
+      "component": "browser-console",
+      "autoCapture": {
+        "console": true,
+        "unhandledErrors": true,
+        "express": false,
+        "react": false
+      }
+    },
+    "shell": {
+      "service": "shell",
+      "component": "terminal",
+      "monitoredCommands": ["npm", "yarn", "git", "node", "tsx", "ts-node"],
+      "excludePattern": "node_modules|\\.git|dist|build"
+    },
+    "node": {
+      "service": "node",
+      "component": "application",
+      "processFilter": ["npm", "yarn", "node", "tsx", "ts-node"],
+      "skipPatterns": ["node_modules", ".git", "dist", "build"]
+    },
+    "vite": {
+      "enabled": true,
+      "injectPosition": "head-end",
+      "development": true
+    },
+    "webpack": {
+      "enabled": true,
+      "chunks": ["main"],
+      "development": true
+    }
+  },
+
+  "format": {
+    "maxMessageLength": 10000,
+    "maxServiceLength": 100,
+    "maxComponentLength": 100,
+    "maxMetadataSize": 10240,
+    "timestampFormat": "unix"
+  },
+
+  "colors": {
+    "DEBUG": "\\033[0;36m",
+    "INFO": "\\033[0;32m",
+    "WARN": "\\033[1;33m",
+    "ERROR": "\\033[0;31m",
+    "FATAL": "\\033[1;31m",
+    "RESET": "\\033[0m"
+  },
+
+  "indicators": {
+    "prompt": "📝",
+    "enabled": "✅",
+    "disabled": "❌",
+    "error": "⚠️"
+  },
+
+  "debugging": {
+    "enabled": false,
+    "logFile": "",
+    "verbose": false
+  },
+
+  "validation": {
+    "strictMode": false,
+    "validateEndpoints": true,
+    "validateFormats": true
+  }
+}

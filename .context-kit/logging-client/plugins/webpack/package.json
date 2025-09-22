@@ -1,0 +1,37 @@
+{
+  "name": "@tkr-context-kit/webpack-plugin",
+  "version": "1.0.0",
+  "description": "Webpack plugin for automatic browser logging client injection",
+  "main": "index.js",
+  "type": "commonjs",
+  "keywords": [
+    "webpack",
+    "plugin",
+    "logging",
+    "development",
+    "tkr-context-kit"
+  ],
+  "author": "Tucker <github.com/tuckertucker>",
+  "license": "MIT",
+  "peerDependencies": {
+    "webpack": "^4.0.0 || ^5.0.0",
+    "html-webpack-plugin": "^4.0.0 || ^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "html-plugin-hooks.js",
+    "loader.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuckertucker/tkr-project-kit.git",
+    "directory": ".context-kit/plugins/webpack"
+  },
+  "bugs": {
+    "url": "https://github.com/tuckertucker/tkr-project-kit/issues"
+  },
+  "homepage": "https://github.com/tuckertucker/tkr-project-kit#readme"
+}

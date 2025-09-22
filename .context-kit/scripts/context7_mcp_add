@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Context7 MCP Server Setup
+# Adds the Context7 MCP server to Claude Code configuration
+
+set -e
+
+# Source shared utilities
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/utils.sh"
+
+# Initialize project environment
+if ! init_project_env; then
+    print_status "error" "Failed to initialize project environment"
+    exit 1
+fi
+
+print_status "info" "Adding Context7 MCP server to Claude Code..."
+
+# Add the context7 MCP server
+if claude mcp add context7 -- npx -y @upstash/context7-mcp; then
+    print_status "success" "✅ Context7 MCP server added successfully"
+else
+    print_status "error" "❌ Failed to add Context7 MCP server"
+    exit 1
+fi

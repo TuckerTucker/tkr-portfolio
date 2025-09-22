@@ -1,0 +1,62 @@
+{
+  "name": "@tkr-context-kit/browser-client",
+  "version": "1.0.0",
+  "description": "Browser logging client that intercepts console methods with perfect passthrough while logging to backend",
+  "main": "logging-client-combined.js",
+  "files": [
+    "logging-client.js",
+    "logging-client.min.js",
+    "logging-client-combined.js",
+    "session-manager.js",
+    "batch-sender.js",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "open test.html",
+    "serve": "python3 -m http.server 8080",
+    "minify": "echo 'Manual minification - see logging-client.min.js'"
+  },
+  "keywords": [
+    "logging",
+    "browser",
+    "console",
+    "monitoring",
+    "analytics",
+    "tkr-context-kit"
+  ],
+  "author": "Tucker",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuckertucker/tkr-project-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/tuckertucker/tkr-project-kit/issues"
+  },
+  "homepage": "https://github.com/tuckertucker/tkr-project-kit#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browser": {
+    "logging-client.js": "./logging-client.js",
+    "session-manager.js": "./session-manager.js",
+    "batch-sender.js": "./batch-sender.js"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "config": {
+    "defaultEndpoint": "http://localhost:42003/api/logs/batch",
+    "performanceThreshold": 1,
+    "maxBatchSize": 100,
+    "maxRetries": 3
+  },
+  "exports": {
+    ".": "./logging-client-combined.js",
+    "./session-manager": "./session-manager.js",
+    "./batch-sender": "./batch-sender.js",
+    "./logging-client": "./logging-client.js",
+    "./combined": "./logging-client-combined.js",
+    "./minified": "./logging-client.min.js"
+  }
+}

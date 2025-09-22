@@ -1,0 +1,64 @@
+{
+  "name": "@tkr-context-kit/core",
+  "version": "1.0.0",
+  "description": "Core unified library for tkr-context-kit v2.0 - Database, Knowledge Graph, Search, and Logging",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./database": "./dist/database/index.js",
+    "./knowledge-graph": "./dist/knowledge-graph/index.js",
+    "./search": "./dist/search/index.js",
+    "./logging": "./dist/logging/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.6.0",
+    "nanoid": "^5.0.0",
+    "pino": "^8.16.0",
+    "pino-pretty": "^10.2.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.9.2",
+    "vitest": "^1.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuckertucker/tkr-project-kit.git",
+    "directory": ".context-kit/core"
+  },
+  "keywords": [
+    "typescript",
+    "database",
+    "sqlite",
+    "knowledge-graph",
+    "search",
+    "logging",
+    "mcp"
+  ],
+  "author": "Tucker",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
