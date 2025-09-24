@@ -90,7 +90,9 @@
       "mcp__tkr-context-kit__service_status",
       "mcp__tkr-context-kit__start_dev_server",
       "mcp__tkr-context-kit__find_patterns",
-      "mcp__tkr-context-kit__analyze_impact"
+      "mcp__tkr-context-kit__analyze_impact",
+      "Bash(for component in button.jsx card.jsx carousel.jsx dropdown-menu.jsx theme-toggle.jsx)",
+      "Bash(timeout 10s npm run dev:storybook)"
     ],
     "deny": [
       "Bash(rm -rf /)",
