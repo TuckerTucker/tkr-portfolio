@@ -21,6 +21,9 @@ const DualInterfaceDemo = ({
   autoDemo = false,
   demoDuration = 4000,
   className,
+  humanInterface, // Extract custom props to prevent DOM warnings
+  aiInterface,
+  isMobile: isMobileProp, // Rename to avoid conflict with internal state
   ...props
 }) => {
   const [activeMode, setActiveMode] = useState(initialMode);
@@ -373,7 +376,10 @@ DualInterfaceDemo.propTypes = {
   initialMode: PropTypes.oneOf(['human', 'ai']),
   autoDemo: PropTypes.bool,
   demoDuration: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  humanInterface: PropTypes.any,
+  aiInterface: PropTypes.any,
+  isMobile: PropTypes.bool
 };
 
 export default DualInterfaceDemo;

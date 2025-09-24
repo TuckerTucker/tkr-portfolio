@@ -16,6 +16,8 @@ const BeforeAfter = ({
   defaultPosition = 50, // Default slider position (percentage)
   className,
   isMobile, // Extract isMobile prop to prevent DOM warnings
+  beforeState, // Extract custom props to prevent DOM warnings
+  afterState,
   ...props
 }) => {
   const [sliderPosition, setSliderPosition] = useState(defaultPosition);
@@ -143,7 +145,10 @@ BeforeAfter.propTypes = {
   beforeLabel: PropTypes.string,
   afterLabel: PropTypes.string,
   defaultPosition: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  isMobile: PropTypes.bool,
+  beforeState: PropTypes.any,
+  afterState: PropTypes.any
 };
 
 export default BeforeAfter;
