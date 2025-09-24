@@ -7,14 +7,15 @@ import { cn } from "@/lib/utils";
  * Displays usability test results and metrics in a visual format.
  * Includes completion rates, time on task, and satisfaction scores.
  */
-const UsabilityMetrics = ({ 
+const UsabilityMetrics = ({
   title = "Usability Test Results",
   participants = 0,
   metrics = [],
   tasks = [],
   insights = [],
   className,
-  ...props 
+  isMobile, // Extract isMobile prop to prevent DOM warnings
+  ...props
 }) => {
   const [activeTab, setActiveTab] = useState('metrics');
   
