@@ -7,13 +7,15 @@ import { cn } from "@/lib/utils";
  * Displays a visual matrix of skills with proficiency levels and categories.
  * Allows filtering by skill category and shows detailed information on hover.
  */
-const SkillsMatrix = ({ 
+const SkillsMatrix = ({
   title = "Skills Matrix",
   categories = [],
   skills = [],
   selectedCategory = null,
   className,
-  ...props 
+  skillCategories, // Extract custom props to prevent DOM warnings
+  progressionInsights,
+  ...props
 }) => {
   const [activeCategory, setActiveCategory] = useState(selectedCategory || 'all');
   const [activeSkill, setActiveSkill] = useState(null);

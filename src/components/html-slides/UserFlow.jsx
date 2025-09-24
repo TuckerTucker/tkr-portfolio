@@ -7,12 +7,13 @@ import { cn } from "@/lib/utils";
  * Displays a simplified user flow diagram with nodes and connections.
  * Highlights the selected flow step with additional details.
  */
-const UserFlow = ({ 
+const UserFlow = ({
   title = "User Flow",
   description = "A simplified diagram of the user journey",
   flowSteps = [],
   className,
-  ...props 
+  journeyStages, // Extract custom prop to prevent DOM warnings
+  ...props
 }) => {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   
