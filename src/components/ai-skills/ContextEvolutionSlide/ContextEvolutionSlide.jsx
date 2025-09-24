@@ -26,15 +26,16 @@ const ContextEvolutionSlide = ({
   className,
   beforeStats, // Extract custom props to prevent DOM warnings
   afterStats,
+  isMobile, // Extract isMobile prop to prevent DOM warnings
   ...props
 }) => {
   const [activeView, setActiveView] = useState('before');
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileState, setIsMobileState] = useState(false);
 
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobileState(window.innerWidth < 768);
     };
 
     checkMobile();
@@ -227,7 +228,7 @@ const ContextEvolutionSlide = ({
       </div>
 
       {/* Mobile View Toggle */}
-      {isMobile && (
+      {isMobileState && (
         <div className="p-4 bg-muted border-b border-border">
           <div className="flex space-x-2">
             <Button
@@ -252,7 +253,7 @@ const ContextEvolutionSlide = ({
 
       {/* Main Content */}
       <div className="p-6">
-        {isMobile ? (
+        {isMobileState ? (
           // Mobile: Single view with toggle
           <div>
             {activeView === 'before' ? (
