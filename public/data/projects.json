@@ -901,51 +901,46 @@
         "component": "ProcessTimeline",
         "props": {
           "title": "5-Stage AI Collaboration Journey",
-          "subtitle": "Evolution from Skeptic to Creator",
-          "phases": [
+          "subtitle": "Evolution from Chatter to Creator",
+          "stages": [
             {
-              "phase": "Stage 1",
-              "title": "Skeptic",
-              "description": "Initial resistance and uncertainty about AI capabilities",
-              "duration": "Weeks 1-4",
-              "insights": ["AI is overhyped", "Too many limitations", "Not worth the effort"],
+              "name": "Chatter",
+              "description": "Basic conversation with AI, like casual chat - scattered thoughts and simple questions",
+              "duration": "First encounters",
+              "insights": ["'Hey! Make a cool app'", "Simple requests", "No clear direction"],
               "color": "#EF4444"
             },
             {
-              "phase": "Stage 2",
-              "title": "Experimenter",
-              "description": "Cautious exploration with simple, low-risk AI interactions",
-              "duration": "Weeks 5-12",
-              "insights": ["Trying basic prompts", "Limited use cases", "Building initial confidence"],
+              "name": "Prompter",
+              "description": "Role: Dev Lead. Goal: Act as a Sr Python Developer. Pair programming with a junior.",
+              "duration": "Learning structure",
+              "insights": ["Task-specific bots using Role.Goal.Tasks", "Structured frameworks", "Clear objectives"],
               "color": "#F59E0B"
             },
             {
-              "phase": "Stage 3",
-              "title": "Adopter",
-              "description": "Regular integration of AI into existing workflows",
-              "duration": "Weeks 13-26",
-              "insights": ["Daily AI usage", "Workflow integration", "Understanding capabilities"],
+              "name": "Collaborator",
+              "description": "Name: Librarian. Role: Retrieve and save text from a given web page. Tools: web-scraper, write-to-system",
+              "duration": "Building tools",
+              "insights": ["Named AI personas", "Tool integration", "Context beyond the repo"],
               "color": "#3B82F6"
             },
             {
-              "phase": "Stage 4",
-              "title": "Optimizer",
-              "description": "Advanced techniques and workflow customization",
-              "duration": "Weeks 27-52",
-              "insights": ["Complex prompt engineering", "Custom workflows", "Teaching others"],
+              "name": "Coordinator",
+              "description": "@Librarian get the latest documentation from www.example.com @DevLead Review the updated docs and audit current codebase to identify any required changes",
+              "duration": "Multi-agent orchestration",
+              "insights": ["Coordinate multiple bots and agents", "Complex task decomposition", "System-level thinking"],
               "color": "#8B5CF6"
             },
             {
-              "phase": "Stage 5",
-              "title": "Creator",
-              "description": "Building AI-enhanced products and novel collaboration patterns",
-              "duration": "52+ weeks",
-              "insights": ["Creating new AI experiences", "Advanced collaboration", "Innovation leadership"],
+              "name": "Creator",
+              "description": "Goal: A SaaS application with full technical specs, project/specs, design files in /project/design, and three parallel agents to review docs and codebase",
+              "duration": "Innovation leadership",
+              "insights": ["Create complex software by orchestrating bots and agents", "Well-architected project content", "Novel collaboration patterns"],
               "color": "#10B981"
             }
           ]
         },
-        "alt": "Five-stage AI collaboration journey from skeptic to creator"
+        "alt": "Five-stage AI collaboration journey from chatter to creator"
       },
       {
         "type": "html",
@@ -953,58 +948,63 @@
         "props": {
           "title": "Emotional Journey Mapping",
           "subtitle": "Confidence and Capability Growth Through AI Collaboration Stages",
-          "journeyStages": [
+          "flowSteps": [
             {
-              "stage": "Skeptic",
-              "emotion": "Resistance",
-              "confidence": 10,
-              "capability": 5,
-              "thoughts": ["AI is just hype", "Too many limitations", "Will replace humans"],
-              "actions": ["Avoiding AI tools", "Criticizing AI outputs", "Preferring manual work"],
-              "touchpoints": ["News articles about AI limitations", "Failed AI interactions", "Peer skepticism"]
+              "label": "Chatter",
+              "description": "Casual exploration phase with scattered thoughts and simple requests. No clear strategy or direction in AI interactions.",
+              "emotion": "Casual Exploration",
+              "confidence": 15,
+              "capability": 10,
+              "thoughts": ["Just chatting with AI", "Scattered requests", "No clear strategy"],
+              "userActions": ["Random questions", "Simple tasks", "Treating AI like a search engine"],
+              "touchpoints": ["First ChatGPT interactions", "Basic assistance requests", "Curiosity-driven exploration"]
             },
             {
-              "stage": "Experimenter",
-              "emotion": "Curiosity",
-              "confidence": 30,
-              "capability": 20,
-              "thoughts": ["Maybe worth trying", "Start with low risk", "Keep expectations low"],
-              "actions": ["Basic ChatGPT queries", "Simple writing assistance", "Fact-checking AI outputs"],
-              "touchpoints": ["Successful first interactions", "Peer recommendations", "Online tutorials"]
+              "label": "Prompter",
+              "description": "Learning structured prompt techniques using Role.Goal.Tasks framework for consistent, repeatable interactions.",
+              "emotion": "Structured Learning",
+              "confidence": 35,
+              "capability": 30,
+              "thoughts": ["Learning proper prompt structure", "Role.Goal.Tasks framework", "Building repeatable patterns"],
+              "userActions": ["Using structured prompts", "Creating task-specific bots", "Following frameworks"],
+              "touchpoints": ["Prompt engineering tutorials", "Structured AI interactions", "Consistent results"]
             },
             {
-              "stage": "Adopter",
-              "emotion": "Confidence",
-              "confidence": 60,
-              "capability": 50,
-              "thoughts": ["AI saves me time", "Regular part of workflow", "Understanding strengths/weaknesses"],
-              "actions": ["Daily AI usage", "Integrating into workflows", "Sharing results with team"],
-              "touchpoints": ["Consistent positive outcomes", "Workflow improvements", "Team adoption"]
+              "label": "Collaborator",
+              "description": "Building specialized AI team members with named personas and tool integration beyond basic chat.",
+              "emotion": "Tool Integration",
+              "confidence": 65,
+              "capability": 60,
+              "thoughts": ["AI as a specialized team member", "Building custom tools", "Context beyond simple chat"],
+              "userActions": ["Creating named AI personas", "Tool integration", "Web scraping and system interaction"],
+              "touchpoints": ["Custom AI agents", "Tool-enabled workflows", "Extended AI capabilities"]
             },
             {
-              "stage": "Optimizer",
-              "emotion": "Mastery",
+              "label": "Coordinator",
+              "description": "Orchestrating multiple AI agents with @mentions for parallel execution and complex task decomposition.",
+              "emotion": "System Orchestration",
               "confidence": 85,
-              "capability": 80,
-              "thoughts": ["Crafting sophisticated prompts", "Customizing for specific needs", "Teaching others"],
-              "actions": ["Complex prompt engineering", "Building custom workflows", "Mentoring colleagues"],
-              "touchpoints": ["Advanced AI interactions", "Teaching opportunities", "Workflow optimization"]
+              "capability": 85,
+              "thoughts": ["Multi-agent coordination", "Complex task decomposition", "System-level thinking"],
+              "userActions": ["@mentions for agent coordination", "Parallel task execution", "Agent specialization"],
+              "touchpoints": ["Multi-agent workflows", "Complex project coordination", "Agent orchestration platforms"]
             },
             {
-              "stage": "Creator",
-              "emotion": "Innovation",
+              "label": "Creator",
+              "description": "Building AI-enhanced products and novel collaboration patterns while teaching methodologies to others.",
+              "emotion": "Innovation Leadership",
               "confidence": 95,
               "capability": 95,
-              "thoughts": ["Building AI-enhanced products", "Novel collaboration patterns", "Pushing boundaries"],
-              "actions": ["Creating AI experiences", "Publishing insights", "Leading innovation"],
-              "touchpoints": ["Product launches", "Industry recognition", "Innovation leadership"]
+              "thoughts": ["Building novel AI experiences", "Architecting complex systems", "Teaching through innovation"],
+              "userActions": ["Creating AI-enhanced products", "Orchestrating development teams", "Publishing methodologies"],
+              "touchpoints": ["Context-kit systems", "Portfolio implementations", "Industry recognition"]
             }
           ],
           "insights": [
-            "Confidence grows exponentially after initial adoption phase",
-            "Capability development requires sustained practice and experimentation",
-            "Emotional journey includes skepticism, curiosity, confidence, mastery, and innovation",
-            "Peer influence and successful experiences are key transition drivers"
+            "Confidence grows exponentially as structure and frameworks are learned",
+            "Tool integration transforms AI from chat assistant to specialized team member",
+            "Multi-agent coordination requires system-level thinking and architecture skills",
+            "Creator level involves building novel AI experiences and teaching methodologies"
           ]
         },
         "alt": "Emotional journey mapping showing confidence and capability growth across AI collaboration stages"
@@ -1015,208 +1015,144 @@
         "props": {
           "title": "Skills Development Matrix",
           "subtitle": "Capabilities and Competencies at Each Stage",
-          "stages": [
+          "categories": ["Communication Style & Structure", "AI Understanding & Orchestration", "Task Structure & Tool Integration", "Results Quality & System Architecture"],
+          "skills": [
             {
-              "name": "Skeptic",
+              "id": "chatter-comm",
+              "name": "Chatter Communication",
+              "category": "Communication Style & Structure",
               "level": 1,
-              "color": "#EF4444",
-              "skills": [
-                {
-                  "category": "Prompt Writing",
-                  "proficiency": 10,
-                  "description": "Basic questions, unclear expectations"
-                },
-                {
-                  "category": "AI Understanding",
-                  "proficiency": 15,
-                  "description": "Limited knowledge of capabilities"
-                },
-                {
-                  "category": "Workflow Integration",
-                  "proficiency": 5,
-                  "description": "No integration, manual processes"
-                },
-                {
-                  "category": "Quality Assessment",
-                  "proficiency": 20,
-                  "description": "Skeptical of outputs, high verification needs"
-                }
-              ]
+              "description": "Casual chat, scattered requests, no clear direction"
             },
             {
-              "name": "Experimenter",
+              "id": "chatter-understand",
+              "name": "Chatter Understanding",
+              "category": "AI Understanding & Orchestration",
+              "level": 1,
+              "description": "Basic awareness, treating AI like a search engine"
+            },
+            {
+              "id": "prompter-comm",
+              "name": "Prompter Communication",
+              "category": "Communication Style & Structure",
               "level": 2,
-              "color": "#F59E0B",
-              "skills": [
-                {
-                  "category": "Prompt Writing",
-                  "proficiency": 30,
-                  "description": "Simple, direct requests with basic context"
-                },
-                {
-                  "category": "AI Understanding",
-                  "proficiency": 35,
-                  "description": "Learning capabilities through experimentation"
-                },
-                {
-                  "category": "Workflow Integration",
-                  "proficiency": 25,
-                  "description": "Occasional use for specific tasks"
-                },
-                {
-                  "category": "Quality Assessment",
-                  "proficiency": 40,
-                  "description": "Building evaluation criteria"
-                }
-              ]
+              "description": "Role.Goal.Tasks framework, structured approach"
             },
             {
-              "name": "Adopter",
+              "id": "prompter-understand",
+              "name": "Prompter Understanding",
+              "category": "AI Understanding & Orchestration",
+              "level": 2,
+              "description": "Learning proper prompt structure and frameworks"
+            },
+            {
+              "id": "collaborator-comm",
+              "name": "Collaborator Communication",
+              "category": "Communication Style & Structure",
               "level": 3,
-              "color": "#3B82F6",
-              "skills": [
-                {
-                  "category": "Prompt Writing",
-                  "proficiency": 60,
-                  "description": "Context-rich prompts with clear instructions"
-                },
-                {
-                  "category": "AI Understanding",
-                  "proficiency": 65,
-                  "description": "Good grasp of strengths and limitations"
-                },
-                {
-                  "category": "Workflow Integration",
-                  "proficiency": 55,
-                  "description": "Regular integration into daily workflows"
-                },
-                {
-                  "category": "Quality Assessment",
-                  "proficiency": 70,
-                  "description": "Efficient evaluation and improvement cycles"
-                }
-              ]
+              "description": "Named AI personas, specialized roles"
             },
             {
-              "name": "Optimizer",
+              "id": "collaborator-understand",
+              "name": "Collaborator Understanding",
+              "category": "AI Understanding & Orchestration",
+              "level": 3,
+              "description": "AI as specialized team members with tools"
+            },
+            {
+              "id": "coordinator-comm",
+              "name": "Coordinator Communication",
+              "category": "Communication Style & Structure",
               "level": 4,
-              "color": "#8B5CF6",
-              "skills": [
-                {
-                  "category": "Prompt Engineering",
-                  "proficiency": 85,
-                  "description": "Advanced techniques, chain-of-thought, few-shot learning"
-                },
-                {
-                  "category": "AI Understanding",
-                  "proficiency": 90,
-                  "description": "Deep knowledge of model capabilities and limitations"
-                },
-                {
-                  "category": "Workflow Integration",
-                  "proficiency": 80,
-                  "description": "Custom workflows and automation"
-                },
-                {
-                  "category": "Quality Assessment",
-                  "proficiency": 85,
-                  "description": "Sophisticated evaluation frameworks"
-                }
-              ]
+              "description": "@mentions for agent coordination, parallel execution"
             },
             {
-              "name": "Creator",
+              "id": "coordinator-understand",
+              "name": "Coordinator Understanding",
+              "category": "AI Understanding & Orchestration",
+              "level": 4,
+              "description": "Multi-agent orchestration, system-level thinking"
+            },
+            {
+              "id": "creator-comm",
+              "name": "Creator Communication",
+              "category": "Communication Style & Structure",
               "level": 5,
-              "color": "#10B981",
-              "skills": [
-                {
-                  "category": "Prompt Engineering",
-                  "proficiency": 95,
-                  "description": "Novel techniques, complex multi-turn conversations"
-                },
-                {
-                  "category": "AI Understanding",
-                  "proficiency": 95,
-                  "description": "Cutting-edge knowledge, model fine-tuning awareness"
-                },
-                {
-                  "category": "Workflow Integration",
-                  "proficiency": 95,
-                  "description": "Building AI-enhanced products and experiences"
-                },
-                {
-                  "category": "Quality Assessment",
-                  "proficiency": 95,
-                  "description": "Industry-leading evaluation methodologies"
-                }
-              ]
+              "description": "Novel AI collaboration patterns, teaching methodologies"
+            },
+            {
+              "id": "creator-understand",
+              "name": "Creator Understanding",
+              "category": "AI Understanding & Orchestration",
+              "level": 5,
+              "description": "Architecting complex AI-enhanced systems"
             }
           ],
           "skillCategories": [
-            "Prompt Writing/Engineering",
-            "AI Understanding & Model Awareness",
-            "Workflow Integration & Automation",
-            "Quality Assessment & Evaluation"
+            "Communication Style & Structure",
+            "AI Understanding & Orchestration",
+            "Task Structure & Tool Integration",
+            "Results Quality & System Architecture"
           ],
           "progressionInsights": [
-            "Skills develop non-linearly with experience and practice",
-            "Quality assessment improves significantly with sustained use",
-            "Workflow integration requires both technical and process skills",
-            "Advanced prompt engineering emerges in optimizer stage"
+            "Structure and frameworks are the foundation for effective AI collaboration",
+            "Tool integration transforms AI from simple chat to specialized capabilities",
+            "Multi-agent coordination requires architectural thinking and system design",
+            "Creator level involves building novel patterns and teaching others"
           ]
         },
         "alt": "Skills matrix showing capability progression across five AI collaboration stages"
       },
       {
-        "type": "html",
+        "type": "ai-skills",
         "component": "AgentConversationFlow",
         "props": {
           "title": "Prompt Evolution Across Stages",
           "subtitle": "How Communication with AI Agents Develops Over Time",
           "conversationStages": [
             {
-              "stage": "Skeptic",
+              "stage": "Chatter",
               "level": 1,
-              "prompt": "Can you help me write an email?",
-              "context": "Minimal context, vague request",
-              "aiResponse": "I'd be happy to help! Could you provide more details about the email's purpose, recipient, and key points?",
-              "outcome": "Frustration with need for clarification",
-              "learningPoint": "AI needs context to be effective"
+              "prompt": "Hey! Make a cool app",
+              "context": "Casual, no clear direction or structure",
+              "aiResponse": "I'd love to help! Could you tell me what kind of app you're thinking about? What problem should it solve?",
+              "outcome": "Vague response, requires multiple follow-ups",
+              "learningPoint": "Scattered thoughts need focus to be actionable"
             },
             {
-              "stage": "Experimenter",
+              "stage": "Prompter",
               "level": 2,
-              "prompt": "Write a professional email to my boss requesting a meeting to discuss my performance review.",
-              "context": "Basic context provided, clear request",
-              "aiResponse": "Subject: Request for Performance Review Meeting\n\nDear [Boss's Name],\n\nI hope this email finds you well. I would like to schedule a meeting to discuss my upcoming performance review...",
-              "outcome": "Useful output with minor edits needed",
-              "learningPoint": "Clear requests yield better results"
+              "prompt": "Role: Dev Lead\nGoal: Act as a Senior Python Developer\nTasks: Help me with pair programming for a web scraper that extracts product data",
+              "context": "Structured prompt using Role.Goal.Tasks framework",
+              "aiResponse": "As a Senior Python Developer, I'll help you build a robust web scraper. Let's start by identifying the target website and discussing the data structure...",
+              "outcome": "Clear, actionable guidance with technical depth",
+              "learningPoint": "Structure dramatically improves AI response quality"
             },
             {
-              "stage": "Adopter",
+              "stage": "Collaborator",
               "level": 3,
-              "prompt": "Write a professional email to Sarah Chen, my manager, requesting a 30-minute meeting next week to discuss my Q4 performance review. I want to focus on my project achievements, areas for improvement, and career development goals. Tone should be confident but collaborative.",
-              "context": "Rich context, specific requirements",
-              "aiResponse": "[Detailed, well-crafted email with appropriate tone, structure, and content addressing all specified points]",
-              "outcome": "High-quality output ready for use",
-              "learningPoint": "Context and specificity dramatically improve quality"
+              "prompt": "Name: Librarian\nRole: Retrieve and save text from a given web page\nTools: web-scraper, write-to-system\n\nLibrarian, please extract all documentation from https://docs.example.com and save it to our knowledge base.",
+              "context": "Named AI persona with specific tools and capabilities",
+              "aiResponse": "[Systematic extraction of documentation with proper formatting, error handling, and knowledge base integration]",
+              "outcome": "Autonomous task completion with tool integration",
+              "learningPoint": "Named personas with tools enable specialized workflows"
             },
             {
-              "stage": "Optimizer",
+              "stage": "Coordinator",
               "level": 4,
-              "prompt": "Act as a communications expert helping me craft an email to my manager Sarah Chen. Context: I'm requesting a performance review meeting for Q4. I completed 3 major projects ahead of schedule, led a successful team initiative, but struggled with stakeholder communication. Tone: Professional, confident, growth-oriented. Structure: Clear subject line, brief context, specific meeting request, preview of discussion topics. Include subtle language that positions me as proactive and development-focused.",
-              "context": "Sophisticated prompt with role, context, constraints",
-              "aiResponse": "[Expertly crafted email demonstrating advanced understanding of professional communication, psychology, and positioning]",
-              "outcome": "Exceptional output exceeding expectations",
-              "learningPoint": "Advanced prompting techniques unlock AI's full potential"
+              "prompt": "@Librarian get the latest documentation from www.example.com\n@DevLead Review the updated docs and audit the current codebase to identify any required changes\n@QAEngineer Create test scenarios based on the new requirements",
+              "context": "Multi-agent coordination with @mentions and parallel tasks",
+              "aiResponse": "[Coordinated response from multiple specialized agents working in parallel, with cross-references and integrated deliverables]",
+              "outcome": "Complex multi-agent workflow execution",
+              "learningPoint": "Agent coordination enables system-level problem solving"
             },
             {
               "stage": "Creator",
               "level": 5,
-              "prompt": "You're a senior executive communications strategist. I need to craft a sequence of communications for my upcoming performance review cycle. Primary: Email requesting meeting with manager Sarah. Secondary: Follow-up agenda. Tertiary: Post-meeting summary template. Context: High-performing individual contributor, 3 major projects delivered, team leadership growth, stakeholder communication as development area. Strategy: Position for promotion consideration while showing self-awareness and growth mindset. Audience: Tech startup culture, data-driven, values transparency. Constraints: Each piece should reinforce the others, maintain consistent personal brand, incorporate feedback loops. Generate the sequence with rationale for each strategic choice.",
-              "context": "Multi-layered request with strategic thinking",
-              "aiResponse": "[Comprehensive communication strategy with multiple interconnected pieces, strategic rationale, and advanced understanding of organizational dynamics]",
-              "outcome": "Strategic solution addressing complex business needs",
+              "prompt": "Goal: Create a comprehensive SaaS application with full technical specifications, project documentation in /project/specs, design files in /project/design, and orchestrate three parallel agents: @Architect for system design, @Developer for implementation, @Designer for UI/UX. Each agent should have context beyond the current repo and coordinate their outputs for a production-ready portfolio system.",
+              "context": "Multi-layered system creation with agent orchestration",
+              "aiResponse": "[Sophisticated coordination of multiple specialized agents creating interconnected deliverables, with automatic context management and production-ready outputs]",
+              "outcome": "Complete system architecture with coordinated implementation",
               "learningPoint": "AI becomes a strategic thinking partner"
             }
           ],
