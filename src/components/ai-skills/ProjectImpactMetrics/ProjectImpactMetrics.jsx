@@ -24,16 +24,17 @@ const ProjectImpactMetrics = ({
   animationDuration = 2000,
   className,
   nextSteps, // Extract custom props to prevent DOM warnings
+  isMobile, // Extract isMobile prop to prevent DOM warnings
   ...props
 }) => {
   const [animatedValues, setAnimatedValues] = useState({});
   const [currentVisualization, setCurrentVisualization] = useState(visualizationType);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileState, setIsMobileState] = useState(false);
 
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobileState(window.innerWidth < 768);
     };
 
     checkMobile();
@@ -419,7 +420,7 @@ const ProjectImpactMetrics = ({
               aria-label="Bar chart view"
             >
               <BarIcon className="w-4 h-4" />
-              {!isMobile && <span className="ml-1">Bar</span>}
+              {!isMobileState && <span className="ml-1">Bar</span>}
             </Button>
             <Button
               size="sm"
@@ -428,7 +429,7 @@ const ProjectImpactMetrics = ({
               aria-label="Line chart view"
             >
               <LineIcon className="w-4 h-4" />
-              {!isMobile && <span className="ml-1">Line</span>}
+              {!isMobileState && <span className="ml-1">Line</span>}
             </Button>
             <Button
               size="sm"
@@ -437,7 +438,7 @@ const ProjectImpactMetrics = ({
               aria-label="Circular chart view"
             >
               <CircleIcon className="w-4 h-4" />
-              {!isMobile && <span className="ml-1">Circular</span>}
+              {!isMobileState && <span className="ml-1">Circular</span>}
             </Button>
           </div>
         </div>
