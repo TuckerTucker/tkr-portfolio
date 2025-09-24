@@ -8,10 +8,12 @@ import DesignSystem from './DesignSystem';
 import UserFlow from './UserFlow';
 import UsabilityMetrics from './UsabilityMetrics';
 import SkillsMatrix from './SkillsMatrix';
+import InteractiveCards from './InteractiveCards';
 import BornToTheWorld from './BornToTheWorld';
 import TheSparkAndTheArt from './TheSparkAndTheArt';
 import TheOffHoursCreative from './TheOffHoursCreative';
-import AgenticAIKanban from './AgenticAIKanban';
+import TkrKanbanPresentation from './TkrKanbanPresentation';
+import TkrContextKitPresentation from './TkrContextKitPresentation';
 import PortfolioShowcase from './PortfolioShowcase';
 import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
@@ -26,10 +28,12 @@ const ThemedDesignSystem = withSlideTheme(DesignSystem);
 const ThemedUserFlow = withSlideTheme(UserFlow);
 const ThemedUsabilityMetrics = withSlideTheme(UsabilityMetrics);
 const ThemedSkillsMatrix = withSlideTheme(SkillsMatrix);
+const ThemedInteractiveCards = withSlideTheme(InteractiveCards);
 const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
 const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
 const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
-const ThemedAgenticAIKanban = withSlideTheme(AgenticAIKanban);
+const ThemedTkrKanbanPresentation = withSlideTheme(TkrKanbanPresentation);
+const ThemedTkrContextKitPresentation = withSlideTheme(TkrContextKitPresentation);
 const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
 const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
@@ -44,10 +48,12 @@ const htmlSlideComponents = {
   UserFlow: ThemedUserFlow,
   UsabilityMetrics: ThemedUsabilityMetrics,
   SkillsMatrix: ThemedSkillsMatrix,
+  InteractiveCards: ThemedInteractiveCards,
   BornToTheWorld: ThemedBornToTheWorld,
   TheSparkAndTheArt: ThemedTheSparkAndTheArt,
   TheOffHoursCreative: ThemedTheOffHoursCreative,
-  AgenticAIKanban: ThemedAgenticAIKanban,
+  TkrKanbanPresentation: ThemedTkrKanbanPresentation,
+  TkrContextKitPresentation: ThemedTkrContextKitPresentation,
   PortfolioShowcase: ThemedPortfolioShowcase,
   WorldplayShowcase: ThemedWorldplayShowcase,
   NutrienShowcase: ThemedNutrienShowcase,

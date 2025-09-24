@@ -54,9 +54,32 @@
     "slides": [
       {
         "type": "html",
-        "component": "AgenticAIKanban",
+        "component": "TkrKanbanPresentation",
         "props": {},
-        "alt": "Agentic AI Kanban board interface showcase"
+        "alt": "TaskBoardAI: Designing for Human-AI Collaboration"
+      }
+    ]
+  },
+  {
+    "id": "tkr_context_kit",
+    "title": "tkr-context-kit",
+    "color": "#8B5CF6",
+    "subtitle": "Agent Experience (AGx) Design for AI Collaboration",
+    "logoUrl": "Tucker.svg",
+    "description": "A comprehensive toolkit pioneering Agent Experience (AGx) Design - treating AI agents as primary users with their own needs, preferences, and interaction patterns. Features semantic YAML architectures, service-oriented design, and persistent context systems for enhanced human-AI collaboration.",
+    "bullets": [
+      "Agent Experience (AGx) design methodology with AI as primary user",
+      "70% token reduction through semantic anchor YAML architecture",
+      "11 specialized AI agents for context-aware development",
+      "Service-oriented architecture with React dashboard and knowledge graph",
+      "MCP integration for persistent AI memory across conversations"
+    ],
+    "slides": [
+      {
+        "type": "html",
+        "component": "TkrContextKitPresentation",
+        "props": {},
+        "alt": "tkr-context-kit: Pioneering Agent Experience (AGx) Design"
       }
     ]
   },
