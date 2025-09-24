@@ -24,6 +24,8 @@ const ContextEvolutionSlide = ({
   solutions = [],
   optimizations = [],
   className,
+  beforeStats, // Extract custom props to prevent DOM warnings
+  afterStats,
   ...props
 }) => {
   const [activeView, setActiveView] = useState('before');

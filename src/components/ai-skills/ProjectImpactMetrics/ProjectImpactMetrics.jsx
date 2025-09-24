@@ -23,6 +23,7 @@ const ProjectImpactMetrics = ({
   showAnimation = true,
   animationDuration = 2000,
   className,
+  nextSteps, // Extract custom props to prevent DOM warnings
   ...props
 }) => {
   const [animatedValues, setAnimatedValues] = useState({});

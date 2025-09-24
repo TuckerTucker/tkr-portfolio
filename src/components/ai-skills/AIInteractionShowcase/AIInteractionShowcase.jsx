@@ -21,15 +21,16 @@ const AIInteractionShowcase = ({
   syncIndicators = [],
   showSync = true,
   className,
+  isMobile, // Extract custom props to prevent DOM warnings
   ...props
 }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileState, setIsMobileState] = useState(false);
   const [activeSync, setActiveSync] = useState(null);
 
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobileState(window.innerWidth < 768);
     };
 
     checkMobile();
@@ -57,7 +58,7 @@ const AIInteractionShowcase = ({
     <div className={cn(
       "relative flex-1 bg-card rounded-lg border border-border overflow-hidden",
       "min-h-[400px]",
-      isMobile && "min-h-[300px]"
+      isMobileState && "min-h-[300px]"
     )}>
       {/* Interface Header */}
       <div className={cn(
@@ -164,13 +165,13 @@ const AIInteractionShowcase = ({
       {/* Main Content */}
       <div className={cn(
         "flex gap-4",
-        isMobile ? "flex-col" : "flex-row"
+        isMobileState ? "flex-col" : "flex-row"
       )}>
         {/* Human Interface */}
         {renderInterface(humanInterface, 'human')}
 
         {/* Sync Indicators - Only show on desktop */}
-        {showSync && !isMobile && syncIndicators.length > 0 && (
+        {showSync && !isMobileState && syncIndicators.length > 0 && (
           <div className="flex flex-col items-center justify-center w-16 py-8">
             {syncIndicators.map((indicator, index) => (
               <div
@@ -222,7 +223,7 @@ const AIInteractionShowcase = ({
       )}
 
       {/* Mobile Sync Indicators */}
-      {showSync && isMobile && syncIndicators.length > 0 && (
+      {showSync && isMobileState && syncIndicators.length > 0 && (
         <div className="mt-4 flex justify-center space-x-4">
           {syncIndicators.map((indicator, index) => (
             <div
