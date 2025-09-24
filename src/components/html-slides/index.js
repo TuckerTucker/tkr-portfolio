@@ -9,6 +9,7 @@ import UserFlow from './UserFlow';
 import UsabilityMetrics from './UsabilityMetrics';
 import SkillsMatrix from './SkillsMatrix';
 import InteractiveCards from './InteractiveCards';
+import InteractiveCode from './InteractiveCode';
 import BornToTheWorld from './BornToTheWorld';
 import TheSparkAndTheArt from './TheSparkAndTheArt';
 import TheOffHoursCreative from './TheOffHoursCreative';
@@ -29,6 +30,7 @@ const ThemedUserFlow = withSlideTheme(UserFlow);
 const ThemedUsabilityMetrics = withSlideTheme(UsabilityMetrics);
 const ThemedSkillsMatrix = withSlideTheme(SkillsMatrix);
 const ThemedInteractiveCards = withSlideTheme(InteractiveCards);
+const ThemedInteractiveCode = withSlideTheme(InteractiveCode);
 const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
 const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
 const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
@@ -49,6 +51,7 @@ const htmlSlideComponents = {
   UsabilityMetrics: ThemedUsabilityMetrics,
   SkillsMatrix: ThemedSkillsMatrix,
   InteractiveCards: ThemedInteractiveCards,
+  InteractiveCode: ThemedInteractiveCode,
   BornToTheWorld: ThemedBornToTheWorld,
   TheSparkAndTheArt: ThemedTheSparkAndTheArt,
   TheOffHoursCreative: ThemedTheOffHoursCreative,
