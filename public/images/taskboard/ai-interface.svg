@@ -1,0 +1,38 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#111827"/>
+
+  <!-- Terminal-like Interface -->
+  <rect x="20" y="40" width="360" height="240" rx="8" fill="#1F2937" stroke="#374151"/>
+
+  <!-- Window Header -->
+  <rect x="20" y="40" width="360" height="30" rx="8" fill="#374151"/>
+  <circle cx="35" cy="55" r="4" fill="#EF4444"/>
+  <circle cx="50" cy="55" r="4" fill="#F59E0B"/>
+  <circle cx="65" cy="55" r="4" fill="#10B981"/>
+  <text x="200" y="60" text-anchor="middle" font-family="Monaco" font-size="12" fill="#E5E7EB">JSON API Interface</text>
+
+  <!-- JSON Content -->
+  <text x="30" y="90" font-family="Monaco" font-size="10" fill="#A78BFA">{</text>
+  <text x="40" y="110" font-family="Monaco" font-size="10" fill="#E5E7EB">"tasks": [</text>
+  <text x="60" y="130" font-family="Monaco" font-size="10" fill="#A78BFA">{</text>
+  <text x="80" y="150" font-family="Monaco" font-size="10" fill="#10B981">"id"</text>
+  <text x="110" y="150" font-family="Monaco" font-size="10" fill="#E5E7EB">:</text>
+  <text x="120" y="150" font-family="Monaco" font-size="10" fill="#F59E0B">"task-1"</text>
+  <text x="170" y="150" font-family="Monaco" font-size="10" fill="#E5E7EB">,</text>
+  <text x="80" y="170" font-family="Monaco" font-size="10" fill="#10B981">"title"</text>
+  <text x="120" y="170" font-family="Monaco" font-size="10" fill="#E5E7EB">:</text>
+  <text x="130" y="170" font-family="Monaco" font-size="10" fill="#F59E0B">"Setup project"</text>
+  <text x="220" y="170" font-family="Monaco" font-size="10" fill="#E5E7EB">,</text>
+  <text x="80" y="190" font-family="Monaco" font-size="10" fill="#10B981">"status"</text>
+  <text x="125" y="190" font-family="Monaco" font-size="10" fill="#E5E7EB">:</text>
+  <text x="135" y="190" font-family="Monaco" font-size="10" fill="#F59E0B">"todo"</text>
+  <text x="60" y="210" font-family="Monaco" font-size="10" fill="#A78BFA">}</text>
+  <text x="40" y="230" font-family="Monaco" font-size="10" fill="#E5E7EB">]</text>
+  <text x="30" y="250" font-family="Monaco" font-size="10" fill="#A78BFA">}</text>
+
+  <!-- Cursor -->
+  <rect x="50" y="255" width="8" height="12" fill="#10B981" opacity="0.7"/>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#E5E7EB">Structured Data API</text>
+</svg>

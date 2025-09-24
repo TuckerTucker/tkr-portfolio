@@ -1,0 +1,48 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8FAFC"/>
+
+  <!-- Enhanced Kanban Board -->
+  <rect x="15" y="40" width="115" height="240" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <rect x="140" y="40" width="115" height="240" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <rect x="265" y="40" width="115" height="240" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- Column Headers with Counts -->
+  <rect x="20" y="45" width="105" height="25" fill="#EF4444" fill-opacity="0.1"/>
+  <text x="25" y="60" font-family="Arial" font-size="12" font-weight="bold" fill="#EF4444">TO DO</text>
+  <circle cx="110" cy="57" r="8" fill="#EF4444"/>
+  <text x="110" y="61" text-anchor="middle" font-family="Arial" font-size="10" fill="white">3</text>
+
+  <rect x="145" y="45" width="105" height="25" fill="#F59E0B" fill-opacity="0.1"/>
+  <text x="150" y="60" font-family="Arial" font-size="12" font-weight="bold" fill="#F59E0B">PROGRESS</text>
+  <circle cx="235" cy="57" r="8" fill="#F59E0B"/>
+  <text x="235" y="61" text-anchor="middle" font-family="Arial" font-size="10" fill="white">2</text>
+
+  <rect x="270" y="45" width="105" height="25" fill="#10B981" fill-opacity="0.1"/>
+  <text x="275" y="60" font-family="Arial" font-size="12" font-weight="bold" fill="#10B981">DONE</text>
+  <circle cx="360" cy="57" r="8" fill="#10B981"/>
+  <text x="360" y="61" text-anchor="middle" font-family="Arial" font-size="10" fill="white">2</text>
+
+  <!-- Enhanced Task Cards with more details -->
+  <rect x="25" y="80" width="95" height="45" rx="6" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="30" y="95" font-family="Arial" font-size="10" font-weight="bold" fill="#374151">Setup project</text>
+  <text x="30" y="105" font-family="Arial" font-size="8" fill="#6B7280">2 days left</text>
+  <circle cx="110" cy="115" r="3" fill="#8B5CF6"/>
+
+  <rect x="150" y="80" width="95" height="45" rx="6" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="155" y="95" font-family="Arial" font-size="10" font-weight="bold" fill="#374151">Build API</text>
+  <text x="155" y="105" font-family="Arial" font-size="8" fill="#6B7280">75% complete</text>
+  <rect x="155" y="110" width="30" height="3" fill="#E5E7EB" rx="1"/>
+  <rect x="155" y="110" width="22" height="3" fill="#F59E0B" rx="1"/>
+
+  <rect x="275" y="80" width="95" height="45" rx="6" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="280" y="95" font-family="Arial" font-size="10" font-weight="bold" fill="#374151">User research</text>
+  <text x="280" y="105" font-family="Arial" font-size="8" fill="#10B981">✓ Complete</text>
+  <circle cx="360" cy="115" r="3" fill="#10B981"/>
+
+  <!-- Real-time indicators -->
+  <circle cx="385" cy="25" r="4" fill="#10B981"/>
+  <text x="375" y="20" font-family="Arial" font-size="8" fill="#6B7280">Live</text>
+
+  <!-- Title -->
+  <text x="200" y="15" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#1F2937">Dual-Interface System</text>
+</svg>

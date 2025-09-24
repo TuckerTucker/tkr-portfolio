@@ -328,5 +328,963 @@
         "alt": "Worldplay analytics dashboard showcase"
       }
     ]
+  },
+  {
+    "id": "context_kit_v2",
+    "title": "Context-Kit v2",
+    "color": "#8B5CF6",
+    "subtitle": "AI-Powered Development Toolkit",
+    "logoUrl": "Tucker.svg",
+    "description": "Context-Kit v2 represents a paradigm shift in AI-human collaboration workflows. This comprehensive toolkit demonstrates AGx Design principles through multi-service architecture, intelligent logging, and seamless MCP integration for Claude Code enhancement.",
+    "bullets": [
+      "AGx Design methodology for AI-human workflow optimization",
+      "Multi-service TypeScript architecture with workspace coordination",
+      "Comprehensive logging ecosystem across browser, Node.js, and terminal",
+      "SQLite knowledge graph with FTS5 full-text search capabilities",
+      "YAML optimization reducing configuration complexity by 70%"
+    ],
+    "slides": [
+      {
+        "type": "html",
+        "component": "ProcessTimeline",
+        "props": {
+          "title": "Problem to Solution Journey",
+          "subtitle": "Transforming AI-Human Development Workflows",
+          "phases": [
+            {
+              "phase": "Discovery",
+              "title": "Fragment Frustration",
+              "description": "Developers juggling multiple AI agents, scattered context, and inconsistent workflows",
+              "duration": "Week 1-2",
+              "insights": ["Context switching costs", "Manual state management", "Workflow fragmentation"],
+              "color": "#EF4444"
+            },
+            {
+              "phase": "Research",
+              "title": "AGx Design Foundation",
+              "description": "Researching AI-agent collaboration patterns and identifying workflow optimization opportunities",
+              "duration": "Week 3-4",
+              "insights": ["User research WITH AI agents", "Workflow pattern analysis", "Service architecture planning"],
+              "color": "#F59E0B"
+            },
+            {
+              "phase": "Architecture",
+              "title": "Service Orchestration",
+              "description": "Designing multi-service architecture with unified core module and coordinated builds",
+              "duration": "Week 5-8",
+              "insights": ["Workspace-based coordination", "TypeScript strict mode", "Port management strategy"],
+              "color": "#3B82F6"
+            },
+            {
+              "phase": "Integration",
+              "title": "MCP & Logging Ecosystem",
+              "description": "Implementing comprehensive logging and MCP server for Claude Code integration",
+              "duration": "Week 9-12",
+              "insights": ["Auto-capture mechanisms", "Multi-environment logging", "AI context management"],
+              "color": "#8B5CF6"
+            },
+            {
+              "phase": "Optimization",
+              "title": "YAML Evolution",
+              "description": "Optimizing project documentation from 1000+ lines to 300 focused lines",
+              "duration": "Week 13-14",
+              "insights": ["Token efficiency", "Context compression", "AI-readable documentation"],
+              "color": "#10B981"
+            }
+          ]
+        },
+        "alt": "Context-Kit v2 development process timeline"
+      },
+      {
+        "type": "html",
+        "component": "TechStack",
+        "props": {
+          "title": "Service Architecture",
+          "subtitle": "Enterprise-Scale Multi-Service Ecosystem",
+          "technologies": [
+            {
+              "name": "Unified Core",
+              "description": "Shared TypeScript library with comprehensive type definitions",
+              "icon": "/images/tech_stack/typescript-icon.svg",
+              "category": "Foundation"
+            },
+            {
+              "name": "React Dashboard",
+              "description": "Real-time service monitoring and log visualization (Port 42001)",
+              "icon": "/images/tech_stack/React-icon.svg",
+              "category": "Frontend"
+            },
+            {
+              "name": "Knowledge Graph API",
+              "description": "SQLite + FTS5 backend for project analysis (Port 42003)",
+              "icon": "/images/tech_stack/sqlite-icon.svg",
+              "category": "Backend"
+            },
+            {
+              "name": "Logging Client",
+              "description": "Multi-environment automatic capture (Browser, Node.js, Terminal)",
+              "icon": "/images/tech_stack/nodejs-icon.svg",
+              "category": "Integration"
+            },
+            {
+              "name": "MCP Server",
+              "description": "Model Context Protocol for AI assistant integration",
+              "icon": "/images/tech_stack/ai-icon.svg",
+              "category": "AI Integration"
+            },
+            {
+              "name": "NPM Workspaces",
+              "description": "Coordinated build system with 5 service packages",
+              "icon": "/images/tech_stack/npm-icon.svg",
+              "category": "Architecture"
+            }
+          ]
+        },
+        "alt": "Context-Kit v2 technical architecture and service stack"
+      },
+      {
+        "type": "html",
+        "component": "AIInteractionShowcase",
+        "props": {
+          "title": "AGx Design in Action",
+          "subtitle": "Human-AI Workflow Coordination",
+          "humanInterface": {
+            "title": "Developer Experience",
+            "description": "Traditional development workflow enhanced with AI context awareness",
+            "elements": [
+              {
+                "type": "input",
+                "content": "npm run dev - Start coordinated services",
+                "action": "Execute"
+              },
+              {
+                "type": "output",
+                "content": "Services: Dashboard (42001), API (42003), Logs (Active)",
+                "action": "Monitor"
+              },
+              {
+                "type": "control",
+                "content": "Real-time service health monitoring",
+                "action": "View Dashboard"
+              }
+            ],
+            "capabilities": ["Service Orchestration", "Health Monitoring", "Log Aggregation", "Port Management"]
+          },
+          "aiInterface": {
+            "title": "Claude Code Integration",
+            "description": "MCP server providing rich project context and logging insights",
+            "elements": [
+              {
+                "type": "input",
+                "content": "Project analysis with knowledge graph queries",
+                "action": "Analyze"
+              },
+              {
+                "type": "output",
+                "content": "33,705 files indexed with dependency relationships",
+                "action": "Explore"
+              },
+              {
+                "type": "control",
+                "content": "Automated context compression and YAML optimization",
+                "action": "Optimize"
+              }
+            ],
+            "capabilities": ["Project Analysis", "Context Compression", "Dependency Tracing", "Log Query"]
+          },
+          "sharedData": [
+            {
+              "type": "metrics",
+              "label": "Service Status",
+              "value": "5 services active"
+            },
+            {
+              "type": "performance",
+              "label": "Context Compression",
+              "value": "1000→300 lines (70%)"
+            },
+            {
+              "type": "integration",
+              "label": "MCP Connection",
+              "value": "Real-time sync"
+            }
+          ],
+          "syncIndicators": [
+            {"label": "Service coordination"},
+            {"label": "Log aggregation"},
+            {"label": "Context sharing"}
+          ]
+        },
+        "alt": "AGx Design demonstration showing human-AI workflow coordination"
+      },
+      {
+        "type": "html",
+        "component": "ContextEvolutionSlide",
+        "props": {
+          "title": "YAML Optimization Journey",
+          "subtitle": "From Verbose to Focused Documentation",
+          "beforeStats": {
+            "lines": 1000,
+            "sections": 25,
+            "redundancy": "High",
+            "readability": "Poor"
+          },
+          "afterStats": {
+            "lines": 300,
+            "sections": 8,
+            "redundancy": "Minimal",
+            "readability": "Excellent"
+          },
+          "improvements": [
+            {
+              "category": "Token Efficiency",
+              "before": "Verbose descriptions with repetitive information",
+              "after": "Compressed, context-rich documentation optimized for AI consumption",
+              "impact": "70% reduction in token usage"
+            },
+            {
+              "category": "Structure",
+              "before": "Scattered information across multiple sections",
+              "after": "Hierarchical organization with clear dependencies",
+              "impact": "Enhanced navigation and comprehension"
+            },
+            {
+              "category": "Maintenance",
+              "before": "Manual updates across disconnected files",
+              "after": "Single source of truth with automated synchronization",
+              "impact": "Reduced maintenance overhead"
+            }
+          ],
+          "methodology": "AGx Design principles applied to documentation architecture"
+        },
+        "alt": "YAML optimization showing evolution from 1000 to 300 lines"
+      },
+      {
+        "type": "html",
+        "component": "ProjectImpactMetrics",
+        "props": {
+          "title": "Results & Learning",
+          "subtitle": "Measurable Impact of AGx Design Implementation",
+          "metrics": [
+            {
+              "category": "Development Efficiency",
+              "before": "Fragmented workflows, manual context switching",
+              "after": "Coordinated services with automated context management",
+              "improvement": "60% faster AI collaboration setup",
+              "measurement": "Time to productive AI interaction"
+            },
+            {
+              "category": "Documentation Quality",
+              "before": "1000+ line verbose YAML configurations",
+              "after": "300-line optimized, AI-readable documentation",
+              "improvement": "70% reduction in token consumption",
+              "measurement": "Context processing efficiency"
+            },
+            {
+              "category": "Service Reliability",
+              "before": "Manual service coordination, port conflicts",
+              "after": "Automated orchestration with health monitoring",
+              "improvement": "99% uptime with zero-conflict deployment",
+              "measurement": "Service availability metrics"
+            }
+          ],
+          "learnings": [
+            "AGx Design enables measurable workflow optimization",
+            "Multi-service architecture requires unified core coordination",
+            "AI-readable documentation significantly improves collaboration efficiency",
+            "Comprehensive logging provides crucial debugging insights"
+          ],
+          "nextSteps": [
+            "Expand MCP integration to more development tools",
+            "Implement adaptive context compression based on usage patterns",
+            "Create reusable AGx Design templates for other projects"
+          ]
+        },
+        "alt": "Context-Kit v2 project impact metrics and learning outcomes"
+      }
+    ]
+  },
+  {
+    "id": "taskboard_ai_v2",
+    "title": "TaskBoardAI v2",
+    "color": "#FF6B35",
+    "subtitle": "Dual Interface AI Collaboration",
+    "logoUrl": "taskboard.svg",
+    "description": "TaskBoardAI v2 revolutionizes project management through dual-interface design, enabling seamless collaboration between human visual workflows and AI agent task manipulation. A breakthrough in human-AI interface design for project coordination.",
+    "bullets": [
+      "Dual-interface design optimized for both human and AI interaction patterns",
+      "Real-time synchronization between Kanban visual interface and JSON API",
+      "MCP Server integration enabling AI agents to read and manipulate project boards",
+      "File-based architecture ensuring data portability and AI accessibility",
+      "Validated through extensive user testing with markdown list frustrated users"
+    ],
+    "slides": [
+      {
+        "type": "html",
+        "component": "UserPersona",
+        "props": {
+          "title": "The Frustrated Markdown User",
+          "subtitle": "Primary Research Insights",
+          "persona": {
+            "name": "Sarah Chen",
+            "role": "Senior Product Manager",
+            "company": "Tech Startup",
+            "image": "/images/personas/frustrated-user.svg",
+            "quote": "I love markdown for documentation, but tracking project progress in text lists feels like swimming upstream."
+          },
+          "demographics": {
+            "experience": "5+ years in product management",
+            "tools": "GitHub, Notion, Linear, various markdown editors",
+            "teamSize": "8-12 cross-functional team members",
+            "context": "Fast-paced startup environment"
+          },
+          "painPoints": [
+            {
+              "category": "Workflow Friction",
+              "description": "Converting markdown task lists to visual boards is manual and time-consuming",
+              "frequency": "Daily",
+              "impact": "High"
+            },
+            {
+              "category": "Collaboration Barriers",
+              "description": "Team members prefer visual kanban while she thinks in structured text",
+              "frequency": "Weekly",
+              "impact": "Medium"
+            },
+            {
+              "category": "AI Integration Gaps",
+              "description": "AI agents can read markdown but can't interact with visual project boards",
+              "frequency": "Weekly",
+              "impact": "High"
+            }
+          ],
+          "goals": [
+            "Maintain markdown workflow for planning and documentation",
+            "Provide team with visual kanban interface for collaboration",
+            "Enable AI agents to participate in project management",
+            "Reduce manual synchronization between formats"
+          ],
+          "research": {
+            "method": "User interviews + prototype testing",
+            "participants": 8,
+            "duration": "3 weeks",
+            "key_finding": "Users want format flexibility without workflow disruption"
+          }
+        },
+        "alt": "User persona representing frustrated markdown users needing visual collaboration"
+      },
+      {
+        "type": "html",
+        "component": "DualInterfaceDemo",
+        "props": {
+          "title": "Human vs AI Interaction Patterns",
+          "subtitle": "Optimized Interfaces for Different User Types",
+          "humanInterface": {
+            "title": "Visual Kanban Board",
+            "description": "Drag-and-drop interface optimized for human visual processing",
+            "features": [
+              "Drag-and-drop task management",
+              "Visual progress indicators",
+              "Color-coded priority system",
+              "Real-time collaboration cursors"
+            ],
+            "interactionPattern": "Visual, spatial, gesture-based",
+            "screenshot": "/images/taskboard/human-interface.svg"
+          },
+          "aiInterface": {
+            "title": "JSON API & MCP Integration",
+            "description": "Structured data interface optimized for AI agent consumption",
+            "features": [
+              "RESTful JSON API endpoints",
+              "MCP server for Claude integration",
+              "Structured task metadata",
+              "Webhook notifications"
+            ],
+            "interactionPattern": "Structured, programmatic, event-driven",
+            "screenshot": "/images/taskboard/ai-interface.svg"
+          },
+          "synchronization": {
+            "method": "Real-time bidirectional sync",
+            "technology": "File-based JSON with change detection",
+            "latency": "< 100ms",
+            "conflicts": "Last-write-wins with merge strategies"
+          },
+          "benefits": [
+            "Humans get intuitive visual interface",
+            "AI agents get structured data access",
+            "No workflow disruption for either user type",
+            "Real-time collaboration maintained"
+          ]
+        },
+        "alt": "Dual interface demonstration showing human visual and AI structured interaction patterns"
+      },
+      {
+        "type": "html",
+        "component": "BeforeAfter",
+        "props": {
+          "title": "Transformation Impact",
+          "subtitle": "From Fragmented Lists to Unified Workflow",
+          "beforeState": {
+            "title": "Markdown Lists",
+            "description": "Static text-based task tracking",
+            "image": "/images/taskboard/before-markdown.svg",
+            "characteristics": [
+              "Static markdown checklist files",
+              "Manual progress tracking",
+              "No visual project overview",
+              "Limited AI integration",
+              "Team collaboration friction"
+            ],
+            "painPoints": [
+              "Hard to see project overview",
+              "Manual status updates",
+              "No real-time collaboration",
+              "AI agents can't manipulate tasks"
+            ]
+          },
+          "afterState": {
+            "title": "Dual-Interface System",
+            "description": "Dynamic, collaborative project management",
+            "image": "/images/taskboard/after-kanban.svg",
+            "characteristics": [
+              "Visual kanban interface for humans",
+              "JSON API for AI agent access",
+              "Real-time synchronization",
+              "File-based data portability",
+              "MCP server integration"
+            ],
+            "benefits": [
+              "Clear visual project overview",
+              "Automated status tracking",
+              "Real-time team collaboration",
+              "AI agents as active participants"
+            ]
+          },
+          "metrics": {
+            "timeToProjectOverview": {
+              "before": "5-10 minutes",
+              "after": "Instant visual scan"
+            },
+            "taskUpdateEfficiency": {
+              "before": "Manual text editing",
+              "after": "Drag-and-drop or API call"
+            },
+            "aiCollaborationCapability": {
+              "before": "Read-only markdown parsing",
+              "after": "Full CRUD operations via MCP"
+            }
+          }
+        },
+        "alt": "Before and after comparison showing transformation from markdown lists to integrated kanban system"
+      },
+      {
+        "type": "html",
+        "component": "TechStack",
+        "props": {
+          "title": "Technical Architecture",
+          "subtitle": "Dual-Interface System Implementation",
+          "technologies": [
+            {
+              "name": "React + TypeScript",
+              "description": "Modern web interface with drag-and-drop kanban functionality",
+              "icon": "/images/tech_stack/React-icon.svg",
+              "category": "Frontend"
+            },
+            {
+              "name": "File-Based JSON",
+              "description": "Portable data storage enabling version control and AI accessibility",
+              "icon": "/images/tech_stack/json-icon.svg",
+              "category": "Data"
+            },
+            {
+              "name": "MCP Server",
+              "description": "Model Context Protocol integration for Claude Code collaboration",
+              "icon": "/images/tech_stack/ai-icon.svg",
+              "category": "AI Integration"
+            },
+            {
+              "name": "RESTful API",
+              "description": "HTTP endpoints for programmatic task manipulation and status queries",
+              "icon": "/images/tech_stack/api-icon.svg",
+              "category": "Backend"
+            },
+            {
+              "name": "React DnD",
+              "description": "Accessible drag-and-drop interaction with keyboard navigation support",
+              "icon": "/images/tech_stack/dnd-icon.svg",
+              "category": "UX"
+            },
+            {
+              "name": "Webhook System",
+              "description": "Real-time notifications for external service integration",
+              "icon": "/images/tech_stack/webhook-icon.svg",
+              "category": "Integration"
+            }
+          ],
+          "architecture": {
+            "pattern": "Dual-interface with shared data layer",
+            "dataFlow": "Bidirectional sync between visual UI and JSON API",
+            "scalability": "File-based architecture supports distributed teams",
+            "accessibility": "WCAG 2.1 AA compliant with screen reader support"
+          }
+        },
+        "alt": "TaskBoardAI v2 technical stack showing dual-interface architecture"
+      },
+      {
+        "type": "html",
+        "component": "ProjectImpactMetrics",
+        "props": {
+          "title": "Validation Results",
+          "subtitle": "User Testing and Performance Metrics",
+          "metrics": [
+            {
+              "category": "User Adoption",
+              "before": "Resistance to visual project management tools",
+              "after": "Enthusiastic adoption with maintained markdown workflows",
+              "improvement": "87% user satisfaction increase",
+              "measurement": "Post-implementation user interviews (n=8)"
+            },
+            {
+              "category": "Task Management Efficiency",
+              "before": "5-10 minute project status assessment",
+              "after": "Instant visual overview with detailed drill-down",
+              "improvement": "80% reduction in status assessment time",
+              "measurement": "Time-to-insight user testing"
+            },
+            {
+              "category": "AI Collaboration Capability",
+              "before": "AI agents limited to read-only markdown parsing",
+              "after": "Full CRUD operations through MCP integration",
+              "improvement": "Complete AI agent task management capability",
+              "measurement": "Claude Code integration testing"
+            }
+          ],
+          "learnings": [
+            "Dual-interface design eliminates forced workflow changes",
+            "File-based architecture maintains data portability and version control",
+            "MCP integration enables true AI-human collaboration",
+            "Visual interfaces significantly improve project comprehension"
+          ],
+          "validation": {
+            "method": "Comparative user testing with existing tools",
+            "participants": 8,
+            "duration": "2 weeks",
+            "key_metrics": ["Task completion time", "Error rates", "User satisfaction", "AI integration effectiveness"]
+          },
+          "nextSteps": [
+            "Expand MCP integration to additional AI platforms",
+            "Add advanced filtering and search capabilities",
+            "Implement team analytics and productivity insights"
+          ]
+        },
+        "alt": "TaskBoardAI v2 validation results and user testing metrics"
+      }
+    ]
+  },
+  {
+    "id": "ai_progress_steps_v2",
+    "title": "AI Progress Steps v2",
+    "color": "#10B981",
+    "subtitle": "5-Stage AI Collaboration Journey",
+    "logoUrl": "Tucker.svg",
+    "description": "AI Progress Steps v2 maps the evolutionary journey of AI-human collaboration proficiency through five distinct stages. This framework helps individuals and teams understand their current capabilities and provides clear pathways for advancement in AI-powered workflows.",
+    "bullets": [
+      "Comprehensive 5-stage framework mapping AI collaboration evolution",
+      "Skills assessment matrix with clear progression indicators",
+      "Emotional journey mapping showing confidence and capability growth",
+      "Prompt evolution tracking from basic requests to complex workflows",
+      "Creator-level persona representing advanced AI collaboration mastery"
+    ],
+    "slides": [
+      {
+        "type": "html",
+        "component": "ProcessTimeline",
+        "props": {
+          "title": "5-Stage AI Collaboration Journey",
+          "subtitle": "Evolution from Skeptic to Creator",
+          "phases": [
+            {
+              "phase": "Stage 1",
+              "title": "Skeptic",
+              "description": "Initial resistance and uncertainty about AI capabilities",
+              "duration": "Weeks 1-4",
+              "insights": ["AI is overhyped", "Too many limitations", "Not worth the effort"],
+              "color": "#EF4444"
+            },
+            {
+              "phase": "Stage 2",
+              "title": "Experimenter",
+              "description": "Cautious exploration with simple, low-risk AI interactions",
+              "duration": "Weeks 5-12",
+              "insights": ["Trying basic prompts", "Limited use cases", "Building initial confidence"],
+              "color": "#F59E0B"
+            },
+            {
+              "phase": "Stage 3",
+              "title": "Adopter",
+              "description": "Regular integration of AI into existing workflows",
+              "duration": "Weeks 13-26",
+              "insights": ["Daily AI usage", "Workflow integration", "Understanding capabilities"],
+              "color": "#3B82F6"
+            },
+            {
+              "phase": "Stage 4",
+              "title": "Optimizer",
+              "description": "Advanced techniques and workflow customization",
+              "duration": "Weeks 27-52",
+              "insights": ["Complex prompt engineering", "Custom workflows", "Teaching others"],
+              "color": "#8B5CF6"
+            },
+            {
+              "phase": "Stage 5",
+              "title": "Creator",
+              "description": "Building AI-enhanced products and novel collaboration patterns",
+              "duration": "52+ weeks",
+              "insights": ["Creating new AI experiences", "Advanced collaboration", "Innovation leadership"],
+              "color": "#10B981"
+            }
+          ]
+        },
+        "alt": "Five-stage AI collaboration journey from skeptic to creator"
+      },
+      {
+        "type": "html",
+        "component": "UserFlow",
+        "props": {
+          "title": "Emotional Journey Mapping",
+          "subtitle": "Confidence and Capability Growth Through AI Collaboration Stages",
+          "journeyStages": [
+            {
+              "stage": "Skeptic",
+              "emotion": "Resistance",
+              "confidence": 10,
+              "capability": 5,
+              "thoughts": ["AI is just hype", "Too many limitations", "Will replace humans"],
+              "actions": ["Avoiding AI tools", "Criticizing AI outputs", "Preferring manual work"],
+              "touchpoints": ["News articles about AI limitations", "Failed AI interactions", "Peer skepticism"]
+            },
+            {
+              "stage": "Experimenter",
+              "emotion": "Curiosity",
+              "confidence": 30,
+              "capability": 20,
+              "thoughts": ["Maybe worth trying", "Start with low risk", "Keep expectations low"],
+              "actions": ["Basic ChatGPT queries", "Simple writing assistance", "Fact-checking AI outputs"],
+              "touchpoints": ["Successful first interactions", "Peer recommendations", "Online tutorials"]
+            },
+            {
+              "stage": "Adopter",
+              "emotion": "Confidence",
+              "confidence": 60,
+              "capability": 50,
+              "thoughts": ["AI saves me time", "Regular part of workflow", "Understanding strengths/weaknesses"],
+              "actions": ["Daily AI usage", "Integrating into workflows", "Sharing results with team"],
+              "touchpoints": ["Consistent positive outcomes", "Workflow improvements", "Team adoption"]
+            },
+            {
+              "stage": "Optimizer",
+              "emotion": "Mastery",
+              "confidence": 85,
+              "capability": 80,
+              "thoughts": ["Crafting sophisticated prompts", "Customizing for specific needs", "Teaching others"],
+              "actions": ["Complex prompt engineering", "Building custom workflows", "Mentoring colleagues"],
+              "touchpoints": ["Advanced AI interactions", "Teaching opportunities", "Workflow optimization"]
+            },
+            {
+              "stage": "Creator",
+              "emotion": "Innovation",
+              "confidence": 95,
+              "capability": 95,
+              "thoughts": ["Building AI-enhanced products", "Novel collaboration patterns", "Pushing boundaries"],
+              "actions": ["Creating AI experiences", "Publishing insights", "Leading innovation"],
+              "touchpoints": ["Product launches", "Industry recognition", "Innovation leadership"]
+            }
+          ],
+          "insights": [
+            "Confidence grows exponentially after initial adoption phase",
+            "Capability development requires sustained practice and experimentation",
+            "Emotional journey includes skepticism, curiosity, confidence, mastery, and innovation",
+            "Peer influence and successful experiences are key transition drivers"
+          ]
+        },
+        "alt": "Emotional journey mapping showing confidence and capability growth across AI collaboration stages"
+      },
+      {
+        "type": "html",
+        "component": "SkillsMatrix",
+        "props": {
+          "title": "Skills Development Matrix",
+          "subtitle": "Capabilities and Competencies at Each Stage",
+          "stages": [
+            {
+              "name": "Skeptic",
+              "level": 1,
+              "color": "#EF4444",
+              "skills": [
+                {
+                  "category": "Prompt Writing",
+                  "proficiency": 10,
+                  "description": "Basic questions, unclear expectations"
+                },
+                {
+                  "category": "AI Understanding",
+                  "proficiency": 15,
+                  "description": "Limited knowledge of capabilities"
+                },
+                {
+                  "category": "Workflow Integration",
+                  "proficiency": 5,
+                  "description": "No integration, manual processes"
+                },
+                {
+                  "category": "Quality Assessment",
+                  "proficiency": 20,
+                  "description": "Skeptical of outputs, high verification needs"
+                }
+              ]
+            },
+            {
+              "name": "Experimenter",
+              "level": 2,
+              "color": "#F59E0B",
+              "skills": [
+                {
+                  "category": "Prompt Writing",
+                  "proficiency": 30,
+                  "description": "Simple, direct requests with basic context"
+                },
+                {
+                  "category": "AI Understanding",
+                  "proficiency": 35,
+                  "description": "Learning capabilities through experimentation"
+                },
+                {
+                  "category": "Workflow Integration",
+                  "proficiency": 25,
+                  "description": "Occasional use for specific tasks"
+                },
+                {
+                  "category": "Quality Assessment",
+                  "proficiency": 40,
+                  "description": "Building evaluation criteria"
+                }
+              ]
+            },
+            {
+              "name": "Adopter",
+              "level": 3,
+              "color": "#3B82F6",
+              "skills": [
+                {
+                  "category": "Prompt Writing",
+                  "proficiency": 60,
+                  "description": "Context-rich prompts with clear instructions"
+                },
+                {
+                  "category": "AI Understanding",
+                  "proficiency": 65,
+                  "description": "Good grasp of strengths and limitations"
+                },
+                {
+                  "category": "Workflow Integration",
+                  "proficiency": 55,
+                  "description": "Regular integration into daily workflows"
+                },
+                {
+                  "category": "Quality Assessment",
+                  "proficiency": 70,
+                  "description": "Efficient evaluation and improvement cycles"
+                }
+              ]
+            },
+            {
+              "name": "Optimizer",
+              "level": 4,
+              "color": "#8B5CF6",
+              "skills": [
+                {
+                  "category": "Prompt Engineering",
+                  "proficiency": 85,
+                  "description": "Advanced techniques, chain-of-thought, few-shot learning"
+                },
+                {
+                  "category": "AI Understanding",
+                  "proficiency": 90,
+                  "description": "Deep knowledge of model capabilities and limitations"
+                },
+                {
+                  "category": "Workflow Integration",
+                  "proficiency": 80,
+                  "description": "Custom workflows and automation"
+                },
+                {
+                  "category": "Quality Assessment",
+                  "proficiency": 85,
+                  "description": "Sophisticated evaluation frameworks"
+                }
+              ]
+            },
+            {
+              "name": "Creator",
+              "level": 5,
+              "color": "#10B981",
+              "skills": [
+                {
+                  "category": "Prompt Engineering",
+                  "proficiency": 95,
+                  "description": "Novel techniques, complex multi-turn conversations"
+                },
+                {
+                  "category": "AI Understanding",
+                  "proficiency": 95,
+                  "description": "Cutting-edge knowledge, model fine-tuning awareness"
+                },
+                {
+                  "category": "Workflow Integration",
+                  "proficiency": 95,
+                  "description": "Building AI-enhanced products and experiences"
+                },
+                {
+                  "category": "Quality Assessment",
+                  "proficiency": 95,
+                  "description": "Industry-leading evaluation methodologies"
+                }
+              ]
+            }
+          ],
+          "skillCategories": [
+            "Prompt Writing/Engineering",
+            "AI Understanding & Model Awareness",
+            "Workflow Integration & Automation",
+            "Quality Assessment & Evaluation"
+          ],
+          "progressionInsights": [
+            "Skills develop non-linearly with experience and practice",
+            "Quality assessment improves significantly with sustained use",
+            "Workflow integration requires both technical and process skills",
+            "Advanced prompt engineering emerges in optimizer stage"
+          ]
+        },
+        "alt": "Skills matrix showing capability progression across five AI collaboration stages"
+      },
+      {
+        "type": "html",
+        "component": "AgentConversationFlow",
+        "props": {
+          "title": "Prompt Evolution Across Stages",
+          "subtitle": "How Communication with AI Agents Develops Over Time",
+          "conversationStages": [
+            {
+              "stage": "Skeptic",
+              "level": 1,
+              "prompt": "Can you help me write an email?",
+              "context": "Minimal context, vague request",
+              "aiResponse": "I'd be happy to help! Could you provide more details about the email's purpose, recipient, and key points?",
+              "outcome": "Frustration with need for clarification",
+              "learningPoint": "AI needs context to be effective"
+            },
+            {
+              "stage": "Experimenter",
+              "level": 2,
+              "prompt": "Write a professional email to my boss requesting a meeting to discuss my performance review.",
+              "context": "Basic context provided, clear request",
+              "aiResponse": "Subject: Request for Performance Review Meeting\n\nDear [Boss's Name],\n\nI hope this email finds you well. I would like to schedule a meeting to discuss my upcoming performance review...",
+              "outcome": "Useful output with minor edits needed",
+              "learningPoint": "Clear requests yield better results"
+            },
+            {
+              "stage": "Adopter",
+              "level": 3,
+              "prompt": "Write a professional email to Sarah Chen, my manager, requesting a 30-minute meeting next week to discuss my Q4 performance review. I want to focus on my project achievements, areas for improvement, and career development goals. Tone should be confident but collaborative.",
+              "context": "Rich context, specific requirements",
+              "aiResponse": "[Detailed, well-crafted email with appropriate tone, structure, and content addressing all specified points]",
+              "outcome": "High-quality output ready for use",
+              "learningPoint": "Context and specificity dramatically improve quality"
+            },
+            {
+              "stage": "Optimizer",
+              "level": 4,
+              "prompt": "Act as a communications expert helping me craft an email to my manager Sarah Chen. Context: I'm requesting a performance review meeting for Q4. I completed 3 major projects ahead of schedule, led a successful team initiative, but struggled with stakeholder communication. Tone: Professional, confident, growth-oriented. Structure: Clear subject line, brief context, specific meeting request, preview of discussion topics. Include subtle language that positions me as proactive and development-focused.",
+              "context": "Sophisticated prompt with role, context, constraints",
+              "aiResponse": "[Expertly crafted email demonstrating advanced understanding of professional communication, psychology, and positioning]",
+              "outcome": "Exceptional output exceeding expectations",
+              "learningPoint": "Advanced prompting techniques unlock AI's full potential"
+            },
+            {
+              "stage": "Creator",
+              "level": 5,
+              "prompt": "You're a senior executive communications strategist. I need to craft a sequence of communications for my upcoming performance review cycle. Primary: Email requesting meeting with manager Sarah. Secondary: Follow-up agenda. Tertiary: Post-meeting summary template. Context: High-performing individual contributor, 3 major projects delivered, team leadership growth, stakeholder communication as development area. Strategy: Position for promotion consideration while showing self-awareness and growth mindset. Audience: Tech startup culture, data-driven, values transparency. Constraints: Each piece should reinforce the others, maintain consistent personal brand, incorporate feedback loops. Generate the sequence with rationale for each strategic choice.",
+              "context": "Multi-layered request with strategic thinking",
+              "aiResponse": "[Comprehensive communication strategy with multiple interconnected pieces, strategic rationale, and advanced understanding of organizational dynamics]",
+              "outcome": "Strategic solution addressing complex business needs",
+              "learningPoint": "AI becomes a strategic thinking partner"
+            }
+          ],
+          "evolutionPatterns": [
+            "Prompts evolve from vague to highly specific",
+            "Context provision becomes increasingly sophisticated",
+            "Role definition and constraints emerge in advanced stages",
+            "Multi-turn and complex request handling develops",
+            "Strategic thinking integration appears at creator level"
+          ]
+        },
+        "alt": "Agent conversation flow showing prompt evolution from basic to sophisticated across five stages"
+      },
+      {
+        "type": "html",
+        "component": "UserPersona",
+        "props": {
+          "title": "The Creator Level Persona",
+          "subtitle": "Advanced AI Collaboration Mastery",
+          "persona": {
+            "name": "Marcus Rivera",
+            "role": "Senior Product Designer & AI Innovation Lead",
+            "company": "Digital Innovation Agency",
+            "image": "/images/personas/creator-persona.svg",
+            "quote": "AI isn't just a tool in my workflow—it's my creative thinking partner. We build experiences together that neither of us could imagine alone."
+          },
+          "demographics": {
+            "experience": "8+ years in design, 3+ years in AI collaboration",
+            "tools": "Claude Code, GPT-4, Midjourney, custom AI workflows, MCP integrations",
+            "teamSize": "Leads AI adoption across 25-person agency",
+            "context": "Innovation-focused agency serving Fortune 500 clients"
+          },
+          "capabilities": [
+            {
+              "category": "Strategic AI Integration",
+              "description": "Builds AI-enhanced product experiences and novel interaction patterns",
+              "examples": ["AI-powered design systems", "Intelligent user research workflows", "Automated accessibility testing"]
+            },
+            {
+              "category": "Advanced Prompt Engineering",
+              "description": "Creates sophisticated multi-turn conversations and complex reasoning chains",
+              "examples": ["Chain-of-thought design critiques", "Multi-agent workflow orchestration", "Context-aware design generation"]
+            },
+            {
+              "category": "Innovation Leadership",
+              "description": "Mentors others and drives organizational AI transformation",
+              "examples": ["Internal AI training programs", "Client AI consultation", "Industry conference speaking"]
+            }
+          ],
+          "workflow": {
+            "daily": "Begins each project with AI-assisted research, uses collaborative prompting for ideation, integrates AI feedback throughout design iterations",
+            "weekly": "Refines AI workflows based on project learnings, shares innovations with team, explores new AI capabilities",
+            "monthly": "Publishes insights on AI-design collaboration, mentors junior designers, advises clients on AI integration"
+          },
+          "achievements": [
+            "Reduced design iteration time by 60% through AI collaboration",
+            "Built agency's first AI-enhanced design system",
+            "Recognized as 'AI Innovation Leader' at Design+AI Conference 2024",
+            "Created reusable AI workflow templates adopted across industry"
+          ],
+          "mindset": {
+            "core_belief": "AI amplifies human creativity rather than replacing it",
+            "approach": "Collaborative partnership with AI as thinking partner",
+            "future_vision": "AI-human design teams creating previously impossible experiences"
+          }
+        },
+        "alt": "Creator-level persona representing advanced AI collaboration mastery"
+      }
+    ]
   }
 ]

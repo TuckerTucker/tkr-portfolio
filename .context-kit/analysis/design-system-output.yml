@@ -1,0 +1,669 @@
+# Design System Specifications - Tucker's Portfolio
+# Extracted for v2 AI Skills integration
+# W3C Design Token Format 3.0
+
+meta:
+  timestamp: "2025-01-22T19:30:00Z"
+  project: "tkr-portfolio"
+  version: "2.0.0"
+  purpose: "v2 AI Skills component integration"
+  compliance: "W3C Design Token Format 3.0"
+
+# Design Tokens following W3C Format 3.0
+tokens:
+  light:
+    color:
+      # Primary brand colors
+      primary:
+        $value: "#613CB0"
+        $type: "color"
+        $description: "Tucker's brand purple"
+      primary-foreground:
+        $value: "#ffffff"
+        $type: "color"
+
+      # Secondary brand colors
+      secondary:
+        $value: "#FF8800"
+        $type: "color"
+        $description: "Taskboard orange"
+      secondary-foreground:
+        $value: "#ffffff"
+        $type: "color"
+
+      # Project-specific colors (from safelist)
+      nutrien:
+        $value: "#3b5f18"
+        $type: "color"
+      worldplay:
+        $value: "#00a4e4"
+        $type: "color"
+      shaw:
+        $value: "#0488c1"
+        $type: "color"
+      accent:
+        $value: "#00A3FF"
+        $type: "color"
+
+      # Semantic colors (RGB values from index.css)
+      background:
+        $value: "rgb(245, 245, 245)"
+        $type: "color"
+        $description: "Light gray background"
+      foreground:
+        $value: "rgb(51, 51, 51)"
+        $type: "color"
+        $description: "Dark text"
+
+      # Card colors
+      card:
+        $value: "rgb(255, 255, 255)"
+        $type: "color"
+      card-foreground:
+        $value: "rgb(51, 51, 51)"
+        $type: "color"
+
+      # Interactive colors
+      border:
+        $value: "rgb(226, 232, 240)"
+        $type: "color"
+      input:
+        $value: "rgb(226, 232, 240)"
+        $type: "color"
+      ring:
+        $value: "rgb(148, 163, 184)"
+        $type: "color"
+
+      # Muted colors
+      muted:
+        $value: "rgb(245, 245, 245)"
+        $type: "color"
+      muted-foreground:
+        $value: "rgb(115, 115, 115)"
+        $type: "color"
+
+      # Destructive color
+      destructive:
+        $value: "rgb(220, 38, 38)"
+        $type: "color"
+
+  dark:
+    color:
+      # Primary brand colors (adjusted for dark mode)
+      primary:
+        $value: "#8a63d2"
+        $type: "color"
+        $description: "Lighter purple for dark mode"
+      primary-foreground:
+        $value: "#ffffff"
+        $type: "color"
+
+      # Secondary brand colors (adjusted for dark mode)
+      secondary:
+        $value: "#FFA940"
+        $type: "color"
+        $description: "Lighter orange for dark mode"
+      secondary-foreground:
+        $value: "#ffffff"
+        $type: "color"
+
+      # Project-specific colors (same as light)
+      nutrien:
+        $value: "#3b5f18"
+        $type: "color"
+      worldplay:
+        $value: "#00a4e4"
+        $type: "color"
+      shaw:
+        $value: "#0488c1"
+        $type: "color"
+      accent:
+        $value: "#38bdf8"
+        $type: "color"
+        $description: "Sky blue for dark mode"
+
+      # Dark mode semantic colors (RGB values)
+      background:
+        $value: "rgb(26, 26, 26)"
+        $type: "color"
+      foreground:
+        $value: "rgb(240, 240, 240)"
+        $type: "color"
+
+      # Card colors
+      card:
+        $value: "rgb(42, 42, 42)"
+        $type: "color"
+      card-foreground:
+        $value: "rgb(240, 240, 240)"
+        $type: "color"
+
+      # Interactive colors
+      border:
+        $value: "rgb(64, 64, 64)"
+        $type: "color"
+      input:
+        $value: "rgb(64, 64, 64)"
+        $type: "color"
+      ring:
+        $value: "rgb(125, 125, 125)"
+        $type: "color"
+
+      # Muted colors
+      muted:
+        $value: "rgb(64, 64, 64)"
+        $type: "color"
+      muted-foreground:
+        $value: "rgb(156, 163, 175)"
+        $type: "color"
+
+      # Destructive color
+      destructive:
+        $value: "rgb(239, 68, 68)"
+        $type: "color"
+
+  # Slide theme tokens for HTML slides
+  slide-light:
+    color:
+      background:
+        $value: "linear-gradient(to right, #f0f4f8, #e1e8ed)"
+        $type: "color"
+      text:
+        $value: "#333333"
+        $type: "color"
+      title:
+        $value: "#222222"
+        $type: "color"
+      accent:
+        $value: "#613CB0"
+        $type: "color"
+      secondary:
+        $value: "#FF8800"
+        $type: "color"
+      card-bg:
+        $value: "rgba(255, 255, 255, 0.6)"
+        $type: "color"
+      card-border:
+        $value: "rgba(0, 0, 0, 0.1)"
+        $type: "color"
+      button-bg:
+        $value: "transparent"
+        $type: "color"
+      button-border:
+        $value: "#613CB0"
+        $type: "color"
+      button-text:
+        $value: "#613CB0"
+        $type: "color"
+      button-hover-bg:
+        $value: "rgba(97, 60, 176, 0.1)"
+        $type: "color"
+
+  slide-dark:
+    color:
+      background:
+        $value: "linear-gradient(to right, #1a1a2e, #16213e)"
+        $type: "color"
+      text:
+        $value: "#e1e8ed"
+        $type: "color"
+      title:
+        $value: "#ffffff"
+        $type: "color"
+      accent:
+        $value: "#8a63d2"
+        $type: "color"
+      secondary:
+        $value: "#FFA940"
+        $type: "color"
+      card-bg:
+        $value: "rgba(255, 255, 255, 0.1)"
+        $type: "color"
+      card-border:
+        $value: "rgba(255, 255, 255, 0.05)"
+        $type: "color"
+      button-bg:
+        $value: "rgba(255, 255, 255, 0.15)"
+        $type: "color"
+      button-border:
+        $value: "rgba(255, 255, 255, 0.25)"
+        $type: "color"
+      button-text:
+        $value: "#ffffff"
+        $type: "color"
+      button-hover-bg:
+        $value: "rgba(255, 255, 255, 0.25)"
+        $type: "color"
+
+  # Typography tokens
+  typography:
+    font-family:
+      sans:
+        $value: ["ellograph-cf", "sans-serif"]
+        $type: "fontFamily"
+        $description: "Adobe Fonts primary sans-serif"
+      heading:
+        $value: ["graphite-std", "sans-serif"]
+        $type: "fontFamily"
+        $description: "Adobe Fonts heading font"
+
+    font-size:
+      xs:
+        $value: "0.75rem"
+        $type: "dimension"
+      sm:
+        $value: "0.875rem"
+        $type: "dimension"
+      base:
+        $value: "1rem"
+        $type: "dimension"
+      lg:
+        $value: "1.125rem"
+        $type: "dimension"
+      xl:
+        $value: "1.25rem"
+        $type: "dimension"
+
+    font-weight:
+      medium:
+        $value: "500"
+        $type: "fontWeight"
+      semibold:
+        $value: "600"
+        $type: "fontWeight"
+
+  # Spacing tokens (from Tailwind config)
+  spacing:
+    small:
+      $value: "8px"
+      $type: "dimension"
+      $description: "Small spacing unit"
+    medium:
+      $value: "16px"
+      $type: "dimension"
+      $description: "Medium spacing unit"
+    large:
+      $value: "24px"
+      $type: "dimension"
+      $description: "Large spacing unit"
+    xl:
+      $value: "32px"
+      $type: "dimension"
+      $description: "Extra large spacing unit"
+
+  # Border radius tokens
+  radius:
+    sm:
+      $value: "calc(0.625rem - 4px)"
+      $type: "dimension"
+      $description: "Small border radius"
+    md:
+      $value: "calc(0.625rem - 2px)"
+      $type: "dimension"
+      $description: "Medium border radius"
+    lg:
+      $value: "0.625rem"
+      $type: "dimension"
+      $description: "Large border radius (base)"
+    xl:
+      $value: "calc(0.625rem + 4px)"
+      $type: "dimension"
+      $description: "Extra large border radius"
+
+  # Shadow tokens
+  shadow:
+    card:
+      $value: "0 2px 4px rgba(0,0,0,0.1)"
+      $type: "shadow"
+      $description: "Card shadow"
+    dropdown:
+      $value: "0 4px 8px rgba(0,0,0,0.1)"
+      $type: "shadow"
+      $description: "Dropdown shadow"
+
+  # Animation/transition tokens
+  animation:
+    duration:
+      fast:
+        $value: "150ms"
+        $type: "duration"
+        $description: "Fast transitions"
+      normal:
+        $value: "200ms"
+        $type: "duration"
+        $description: "Normal transitions"
+      slow:
+        $value: "300ms"
+        $type: "duration"
+        $description: "Slow transitions"
+      theme:
+        $value: "300ms"
+        $type: "duration"
+        $description: "Theme transition duration"
+
+    easing:
+      ease:
+        $value: "ease"
+        $type: "cubicBezier"
+      ease-in-out:
+        $value: "ease-in-out"
+        $type: "cubicBezier"
+
+# Component Specifications
+components:
+  # Button component (from button.jsx)
+  Button:
+    props:
+      variant: [default, destructive, outline, secondary, ghost, link]
+      size: [default, sm, lg, icon]
+      disabled: boolean
+      asChild: boolean
+    states:
+      default: true
+      hover: true
+      focus: true
+      disabled: true
+    a11y:
+      attributes:
+        - "data-slot='button'"
+        - "focus-visible:ring-ring/50"
+        - "focus-visible:ring-[3px]"
+        - "aria-invalid support"
+      keyboard:
+        - "Enter: activate"
+        - "Space: activate"
+
+  # ImageCarousel component (main carousel with HTML slide support)
+  ImageCarousel:
+    props:
+      items: "array of {type: 'image'|'video'|'html', src?, component?, props?, alt?}"
+      className: "string"
+    states:
+      empty: "returns null if no items"
+      loading: "Suspense fallback for HTML components"
+      mobile: "responsive behavior at <768px"
+    features:
+      - "Supports image, video, and HTML slide types"
+      - "Mobile-responsive with vertical scrolling for HTML"
+      - "Dynamic component loading for HTML slides"
+      - "Navigation controls with hover effects"
+      - "Carousel indicators/dots"
+    a11y:
+      attributes:
+        - "role='region'"
+        - "aria-label='Project content showcase'"
+        - "aria-label for video/image slides"
+      keyboard:
+        - "Left/Right arrows: navigation"
+      screen_reader:
+        - "Loading state announcements"
+        - "Slide position indicators"
+
+  # CustomProjectPicker component (dropdown with project cards)
+  CustomProjectPicker:
+    props:
+      projects: "array"
+      selectedProject: "object"
+      selectedProjectTitle: "string"
+      onSelectProject: "function"
+      className: "string"
+    states:
+      open: "dropdown expanded"
+      closed: "dropdown collapsed"
+      mobile: "mobile-specific styling <768px"
+    features:
+      - "Click-outside to close"
+      - "Mobile backdrop overlay"
+      - "Dynamic background color from selected project"
+      - "Logo display with fallback"
+      - "Responsive sizing"
+    a11y:
+      attributes:
+        - "aria-label='Select project'"
+        - "aria-expanded state"
+        - "aria-hidden on dropdown when closed"
+      keyboard:
+        - "Click: toggle dropdown"
+        - "Escape: close dropdown (via click outside)"
+
+  # ProjectCard component (individual project items)
+  ProjectCard:
+    props:
+      id: "string (required)"
+      title: "string (required)"
+      subtitle: "string (required)"
+      color: "string (required)"
+      logoUrl: "string"
+      onClick: "function"
+      isMobile: "boolean"
+      className: "string"
+    states:
+      default: "normal state"
+      hover: "cursor pointer with transition"
+      mobile: "compact sizing on mobile"
+    features:
+      - "Dynamic background color"
+      - "Logo with fallback to ColorBlock"
+      - "Mobile-responsive sizing"
+      - "Image placeholder on right"
+    a11y:
+      attributes:
+        - "role='option'"
+        - "aria-selected='false'"
+        - "cursor-pointer"
+
+  # ThemeToggle component (three-way toggle)
+  ThemeToggle:
+    props:
+      className: "string"
+    states:
+      light: "sun icon active"
+      dark: "moon icon active"
+      system: "computer icon active"
+    features:
+      - "Three-way toggle (light/system/dark)"
+      - "Visual state indicators"
+      - "Smooth transitions"
+      - "Rounded background with opacity"
+    a11y:
+      attributes:
+        - "aria-label for each button"
+        - "sr-only text descriptions"
+      keyboard:
+        - "Tab: focus navigation"
+        - "Enter/Space: activate"
+
+  # Carousel UI components (from ui/carousel.jsx)
+  Carousel:
+    props:
+      orientation: "[horizontal, vertical]"
+      opts: "object (Embla options)"
+      plugins: "array"
+      className: "string"
+    context: "CarouselContext provides API"
+    features:
+      - "Embla Carousel integration"
+      - "Keyboard navigation (Arrow keys)"
+      - "Scroll state tracking"
+      - "Plugin support"
+    a11y:
+      attributes:
+        - "role='region'"
+        - "aria-roledescription='carousel'"
+        - "data-slot='carousel'"
+      keyboard:
+        - "ArrowLeft: previous slide"
+        - "ArrowRight: next slide"
+
+  CarouselItem:
+    a11y:
+      attributes:
+        - "role='group'"
+        - "aria-roledescription='slide'"
+        - "data-slot='carousel-item'"
+
+  CarouselPrevious:
+    a11y:
+      attributes:
+        - "sr-only: 'Previous slide'"
+        - "disabled when !canScrollPrev"
+
+  CarouselNext:
+    a11y:
+      attributes:
+        - "sr-only: 'Next slide'"
+        - "disabled when !canScrollNext"
+
+  # ProjectCardList component
+  ProjectCardList:
+    props:
+      projects: "array of project objects"
+      onProjectSelect: "function"
+      isMobile: "boolean"
+      className: "string"
+    states:
+      empty: "shows 'No projects available' message"
+      populated: "renders ProjectCard list"
+    features:
+      - "Divider between items"
+      - "Mobile-responsive item sizing"
+    a11y:
+      attributes:
+        - "role='listbox'"
+        - "aria-label='Project list'"
+
+  # Branding component
+  Branding:
+    props:
+      name: "string (default: Sean 'Tucker' Harley)"
+      title: "string (default: UX Designer)"
+      className: "string"
+      nameClassName: "string"
+      titleClassName: "string"
+    features:
+      - "Flexible text styling"
+      - "Pipe separator between name and title"
+      - "Heading font for name"
+
+# Accessibility Specifications
+a11y:
+  compliance: "WCAG 2.1 AA"
+
+  focus:
+    ring:
+      color: "rgb(var(--color-ring))"
+      width: "3px"
+      opacity: "0.5"
+    visible_indicators: "focus-visible:ring-[3px]"
+
+  keyboard:
+    navigation:
+      - "Tab: focus traversal"
+      - "Enter/Space: activation"
+      - "Arrow keys: carousel navigation"
+      - "Escape: close modals/dropdowns"
+
+  screen_reader:
+    support:
+      - "sr-only classes for hidden descriptive text"
+      - "aria-label attributes"
+      - "role attributes for semantic meaning"
+      - "aria-expanded for collapsible content"
+      - "aria-hidden for decorative elements"
+
+  color_contrast:
+    ratios:
+      - "Primary on white: 4.5:1 (AA compliant)"
+      - "Text on background: 4.5:1 minimum"
+      - "Muted text: 3:1 minimum"
+
+  responsive:
+    breakpoints:
+      mobile: "<768px"
+      desktop: "≥768px"
+    patterns:
+      - "Touch-friendly targets (44px minimum)"
+      - "Readable text sizes on mobile"
+      - "Appropriate spacing for touch"
+
+# Animation & Transition Specifications
+animations:
+  theme_transition:
+    duration: "300ms"
+    easing: "ease"
+    properties: ["background-color", "color"]
+
+  button_hover:
+    duration: "150ms"
+    easing: "ease-in-out"
+    properties: ["background-color", "opacity"]
+
+  dropdown_toggle:
+    duration: "300ms"
+    easing: "ease-in-out"
+    properties: ["opacity", "transform"]
+    transform: "translateY(-8px) when closed"
+
+  carousel_navigation:
+    duration: "200ms"
+    easing: "ease"
+    properties: ["background-color"]
+
+  chevron_rotate:
+    duration: "300ms"
+    easing: "ease"
+    transform: "rotate(180deg) when expanded"
+
+# Mobile Responsiveness Specifications
+responsive:
+  breakpoints:
+    mobile:
+      max_width: "767px"
+      features:
+        - "Compact component sizing"
+        - "Touch-optimized interactions"
+        - "Backdrop overlays for dropdowns"
+        - "Vertical scrolling for HTML slides"
+
+  patterns:
+    mobile_first: true
+    touch_targets: "minimum 44px"
+    text_scaling:
+      - "Smaller text sizes on mobile"
+      - "Appropriate contrast ratios maintained"
+    spacing:
+      - "Reduced padding/margins"
+      - "Optimized for thumb navigation"
+
+# Integration Notes for v2 AI Skills
+integration_notes:
+  theme_system:
+    - "Use ThemeProvider context for theme state"
+    - "CSS variables automatically update with theme changes"
+    - "Support for light/dark/system preferences"
+
+  component_patterns:
+    - "Use cn() utility for conditional classes"
+    - "Implement mobile-responsive props pattern"
+    - "Follow PropTypes validation pattern"
+    - "Use forwardRef for components that need ref access"
+
+  styling_approach:
+    - "Tailwind CSS with CSS variables"
+    - "Component-specific CSS classes when needed"
+    - "Responsive-first design approach"
+    - "Semantic color naming"
+
+  accessibility_patterns:
+    - "Include ARIA attributes by default"
+    - "Provide sr-only text for icon-only buttons"
+    - "Use semantic HTML elements"
+    - "Test with keyboard navigation"
+
+  recommended_dependencies:
+    - "@radix-ui/react-slot: ^1.1.2"
+    - "class-variance-authority: ^0.7.1"
+    - "clsx: ^2.1.1"
+    - "tailwind-merge: ^3.2.0"
+    - "lucide-react: ^0.487.0"
+    - "embla-carousel-react: ^8.6.0"

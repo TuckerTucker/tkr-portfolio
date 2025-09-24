@@ -15,6 +15,16 @@ import AgenticAIKanban from './AgenticAIKanban';
 import PortfolioShowcase from './PortfolioShowcase';
 import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
+
+// AI Skills Components
+import {
+  AIInteractionShowcase,
+  DualInterfaceDemo,
+  ContextEvolutionSlide,
+  ProjectImpactMetrics,
+  AgentConversationFlow
+} from '../ai-skills';
+
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -34,6 +44,13 @@ const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
 const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
 
+// AI Skills themed components
+const ThemedAIInteractionShowcase = withSlideTheme(AIInteractionShowcase);
+const ThemedDualInterfaceDemo = withSlideTheme(DualInterfaceDemo);
+const ThemedContextEvolutionSlide = withSlideTheme(ContextEvolutionSlide);
+const ThemedProjectImpactMetrics = withSlideTheme(ProjectImpactMetrics);
+const ThemedAgentConversationFlow = withSlideTheme(AgentConversationFlow);
+
 // Export component registry map
 const htmlSlideComponents = {
   TechStack: ThemedTechStack,
@@ -51,6 +68,13 @@ const htmlSlideComponents = {
   PortfolioShowcase: ThemedPortfolioShowcase,
   WorldplayShowcase: ThemedWorldplayShowcase,
   NutrienShowcase: ThemedNutrienShowcase,
+
+  // AI Skills Components
+  AIInteractionShowcase: ThemedAIInteractionShowcase,
+  DualInterfaceDemo: ThemedDualInterfaceDemo,
+  ContextEvolutionSlide: ThemedContextEvolutionSlide,
+  ProjectImpactMetrics: ThemedProjectImpactMetrics,
+  AgentConversationFlow: ThemedAgentConversationFlow,
 };
 
 export default htmlSlideComponents;
