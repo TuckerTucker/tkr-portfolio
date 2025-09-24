@@ -13,6 +13,7 @@ const UserFlow = ({
   flowSteps = [],
   className,
   journeyStages, // Extract custom prop to prevent DOM warnings
+  isMobile, // Extract isMobile prop to prevent DOM warnings
   ...props
 }) => {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
