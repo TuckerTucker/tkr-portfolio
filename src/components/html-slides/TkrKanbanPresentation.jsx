@@ -20,7 +20,7 @@ const TkrKanbanPresentation = ({ className = "" }) => {
             id: "pain",
             icon: "😫",
             label: "Pain Point",
-            content: "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.  So, what if there was a way for a Person and an AI to get the same information in a format better designed for their needs? ",
+            content: "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.",
             image: "images/example-310x310.png",
             imagePosition: "left",
             imageAlt: "Frustrated developer looking at complex markdown files"

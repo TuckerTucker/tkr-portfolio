@@ -15,10 +15,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-[#613CB0] text-white py-6 mt-auto">
-      <div className="max-w-5xl mx-auto px-6">
+    <footer className="w-full bg-[#613CB0] text-white py-2 mt-2">
+      <div className="max-w-5xl mx-auto px-3">
         {/* Top section with branding and resume button */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-6 pb-6 border-b border-white/20">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-2 pb-2 border-b border-white/20">
           <Branding
             className="text-white mb-4 md:mb-0"
             nameClassName="text-xl font-semibold font-heading"
