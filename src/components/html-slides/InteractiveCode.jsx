@@ -180,15 +180,16 @@ const InteractiveCode = ({
             border: '1px solid var(--slide-card-border)'
           }}
         >
-          {/* Square Image - Left Side */}
+          {/* Image - Left Side */}
           {selectedItem.image && selectedItem.imagePosition !== 'right' && (
             <div className="flex-shrink-0 p-4">
               <img
                 src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                 alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
-                className="w-[295px] h-[295px] object-cover rounded-lg"
+                className="w-auto h-auto max-h-[295px] object-contain rounded-lg"
                 style={{
-                  border: '1px solid var(--slide-card-border)'
+                  border: '1px solid var(--slide-card-border)',
+                  maxWidth: '400px'
                 }}
               />
             </div>
@@ -253,15 +254,16 @@ const InteractiveCode = ({
             </div>
           </div>
 
-          {/* Square Image - Right Side */}
+          {/* Image - Right Side */}
           {selectedItem.image && selectedItem.imagePosition === 'right' && (
             <div className="flex-shrink-0 p-4">
               <img
                 src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                 alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
-                className="w-[295px] h-[295px] object-cover rounded-lg"
+                className="w-auto h-auto max-h-[295px] object-contain rounded-lg"
                 style={{
-                  border: '1px solid var(--slide-card-border)'
+                  border: '1px solid var(--slide-card-border)',
+                  maxWidth: '400px'
                 }}
               />
             </div>
@@ -281,7 +283,7 @@ InteractiveCode.propTypes = {
     filePath: PropTypes.string.isRequired,
     filename: PropTypes.string,
     language: PropTypes.string, // Optional override
-    image: PropTypes.string, // Path to 310x310 square image
+    image: PropTypes.string, // Path to image (any aspect ratio)
     imagePosition: PropTypes.oneOf(['left', 'right']), // Image position (default: left)
     imageAlt: PropTypes.string // Alt text for image
   })),

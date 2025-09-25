@@ -82,16 +82,17 @@ const InteractiveCards = ({
         }}
       >
         {selectedItem ? (
-          <div className={`${selectedItem.image ? 'flex gap-6 items-start' : 'space-y-4'}`}>
-            {/* Square Image - Left Side */}
+          <div className={`${selectedItem.image ? 'flex flex-col md:flex-row gap-4 md:gap-6 items-start' : 'space-y-4'}`}>
+            {/* Image - Left Side */}
             {selectedItem.image && selectedItem.imagePosition !== 'right' && (
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 w-full md:w-auto self-center md:self-start">
                 <img
                   src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                   alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
-                  className="w-[295px] h-[295px] object-cover rounded-lg"
+                  className="w-auto h-auto max-h-64 md:max-h-96 lg:max-h-96 object-contain rounded-lg mx-auto md:mx-0"
                   style={{
-                    border: '1px solid var(--slide-card-border)'
+                    border: '1px solid var(--slide-card-border)',
+                    maxWidth: '100%'
                   }}
                 />
               </div>
@@ -134,15 +135,16 @@ const InteractiveCards = ({
               )}
             </div>
 
-            {/* Square Image - Right Side */}
+            {/* Image - Right Side */}
             {selectedItem.image && selectedItem.imagePosition === 'right' && (
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 w-full md:w-auto self-center md:self-start">
                 <img
                   src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                   alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
-                  className="w-[295px] h-[295px] object-cover rounded-lg"
+                  className="w-auto h-auto max-h-64 md:max-h-96 lg:max-h-96 object-contain rounded-lg mx-auto md:mx-0"
                   style={{
-                    border: '1px solid var(--slide-card-border)'
+                    border: '1px solid var(--slide-card-border)',
+                    maxWidth: '100%'
                   }}
                 />
               </div>
@@ -170,7 +172,7 @@ InteractiveCards.propTypes = {
     subtitle: PropTypes.string,
     content: PropTypes.string.isRequired,
     bullets: PropTypes.arrayOf(PropTypes.string),
-    image: PropTypes.string, // Path to 300x300 square image
+    image: PropTypes.string, // Path to image (any aspect ratio)
     imagePosition: PropTypes.oneOf(['left', 'right']), // Image position (default: left)
     imageAlt: PropTypes.string // Alt text for image
   })),
