@@ -174,67 +174,98 @@ const InteractiveCode = ({
       {/* Code Display Area */}
       {selectedItem && (
         <div
-          className="flex-1 rounded-lg overflow-hidden"
+          className={`flex-1 rounded-lg overflow-hidden ${selectedItem.image ? 'flex gap-6 items-start' : ''}`}
           style={{
             backgroundColor: 'var(--slide-card-bg)',
             border: '1px solid var(--slide-card-border)'
           }}
         >
-          {/* File Header */}
-          <div
-            className="flex items-center justify-between p-4 border-b"
-            style={{ borderColor: 'var(--slide-card-border)' }}
-          >
-            <div className="flex items-center space-x-2">
-              <span
-                className="font-mono text-sm"
+          {/* Square Image - Left Side */}
+          {selectedItem.image && selectedItem.imagePosition !== 'right' && (
+            <div className="flex-shrink-0 p-4">
+              <img
+                src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
+                alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
+                className="w-[295px] h-[295px] object-cover rounded-lg"
+                style={{
+                  border: '1px solid var(--slide-card-border)'
+                }}
+              />
+            </div>
+          )}
+
+          {/* Code Area */}
+          <div className={`${selectedItem.image ? 'flex-1' : 'w-full'} flex flex-col`}>
+            {/* File Header */}
+            <div
+              className="flex items-center justify-between p-4 border-b"
+              style={{ borderColor: 'var(--slide-card-border)' }}
+            >
+              <div className="flex items-center space-x-2">
+                <span
+                  className="font-mono text-sm"
+                  style={{ color: 'var(--slide-text)' }}
+                >
+                  {selectedItem.filename || selectedItem.filePath}
+                </span>
+              </div>
+
+              <button
+                onClick={() => handleDownload(selectedItem, fileContents[selectedItem.id])}
+                disabled={!fileContents[selectedItem.id]}
+                className="flex items-center space-x-1 px-2 py-1 rounded hover:opacity-70 disabled:opacity-30"
                 style={{ color: 'var(--slide-text)' }}
+                aria-label="Download file"
               >
-                {selectedItem.filename || selectedItem.filePath}
-              </span>
+                <Download size={16} />
+                <span className="text-sm">Download</span>
+              </button>
             </div>
 
-            <button
-              onClick={() => handleDownload(selectedItem, fileContents[selectedItem.id])}
-              disabled={!fileContents[selectedItem.id]}
-              className="flex items-center space-x-1 px-2 py-1 rounded hover:opacity-70 disabled:opacity-30"
-              style={{ color: 'var(--slide-text)' }}
-              aria-label="Download file"
-            >
-              <Download size={16} />
-              <span className="text-sm">Download</span>
-            </button>
+            {/* Code Content */}
+            <div className="flex-1 overflow-y-auto" style={{ maxHeight: '400px' }}>
+              {loadingStates[selectedItem.id] ? (
+                <div className="p-6 text-center" style={{ color: 'var(--slide-text)' }}>
+                  Loading file content...
+                </div>
+              ) : errorStates[selectedItem.id] ? (
+                <div className="p-6 text-center" style={{ color: 'var(--slide-text)' }}>
+                  hmmmm ... can't seem to find the file.
+                </div>
+              ) : fileContents[selectedItem.id] ? (
+                <pre className="p-4 m-0 text-sm leading-relaxed">
+                  <code
+                    className={`language-${selectedItem.language || detectLanguage(selectedItem.filename)}`}
+                    style={{
+                      fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
+                      whiteSpace: 'pre-wrap',
+                      wordBreak: 'break-word'
+                    }}
+                  >
+                    {fileContents[selectedItem.id]}
+                  </code>
+                </pre>
+              ) : (
+                <div className="p-6 text-center opacity-60" style={{ color: 'var(--slide-text)' }}>
+                  Select a file to view its content
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Code Content */}
-          <div className="overflow-y-auto" style={{ maxHeight: '400px' }}>
-            {loadingStates[selectedItem.id] ? (
-              <div className="p-6 text-center" style={{ color: 'var(--slide-text)' }}>
-                Loading file content...
-              </div>
-            ) : errorStates[selectedItem.id] ? (
-              <div className="p-6 text-center" style={{ color: 'var(--slide-text)' }}>
-                hmmmm ... can't seem to find the file.
-              </div>
-            ) : fileContents[selectedItem.id] ? (
-              <pre className="p-4 m-0 text-sm leading-relaxed">
-                <code
-                  className={`language-${selectedItem.language || detectLanguage(selectedItem.filename)}`}
-                  style={{
-                    fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-word'
-                  }}
-                >
-                  {fileContents[selectedItem.id]}
-                </code>
-              </pre>
-            ) : (
-              <div className="p-6 text-center opacity-60" style={{ color: 'var(--slide-text)' }}>
-                Select a file to view its content
-              </div>
-            )}
-          </div>
+          {/* Square Image - Right Side */}
+          {selectedItem.image && selectedItem.imagePosition === 'right' && (
+            <div className="flex-shrink-0 p-4">
+              <img
+                src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
+                alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
+                className="w-[295px] h-[295px] object-cover rounded-lg"
+                style={{
+                  border: '1px solid var(--slide-card-border)'
+                }}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -249,7 +280,10 @@ InteractiveCode.propTypes = {
     label: PropTypes.string.isRequired,
     filePath: PropTypes.string.isRequired,
     filename: PropTypes.string,
-    language: PropTypes.string // Optional override
+    language: PropTypes.string, // Optional override
+    image: PropTypes.string, // Path to 310x310 square image
+    imagePosition: PropTypes.oneOf(['left', 'right']), // Image position (default: left)
+    imageAlt: PropTypes.string // Alt text for image
   })),
   className: PropTypes.string
 };

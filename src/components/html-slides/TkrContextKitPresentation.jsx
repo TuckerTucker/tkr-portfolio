@@ -12,6 +12,43 @@ const TkrContextKitPresentation = ({ className = "" }) => {
   const slideItems = [
     {
       type: 'html',
+      component: 'InteractiveCards',
+      props: {
+        title: "Agent Experience (AGx) Design Philosophy",
+        items: [
+          {
+            id: "agx-concept",
+            icon: "🧠",
+            label: "AGx Concept",
+            content: "Agent Experience (AGx) Design treats AI agents as primary users with their own needs, preferences, and cognitive patterns. Just as UX design optimizes for human interaction patterns, AGx design creates information architectures and interfaces specifically tailored for how AI agents process, understand, and interact with systems.",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "AI agent interacting with optimized data structures"
+          },
+          {
+            id: "user-research",
+            icon: "🔬",
+            label: "AI User Research",
+            content: "We conducted user research directly with AI agents, iterating on YAML architectures based on their feedback about information density, semantic clarity, and processing efficiency. This human-AI collaborative design process revealed insights about how agents consume context differently than humans.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "Collaborative design session between human and AI"
+          },
+          {
+            id: "system-impact",
+            icon: "⚡",
+            label: "System Impact",
+            content: "The result is a 70% reduction in token usage while maintaining information density, persistent context that eliminates repetitive explanations, and conversational systems that make every human-AI interaction more effective and productive.",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "Performance metrics showing efficiency improvements"
+          }
+        ]
+      },
+      alt: "Agent Experience design philosophy and approach"
+    },
+    {
+      type: 'html',
       component: 'UserPersona',
       props: {
         name: "AI Agent",
@@ -188,6 +225,43 @@ const TkrContextKitPresentation = ({ className = "" }) => {
         ]
       },
       alt: "Service-oriented architecture components enabling modular AI collaboration"
+    },
+    {
+      type: 'html',
+      component: 'InteractiveCards',
+      props: {
+        title: "Key AGx Design Innovations",
+        items: [
+          {
+            id: "semantic-anchors",
+            icon: "⚓",
+            label: "Semantic Anchors",
+            content: "YAML anchors create reusable definitions that agents can reference efficiently. Instead of repeating 'TypeScript + React + SQLite' multiple times, we define &tech-stack once and reference it, reducing tokens by 70% while maintaining semantic clarity for AI comprehension.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "YAML anchor system showing reusable definitions"
+          },
+          {
+            id: "progressive-disclosure",
+            icon: "📈",
+            label: "Progressive Context",
+            content: "Information architecture follows AI cognitive patterns - high-level metadata first, then detailed operational context. This mirrors how agents naturally process information: understanding scope before diving into implementation details.",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "Layered information architecture diagram"
+          },
+          {
+            id: "persistent-memory",
+            icon: "🧠",
+            label: "Persistent Memory",
+            content: "MCP integration provides agents with persistent context across conversations. No more rebuilding understanding from scratch - agents maintain project knowledge, architectural decisions, and historical context between sessions.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "AI memory system maintaining context across sessions"
+          }
+        ]
+      },
+      alt: "Core innovations in Agent Experience design methodology"
     },
     {
       type: 'html',

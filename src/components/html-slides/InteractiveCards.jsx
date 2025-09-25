@@ -82,39 +82,70 @@ const InteractiveCards = ({
         }}
       >
         {selectedItem ? (
-          <div className="space-y-4">
-            {/* Optional subtitle */}
-            {selectedItem.subtitle && (
-              <h3
-                className="font-semibold text-lg md:text-xl"
-                style={{ color: 'var(--slide-title)' }}
-              >
-                {selectedItem.subtitle}
-              </h3>
+          <div className={`${selectedItem.image ? 'flex gap-6 items-start' : 'space-y-4'}`}>
+            {/* Square Image - Left Side */}
+            {selectedItem.image && selectedItem.imagePosition !== 'right' && (
+              <div className="flex-shrink-0">
+                <img
+                  src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
+                  alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
+                  className="w-[295px] h-[295px] object-cover rounded-lg"
+                  style={{
+                    border: '1px solid var(--slide-card-border)'
+                  }}
+                />
+              </div>
             )}
 
-            {/* Main content */}
-            <div
-              className="text-base md:text-lg leading-relaxed whitespace-pre-wrap"
-              style={{ color: 'var(--slide-text)' }}
-            >
-              {selectedItem.content}
+            {/* Content Area */}
+            <div className={`${selectedItem.image ? 'flex-1' : ''} space-y-4`}>
+              {/* Optional subtitle */}
+              {selectedItem.subtitle && (
+                <h3
+                  className="font-semibold text-lg md:text-xl"
+                  style={{ color: 'var(--slide-title)' }}
+                >
+                  {selectedItem.subtitle}
+                </h3>
+              )}
+
+              {/* Main content */}
+              <div
+                className="text-base md:text-lg leading-relaxed whitespace-pre-wrap"
+                style={{ color: 'var(--slide-text)' }}
+              >
+                {selectedItem.content}
+              </div>
+
+              {/* Optional bullet points */}
+              {selectedItem.bullets && selectedItem.bullets.length > 0 && (
+                <ul className="space-y-2 mt-4">
+                  {selectedItem.bullets.map((bullet, index) => (
+                    <li
+                      key={index}
+                      className="flex items-start"
+                      style={{ color: 'var(--slide-text)' }}
+                    >
+                      <span className="mr-2 mt-1">•</span>
+                      <span className="text-sm md:text-base">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
-            {/* Optional bullet points */}
-            {selectedItem.bullets && selectedItem.bullets.length > 0 && (
-              <ul className="space-y-2 mt-4">
-                {selectedItem.bullets.map((bullet, index) => (
-                  <li
-                    key={index}
-                    className="flex items-start"
-                    style={{ color: 'var(--slide-text)' }}
-                  >
-                    <span className="mr-2 mt-1">•</span>
-                    <span className="text-sm md:text-base">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Square Image - Right Side */}
+            {selectedItem.image && selectedItem.imagePosition === 'right' && (
+              <div className="flex-shrink-0">
+                <img
+                  src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
+                  alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
+                  className="w-[295px] h-[295px] object-cover rounded-lg"
+                  style={{
+                    border: '1px solid var(--slide-card-border)'
+                  }}
+                />
+              </div>
             )}
           </div>
         ) : (
@@ -138,7 +169,10 @@ InteractiveCards.propTypes = {
     label: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
     content: PropTypes.string.isRequired,
-    bullets: PropTypes.arrayOf(PropTypes.string)
+    bullets: PropTypes.arrayOf(PropTypes.string),
+    image: PropTypes.string, // Path to 300x300 square image
+    imagePosition: PropTypes.oneOf(['left', 'right']), // Image position (default: left)
+    imageAlt: PropTypes.string // Alt text for image
   })),
   className: PropTypes.string
 };

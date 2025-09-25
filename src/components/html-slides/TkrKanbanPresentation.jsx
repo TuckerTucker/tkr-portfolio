@@ -20,19 +20,28 @@ const TkrKanbanPresentation = ({ className = "" }) => {
             id: "pain",
             icon: "😫",
             label: "Pain Point",
-            content: "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.  So, what if there was a way for a Person and an AI to get the same information in a format better designed for their needs? "
+            content: "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.  So, what if there was a way for a Person and an AI to get the same information in a format better designed for their needs? ",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "Frustrated developer looking at complex markdown files"
           },
           {
             id: "insight",
             icon: "💡",
             label: "Insight",
-            content: "Using a JSON format AI can see the plan structure instantly while a person would prefer the common kanban UI."
+            content: "Using a JSON format AI can see the plan structure instantly while a person would prefer the common kanban UI.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "Split screen showing JSON data and kanban board UI"
           },
           {
             id: "goal",
             icon: "🎯",
             label: "Goal",
-            content: "Create a dual-interface kanban system where humans enjoy intuitive visual interactions while AI agents efficiently parse and modify the same task data through their preferred file-based operations - enabling true human-AI collaborative task management."
+            content: "Create a dual-interface kanban system where humans enjoy intuitive visual interactions while AI agents efficiently parse and modify the same task data through their preferred file-based operations - enabling true human-AI collaborative task management.",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "Human and AI working together on the same kanban board"
           }
         ]
       },
@@ -48,19 +57,28 @@ const TkrKanbanPresentation = ({ className = "" }) => {
             id: "mcp",
             icon: "🔌",
             label: "MCP Protocol",
-            content: "The MCP server provides automatic context to AI agents, eliminating the need to include JSON examples in every prompt. This creates natural conversations where agents can immediately understand and interact with the kanban structure without requiring database management skills or repeated context establishment."
+            content: "The MCP server provides automatic context to AI agents, eliminating the need to include JSON examples in every prompt. This creates natural conversations where agents can immediately understand and interact with the kanban structure without requiring database management skills or repeated context establishment.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "MCP protocol diagram connecting AI agent to kanban system"
           },
           {
             id: "json",
             icon: "📄",
             label: "JSON Data Source",
-            content: "File-based architecture serves as the single source of truth that both interfaces can access. AI agents leverage their existing file editing capabilities to modify tasks directly, while the JSON structure remains human-readable for transparency. The card-first design enables efficient updates - moving a card between columns requires only a single attribute change rather than restructuring the entire board."
+            content: "File-based architecture serves as the single source of truth that both interfaces can access. AI agents leverage their existing file editing capabilities to modify tasks directly, while the JSON structure remains human-readable for transparency. The card-first design enables efficient updates - moving a card between columns requires only a single attribute change rather than restructuring the entire board.",
+            image: "images/example-310x310.png",
+            imagePosition: "left",
+            imageAlt: "JSON file structure with kanban card data"
           },
           {
             id: "webui",
             icon: "🖥️",
             label: "Web UI",
-            content: "Responsive drag-and-drop interface that provides humans with the visual, tactile experience they expect from kanban boards. Real-time updates reflect changes made by either human users or AI agents, creating seamless collaboration where both parties can see the results of each other's work immediately."
+            content: "Responsive drag-and-drop interface that provides humans with the visual, tactile experience they expect from kanban boards. Real-time updates reflect changes made by either human users or AI agents, creating seamless collaboration where both parties can see the results of each other's work immediately.",
+            image: "images/example-310x310.png",
+            imagePosition: "right",
+            imageAlt: "Modern kanban web interface with drag and drop cards"
           }
         ]
       },
