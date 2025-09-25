@@ -17,8 +17,8 @@ const InteractiveCards = ({
         </h2>
       )}
 
-      {/* Icon Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* Icon Cards - Horizontal Layout */}
+      <div className="flex flex-wrap gap-3 mb-6">
         {items.map((item) => {
           const isSelected = item.id === selectedId;
           return (
@@ -26,7 +26,7 @@ const InteractiveCards = ({
               key={item.id}
               onClick={() => setSelectedId(item.id)}
               className={`
-                flex flex-col items-center justify-center p-4 rounded-lg
+                flex flex-row items-center justify-start px-4 py-3 rounded-lg
                 transition-all duration-200 cursor-pointer
                 hover:scale-[1.02] active:scale-[0.98]
                 ${isSelected
@@ -46,14 +46,14 @@ const InteractiveCards = ({
               aria-pressed={isSelected}
               aria-label={`Select ${item.label}`}
             >
-              {/* Icon */}
+              {/* Icon on Left */}
               {item.icon && (
-                <div className="text-4xl mb-2">
+                <div className="text-2xl mr-3">
                   {typeof item.icon === 'string' && item.icon.startsWith('/') ? (
                     <img
                       src={item.icon}
                       alt={`${item.label} icon`}
-                      className="w-10 h-10 object-contain"
+                      className="w-6 h-6 object-contain"
                     />
                   ) : (
                     <span>{item.icon}</span>
@@ -61,21 +61,13 @@ const InteractiveCards = ({
                 </div>
               )}
 
-              {/* Label */}
+              {/* Label on Right */}
               <div
-                className="font-medium text-sm md:text-base text-center"
+                className="font-medium text-sm md:text-base"
                 style={{ color: 'var(--slide-text)' }}
               >
                 {item.label}
               </div>
-
-              {/* Selected indicator */}
-              {isSelected && (
-                <div
-                  className="h-1 w-full mt-2 rounded-full"
-                  style={{ backgroundColor: 'var(--slide-card-border)' }}
-                />
-              )}
             </button>
           );
         })}

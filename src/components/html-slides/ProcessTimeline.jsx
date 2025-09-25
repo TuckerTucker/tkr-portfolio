@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils";
  * Displays a UX design process timeline with customizable stages and descriptions.
  * Shows the progression of a project from start to finish with visual indicators.
  */
-const ProcessTimeline = ({ 
+const ProcessTimeline = ({
   title = "Design Process",
   description = "A timeline showing the UX design process for this project",
-  stages = [], 
+  stages = [],
   activeStage = 0,
   className,
-  ...props 
+  isMobile, // Extract isMobile prop
+  ...props
 }) => {
   return (
     <div className={cn("w-full h-full flex flex-col p-6 bg-gradient-to-r from-gray-900 to-gray-800", className)} {...props}>

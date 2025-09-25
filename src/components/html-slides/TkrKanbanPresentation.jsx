@@ -14,19 +14,19 @@ const TkrKanbanPresentation = ({ className = "" }) => {
       type: 'html',
       component: 'InteractiveCards',
       props: {
-        title: "The Problem I Was Solving",
+        title: "The Problem To Be Solved",
         items: [
           {
             id: "pain",
             icon: "😫",
             label: "Pain Point",
-            content: "Managing tasks through markdown files was challenging to maintain and update effectively. Traditional kanban tools forced either human-friendly interfaces OR AI-friendly data structures, but not both simultaneously."
+            content: "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.  So, what if there was a way for a Person and an AI to get the same information in a format better designed for their needs? "
           },
           {
             id: "insight",
             icon: "💡",
             label: "Insight",
-            content: "AI agents and humans have fundamentally different interaction preferences - humans prefer visual drag-and-drop interfaces while AI agents work best with structured file operations. The breakthrough was realizing we could serve both users with the same underlying data through different interface modalities."
+            content: "Using a JSON format AI can see the plan structure instantly while a person would prefer the common kanban UI."
           },
           {
             id: "goal",
@@ -68,16 +68,41 @@ const TkrKanbanPresentation = ({ className = "" }) => {
     },
     {
       type: 'html',
-      component: 'BeforeAfter',
+      component: 'InteractiveCode',
       props: {
-        title: "The MCP Integration Breakthrough",
-        beforeImage: `${import.meta.env.BASE_URL}images/slides/before-mcp.png`,
-        afterImage: `${import.meta.env.BASE_URL}images/slides/after-mcp.png`,
-        beforeLabel: "Before: Cluttered Prompts",
-        afterLabel: "After: Natural Conversation",
-        defaultPosition: 30
+        title: "Kanban Creation Prompting",
+        items: [
+          {
+            id: "spec",
+            icon: "📋",
+            label: "Spec",
+            filePath: "tic-tac-toe-spec.md",
+            filename: "Technical Specification"
+          },
+          {
+            id: "plan",
+            icon: "📝",
+            label: "Plan",
+            filePath: "tic-tac-toe-implementation.md",
+            filename: "Implementation Plan"
+          },
+          {
+            id: "prompt",
+            icon: "🤖",
+            label: "Prompt",
+            filePath: "taskboard-prompt.md",
+            filename: "AI Generation Prompt"
+          },
+          {
+            id: "json",
+            icon: "⚙️",
+            label: "JSON",
+            filePath: "taskboard-tic-tac-toe.json",
+            filename: "Generated Kanban Board"
+          }
+        ]
       },
-      alt: "Comparison showing MCP integration impact on AI conversations"
+      alt: "Interactive workflow showing spec to kanban JSON generation process"
     },
     {
       type: 'html',

@@ -40,9 +40,9 @@
   },
   {
     "id": "agentic_ai_kanban",
-    "title": "Agentic AI Kanban",
+    "title": "Taskboard ",
     "color": "#FF8800",
-    "subtitle": "a kanban for human in the loop AI coding",
+    "subtitle": "A Kanban for Human-AI collaboration",
     "logoUrl": "taskboard.svg",
     "description": "TaskBoardAI is a lightweight, file-based kanban board system designed for AI agents and human-in-the-loop collaboration. It bridges the gap between AI assistants and human project management, allowing both to maintain and manipulate shared project boards with synchronized updates.",
     "bullets": [

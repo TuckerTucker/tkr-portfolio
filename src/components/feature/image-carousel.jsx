@@ -46,20 +46,41 @@ const ImageCarousel = ({
   ...props
 }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [api, setApi] = useState();
+  const [current, setCurrent] = useState(0);
 
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // 768px is the standard md breakpoint
     };
-    
+
     checkMobile(); // Check on initial render
     window.addEventListener('resize', checkMobile); // Check on resize
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  // Track current slide when carousel API is available
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api?.off("select", onSelect);
+    };
+  }, [api]);
 
   if (!items || items.length === 0) {
     return null;
@@ -72,7 +93,7 @@ const ImageCarousel = ({
       aria-label="Project content showcase"
       {...props}
     >
-      <Carousel>
+      <Carousel setApi={setApi}>
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
@@ -127,9 +148,17 @@ const ImageCarousel = ({
         {/* Carousel indicators/dots */}
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {items.map((_, index) => (
-            <span
+            <button
               key={index}
-              className="w-2 h-2 rounded-full bg-white opacity-50"
+              className={cn(
+                "w-2 h-2 rounded-full transition-opacity",
+                index === current ? "opacity-100" : "opacity-50"
+              )}
+              style={{
+                backgroundColor: 'var(--slide-text, white)'
+              }}
+              onClick={() => api?.scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
