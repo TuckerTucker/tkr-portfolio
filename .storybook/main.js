@@ -31,11 +31,13 @@ const config = {
   },
   managerHead: (head) => `
     ${head}
-    <base href="/storybook/">
+    ${process.env.NODE_ENV === 'production' ? '<base href="/storybook/">' : ''}
   `,
   viteFinal: async (config) => {
-    // Set base URL for GitHub Pages deployment
-    config.base = '/storybook/';
+    // Set base URL for GitHub Pages deployment only in production
+    if (process.env.NODE_ENV === 'production') {
+      config.base = '/storybook/';
+    }
     
     // Ensure aliases are defined
     config.resolve = config.resolve || {};

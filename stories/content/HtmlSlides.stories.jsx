@@ -1,5 +1,6 @@
 import React from 'react';
 import htmlSlideComponents from '@/components/html-slides';
+import { ThemeProvider } from '../../src/hooks/useTheme';
 
 export default {
   title: 'Content/HTML Slides',
@@ -11,6 +12,13 @@ export default {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 };
 
 // TechStack
