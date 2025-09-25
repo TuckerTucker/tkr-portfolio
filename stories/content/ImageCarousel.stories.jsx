@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageCarousel from '@/components/feature/image-carousel';
+import { ThemeProvider } from '../../src/hooks/useTheme';
 
 // Mixed content example with image, video, and HTML slides
 const mixedContentItems = [
@@ -51,4 +52,11 @@ export default {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 };
