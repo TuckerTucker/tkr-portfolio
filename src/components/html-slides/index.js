@@ -13,11 +13,10 @@ import InteractiveCode from './InteractiveCode';
 import BornToTheWorld from './BornToTheWorld';
 import TheSparkAndTheArt from './TheSparkAndTheArt';
 import TheOffHoursCreative from './TheOffHoursCreative';
-import TkrKanbanPresentation from './TkrKanbanPresentation';
-import TkrContextKitPresentation from './TkrContextKitPresentation';
 import PortfolioShowcase from './PortfolioShowcase';
 import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
+import ProjectIntro from './ProjectIntro';
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -34,11 +33,10 @@ const ThemedInteractiveCode = withSlideTheme(InteractiveCode);
 const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
 const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
 const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
-const ThemedTkrKanbanPresentation = withSlideTheme(TkrKanbanPresentation);
-const ThemedTkrContextKitPresentation = withSlideTheme(TkrContextKitPresentation);
 const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
 const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
+const ThemedProjectIntro = withSlideTheme(ProjectIntro);
 
 // Export component registry map
 const htmlSlideComponents = {
@@ -55,11 +53,10 @@ const htmlSlideComponents = {
   BornToTheWorld: ThemedBornToTheWorld,
   TheSparkAndTheArt: ThemedTheSparkAndTheArt,
   TheOffHoursCreative: ThemedTheOffHoursCreative,
-  TkrKanbanPresentation: ThemedTkrKanbanPresentation,
-  TkrContextKitPresentation: ThemedTkrContextKitPresentation,
   PortfolioShowcase: ThemedPortfolioShowcase,
   WorldplayShowcase: ThemedWorldplayShowcase,
   NutrienShowcase: ThemedNutrienShowcase,
+  ProjectIntro: ThemedProjectIntro,
 };
 
 export default htmlSlideComponents;

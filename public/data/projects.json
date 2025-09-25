@@ -54,9 +54,234 @@
     "slides": [
       {
         "type": "html",
-        "component": "TkrKanbanPresentation",
-        "props": {},
-        "alt": "TaskBoardAI: Designing for Human-AI Collaboration"
+        "component": "ProjectIntro",
+        "props": {
+          "title": "TaskBoardAI: Designing for Human-AI Collaboration",
+          "description": "TaskBoardAI demonstrates how thoughtful interface design can create seamless collaboration between humans and AI agents. By understanding each user type's natural interaction patterns and designing for their strengths, we can create systems that feel intuitive to both humans and AI.\n\nThe key insight was recognizing that successful AI interaction design isn't about making AI work like humans, but about creating complementary interfaces that leverage each user's optimal interaction modality while maintaining shared access to the same underlying data.",
+          "bulletPoints": [
+            "Dual interface design - visual for humans, structured for AI",
+            "File-based architecture leveraging AI agents' natural file operation skills",
+            "MCP integration eliminating repetitive context-setting",
+            "Card-first architecture enabling responsive real-time collaboration",
+            "Real-world validation through daily use in actual development projects"
+          ],
+          "colorScheme": "kanban"
+        },
+        "alt": "Introduction to TaskBoardAI project and human-AI collaboration approach"
+      },
+      {
+        "type": "html",
+        "component": "InteractiveCards",
+        "props": {
+          "title": "The Problem To Be Solved",
+          "items": [
+            {
+              "id": "pain",
+              "icon": "😫",
+              "label": "Pain Point",
+              "content": "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "left",
+              "imageAlt": "Frustrated developer looking at complex markdown files"
+            },
+            {
+              "id": "insight",
+              "icon": "💡",
+              "label": "Insight",
+              "content": "Using a JSON format AI can see the plan structure instantly while a person would prefer the common kanban UI.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "right",
+              "imageAlt": "Split screen showing JSON data and kanban board UI"
+            },
+            {
+              "id": "goal",
+              "icon": "🎯",
+              "label": "Goal",
+              "content": "Create a dual-interface kanban system where humans enjoy intuitive visual interactions while AI agents efficiently parse and modify the same task data through their preferred file-based operations - enabling true human-AI collaborative task management.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "left",
+              "imageAlt": "Human and AI working together on the same kanban board"
+            }
+          ]
+        },
+        "alt": "Problem identification and solution approach with interactive exploration"
+      },
+      {
+        "type": "html",
+        "component": "InteractiveCards",
+        "props": {
+          "title": "Dual Interface Architecture",
+          "items": [
+            {
+              "id": "mcp",
+              "icon": "🔌",
+              "label": "MCP Protocol",
+              "content": "The MCP server provides automatic context to AI agents, eliminating the need to include JSON examples in every prompt. This creates natural conversations where agents can immediately understand and interact with the kanban structure without requiring database management skills or repeated context establishment.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "right",
+              "imageAlt": "MCP protocol diagram connecting AI agent to kanban system"
+            },
+            {
+              "id": "json",
+              "icon": "📄",
+              "label": "JSON Data Source",
+              "content": "File-based architecture serves as the single source of truth that both interfaces can access. AI agents leverage their existing file editing capabilities to modify tasks directly, while the JSON structure remains human-readable for transparency. The card-first design enables efficient updates - moving a card between columns requires only a single attribute change rather than restructuring the entire board.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "left",
+              "imageAlt": "JSON file structure with kanban card data"
+            },
+            {
+              "id": "webui",
+              "icon": "🖥️",
+              "label": "Web UI",
+              "content": "Responsive drag-and-drop interface that provides humans with the visual, tactile experience they expect from kanban boards. Real-time updates reflect changes made by either human users or AI agents, creating seamless collaboration where both parties can see the results of each other's work immediately.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "right",
+              "imageAlt": "Modern kanban web interface with drag and drop cards"
+            }
+          ]
+        },
+        "alt": "Dual interface approach demonstrating design for multiple user types"
+      },
+      {
+        "type": "html",
+        "component": "InteractiveCode",
+        "props": {
+          "title": "Kanban Creation Prompting",
+          "items": [
+            {
+              "id": "spec",
+              "icon": "📋",
+              "label": "Spec",
+              "filePath": "tic-tac-toe-spec.md",
+              "filename": "Technical Specification"
+            },
+            {
+              "id": "plan",
+              "icon": "📝",
+              "label": "Plan",
+              "filePath": "tic-tac-toe-implementation.md",
+              "filename": "Implementation Plan"
+            },
+            {
+              "id": "prompt",
+              "icon": "🤖",
+              "label": "Prompt",
+              "filePath": "taskboard-prompt.md",
+              "filename": "AI Generation Prompt"
+            },
+            {
+              "id": "json",
+              "icon": "⚙️",
+              "label": "JSON",
+              "filePath": "taskboard-tic-tac-toe.json",
+              "filename": "Generated Kanban Board"
+            }
+          ]
+        },
+        "alt": "Interactive workflow showing spec to kanban JSON generation process"
+      },
+      {
+        "type": "html",
+        "component": "UserFlow",
+        "props": {
+          "title": "Card-First Architecture for Real-Time Collaboration",
+          "description": "How single attribute changes enable responsive interactions",
+          "flowSteps": [
+            {
+              "label": "Card Created",
+              "title": "New Task Card",
+              "description": "Card object created with default column assignment",
+              "userActions": ["User adds task title", "System assigns unique ID"],
+              "systemResponse": "Card appears in 'To Do' column"
+            },
+            {
+              "label": "Card Moved",
+              "title": "Column Change",
+              "description": "Single attribute update moves card between columns",
+              "userActions": ["Human drags card", "AI agent updates column property"],
+              "systemResponse": "Card instantly appears in new column",
+              "decisionPoints": ["Validation checks", "State consistency"]
+            },
+            {
+              "label": "Multi-User",
+              "title": "Collaboration",
+              "description": "Both humans and AI agents see changes immediately",
+              "userActions": ["Human sees visual update", "AI reads new JSON state"],
+              "systemResponse": "Synchronized state across interfaces"
+            }
+          ]
+        },
+        "alt": "User flow showing card movement and real-time collaboration"
+      },
+      {
+        "type": "html",
+        "component": "UsabilityMetrics",
+        "props": {
+          "title": "Validation Through Real-World Use",
+          "participants": 1,
+          "metrics": [
+            {
+              "name": "Daily Usage",
+              "value": "3+ months",
+              "percentage": 100,
+              "description": "Used tool daily while creating other projects"
+            },
+            {
+              "name": "Error Recovery",
+              "value": "Real-time",
+              "percentage": 95,
+              "description": "Discussed errors with AI agents for solutions"
+            },
+            {
+              "name": "Workflow Integration",
+              "value": "Seamless",
+              "percentage": 90,
+              "description": "Became part of natural development process"
+            }
+          ],
+          "tasks": [
+            {
+              "name": "Task Creation",
+              "description": "Adding new tasks via drag-and-drop or AI",
+              "successRate": 100,
+              "avgTime": "< 30 sec"
+            },
+            {
+              "name": "Status Updates",
+              "description": "Moving cards between columns",
+              "successRate": 100,
+              "avgTime": "< 5 sec"
+            },
+            {
+              "name": "AI Integration",
+              "description": "AI agents updating board structure",
+              "successRate": 95,
+              "avgTime": "< 10 sec"
+            }
+          ],
+          "insights": [
+            {
+              "type": "positive",
+              "title": "Natural Collaboration Pattern",
+              "description": "The dual interface approach created intuitive human-AI collaboration",
+              "impact": "high"
+            },
+            {
+              "type": "positive",
+              "title": "Real-Time Feedback Loop",
+              "description": "Using the tool while building other projects provided continuous validation",
+              "impact": "high"
+            },
+            {
+              "type": "info",
+              "title": "Evolution of Understanding",
+              "description": "Project evolved from markdown frustration to deeper exploration of AI-human task management",
+              "impact": "medium"
+            }
+          ]
+        },
+        "alt": "Real-world usage metrics and insights from daily use"
       }
     ]
   },
@@ -77,9 +302,225 @@
     "slides": [
       {
         "type": "html",
-        "component": "TkrContextKitPresentation",
-        "props": {},
-        "alt": "tkr-context-kit: Pioneering Agent Experience (AGx) Design"
+        "component": "ProjectIntro",
+        "props": {
+          "title": "tkr-context-kit: Pioneering Agent Experience (AGx) Design",
+          "description": "tkr-context-kit represents pioneering work in Agent Experience (AGx) Design - essentially UX design for AI agents. By conducting user research with AI agents themselves and designing information architecture for their consumption patterns, this project demonstrates how we can create systems that optimize human-AI collaboration.\n\nThe breakthrough insight was treating AI agents as primary users with their own needs, preferences, and cognitive patterns. This led to designing semantic architectures, progressive context disclosure, and conversational memory systems that make every interaction more effective.",
+          "bulletPoints": [
+            "Agent Experience (AGx) design with AI agents as primary users",
+            "User research conducted directly with AI agents for iterative feedback",
+            "Semantic anchor YAML system reducing token count by 70% while maintaining information density",
+            "Service-oriented architecture enabling modular AI collaboration tools",
+            "Conversational systems design for persistent context and memory across interactions"
+          ],
+          "colorScheme": "contextkit"
+        },
+        "alt": "Introduction to tkr-context-kit and Agent Experience design approach"
+      },
+      {
+        "type": "html",
+        "component": "InteractiveCards",
+        "props": {
+          "title": "Agent Experience (AGx) Design Philosophy",
+          "items": [
+            {
+              "id": "agx-concept",
+              "icon": "🧠",
+              "label": "AGx Concept",
+              "content": "Agent Experience (AGx) Design treats AI agents as primary users with their own needs, preferences, and cognitive patterns. Just as UX design optimizes for human interaction patterns, AGx design creates information architectures and interfaces specifically tailored for how AI agents process, understand, and interact with systems.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "left",
+              "imageAlt": "AI agent interacting with optimized data structures"
+            },
+            {
+              "id": "user-research",
+              "icon": "🔬",
+              "label": "AI User Research",
+              "content": "We conducted user research directly with AI agents, iterating on YAML architectures based on their feedback about information density, semantic clarity, and processing efficiency. This human-AI collaborative design process revealed insights about how agents consume context differently than humans.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "right",
+              "imageAlt": "Collaborative design session between human and AI"
+            },
+            {
+              "id": "system-impact",
+              "icon": "⚡",
+              "label": "System Impact",
+              "content": "The result is a 70% reduction in token usage while maintaining information density, persistent context that eliminates repetitive explanations, and conversational systems that make every human-AI interaction more effective and productive.",
+              "image": "images/example-310x310.png",
+              "imagePosition": "left",
+              "imageAlt": "Performance metrics showing efficiency improvements"
+            }
+          ]
+        },
+        "alt": "Agent Experience design philosophy and approach"
+      },
+      {
+        "type": "html",
+        "component": "UserPersona",
+        "props": {
+          "name": "AI Agent",
+          "role": "Primary User",
+          "demographics": {
+            "Processing": "Token-based",
+            "Memory": "Conversation-scoped",
+            "Strength": "File operations",
+            "Weakness": "Context rebuilding"
+          },
+          "goals": [
+            "Understand project structure immediately",
+            "Focus on problem-solving, not problem-discovery",
+            "Access comprehensive context upfront",
+            "Maintain consistency across conversations"
+          ],
+          "painPoints": [
+            "Relearning project architecture in every conversation",
+            "Spending time on context discovery vs actual work",
+            "Inconsistent understanding between sessions",
+            "Token waste on repetitive explanations"
+          ],
+          "behaviors": [
+            "Processes structured data more efficiently than prose",
+            "Prefers hierarchical information organization",
+            "Benefits from semantic vocabulary systems",
+            "Excels with progressive disclosure patterns"
+          ],
+          "quote": "Give me comprehensive context upfront so I can focus on solving your actual problems."
+        },
+        "alt": "AI Agent user persona showing needs and behaviors"
+      },
+      {
+        "type": "html",
+        "component": "DesignSystem",
+        "props": {
+          "title": "The _project.yml Context Architecture",
+          "typography": [
+            {
+              "name": "Semantic Anchors",
+              "variants": [
+                {
+                  "name": "&tech-stack",
+                  "specs": "Reusable definition",
+                  "sample": "Creates shared vocabulary, reduces token count",
+                  "fontFamily": "monospace",
+                  "fontSize": "14px"
+                },
+                {
+                  "name": "~service_oriented",
+                  "specs": "Concept reference",
+                  "sample": "Defines architectural patterns consistently",
+                  "fontFamily": "monospace",
+                  "fontSize": "14px"
+                },
+                {
+                  "name": "Progressive Disclosure",
+                  "specs": "Layered information",
+                  "sample": "High-level meta → detailed operational patterns",
+                  "fontSize": "16px"
+                }
+              ]
+            }
+          ],
+          "colors": [
+            {
+              "name": "Information Hierarchy",
+              "variants": [
+                { "name": "Meta", "hex": "#3B82F6" },
+                { "name": "Architecture", "hex": "#10B981" },
+                { "name": "Operations", "hex": "#F59E0B" },
+                { "name": "Context", "hex": "#8B5CF6" }
+              ]
+            },
+            {
+              "name": "Token Efficiency",
+              "variants": [
+                { "name": "Before: 1000 lines", "hex": "#EF4444" },
+                { "name": "After: 300 lines", "hex": "#10B981" },
+                { "name": "Compression: 70%", "hex": "#3B82F6" }
+              ]
+            }
+          ]
+        },
+        "alt": "YAML context architecture showing semantic anchors and information hierarchy"
+      },
+      {
+        "type": "html",
+        "component": "SkillsMatrix",
+        "props": {
+          "title": "AGx Design - Agent Experience as Primary User",
+          "categories": [
+            { "id": "research", "name": "User Research" },
+            { "id": "architecture", "name": "Information Architecture" },
+            { "id": "patterns", "name": "Interaction Patterns" }
+          ],
+          "skills": [
+            {
+              "id": "agent-interviews",
+              "name": "Agent Interviews",
+              "category": "research",
+              "proficiency": 5,
+              "description": "Regularly asking AI agents what they need to better understand contexts",
+              "experience": "Daily conversations",
+              "projects": ["Context format optimization", "Vocabulary system design"]
+            },
+            {
+              "id": "yaml-design",
+              "name": "YAML Architecture",
+              "category": "architecture",
+              "proficiency": 5,
+              "description": "Agents preferred YAML's hierarchical structure over JSON/Mermaid",
+              "experience": "Format comparison studies",
+              "projects": ["Semantic anchor system", "Progressive disclosure patterns"]
+            }
+          ]
+        },
+        "alt": "Skills matrix showing AGx design capabilities"
+      },
+      {
+        "type": "html",
+        "component": "TechStack",
+        "props": {
+          "title": "Service-Oriented Architecture for Modularity",
+          "technologies": [
+            {
+              "name": "React Dashboard",
+              "icon": "⚛️",
+              "description": "Human visual interface"
+            },
+            {
+              "name": "Knowledge Graph",
+              "icon": "🕸️",
+              "description": "Component relationships"
+            },
+            {
+              "name": "MCP Integration",
+              "icon": "🔌",
+              "description": "Persistent AI memory"
+            }
+          ]
+        },
+        "alt": "Service-oriented architecture components"
+      },
+      {
+        "type": "html",
+        "component": "ProcessTimeline",
+        "props": {
+          "title": "Conversational Systems Design",
+          "description": "Building entire systems for human-AI collaboration where conversation is the primary interface",
+          "stages": [
+            {
+              "name": "Dual Interfaces",
+              "description": "Humans get visual dashboards, agents get structured data - same information, optimal formats",
+              "deliverable": "Interface Strategy"
+            },
+            {
+              "name": "Agent Orchestration",
+              "description": "Parallel agents update different parts, consolidation agent synthesizes results",
+              "deliverable": "Workflow Design"
+            }
+          ],
+          "activeStage": 2
+        },
+        "alt": "Process timeline showing evolution from problem to conversational systems design"
       }
     ]
   },
