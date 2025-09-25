@@ -16,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-[#613CB0] text-white py-2 mt-2">
-      <div className="max-w-5xl mx-auto px-3">
+      <div className="max-w-6xl mx-auto px-3">
         {/* Top section with branding and resume button */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-2 pb-2 border-b border-white/20">
           <Branding

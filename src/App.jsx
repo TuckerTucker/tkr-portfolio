@@ -56,7 +56,7 @@ function App() {
   return (
     <>
       <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
-        <main className="flex-grow max-w-5xl w-full mx-auto px-6 pt-8 pb-8 flex flex-col gap-8">
+        <main className="flex-grow max-w-6xl w-full mx-auto pt-0 flex flex-col gap-8">
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
