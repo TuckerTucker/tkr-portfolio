@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { ZoomableImage } from '../common/ImageLightbox';
 
 const InteractiveCards = ({
   title = "",
@@ -8,6 +9,10 @@ const InteractiveCards = ({
 }) => {
   const [selectedId, setSelectedId] = useState(items[0]?.id || null);
   const selectedItem = items.find(item => item.id === selectedId);
+
+  useEffect(() => {
+    console.log('InteractiveCards mounted, ZoomableImage imported:', ZoomableImage);
+  }, []);
 
   return (
     <div className={`flex flex-col h-full p-6 md:p-8 ${className}`}>
@@ -86,7 +91,7 @@ const InteractiveCards = ({
             {/* Image - Left Side */}
             {selectedItem.image && selectedItem.imagePosition !== 'right' && (
               <div className="flex-shrink-0 w-full md:w-auto self-center md:self-start">
-                <img
+                <ZoomableImage
                   src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                   alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
                   className="w-auto h-auto max-h-64 md:max-h-96 lg:max-h-96 object-contain rounded-lg mx-auto md:mx-0"
@@ -138,7 +143,7 @@ const InteractiveCards = ({
             {/* Image - Right Side */}
             {selectedItem.image && selectedItem.imagePosition === 'right' && (
               <div className="flex-shrink-0 w-full md:w-auto self-center md:self-start">
-                <img
+                <ZoomableImage
                   src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                   alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
                   className="w-auto h-auto max-h-64 md:max-h-96 lg:max-h-96 object-contain rounded-lg mx-auto md:mx-0"

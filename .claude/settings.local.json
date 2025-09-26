@@ -88,7 +88,9 @@
       "Bash(yq eval:*)",
       "mcp__tkr-context-kit__query",
       "mcp__tkr-context-kit__service_status",
-      "mcp__tkr-context-kit__start_dev_server"
+      "mcp__tkr-context-kit__start_dev_server",
+      "SlashCommand(/context-init)",
+      "Bash(cp:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

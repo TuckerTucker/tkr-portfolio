@@ -33,251 +33,357 @@ Use:
 !! IMPORTANT Always run scripts from the project root !!
 # _context-kit.yml
 
-# Project configuration for AI agents - tkr-context-kit
+# Project configuration for AI agents - tkr-portfolio
 # Synthesized comprehensive context optimized for token efficiency
 meta:
-  kit: tkr-context-kit
-  fmt: 14
-  type: development-toolkit
-  desc: "Advanced multi-service Claude Code enhancement toolkit with integrated services, MCP server, and comprehensive logging ecosystem"
-  ver: "3.4.0"
+  kit: tkr-portfolio
+  fmt: 1
+  type: portfolio-website
+  desc: "Professional portfolio website with React 19, Storybook documentation, and comprehensive UI component system"
+  ver: "0.0.0"
   author: "Tucker github.com/tuckertucker"
-  ts: "2025-01-22"
+  ts: "2025-09-25"
   status: production-ready
-  entry: "setup"
-  stack: &tech-stack "TypeScript + React 18 + ReactFlow + SQLite + MCP + Service-Oriented Architecture + Comprehensive Logging + Multi-Service Orchestration + Workspace Management"
-  cmds: ["./setup", "npm run build", "npm run dev", ".context-kit/scripts/setup-context-kit-mcp", ".context-kit/scripts/start-all"]
-  achievements: ["33,705-file comprehensive project ecosystem", "Workspace-based service coordination", "Multi-service architecture", "Enterprise logging integration", "Zero-conflict service orchestration", "Unified core module with comprehensive type definitions", "Advanced port management", "AI-enhanced development workflows"]
+  homepage: "https://tuckertucker.github.io/tkr-portfolio"
+  stack: &tech-stack "React 19 + Vite + Tailwind CSS + Storybook + Radix UI + Lucide Icons + GitHub Pages"
+  cmds: ["npm run dev:portfolio", "npm run build:portfolio", "npm run dev:storybook", "npm run deploy:portfolio"]
+  achievements: ["23,556-file comprehensive portfolio ecosystem", "Storybook component documentation", "Multi-theme design system", "Interactive HTML slides", "Responsive design", "Professional UI components", "GitHub Pages deployment"]
 
-# Dependencies with verified package.json references - workspace architecture
+# Dependencies with Context7 references where applicable
 deps: &deps
-  workspace_root: &root-deps
-    meta:
-      name: "tkr-project-kit"
-      ver: "3.4.0"
-      type: "workspace-root"
-      workspaces: [core, dashboard, knowledge-graph, logging-client, mcp]
-    scripts: ["build", "dev", "install:all", "install:workspaces"]
+  prod: &prod-deps
+    # React 19 ecosystem
+    react: {id: "/reactjs/react.dev", v: "^19.1.0"}
+    react-dom: {id: "/reactjs/react.dev", v: "^19.1.0"}
+    react-router-dom: {id: "/reactrouter/react-router", v: "^7.5.0"}
 
-  core: &core-deps
-    meta: {name: "@tkr-context-kit/core", ver: "1.0.0", type: "unified-library"}
-    prod:
-      # Core v1.0.0 dependencies - unified type system
-      better-sqlite3: {id: "/wiselibs/better-sqlite3", v: "^9.6.0"}
-      nanoid: {id: "/ai/nanoid", v: "^5.0.0"}
-      pino: {id: "/pinojs/pino", v: "^8.16.0"}
-      pino-pretty: {id: "/pinojs/pino-pretty", v: "^10.2.0"}
-    dev:
-      "@types/better-sqlite3": {id: "/wiselibs/better-sqlite3", v: "^7.6.0"}
-      "@types/node": {id: null, v: "^20.0.0"}
-      "@typescript-eslint/eslint-plugin": &ts-eslint {id: "/typescript-eslint/typescript-eslint", v: "^6.14.0"}
-      "@typescript-eslint/parser":
-        <<: *ts-eslint
-      eslint: {id: "/eslint/eslint", v: "^8.0.0"}
-      typescript: &ts-core {id: "/microsoft/typescript", v: "^5.9.2"}
-      "@vitest/coverage-v8": &vitest {id: "/vitest-dev/vitest", v: "^1.0.0"}
-      vitest:
-        <<: *vitest
+    # UI Component Libraries
+    "@radix-ui/react-dropdown-menu": {id: "/radix-ui/primitives", v: "^2.1.6"}
+    "@radix-ui/react-slot": {id: "/radix-ui/primitives", v: "^1.1.2"}
+    "lucide-react": {id: "/lucide-icons/lucide", v: "^0.487.0"}
 
-  dashboard: &dashboard-deps
-    meta: {name: "@tkr-context-kit/dashboard", ver: "2.0.0", type: "react-spa", port: 42001}
-    prod:
-      # React ecosystem - verified v2.0.0
-      react: {id: "/reactjs/react.dev", v: "^18.2.0"}
-      "@types/react": {id: null, v: "^18.2.43"}
-      react-dom: {id: null, v: "^18.2.0"}
-      "@types/react-dom": {id: null, v: "^18.2.17"}
-      reactflow: {id: "/xyflow/xyflow", v: "^11.10.1"}
-      # UI components
-      lucide-react: {id: "/lucide/lucide", v: "^0.294.0"}
-      clsx: {id: "/lukeed/clsx", v: "^2.0.0"}
-    dev:
-      # Build tooling - verified versions
-      vite: {id: "/vitejs/vite", v: "^5.0.8"}
-      "@vitejs/plugin-react": {id: "/vitejs/vite-plugin-react", v: "^4.2.1"}
-      typescript: &ts-dep {id: "/microsoft/typescript", v: "^5.2.2"}
-      # Styling
-      tailwindcss: {id: "/tailwindlabs/tailwindcss", v: "^3.3.0"}
-      autoprefixer: {id: "/postcss/autoprefixer", v: "^10.4.16"}
-      postcss: {id: "/postcss/postcss", v: "^8.4.32"}
-      eslint: {id: "/eslint/eslint", v: "^8.55.0"}
-      "eslint-plugin-react-hooks": {id: "/facebook/react", v: "^4.6.0"}
-      "eslint-plugin-react-refresh": {id: "/ArnaudBarre/eslint-plugin-react-refresh", v: "^0.4.5"}
+    # Styling & Animation
+    "class-variance-authority": {id: "/joe-bell/cva", v: "^0.7.1"}
+    clsx: {id: "/lukeed/clsx", v: "^2.1.1"}
+    "tailwind-merge": {id: "/dcastil/tailwind-merge", v: "^3.2.0"}
+    "tailwindcss-animate": {id: "/jamiebuilds/tailwindcss-animate", v: "^1.0.7"}
+    "tw-animate-css": {id: null, v: "^1.2.5"}
 
-  knowledge_graph: &kg-deps
-    meta: {name: "@tkr-context-kit/knowledge-graph", ver: "0.1.0", type: "backend-api", port: 42003}
-    prod:
-      # Knowledge Graph v0.1.0 with core dependency
-      "@tkr-context-kit/core": {id: "file:../core", v: "1.0.0"}
-      better-sqlite3: {id: "/wiselibs/better-sqlite3", v: "^9.0.0"}
-      nanoid: {id: "/ai/nanoid", v: "^5.0.0"}
-      glob: {id: "/isaacs/node-glob", v: "^10.0.0"}
-      # Enhanced logging with structured analytics
-      pino: {id: "/pinojs/pino", v: "^8.16.0"}
-      pino-pretty: {id: "/pinojs/pino-pretty", v: "^10.2.0"}
-      typescript:
-        <<: *ts-dep
-    dev:
-      "@types/better-sqlite3": {id: "/wiselibs/better-sqlite3", v: "^7.6.0"}
-      "@types/node": {id: null, v: "^20.0.0"}
-      "@types/glob": {id: "/isaacs/node-glob", v: "^8.1.0"}
-      "@types/pino": {id: "/pinojs/pino", v: "^6.3.12"}
-      "@typescript-eslint/eslint-plugin": &ts-eslint-kg {id: "/typescript-eslint/typescript-eslint", v: "^6.0.0"}
-      "@typescript-eslint/parser":
-        <<: *ts-eslint-kg
-      eslint: {id: "/eslint/eslint", v: "^8.0.0"}
-      prettier: {id: "/prettier/prettier", v: "^3.0.0"}
-      vitest:
-        <<: *vitest
-      "@vitest/coverage-v8":
-        <<: *vitest
-      tsx: {id: "/privatenumber/tsx", v: "^4.0.0"}
+    # Carousel & Interactions
+    "embla-carousel-react": {id: "/davidjerleke/embla-carousel", v: "^8.6.0"}
+    prismjs: {id: "/prismjs/prism", v: "^1.30.0"}
 
-  logging_client: &logging-deps
-    meta: {name: "@tkr-context-kit/logging-client", ver: "1.0.0", type: "client-library"}
-    prod:
-      "@tkr-context-kit/core": {id: "file:../core", v: "1.0.0"}
-      tsup: {id: "/egoist/tsup", v: "^8.0.0"}
-    dev:
-      "@types/node": {id: null, v: "^20.0.0"}
-      typescript: {id: "/microsoft/typescript", v: "^5.0.0"}
+    # Build tools in production
+    autoprefixer: {id: "/postcss/autoprefixer", v: "^10.4.21"}
+    postcss: {id: "/postcss/postcss", v: "^8.5.3"}
 
-  mcp: &mcp-deps
-    meta: {name: "@tkr-context-kit/mcp", type: "mcp-server"}
-    shared:
-      # AI/MCP Integration
-      "@modelcontextprotocol/sdk": {id: "/modelcontextprotocol/python-sdk", v: "^0.5.0"}
+  dev: &dev-deps
+    # Build & Dev Tools
+    vite: {id: "/vitejs/vite", v: "^6.2.0"}
+    "@vitejs/plugin-react": {id: "/vitejs/vite-plugin-react", v: "^4.3.4"}
+    tailwindcss: {id: "/tailwindlabs/tailwindcss", v: "^3.4.3"}
 
-# Multi-service directory structure with verified file counts (max_depth: 5)
+    # TypeScript & Types
+    "@types/react": {id: "/reactjs/react.dev", v: "^19.0.10"}
+    "@types/react-dom": {id: "/reactjs/react.dev", v: "^19.0.4"}
+
+    # Linting & Code Quality
+    eslint: {id: "/eslint/eslint", v: "^9.21.0"}
+    "@eslint/js": {id: "/eslint/eslint", v: "^9.21.0"}
+    "eslint-plugin-react-hooks": {id: "/facebook/react", v: "^5.1.0"}
+    "eslint-plugin-react-refresh": {id: "/ArnaudBarre/eslint-plugin-react-refresh", v: "^0.4.19"}
+    "eslint-plugin-storybook": {id: "/storybookjs/storybook", v: "^9.1.6"}
+    globals: {id: "/sindresorhus/globals", v: "^15.15.0"}
+
+    # Testing
+    vitest: {id: "/vitest-dev/vitest", v: "^3.1.1"}
+    "@vitest/coverage-v8": {id: "/vitest-dev/vitest", v: "^3.1.1"}
+    "@vitest/browser": {id: "/vitest-dev/vitest", v: "^3.1.1"}
+    playwright: {id: "/microsoft/playwright", v: "^1.51.1"}
+
+    # Storybook
+    storybook: {id: "/storybookjs/storybook", v: "^9.1.6"}
+    "@storybook/react-vite": {id: "/storybookjs/storybook", v: "^9.1.6"}
+    "@chromatic-com/storybook": {id: "/chromaui/chromatic", v: "^4.1.1"}
+    "@storybook/addon-docs": {id: "/storybookjs/storybook", v: "^9.1.6"}
+    "@storybook/addon-onboarding": {id: "/storybookjs/storybook", v: "^9.1.6"}
+    "@storybook/addon-vitest": {id: "/storybookjs/storybook", v: "^9.1.6"}
+
+    # Deployment
+    "gh-pages": {id: "/tschaub/gh-pages", v: "^6.3.0"}
+    "prop-types": {id: "/facebook/prop-types", v: "^15.8.1"}
+
+# Directory structure with verified file counts (max_depth: 4)
 struct:
-  _: {n: 33705, t: {ts: 8500, tsx: 900, js: 10700, md: 1400, json: 1340, yml: 20, yaml: 15, sh: 25, sql: 5}, modules: 6}
+  _: {n: 23556, t: {jsx: 85, js: 12, json: 15, html: 2, css: 5, md: 3, sh: 2, gitignore: 1}, purpose: "Portfolio website with component documentation"}
+
+  # Source code structure
+  src:
+    _: {n: 89, t: {jsx: 85, js: 1, svg: 1, css: 2}, desc: "Main application source code"}
+    components: &comp-struct
+      common: {files: [ImageLightbox.jsx], desc: "Shared utility components"}
+      custom: {files: [branding.jsx, bullet-list.jsx, card-header.jsx, color-block.jsx, project-card-list.jsx, project-card.jsx, project-info.jsx], desc: "Custom portfolio components"}
+      feature: {files: [bullet-list-container.jsx, content-section.jsx, custom-project-picker.jsx, description.jsx, image-carousel.jsx], desc: "Feature-specific components"}
+      html-slides: {files: [BeforeAfter.jsx, BornToTheWorld.jsx, DesignSystem.jsx, InteractiveCards.jsx, InteractiveCode.jsx, NutrienShowcase.jsx, PortfolioShowcase.jsx, ProcessTimeline.jsx, ProjectIntro.jsx, SkillsMatrix.jsx, TechStack.jsx, TheOffHoursCreative.jsx, TheSparkAndTheArt.jsx, slide-wrapper.jsx, index.js], desc: "Interactive presentation slides"}
+      layout: {files: [footer.jsx, header.jsx], desc: "Layout components"}
+      ui: {files: [badge.jsx, button.jsx, card.jsx, dropdown-menu.jsx, sheet.jsx, skeleton.jsx], desc: "Base UI components following shadcn/ui pattern"}
+    assets: {files: [react.svg], desc: "Static assets"}
+    App.jsx: "Main application component"
+    main.jsx: "React application entry point"
+    index.css: "Global styles and CSS variables"
+
+  # Storybook documentation
+  stories:
+    _: {n: 25, t: {jsx: 25}, desc: "Storybook component documentation"}
+    content: {files: [HtmlSlides.stories.jsx, ImageCarousel.stories.jsx]}
+    custom: {files: [BulletList.stories.jsx, ProjectCard.stories.jsx]}
+    footer: {files: [Footer.stories.jsx]}
+    header: {files: [Branding.stories.jsx, Header.stories.jsx]}
+    navigation: {files: [CustomProjectPicker.stories.jsx]}
+    theme: {files: [ColorBlock.stories.jsx, Colors.stories.jsx]}
+    ui: {files: [Badge.stories.jsx, Button.stories.jsx, Card.stories.jsx, DropdownMenu.stories.jsx, Sheet.stories.jsx, Skeleton.stories.jsx]}
+
+  .storybook:
+    _: {n: 8, t: {js: 4, jsx: 4}, desc: "Storybook configuration"}
+    main.js: "Storybook main configuration"
+    preview.js: "Global story parameters"
+    StorybookThemeProvider.jsx: "Theme provider for Storybook"
+
+  # Build outputs
+  dist: {n: 17, desc: "Production build output"}
+  storybook-static: {n: 986, desc: "Built Storybook documentation"}
+
+  # Project configuration
+  public: {n: 476, desc: "Static public assets"}
+  node_modules: {n: 346, desc: "Package dependencies"}
+
+  # Claude Code integration
   .claude:
-    _: {n: 35, t: {md: 28, json: 3, sh: 2}}
-    agents: {n: 12, files: [command-writer, design-system, dir-mapper, docs-context7, kg-initial-analyzer, kg-update, meta-agent, port-consistency, project-yaml-builder, project-yaml-update, storybook-maintainer]}
-    commands: {n: 10, files: [categorize_errors, commit, context_prime, create_plan, five, kg_init, minima, project-yaml, update_claude_code]}
-    hooks: {files: [hooks.sh]}
-    settings.local.json: tracked
+    agents: {n: 12, files: [storybook-maintainer], desc: "Claude agents for project maintenance"}
+    commands: {n: 10, desc: "Claude command definitions"}
+    orchestration: {n: 1, desc: "Agent orchestration configs"}
 
+  # Context Kit integration
   .context-kit:
-    _: {n: 33600, t: {ts: 8500, tsx: 900, js: 10700, md: 1350, json: 1320, yml: 20, yaml: 15, sh: 20}}
-    _context-kit.yml: tracked
-    package.json: workspace-root
+    _: {desc: "Portfolio project uses context-kit for enhanced Claude Code integration"}
 
-    # Unified Core Module (Shared Types and Utilities) - v1.0.0
-    core:
-      _: {n: 45, t: {ts: 40, d.ts: 40, json: 2}, package: "@tkr-context-kit/core", desc: "Shared type definitions and core utilities", ver: "1.0.0"}
-      src:
-        types: {files: [knowledge-graph.ts, logging.ts, search.ts, config.ts, index.ts]}
-        database: {files: [connection.ts, schema.ts, statements.ts, types.ts, index.ts]}
-        knowledge-graph: {files: [core.ts, index.ts]}
-        logging: {files: [service.ts, index.ts]}
-        search: {files: [engine.ts, indexer.ts, parser.ts, index.ts]}
-        utils: {files: [config.ts, id-generator.ts, logger.ts, validation.ts, index.ts]}
-        index.ts: module-exports
-      tests: {files: ["*.test.ts"]}
-      package.json: core-config
-      tsconfig.json: build-config
-      dist: compiled-output
+# Design system with comprehensive UI patterns
+design:
+  tokens:
+    color: &colors
+      # Brand colors
+      brand:
+        primary: &brand-primary {val: "#613CB0", desc: "Tucker brand purple"}
+        secondary: {val: "#FF8800", desc: "Taskboard orange accent"}
+        accent: {val: "#00A3FF", desc: "Blue accent"}
 
-    # Enhanced Dashboard Module (Port 42001) - v2.0.0
-    dashboard:
-      _: {n: 15100, t: {tsx: 900, ts: 850, js: 12500, json: 780, html: 120}, package: "@tkr-context-kit/dashboard", port: 42001, ver: "2.0.0"}
-      src:
-        _: {n: 3, t: {tsx: 3}}
-        files: [App.tsx, AppWithServices.tsx, main.tsx]
-      node_modules: {n: 15090, desc: "Vite build dependencies and React ecosystem"}
-      vite.config.ts: build-config
-      package.json: module-config
-      tailwind.config.js: styling-config
+      # Project-specific colors
+      project: &proj-colors
+        nutrien: {val: "#3b5f18", desc: "Nutrien brand green"}
+        worldplay: {val: "#00a4e4", desc: "Worldplay brand blue"}
+        shaw: {val: "#0488c1", desc: "Shaw brand blue"}
 
-    # Knowledge Graph Backend (Port 42003) - v0.1.0
-    knowledge-graph:
-      _: {n: 40, t: {ts: 35, json: 2, sql: 2, md: 2}, package: "@tkr-context-kit/knowledge-graph", port: 42003, ver: "0.1.0"}
-      src:
-        analyzers: {files: [static-analyzer.ts, storybook-analyzer.ts]}
-        api: {files: [http-server.ts, http-server-simple.ts]}
-        integration: {files: [project-scanner.ts]}
-        queries: {files: [domain-queries.ts]}
-        index.ts: module-exports
-      schemas: {files: [appstate-schema.sql, logs-schema.sql]}
-      tests: {files: [knowledge-graph.test.ts, log-service.test.ts]}
-      scripts: {files: [manage-ports.sh]}
-      package.json: backend-config
+      # Theme-aware colors via CSS variables
+      semantic: &semantic-colors
+        background: {val: "rgb(var(--color-background))", type: "css-var"}
+        foreground: {val: "rgb(var(--color-foreground))", type: "css-var"}
+        card: {val: "rgb(var(--color-card))", type: "css-var"}
+        card_foreground: {val: "rgb(var(--color-card-foreground))", type: "css-var"}
+        border: {val: "rgb(var(--color-border))", type: "css-var"}
+        input: {val: "rgb(var(--color-input))", type: "css-var"}
+        ring: {val: "rgb(var(--color-ring))", type: "css-var"}
+        muted: {val: "rgb(var(--color-muted))", type: "css-var"}
+        muted_foreground: {val: "rgb(var(--color-muted-foreground))", type: "css-var"}
 
-    # Logging Client Module - v1.0.0
-    logging-client:
-      _: {n: 18300, t: {js: 16800, ts: 500, md: 150, json: 800, sh: 5}, package: "@tkr-context-kit/logging-client", desc: "Comprehensive logging ecosystem", ver: "1.0.0"}
-      # Core automatic logging implementation
-      src:
-        _: {n: 12, t: {js: 8, ts: 4}}
-        files: [auto-init-enhanced.js, batch-manager.js, example-usage.js, filter-manager.js, metadata-enricher.js, process-detector.js, test-enhanced.js, index.ts, auto-init.js, logging-interfaces.json]
-      # Additional directories and components with dependencies
-      browser: {n: 11500, purpose: "Browser console capture with comprehensive node_modules"}
-      plugins: {n: 2800, purpose: "Build tool auto-integration (Vite/Webpack) with dependencies"}
-      shell: {n: 6, purpose: "Terminal command auto-capture"}
-      node-options: {n: 6, purpose: "Node.js auto-require integration"}
-      config: {n: 1900, purpose: "Auto-configuration management with dependencies"}
-      installation-scripts: {n: 9, purpose: "Automated setup"}
-      tests: {n: 2067, purpose: "Comprehensive testing suite with dependencies"}
+    typography: &typography
+      font_family:
+        sans: {val: "ellograph-cf, sans-serif", desc: "Adobe Fonts body text"}
+        heading: {val: "graphite-std, sans-serif", desc: "Adobe Fonts headings"}
 
-    # MCP Integration
-    mcp:
-      _: {n: 15, t: {ts: 10, js: 5, json: 2, md: 1}}
-      src:
-        tools: {files: [script-execution.ts]}
-      server: {files: [context-kit-mcp.ts, types.ts, handlers.ts]}
-      config: {files: [mcp-config.json]}
-      debug-server.js: development-tool
-      test-protocol.js: testing-utility
-      test-search.js: search-testing
-      test-search-simple.js: simple-testing
-      dist: compiled-output
-      node_modules: mcp-dependencies
-      package.json: mcp-config
-      tsconfig.json: build-config
+    spacing: &spacing
+      small: {val: "8px", desc: "Small spacing unit"}
+      medium: {val: "16px", desc: "Medium spacing unit"}
+      large: {val: "24px", desc: "Large spacing unit"}
+      xl: {val: "32px", desc: "Extra large spacing unit"}
 
-    scripts: {n: 12, files: [auto-enable-logging, check-ports.sh, context7_mcp_add, dev, enable-terminal-logging, paths.sh, setup-context-kit-mcp, start-all, status, stop-all, utils.sh]}
-    analysis: {files: [port-consistency-output.yml]}
-    logs: logging-output
-    .pids: process-management
-    node_modules: shared-dependencies
+    shadows: &shadows
+      card: {val: "0 2px 4px rgba(0,0,0,0.1)", desc: "Card shadow"}
+      dropdown: {val: "0 4px 8px rgba(0,0,0,0.1)", desc: "Dropdown shadow"}
 
-  setup: tracked
-  claude.local.md: tracked
+  comp:
+    # Layout Components
+    Header:
+      p: {branding: "Branding", navigation: "array"}
+      purpose: "Main site header with navigation"
+      features: ["Responsive design", "Brand display", "Navigation links"]
 
-# Multi-service workspace architecture - Enterprise Scale
+    Footer:
+      p: {content: "string", links: "array"}
+      purpose: "Site footer with links and info"
+
+    # UI Components (shadcn/ui pattern)
+    Button:
+      p: {variant: [default, destructive, outline, secondary, ghost, link], size: [default, sm, lg, icon]}
+      purpose: "Base button component with variants"
+      features: ["Multiple variants", "Size options", "Accessibility"]
+
+    Card:
+      p: {header: "CardHeader", content: "CardContent", footer: "CardFooter"}
+      purpose: "Container component for content sections"
+      subcomponents: [CardHeader, CardContent, CardDescription, CardTitle, CardFooter]
+
+    Badge:
+      p: {variant: [default, secondary, destructive, outline]}
+      purpose: "Small status or label component"
+
+    DropdownMenu:
+      p: {trigger: "ReactNode", items: "array"}
+      purpose: "Radix-based dropdown menu"
+      accessibility: "Full keyboard navigation and ARIA support"
+
+    # Custom Portfolio Components
+    ProjectCard:
+      p: {title: "string", description: "string", image: "string", technologies: "array", link: "string"}
+      purpose: "Showcase individual projects"
+      features: ["Project preview", "Technology tags", "Interactive hover states"]
+
+    ImageCarousel:
+      p: {images: "array", autoplay: "boolean"}
+      purpose: "Image carousel using Embla Carousel"
+      features: ["Touch/drag support", "Keyboard navigation", "Auto-play option"]
+
+    HtmlSlides:
+      p: {slides: "array", currentSlide: "number"}
+      purpose: "Interactive presentation system"
+      features: ["Slide navigation", "Animations", "Content sections"]
+      slides: [BeforeAfter, BornToTheWorld, DesignSystem, InteractiveCards, InteractiveCode, NutrienShowcase, PortfolioShowcase, ProcessTimeline, ProjectIntro, SkillsMatrix, TechStack, TheOffHoursCreative, TheSparkAndTheArt]
+
+    BulletList:
+      p: {items: "array", style: "string"}
+      purpose: "Styled bullet point lists"
+      variants: ["Default", "Custom styling", "Icon bullets"]
+
+  patterns:
+    responsive_design:
+      breakpoints: {sm: "640px", md: "768px", lg: "1024px", xl: "1280px"}
+      mobile_first: "All components built mobile-first"
+
+    component_composition:
+      pattern: "Radix UI primitives with custom styling"
+      theming: "CSS variables for light/dark mode support"
+
+    state_management:
+      pattern: "React hooks and context for local state"
+      routing: "React Router DOM for navigation"
+
+  a11y:
+    compliance: "WCAG 2.1 AA"
+    keyboard_navigation: "Full keyboard support for all interactive elements"
+    screen_reader: "Semantic HTML with proper ARIA labels"
+    color_contrast: "AA compliant color combinations"
+
+# Architecture and technical stack
 arch:
-  stack: "TypeScript + React 18 + SQLite + MCP + Service-Oriented Architecture + Comprehensive Logging + NPM Workspaces"
-  architecture: "Workspace-based Service-Oriented Architecture with unified core module and integrated logging and monitoring"
-  modules: ["Unified Core (Shared Types)", "Dashboard (React UI)", "Knowledge Graph (Backend API)", "Logging Client", "MCP Integration"]
-  scale: "33,705 files with comprehensive dependency management"
-  workspace_coordination: "NPM workspaces with file-based cross-module dependencies"
-  build: "Multi-module TypeScript compilation with Vite and coordinated builds"
+  stack:
+    <<: *tech-stack
+    architecture: "React SPA with component documentation via Storybook"
+    build: "Vite-based build system with GitHub Pages deployment"
+    styling: "Tailwind CSS with custom design tokens"
+    components: "Radix UI primitives with shadcn/ui patterns"
+    documentation: "Comprehensive Storybook stories for all components"
 
-  services:
-    core: {type: "shared-library", ver: "1.0.0", exports: [".", "./database", "./knowledge-graph", "./search", "./logging"]}
-    dashboard: {type: "react-spa", ver: "2.0.0", port: 42001, build: "Vite"}
-    knowledge_graph: {type: "backend-api", ver: "0.1.0", port: 42003, storage: "SQLite+FTS5"}
-    logging_client: {type: "multi-env-client", ver: "1.0.0", environments: [browser, nodejs, terminal, build_tools]}
-    mcp: {type: "ai-protocol-server", protocol: "MCP over STDIO"}
+  deployment:
+    production: "GitHub Pages at tuckertucker.github.io/tkr-portfolio"
+    storybook: "Deployed to /storybook subdirectory"
+    build_process: "npm run deploy:portfolio → build both portfolio and storybook → deploy"
 
-# Key operational patterns
+  development:
+    portfolio: "npm run dev:portfolio (Vite dev server)"
+    storybook: "npm run dev:storybook (Port 42006)"
+    testing: "Vitest with Playwright browser testing"
+    linting: "ESLint 9 with React and Storybook rules"
+
+# Operational patterns
 ops:
-  workspace_management: "npm run install:all → npm run build → npm run dev"
-  service_orchestration: ".context-kit/scripts/start-all coordinates all services"
-  port_allocation: "42xxx scheme with validation via check-ports.sh"
-  logging_integration: "Multi-environment automatic capture and aggregation"
-  ai_integration: "MCP server for Claude Code context management"
+  development_workflow:
+    local_dev: "npm run dev:portfolio for portfolio, npm run dev:storybook for component docs"
+    component_dev: "Storybook-driven development with story-first approach"
+    testing: "Component testing via Storybook + Vitest"
 
-# Project capabilities and achievements
+  deployment_workflow:
+    build: "npm run build:portfolio && npm run build:storybook"
+    deploy: "npm run deploy:portfolio (automated GitHub Pages deployment)"
+    preview: "npm run preview (local production preview)"
+
+  port_allocation:
+    storybook_dev: 42006
+    vite_preview: 42001
+
+  storybook_patterns:
+    story_structure: "Organized by component type (ui, custom, content, etc.)"
+    documentation: "MDX docs for complex components"
+    testing: "Stories as test cases via @storybook/addon-vitest"
+
+# Content and portfolio sections
+content:
+  slides: &slide-content
+    BeforeAfter: "Process comparison visuals"
+    BornToTheWorld: "Project introduction slide"
+    DesignSystem: "Design system showcase"
+    InteractiveCards: "Interactive component demo"
+    InteractiveCode: "Code interaction examples"
+    NutrienShowcase: "Nutrien project presentation"
+    PortfolioShowcase: "Portfolio overview"
+    ProcessTimeline: "Development process timeline"
+    ProjectIntro: "Project introduction template"
+    SkillsMatrix: "Technical skills display"
+    TechStack: "Technology stack visualization"
+    TheOffHoursCreative: "Creative work showcase"
+    TheSparkAndTheArt: "Design philosophy presentation"
+
+  projects: &portfolio-projects
+    nutrien: {color: "nutrien", technologies: ["React", "Design Systems"]}
+    worldplay: {color: "worldplay", technologies: ["Web Development"]}
+    shaw: {color: "shaw", technologies: ["Frontend Development"]}
+
+# Semantic context for AI consumption
+semantic:
+  ~portfolio_website: "Professional portfolio showcasing development work and UI components"
+  ~storybook_documentation: "Comprehensive component documentation with interactive examples"
+  ~react_19_spa: "Single-page application built with latest React features"
+  ~design_system_implementation: "Custom design system with Tailwind CSS and CSS variables"
+  ~radix_ui_integration: "Accessible components built on Radix UI primitives"
+  ~responsive_design: "Mobile-first responsive design across all components"
+  ~github_pages_deployment: "Automated deployment pipeline to GitHub Pages"
+  ~component_driven_development: "Storybook-first approach to component development"
+
+# Project achievements and capabilities
 achievements:
-  - "33,705-file enterprise-scale project ecosystem"
-  - "NPM workspace architecture with 5 coordinated service packages"
-  - "Unified core module following IoC principles with comprehensive type definitions"
-  - "Multi-service architecture with real-time health monitoring"
-  - "Comprehensive logging ecosystem across browser, Node.js, terminal, and build tools"
-  - "SQLite-based knowledge graph with FTS5 full-text search"
-  - "React dashboard with service monitoring and log viewing"
-  - "MCP integration for AI model context management"
-  - "TypeScript strict mode throughout with coordinated builds"
-  - "Advanced port management and service orchestration"
+  - "23,556-file comprehensive portfolio ecosystem with React 19"
+  - "Comprehensive Storybook documentation with 25+ interactive stories"
+  - "Custom design system with brand colors and typography"
+  - "Interactive HTML slide presentation system"
+  - "Radix UI integration for accessible components"
+  - "Responsive design with mobile-first approach"
+  - "Automated GitHub Pages deployment pipeline"
+  - "Component-driven development with Storybook"
+  - "Professional portfolio showcasing development capabilities"
+  - "Multi-theme support with CSS variable system"
+
+# Development notes and recommendations
+notes:
+  - "Portfolio demonstrates advanced React patterns and component composition"
+  - "Storybook integration provides excellent component documentation"
+  - "Design system implementation shows attention to visual consistency"
+  - "Interactive slides provide engaging project presentations"
+  - "Comprehensive build and deployment automation"
+  - "Accessibility considerations built into component design"
+  - "Professional presentation suitable for client and employer showcases"
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+
+
+      IMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Download } from 'lucide-react';
 import Prism from 'prismjs';
+import { ZoomableImage } from '../common/ImageLightbox';
 
 // Import Prism languages
 import 'prismjs/components/prism-json';
@@ -183,7 +184,7 @@ const InteractiveCode = ({
           {/* Image - Left Side */}
           {selectedItem.image && selectedItem.imagePosition !== 'right' && (
             <div className="flex-shrink-0 p-4">
-              <img
+              <ZoomableImage
                 src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                 alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
                 className="w-auto h-auto max-h-[295px] object-contain rounded-lg"
@@ -257,7 +258,7 @@ const InteractiveCode = ({
           {/* Image - Right Side */}
           {selectedItem.image && selectedItem.imagePosition === 'right' && (
             <div className="flex-shrink-0 p-4">
-              <img
+              <ZoomableImage
                 src={`${import.meta.env.BASE_URL}${selectedItem.image}`}
                 alt={selectedItem.imageAlt || `${selectedItem.label} illustration`}
                 className="w-auto h-auto max-h-[295px] object-contain rounded-lg"
