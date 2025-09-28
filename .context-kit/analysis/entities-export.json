@@ -1,0 +1,809 @@
+[
+  {
+    "id": "T5v2YpKjC8AZ",
+    "type": "Story",
+    "name": "ImageCarouselStory",
+    "data": {
+      "location": "stories/content/ImageCarousel.stories.jsx",
+      "component": "ImageCarousel",
+      "purpose": "Document ImageCarousel component usage",
+      "variants": [
+        "With Images",
+        "With Videos",
+        "With HTML Slides"
+      ]
+    },
+    "created_at": 1758847116843,
+    "updated_at": 1758847116843,
+    "version": 1
+  },
+  {
+    "id": "KqLF8OOErSq1",
+    "type": "Story",
+    "name": "ProjectCardStory",
+    "data": {
+      "location": "stories/custom/ProjectCard.stories.jsx",
+      "component": "ProjectCard",
+      "purpose": "Document ProjectCard component usage",
+      "variants": [
+        "Default",
+        "With Image",
+        "Loading State"
+      ]
+    },
+    "created_at": 1758847116682,
+    "updated_at": 1758847116682,
+    "version": 1
+  },
+  {
+    "id": "LueVPm9OYnTr",
+    "type": "Documentation",
+    "name": "StorybookDocs",
+    "data": {
+      "location": "stories/",
+      "type": "Component Documentation",
+      "tool": "Storybook",
+      "purpose": "Interactive component documentation and testing",
+      "features": [
+        "25+ stories",
+        "Interactive examples",
+        "Component isolation",
+        "Visual regression testing"
+      ],
+      "stories_count": 25,
+      "categories": [
+        "ui",
+        "custom",
+        "content",
+        "theme",
+        "navigation"
+      ]
+    },
+    "created_at": 1758847116523,
+    "updated_at": 1758847116523,
+    "version": 1
+  },
+  {
+    "id": "tPhx2mT7OuaR",
+    "type": "AISkillsProject",
+    "name": "AIProgressStepsV2",
+    "data": {
+      "status": "planned",
+      "slideCount": 5,
+      "focusArea": "5-Stage Journey",
+      "targetLocation": "src/pages/projects/aiprogressstepsv2/",
+      "usesComponents": [
+        "ContextEvolutionSlide",
+        "ProjectImpactMetrics"
+      ],
+      "description": "5-stage AI collaboration journey visualization",
+      "aiSkillsDemo": "Progressive AI integration and skill development stages"
+    },
+    "created_at": 1758680987433,
+    "updated_at": 1758680987433,
+    "version": 1
+  },
+  {
+    "id": "OB1p1mu2peA9",
+    "type": "AISkillsProject",
+    "name": "TaskBoardAIV2",
+    "data": {
+      "status": "planned",
+      "slideCount": 5,
+      "focusArea": "Dual Interface",
+      "targetLocation": "src/pages/projects/taskboardaiv2/",
+      "usesComponents": [
+        "DualInterfaceDemo",
+        "AgentConversationFlow"
+      ],
+      "description": "AI-powered task board with dual human-AI interface",
+      "aiSkillsDemo": "Dual interface design and AI-human task collaboration"
+    },
+    "created_at": 1758680981996,
+    "updated_at": 1758680981996,
+    "version": 1
+  },
+  {
+    "id": "m9a3uXc0EFxB",
+    "type": "AISkillsProject",
+    "name": "ContextKitV2",
+    "data": {
+      "status": "planned",
+      "slideCount": 5,
+      "focusArea": "AGx Design",
+      "targetLocation": "src/pages/projects/contextkitv2/",
+      "usesComponents": [
+        "AIInteractionShowcase",
+        "ProjectImpactMetrics"
+      ],
+      "description": "AI-enhanced context management system showcase",
+      "aiSkillsDemo": "Advanced context evolution and AGx design patterns"
+    },
+    "created_at": 1758680976325,
+    "updated_at": 1758680976325,
+    "version": 1
+  },
+  {
+    "id": "qzZRZXktPKfB",
+    "type": "AISkillsComponent",
+    "name": "AgentConversationFlow",
+    "data": {
+      "status": "planned",
+      "targetLocation": "src/components/ai-skills/AgentConversationFlow/",
+      "purpose": "AI-human collaboration showcase",
+      "dependencies": [
+        "React",
+        "TypeScript"
+      ],
+      "integrationPoints": [
+        "theme system",
+        "existing patterns"
+      ],
+      "description": "Interactive conversation flow showing AI agent interactions",
+      "features": [
+        "conversation-ui",
+        "agent-responses",
+        "interactive-flow"
+      ]
+    },
+    "created_at": 1758680969701,
+    "updated_at": 1758680969701,
+    "version": 1
+  },
+  {
+    "id": "2sTkOJd4gmtv",
+    "type": "AISkillsComponent",
+    "name": "ProjectImpactMetrics",
+    "data": {
+      "status": "planned",
+      "targetLocation": "src/components/ai-skills/ProjectImpactMetrics/",
+      "purpose": "AI-human collaboration showcase",
+      "dependencies": [
+        "React",
+        "TypeScript"
+      ],
+      "integrationPoints": [
+        "theme system",
+        "existing patterns"
+      ],
+      "description": "Visual metrics showing project impact and AI collaboration benefits",
+      "features": [
+        "metrics-visualization",
+        "impact-charts",
+        "roi-display"
+      ]
+    },
+    "created_at": 1758680964118,
+    "updated_at": 1758680964118,
+    "version": 1
+  },
+  {
+    "id": "SujTRxIbXvCZ",
+    "type": "AISkillsComponent",
+    "name": "ContextEvolutionSlide",
+    "data": {
+      "status": "planned",
+      "targetLocation": "src/components/ai-skills/ContextEvolutionSlide/",
+      "purpose": "AI-human collaboration showcase",
+      "dependencies": [
+        "React",
+        "TypeScript"
+      ],
+      "integrationPoints": [
+        "theme system",
+        "existing patterns"
+      ],
+      "description": "Animated slide showing context evolution in AI interactions",
+      "features": [
+        "context-visualization",
+        "evolution-timeline",
+        "interactive-demo"
+      ]
+    },
+    "created_at": 1758680958722,
+    "updated_at": 1758680958722,
+    "version": 1
+  },
+  {
+    "id": "OqZubzaU0rcA",
+    "type": "AISkillsComponent",
+    "name": "DualInterfaceDemo",
+    "data": {
+      "status": "planned",
+      "targetLocation": "src/components/ai-skills/DualInterfaceDemo/",
+      "purpose": "AI-human collaboration showcase",
+      "dependencies": [
+        "React",
+        "TypeScript"
+      ],
+      "integrationPoints": [
+        "theme system",
+        "existing patterns"
+      ],
+      "description": "Split-screen interface showing human and AI perspectives",
+      "features": [
+        "split-screen-ui",
+        "dual-perspective",
+        "comparison-view"
+      ]
+    },
+    "created_at": 1758680953491,
+    "updated_at": 1758680953491,
+    "version": 1
+  },
+  {
+    "id": "I8nABgh5bcTS",
+    "type": "AISkillsComponent",
+    "name": "AIInteractionShowcase",
+    "data": {
+      "status": "planned",
+      "targetLocation": "src/components/ai-skills/AIInteractionShowcase/",
+      "purpose": "AI-human collaboration showcase",
+      "dependencies": [
+        "React",
+        "TypeScript"
+      ],
+      "integrationPoints": [
+        "theme system",
+        "existing patterns"
+      ],
+      "description": "Interactive component showcasing AI-human collaboration workflows",
+      "features": [
+        "real-time-interaction",
+        "conversation-flow",
+        "ai-assistance-demo"
+      ]
+    },
+    "created_at": 1758680948063,
+    "updated_at": 1758680948063,
+    "version": 1
+  },
+  {
+    "id": "NivyahomBHtL",
+    "type": "DesignSystem",
+    "name": "PortfolioTheme",
+    "data": {
+      "hasLightMode": true,
+      "hasDarkMode": true,
+      "cssVariables": true,
+      "location": "src/index.css",
+      "themeProvider": "useTheme hook",
+      "colors": {
+        "primary": "#613CB0",
+        "secondary": "#FF8800",
+        "accent": "#00A3FF"
+      },
+      "features": [
+        "oklch-colors",
+        "tailwind-integration",
+        "css-custom-properties",
+        "adobe-fonts"
+      ],
+      "slideThemes": true
+    },
+    "created_at": 1758680942436,
+    "updated_at": 1758680942436,
+    "version": 1
+  },
+  {
+    "id": "xGwAFKKp4ndh",
+    "type": "UIComponent",
+    "name": "CustomProjectPicker",
+    "data": {
+      "location": "src/components/feature/custom-project-picker.jsx",
+      "props": [
+        "projects",
+        "onSelect"
+      ],
+      "hasStyles": true,
+      "hasTests": false,
+      "usesTheme": true,
+      "category": "existing",
+      "description": "Project selection dropdown component",
+      "dependencies": [
+        "DropdownMenu"
+      ],
+      "features": [
+        "project-selection",
+        "dropdown-ui"
+      ]
+    },
+    "created_at": 1758680935960,
+    "updated_at": 1758680935960,
+    "version": 1
+  },
+  {
+    "id": "CtPjvUrw7DCJ",
+    "type": "UIComponent",
+    "name": "ProjectCard",
+    "data": {
+      "location": "src/components/custom/project-card.jsx",
+      "props": [
+        "project",
+        "className"
+      ],
+      "hasStyles": true,
+      "hasTests": false,
+      "usesTheme": true,
+      "category": "existing",
+      "description": "Individual project showcase card",
+      "dependencies": [
+        "Card"
+      ],
+      "features": [
+        "project-showcase",
+        "responsive-design"
+      ]
+    },
+    "created_at": 1758680930140,
+    "updated_at": 1758680930140,
+    "version": 1
+  },
+  {
+    "id": "i4OzADCuu7Zf",
+    "type": "UIComponent",
+    "name": "ThemeToggle",
+    "data": {
+      "location": "src/components/ui/theme-toggle.jsx",
+      "props": [
+        "className"
+      ],
+      "hasStyles": true,
+      "hasTests": false,
+      "usesTheme": true,
+      "category": "existing",
+      "description": "Three-way theme toggle (light/dark/system)",
+      "dependencies": [
+        "useTheme"
+      ],
+      "features": [
+        "three-way-toggle",
+        "system-preference",
+        "accessibility",
+        "custom-icons"
+      ]
+    },
+    "created_at": 1758680924780,
+    "updated_at": 1758680924780,
+    "version": 1
+  },
+  {
+    "id": "2LKBuLVLBp04",
+    "type": "UIComponent",
+    "name": "ImageCarousel",
+    "data": {
+      "location": "src/components/feature/image-carousel.jsx",
+      "props": [
+        "items",
+        "className"
+      ],
+      "hasStyles": true,
+      "hasTests": false,
+      "usesTheme": true,
+      "category": "existing",
+      "description": "Dynamic carousel supporting images, videos, and HTML components",
+      "dependencies": [
+        "Carousel",
+        "CarouselContent",
+        "CarouselItem",
+        "CarouselNext",
+        "CarouselPrevious"
+      ],
+      "features": [
+        "mobile-responsive",
+        "html-slides",
+        "video-support",
+        "accessibility"
+      ]
+    },
+    "created_at": 1758680920310,
+    "updated_at": 1758680920310,
+    "version": 1
+  },
+  {
+    "id": "RovSXrHgaXoY",
+    "type": "Portfolio",
+    "name": "TuckerPortfolio",
+    "data": {
+      "description": "Tucker's UX/AI collaboration portfolio - v2 AI Skills development",
+      "version": "v2-ai-skills",
+      "target": "Hive.co Senior AI UX Designer",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Tailwind",
+        "Vite",
+        "Storybook"
+      ],
+      "status": "in-development",
+      "framework": "React 19.1.0 + Vite + Tailwind",
+      "location": "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio",
+      "hasThemeSystem": true,
+      "hasStorybook": true,
+      "port": 42001
+    },
+    "created_at": 1758680914727,
+    "updated_at": 1758680914727,
+    "version": 1
+  },
+  {
+    "id": "NL4Kkyk6DKcH",
+    "type": "Test",
+    "name": "KGConnectivityTest",
+    "data": {
+      "purpose": "Verify knowledge graph connectivity",
+      "timestamp": "2025-01-23"
+    },
+    "created_at": 1758678634060,
+    "updated_at": 1758678634060,
+    "version": 1
+  },
+  {
+    "id": "8xubKmaR1cBk",
+    "type": "Configuration",
+    "name": "port-allocation",
+    "data": {
+      "type": "Port Management System",
+      "scheme": "42xxx allocation",
+      "ports": {
+        "dashboard": 42001,
+        "knowledge_graph": 42003,
+        "storybook": 42006,
+        "logging": 42005,
+        "mcp_tools": 42007
+      },
+      "validation": "check-ports.sh script"
+    },
+    "created_at": 1758522813345,
+    "updated_at": 1758522813345,
+    "version": 1
+  },
+  {
+    "id": "YnEY2BrDzu0P",
+    "type": "Analyzer",
+    "name": "StaticAnalyzer",
+    "data": {
+      "file": ".context-kit/knowledge-graph/src/analyzers/static-analyzer.ts",
+      "type": "Code Analysis Tool",
+      "purpose": "Static code analysis and pattern detection",
+      "features": [
+        "AST parsing",
+        "Dependency extraction",
+        "Pattern recognition"
+      ]
+    },
+    "created_at": 1758522813061,
+    "updated_at": 1758522813061,
+    "version": 1
+  },
+  {
+    "id": "bTmBzIeAFZ6D",
+    "type": "Service",
+    "name": "LogService",
+    "data": {
+      "file": ".context-kit/knowledge-graph/src/services/log-service.ts",
+      "type": "Logging Service",
+      "purpose": "Centralized log management",
+      "features": [
+        "Structured logging",
+        "Real-time streaming",
+        "Analytics",
+        "Multi-level filtering"
+      ]
+    },
+    "created_at": 1758522812816,
+    "updated_at": 1758522812816,
+    "version": 1
+  },
+  {
+    "id": "Vb25q1AUyfZK",
+    "type": "Component",
+    "name": "ImageCarousel",
+    "data": {
+      "file": "src/components/features/ImageCarousel.tsx",
+      "type": "Feature Component",
+      "purpose": "Interactive image gallery",
+      "features": [
+        "Touch/swipe support",
+        "Keyboard navigation",
+        "Responsive layout"
+      ]
+    },
+    "created_at": 1758522812566,
+    "updated_at": 1758522812566,
+    "version": 1
+  },
+  {
+    "id": "YiSr94ovz8pX",
+    "type": "Component",
+    "name": "Header",
+    "data": {
+      "file": "src/components/layout/Header.tsx",
+      "type": "Layout Component",
+      "purpose": "Main navigation and branding",
+      "features": [
+        "Responsive design",
+        "Theme toggle",
+        "Navigation menu"
+      ]
+    },
+    "created_at": 1758522812328,
+    "updated_at": 1758522812328,
+    "version": 1
+  },
+  {
+    "id": "nhp605fWd4f7",
+    "type": "Component",
+    "name": "ThemeProvider",
+    "data": {
+      "file": "src/components/theme-provider.tsx",
+      "type": "Context Provider",
+      "purpose": "Global theme management",
+      "features": [
+        "Light/dark mode",
+        "System preference detection",
+        "Theme persistence"
+      ]
+    },
+    "created_at": 1758522812107,
+    "updated_at": 1758522812107,
+    "version": 1
+  },
+  {
+    "id": "Qf0n8FW0Dk4G",
+    "type": "Script",
+    "name": "setup",
+    "data": {
+      "file": "./setup",
+      "type": "Build Orchestration Script",
+      "purpose": "Coordinate multi-service builds",
+      "actions": [
+        "Install dependencies",
+        "Build services",
+        "Configure MCP",
+        "Setup logging"
+      ]
+    },
+    "created_at": 1758522787228,
+    "updated_at": 1758522787228,
+    "version": 1
+  },
+  {
+    "id": "0KGuSQp6gdht",
+    "type": "API",
+    "name": "http-server",
+    "data": {
+      "file": ".context-kit/knowledge-graph/src/api/http-server.ts",
+      "port": 42003,
+      "type": "REST API",
+      "endpoints": [
+        "GET /entities",
+        "POST /entities",
+        "GET /relations",
+        "POST /relations"
+      ],
+      "purpose": "Knowledge graph HTTP interface"
+    },
+    "created_at": 1758522786952,
+    "updated_at": 1758522786952,
+    "version": 1
+  },
+  {
+    "id": "xvwhAl7gqTzr",
+    "type": "Database",
+    "name": "knowledge-graph-db",
+    "data": {
+      "file": ".context-kit/knowledge-graph/knowledge-graph.db",
+      "type": "SQLite Database",
+      "features": [
+        "FTS5 search",
+        "Entity storage",
+        "Relationship mapping"
+      ],
+      "schema": [
+        "entities",
+        "relations",
+        "metadata"
+      ]
+    },
+    "created_at": 1758522786733,
+    "updated_at": 1758522786733,
+    "version": 1
+  },
+  {
+    "id": "4DavGaoqxVhH",
+    "type": "Component",
+    "name": "ServiceRegistry",
+    "data": {
+      "file": ".context-kit/dashboard/src/ServiceRegistry.tsx",
+      "type": "Service Management Component",
+      "purpose": "Centralized service lifecycle management",
+      "methods": [
+        "registerService",
+        "startService",
+        "stopService",
+        "checkHealth"
+      ]
+    },
+    "created_at": 1758522786541,
+    "updated_at": 1758522786541,
+    "version": 1
+  },
+  {
+    "id": "JrQXkgNHTm3D",
+    "type": "Component",
+    "name": "ProjectCard",
+    "data": {
+      "file": "src/components/ui/ProjectCard.tsx",
+      "type": "UI Component",
+      "purpose": "Display project information",
+      "features": [
+        "Interactive selection",
+        "Visual preview",
+        "Responsive design"
+      ]
+    },
+    "created_at": 1758522786360,
+    "updated_at": 1758522786360,
+    "version": 1
+  },
+  {
+    "id": "JeOZOHe9UXC5",
+    "type": "Component",
+    "name": "App",
+    "data": {
+      "file": "src/App.tsx",
+      "framework": "React",
+      "type": "Main Application Component",
+      "features": [
+        "Theme management",
+        "Routing",
+        "Global state"
+      ],
+      "dependencies": [
+        "ThemeProvider",
+        "Router",
+        "SelectedProjectContext"
+      ]
+    },
+    "created_at": 1758522786160,
+    "updated_at": 1758522786160,
+    "version": 1
+  },
+  {
+    "id": "jXuGDCsGTJZW",
+    "type": "Service",
+    "name": "mcp-integration",
+    "data": {
+      "type": "Model Context Protocol server",
+      "responsibility": "AI model integration and context management",
+      "features": [
+        "STDIO protocol",
+        "Claude Code integration",
+        "Entity/relation management"
+      ],
+      "protocol": "MCP over STDIO",
+      "path": ".context-kit/mcp/"
+    },
+    "created_at": 1758522743173,
+    "updated_at": 1758522743173,
+    "version": 1
+  },
+  {
+    "id": "k87LNbd8kpwB",
+    "type": "Service",
+    "name": "logging-client",
+    "data": {
+      "package": "@tkr-context-kit/logging-client",
+      "type": "Multi-environment logging ecosystem",
+      "responsibility": "Comprehensive log capture and management",
+      "features": [
+        "Browser integration",
+        "Node.js capture",
+        "Terminal logging",
+        "Build tool integration"
+      ],
+      "environments": [
+        "browser",
+        "nodejs",
+        "terminal",
+        "build_tools"
+      ],
+      "path": ".context-kit/logging-client/"
+    },
+    "created_at": 1758522743033,
+    "updated_at": 1758522743033,
+    "version": 1
+  },
+  {
+    "id": "Xk9FUY2EtVCH",
+    "type": "Service",
+    "name": "knowledge-graph",
+    "data": {
+      "package": "@tkr-context-kit/knowledge-graph",
+      "version": "0.1.0",
+      "port": 42003,
+      "type": "Node.js HTTP API + SQLite backend",
+      "responsibility": "Knowledge graph persistence and analysis",
+      "features": [
+        "SQLite+FTS5 storage",
+        "HTTP API",
+        "Project analysis",
+        "Simple HTTP server"
+      ],
+      "build": "TypeScript compilation",
+      "path": ".context-kit/knowledge-graph/"
+    },
+    "created_at": 1758522742915,
+    "updated_at": 1758522742915,
+    "version": 1
+  },
+  {
+    "id": "w2ODVWrbGrK2",
+    "type": "Service",
+    "name": "dashboard",
+    "data": {
+      "package": "@tkr-context-kit/dashboard",
+      "version": "2.0.0",
+      "port": 42001,
+      "type": "React 18 SPA with service monitoring",
+      "responsibility": "Unified UI for all toolkit services",
+      "features": [
+        "Service health monitoring",
+        "Log viewing",
+        "Performance metrics"
+      ],
+      "build": "Vite with React plugin",
+      "path": ".context-kit/dashboard/"
+    },
+    "created_at": 1758522742801,
+    "updated_at": 1758522742801,
+    "version": 1
+  },
+  {
+    "id": "rgSMwruulVfe",
+    "type": "Module",
+    "name": "core",
+    "data": {
+      "package": "@tkr-context-kit/core",
+      "version": "1.0.0",
+      "description": "Shared type definitions and core utilities",
+      "responsibility": "Unified type system and core utilities",
+      "features": [
+        "Knowledge graph types",
+        "Logging interfaces",
+        "Search types",
+        "Database utilities",
+        "Shared utilities"
+      ],
+      "build": "TypeScript compilation with declaration files",
+      "path": ".context-kit/core/"
+    },
+    "created_at": 1758522742636,
+    "updated_at": 1758522742636,
+    "version": 1
+  },
+  {
+    "id": "jFiYrAUVLUne",
+    "type": "Project",
+    "name": "tkr-portfolio",
+    "data": {
+      "description": "Multi-service Claude Code enhancement toolkit with integrated services, MCP server, and comprehensive logging ecosystem",
+      "version": "3.5.0",
+      "architecture": "Service-Oriented Architecture",
+      "tech_stack": "TypeScript + React 18 + ReactFlow + SQLite + MCP + Service-Oriented Architecture + Comprehensive Logging + Multi-Service Orchestration",
+      "file_count": 22746,
+      "modules": [
+        "core",
+        "dashboard",
+        "knowledge-graph",
+        "logging-client",
+        "mcp"
+      ],
+      "status": "production-ready"
+    },
+    "created_at": 1758522742538,
+    "updated_at": 1758522742538,
+    "version": 1
+  }
+]

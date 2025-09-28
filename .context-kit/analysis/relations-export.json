@@ -1,0 +1,186 @@
+[
+  {
+    "id": "DH2WWLcHRO",
+    "from_id": "2LKBuLVLBp04",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"relationship\":\"theme-aware component\",\"usageType\":\"CSS variables and dark mode\"}",
+    "created_at": 1758680993
+  },
+  {
+    "id": "4lloc2u3lZ",
+    "from_id": "i4OzADCuu7Zf",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"relationship\":\"theme-control component\",\"usageType\":\"theme switching and CSS variables\"}",
+    "created_at": 1758680997
+  },
+  {
+    "id": "SLqWp2p0Rv",
+    "from_id": "CtPjvUrw7DCJ",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"relationship\":\"theme-aware component\",\"usageType\":\"card styling and colors\"}",
+    "created_at": 1758681002
+  },
+  {
+    "id": "fNdqtgIxrD",
+    "from_id": "I8nABgh5bcTS",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"relationship\":\"theme-aware AI component\",\"usageType\":\"consistent styling with existing components\"}",
+    "created_at": 1758681006
+  },
+  {
+    "id": "1y4YqbZm2T",
+    "from_id": "m9a3uXc0EFxB",
+    "to_id": "I8nABgh5bcTS",
+    "type": "INCLUDES",
+    "properties": "{\"slide\":3,\"purpose\":\"AGx Design demonstration\",\"role\":\"primary interaction showcase\"}",
+    "created_at": 1758681013
+  },
+  {
+    "id": "9bpD6V8YxZ",
+    "from_id": "m9a3uXc0EFxB",
+    "to_id": "2sTkOJd4gmtv",
+    "type": "INCLUDES",
+    "properties": "{\"slide\":5,\"purpose\":\"Impact metrics for ContextKit\",\"role\":\"ROI demonstration\"}",
+    "created_at": 1758681017
+  },
+  {
+    "id": "4tBwYW9fGd",
+    "from_id": "OB1p1mu2peA9",
+    "to_id": "OqZubzaU0rcA",
+    "type": "INCLUDES",
+    "properties": "{\"slide\":2,\"purpose\":\"Dual interface demonstration\",\"role\":\"core feature showcase\"}",
+    "created_at": 1758681022
+  },
+  {
+    "id": "BFPbugFSLd",
+    "from_id": "RovSXrHgaXoY",
+    "to_id": "m9a3uXc0EFxB",
+    "type": "CONTAINS",
+    "properties": "{\"category\":\"ai-collaboration\",\"priority\":\"high\",\"version\":\"v2\"}",
+    "created_at": 1758681028
+  },
+  {
+    "id": "SM8qtjUxHL",
+    "from_id": "RovSXrHgaXoY",
+    "to_id": "OB1p1mu2peA9",
+    "type": "CONTAINS",
+    "properties": "{\"category\":\"ai-collaboration\",\"priority\":\"high\",\"version\":\"v2\"}",
+    "created_at": 1758681032
+  },
+  {
+    "id": "t2gT3e9IGY",
+    "from_id": "RovSXrHgaXoY",
+    "to_id": "tPhx2mT7OuaR",
+    "type": "CONTAINS",
+    "properties": "{\"category\":\"ai-collaboration\",\"priority\":\"high\",\"version\":\"v2\"}",
+    "created_at": 1758681036
+  },
+  {
+    "id": "3njSsCF7XQ",
+    "from_id": "JeOZOHe9UXC5",
+    "to_id": "nhp605fWd4f7",
+    "type": "USES",
+    "properties": "{\"context\":\"App component wraps application with ThemeProvider\",\"relationship_strength\":\"essential\"}",
+    "created_at": 1758847069
+  },
+  {
+    "id": "tnTjqQh228",
+    "from_id": "JeOZOHe9UXC5",
+    "to_id": "YiSr94ovz8pX",
+    "type": "CONTAINS",
+    "properties": "{\"context\":\"App component includes Header layout\",\"relationship_strength\":\"structural\"}",
+    "created_at": 1758847069
+  },
+  {
+    "id": "3MkTadSRmH",
+    "from_id": "JeOZOHe9UXC5",
+    "to_id": "Vb25q1AUyfZK",
+    "type": "CONTAINS",
+    "properties": "{\"context\":\"App component includes ImageCarousel feature\",\"relationship_strength\":\"structural\"}",
+    "created_at": 1758847069
+  },
+  {
+    "id": "OX07LMQA7z",
+    "from_id": "i4OzADCuu7Zf",
+    "to_id": "nhp605fWd4f7",
+    "type": "USES",
+    "properties": "{\"context\":\"ThemeToggle uses ThemeProvider context via useTheme hook\",\"relationship_strength\":\"essential\"}",
+    "created_at": 1758847079
+  },
+  {
+    "id": "qiT8ueoeNT",
+    "from_id": "YiSr94ovz8pX",
+    "to_id": "i4OzADCuu7Zf",
+    "type": "CONTAINS",
+    "properties": "{\"context\":\"Header contains ThemeToggle component\",\"relationship_strength\":\"structural\"}",
+    "created_at": 1758847079
+  },
+  {
+    "id": "hOHTiXTGsN",
+    "from_id": "xGwAFKKp4ndh",
+    "to_id": "CtPjvUrw7DCJ",
+    "type": "DISPLAYS",
+    "properties": "{\"context\":\"CustomProjectPicker displays ProjectCard components in dropdown\",\"relationship_strength\":\"functional\"}",
+    "created_at": 1758847079
+  },
+  {
+    "id": "GbeqlP9znD",
+    "from_id": "YiSr94ovz8pX",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"context\":\"Header component uses PortfolioTheme for styling and branding colors\",\"relationship_strength\":\"styling\"}",
+    "created_at": 1758847093
+  },
+  {
+    "id": "2zyiaDuZXi",
+    "from_id": "2LKBuLVLBp04",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"context\":\"ImageCarousel uses PortfolioTheme for responsive design and theming\",\"relationship_strength\":\"styling\"}",
+    "created_at": 1758847093
+  },
+  {
+    "id": "zSrttMdc9F",
+    "from_id": "xGwAFKKp4ndh",
+    "to_id": "NivyahomBHtL",
+    "type": "USES",
+    "properties": "{\"context\":\"CustomProjectPicker uses PortfolioTheme for dropdown styling\",\"relationship_strength\":\"styling\"}",
+    "created_at": 1758847093
+  },
+  {
+    "id": "rk5GWuMh7g",
+    "from_id": "LueVPm9OYnTr",
+    "to_id": "KqLF8OOErSq1",
+    "type": "CONTAINS",
+    "properties": "{\"context\":\"Storybook documentation contains ProjectCard story\",\"relationship_strength\":\"structural\"}",
+    "created_at": 1758847130
+  },
+  {
+    "id": "ArcbzcYjSp",
+    "from_id": "LueVPm9OYnTr",
+    "to_id": "T5v2YpKjC8AZ",
+    "type": "CONTAINS",
+    "properties": "{\"context\":\"Storybook documentation contains ImageCarousel story\",\"relationship_strength\":\"structural\"}",
+    "created_at": 1758847131
+  },
+  {
+    "id": "KemRR6Ff3G",
+    "from_id": "KqLF8OOErSq1",
+    "to_id": "CtPjvUrw7DCJ",
+    "type": "DOCUMENTS",
+    "properties": "{\"context\":\"ProjectCard story documents the ProjectCard component\",\"relationship_strength\":\"documentation\"}",
+    "created_at": 1758847131
+  },
+  {
+    "id": "6c9owfuw6E",
+    "from_id": "T5v2YpKjC8AZ",
+    "to_id": "2LKBuLVLBp04",
+    "type": "DOCUMENTS",
+    "properties": "{\"context\":\"ImageCarousel story documents the ImageCarousel component\",\"relationship_strength\":\"documentation\"}",
+    "created_at": 1758847131
+  }
+]

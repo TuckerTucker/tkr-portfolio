@@ -56,7 +56,7 @@ Implement multiple conflict prevention strategies:
 
 ## Deliverables
 
-Create the following files in `.claude/orchestration/`:
+Create the following files in `.context-kit/orchestration/{plan-name}`:
 
 1. **orchestration-plan.md** - Complete execution plan with waves and assignments
 2. **integration-contracts/** - Directory with detailed interface specifications
@@ -85,7 +85,7 @@ Each agent must:
 Start by creating the orchestration directory and analyzing the feature goal:
 
 ```bash
-mkdir -p .claude/orchestration/integration-contracts
+mkdir -p .context-kit/orchestration/{plan-name}/integration-contracts
 ```
 
 Then proceed with comprehensive analysis and specification generation for: **$ARGUMENTS**
