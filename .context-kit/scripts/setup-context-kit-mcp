@@ -71,9 +71,9 @@ if claude mcp get tkr-context-kit >/dev/null 2>&1; then
     claude mcp remove tkr-context-kit
 fi
 
-# Add the context kit MCP server
+# Add the context kit MCP server (run from MCP directory for correct working directory)
 echo "➕ Adding tkr-context-kit MCP server..."
-claude mcp add tkr-context-kit -- npm run mcp-server --prefix="$MCP_DIR"
+(cd "$MCP_DIR" && claude mcp add tkr-context-kit -- npm run mcp-server)
 
 # Verify the configuration
 echo "🔍 Verifying configuration..."

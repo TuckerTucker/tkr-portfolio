@@ -24,6 +24,9 @@ import { setupKnowledgeGraphTools } from './tools/knowledge-graph.js';
 import { setupScriptExecutionTools } from './tools/script-execution.js';
 import { setupDevelopmentTools } from './tools/development.js';
 import { setupLoggingTools } from './tools/logging.js';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { setupServiceNameTools } = require('./tools/service-name-tool.js');
 
 export interface MCPServerConfig {
   databasePath?: string;
@@ -46,7 +49,7 @@ export class ProjectKitMCPServer {
     const version = config.version || coreInfo.version;
 
     this.config = {
-      databasePath: config.databasePath || '../knowledge-graph/knowledge-graph.db',
+      databasePath: config.databasePath || process.env.CANONICAL_DATABASE_PATH || '../knowledge-graph/knowledge-graph.db',
       projectRoot: config.projectRoot || process.cwd(),
       ...config
     };
@@ -76,7 +79,7 @@ export class ProjectKitMCPServer {
       console.log('Initializing database connection...');
       // Initialize database connection
       this.dbConnection = await createDatabaseConnection({
-        path: this.config.databasePath || 'knowledge-graph.db'
+        path: this.config.databasePath || process.env.CANONICAL_DATABASE_PATH || 'knowledge-graph.db'
       });
 
       console.log('Initializing core services...');
@@ -134,8 +137,17 @@ export class ProjectKitMCPServer {
           this.loggingService
         );
         tools.push(...loggingTools);
+      }
 
-        this.loggingService?.debug('Listed available tools', { toolCount: tools.length });
+      // Add service name tools for debugging and management
+      const serviceNameTools = setupServiceNameTools(this.config, this.toolHandlers);
+      tools.push(...serviceNameTools);
+
+      if (this.loggingService) {
+        this.loggingService?.debug('Listed available tools', {
+          toolCount: tools.length,
+          includesServiceNameTools: true
+        });
       }
       return { tools };
     });

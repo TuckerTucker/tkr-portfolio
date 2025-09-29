@@ -1,0 +1,244 @@
+# Service Name Mappings Configuration
+# Default mappings for service name detection and resolution
+# Used by ServiceNameResolver to identify and categorize running services
+
+service_name_mappings:
+  # Terminal applications
+  terminal:
+    display_name: "Terminal"
+    category: "terminal"
+    process_patterns:
+      - "Terminal.app"
+      - "iTerm.app"
+      - "iTerm2.app"
+      - "zsh"
+      - "bash"
+      - "fish"
+      - "tcsh"
+      - "csh"
+      - "sh"
+      - "terminal"
+
+  # Development servers
+  vite-dev:
+    display_name: "Vite Development Server"
+    category: "dev-server"
+    process_patterns:
+      - "vite.*dev"
+      - "npm.*run.*dev"
+      - "yarn.*dev"
+      - "pnpm.*dev"
+      - "vite.*serve"
+
+  nextjs-dev:
+    display_name: "Next.js Development Server"
+    category: "dev-server"
+    process_patterns:
+      - "next.*dev"
+      - "npm.*run.*next.*dev"
+      - "yarn.*next.*dev"
+
+  webpack-dev:
+    display_name: "Webpack Dev Server"
+    category: "dev-server"
+    process_patterns:
+      - "webpack-dev-server"
+      - "webpack.*serve"
+      - "npm.*run.*start"
+
+  react-dev:
+    display_name: "React Development Server"
+    category: "dev-server"
+    process_patterns:
+      - "react-scripts.*start"
+      - "create-react-app.*start"
+
+  # API services
+  context-kit-api:
+    display_name: "Context Kit API"
+    category: "api-service"
+    process_patterns:
+      - "knowledge-graph.*server"
+      - "context-kit.*api"
+      - "tkr.*api"
+
+  express-server:
+    display_name: "Express Server"
+    category: "api-service"
+    process_patterns:
+      - "express.*server"
+      - "node.*server"
+      - "nodemon.*server"
+
+  fastify-server:
+    display_name: "Fastify Server"
+    category: "api-service"
+    process_patterns:
+      - "fastify.*server"
+      - "fastify.*start"
+
+  # Build tools
+  typescript-build:
+    display_name: "TypeScript Compiler"
+    category: "build-tool"
+    process_patterns:
+      - "tsc"
+      - "typescript"
+      - "npm.*run.*build"
+      - "yarn.*build"
+      - "pnpm.*build"
+
+  vite-build:
+    display_name: "Vite Build"
+    category: "build-tool"
+    process_patterns:
+      - "vite.*build"
+      - "vite.*preview"
+
+  webpack-build:
+    display_name: "Webpack Build"
+    category: "build-tool"
+    process_patterns:
+      - "webpack"
+      - "webpack.*build"
+
+  rollup-build:
+    display_name: "Rollup Build"
+    category: "build-tool"
+    process_patterns:
+      - "rollup"
+      - "rollup.*build"
+
+  # Test runners
+  jest-test:
+    display_name: "Jest Test Runner"
+    category: "test-runner"
+    process_patterns:
+      - "jest"
+      - "npm.*run.*test"
+      - "yarn.*test"
+      - "jest.*watch"
+
+  vitest-test:
+    display_name: "Vitest Test Runner"
+    category: "test-runner"
+    process_patterns:
+      - "vitest"
+      - "vitest.*run"
+      - "vitest.*watch"
+
+  cypress-test:
+    display_name: "Cypress E2E Tests"
+    category: "test-runner"
+    process_patterns:
+      - "cypress"
+      - "cypress.*run"
+      - "cypress.*open"
+
+  playwright-test:
+    display_name: "Playwright Tests"
+    category: "test-runner"
+    process_patterns:
+      - "playwright"
+      - "playwright.*test"
+
+  # Package managers and tools
+  npm-install:
+    display_name: "NPM Package Manager"
+    category: "build-tool"
+    process_patterns:
+      - "npm.*install"
+      - "npm.*update"
+      - "npm.*ci"
+
+  yarn-install:
+    display_name: "Yarn Package Manager"
+    category: "build-tool"
+    process_patterns:
+      - "yarn.*install"
+      - "yarn.*update"
+      - "yarn.*add"
+
+  pnpm-install:
+    display_name: "PNPM Package Manager"
+    category: "build-tool"
+    process_patterns:
+      - "pnpm.*install"
+      - "pnpm.*update"
+      - "pnpm.*add"
+
+  # Git and version control
+  git-process:
+    display_name: "Git Version Control"
+    category: "dev-tool"
+    process_patterns:
+      - "git"
+      - "git.*clone"
+      - "git.*push"
+      - "git.*pull"
+
+  # IDE and editors
+  vscode:
+    display_name: "VS Code"
+    category: "dev-tool"
+    process_patterns:
+      - "code"
+      - "Code.*Helper"
+      - "Visual Studio Code"
+
+  # Database services
+  sqlite-server:
+    display_name: "SQLite Database"
+    category: "database"
+    process_patterns:
+      - "sqlite"
+      - "sqlite3"
+
+  # MCP servers
+  mcp-server:
+    display_name: "MCP Server"
+    category: "mcp-service"
+    process_patterns:
+      - "mcp.*server"
+      - "context-kit.*mcp"
+
+# Validation rules for service mappings
+validation_rules:
+  service_name:
+    min_length: 1
+    max_length: 50
+    allowed_chars: "alphanumeric, dash, underscore"
+    pattern: "^[a-zA-Z0-9_-]+$"
+
+  display_name:
+    min_length: 1
+    max_length: 100
+    no_leading_trailing_whitespace: true
+
+  category:
+    allowed_values:
+      - "terminal"
+      - "dev-server"
+      - "build-tool"
+      - "test-runner"
+      - "api-service"
+      - "database"
+      - "dev-tool"
+      - "mcp-service"
+      - "unknown"
+
+  process_patterns:
+    min_patterns: 1
+    max_patterns: 20
+    pattern_validation: "regex"
+
+# Configuration metadata
+metadata:
+  version: "1.0.0"
+  last_updated: "2025-01-21"
+  description: "Default service name mappings for tkr-context-kit"
+  performance_targets:
+    resolution_time_ms: 1
+    config_load_time_ms: 10
+    memory_usage_mb: 1
+    cache_hit_ratio: 0.95

@@ -1,0 +1,198 @@
+# Dependency to Context7 ID mapping
+# Generated for tkr-project-kit multi-service architecture
+# Covers: core, dashboard, knowledge-graph, logging-client, mcp modules
+
+deps:
+  # JavaScript/TypeScript ecosystem (Dashboard, Core, KG, MCP)
+  js:
+    prod:
+      # React ecosystem
+      react:
+        id: "not found"
+        ver: "^18.2.0"
+      react-dom:
+        id: "not found"
+        ver: "^18.2.0"
+      reactflow:
+        id: "not found"
+        ver: "^11.10.1"
+
+      # UI/Styling libraries
+      lucide-react:
+        id: "not found"
+        ver: "^0.294.0"
+      clsx:
+        id: "not found"
+        ver: "^2.0.0"
+      tailwindcss:
+        id: "not found"
+        ver: "^3.3.0"
+      autoprefixer:
+        id: "not found"
+        ver: "^10.4.16"
+      postcss:
+        id: "not found"
+        ver: "^8.4.32"
+
+      # Database and persistence
+      better-sqlite3:
+        id: "not found"
+        ver: "^9.0.0 / ^9.6.0"
+
+      # Utilities
+      nanoid:
+        id: "not found"
+        ver: "^5.0.0"
+      glob:
+        id: "not found"
+        ver: "^10.0.0 / ^11.0.3"
+      yaml:
+        id: "not found"
+        ver: "^2.8.1"
+
+      # Logging
+      pino:
+        id: "not found"
+        ver: "^8.16.0"
+      pino-pretty:
+        id: "not found"
+        ver: "^10.2.0"
+
+      # MCP Integration
+      "@modelcontextprotocol/sdk":
+        id: "not found"
+        ver: "^0.5.0"
+
+      # Validation
+      zod:
+        id: "not found"
+        ver: "^3.22.4"
+
+      # Build tooling
+      tsup:
+        id: "not found"
+        ver: "^8.0.0"
+      tsx:
+        id: "not found"
+        ver: "^4.0.0"
+
+    dev:
+      # TypeScript ecosystem
+      typescript:
+        id: "not found"
+        ver: "^5.2.2 / ^5.9.2 / >=4.5.0"
+      "@types/react":
+        id: "not found"
+        ver: "^18.2.43"
+      "@types/react-dom":
+        id: "not found"
+        ver: "^18.2.17"
+      "@types/better-sqlite3":
+        id: "not found"
+        ver: "^7.6.0"
+      "@types/node":
+        id: "not found"
+        ver: "^20.0.0"
+      "@types/glob":
+        id: "not found"
+        ver: "^8.1.0"
+      "@types/pino":
+        id: "not found"
+        ver: "^6.3.12"
+
+      # Linting and formatting
+      eslint:
+        id: "not found"
+        ver: "^8.0.0 / ^8.55.0"
+      "@typescript-eslint/eslint-plugin":
+        id: "not found"
+        ver: "^6.0.0 / ^6.14.0"
+      "@typescript-eslint/parser":
+        id: "not found"
+        ver: "^6.0.0 / ^6.14.0"
+      "eslint-plugin-react-hooks":
+        id: "not found"
+        ver: "^4.6.0"
+      "eslint-plugin-react-refresh":
+        id: "not found"
+        ver: "^0.4.5"
+      prettier:
+        id: "not found"
+        ver: "^3.0.0"
+
+      # Build tools and bundlers
+      vite:
+        id: "not found"
+        ver: "^5.0.8"
+      "@vitejs/plugin-react":
+        id: "not found"
+        ver: "^4.2.1"
+
+      # Testing frameworks
+      vitest:
+        id: "not found"
+        ver: "^1.0.0"
+      "@vitest/coverage-v8":
+        id: "not found"
+        ver: "^1.0.0"
+
+  # Internal workspace dependencies (file: references)
+  internal:
+    "@tkr-context-kit/core":
+      type: "workspace"
+      path: "file:../core"
+      desc: "Unified core library with database, knowledge graph, search, and logging"
+
+# Module breakdown by package.json
+modules:
+  root:
+    name: "tkr-project-kit"
+    version: "3.4.0"
+    type: "workspace-root"
+    workspaces: ["core", "dashboard", "knowledge-graph", "logging-client", "mcp"]
+
+  core:
+    name: "@tkr-context-kit/core"
+    version: "1.0.0"
+    deps_count: {prod: 5, dev: 8}
+    key_deps: ["better-sqlite3", "nanoid", "pino", "pino-pretty", "yaml"]
+
+  dashboard:
+    name: "@tkr-context-kit/dashboard"
+    version: "2.0.0"
+    deps_count: {prod: 5, dev: 11}
+    key_deps: ["react", "react-dom", "reactflow", "lucide-react", "vite", "tailwindcss"]
+
+  knowledge-graph:
+    name: "@tkr-context-kit/knowledge-graph"
+    version: "0.1.0"
+    deps_count: {prod: 6, dev: 8}
+    key_deps: ["better-sqlite3", "glob", "nanoid", "pino", "tsx"]
+
+  logging-client:
+    name: "@tkr-context-kit/logging-client"
+    version: "1.0.0"
+    deps_count: {prod: 2, dev: 2}
+    key_deps: ["tsup"]
+
+  mcp:
+    name: "@tkr-context-kit/mcp"
+    version: "0.1.0"
+    deps_count: {prod: 4, dev: 7}
+    key_deps: ["@modelcontextprotocol/sdk", "glob", "zod", "tsx"]
+
+# Summary statistics
+summary:
+  total_unique_deps: 35
+  context7_found: 0
+  context7_not_found: 35
+  modules_analyzed: 5
+  ecosystems: ["javascript", "typescript", "react", "node"]
+
+# Notes
+notes:
+  - "All Context7 IDs marked as 'not found' - requires actual Context7 library resolution"
+  - "Version ranges consolidated where multiple modules use same dependency"
+  - "Internal workspace dependencies tracked separately"
+  - "Multi-service architecture with shared core module"
+  - "Production vs development dependency classification maintained"

@@ -1,0 +1,677 @@
+#!/usr/bin/env bash
+
+# Context-Kit Unified Startup Script
+# Starts and health checks all context-kit services
+# Usage: ./.context-kit/start
+
+set -e
+
+# Color codes for output
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly BLUE='\033[0;34m'
+readonly PURPLE='\033[0;35m'
+readonly CYAN='\033[0;36m'
+readonly WHITE='\033[1;37m'
+readonly NC='\033[0m' # No Color
+
+# Script configuration
+readonly SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+readonly PROJECT_ROOT="$(cd "${SCRIPT_PATH}/.." && pwd)"
+readonly CONTEXT_KIT_DIR="${PROJECT_ROOT}/.context-kit"
+readonly LOG_DIR="${CONTEXT_KIT_DIR}/logs"
+readonly PID_DIR="${CONTEXT_KIT_DIR}/.pids"
+
+# Service configuration
+declare -A SERVICES
+declare -A SERVICE_DEPS
+declare -A SERVICE_NAMES
+
+# Service ports and dependencies
+SERVICES["knowledge-graph"]="42003"
+SERVICES["dashboard"]="42001"
+
+SERVICE_NAMES["knowledge-graph"]="Knowledge Graph API"
+SERVICE_NAMES["dashboard"]="Dashboard UI"
+
+SERVICE_DEPS["dashboard"]="knowledge-graph"
+
+# Global variables
+VERBOSE=false
+QUICK_MODE=false
+FORCE_RESTART=false
+HEALTH_CHECK_ONLY=false
+
+# Logging functions
+log() {
+    echo -e "${WHITE}[$(date +'%H:%M:%S')]${NC} $*"
+}
+
+log_info() {
+    echo -e "${BLUE}ℹ${NC}  $*"
+}
+
+log_success() {
+    echo -e "${GREEN}✓${NC}  $*"
+}
+
+log_warning() {
+    echo -e "${YELLOW}⚠${NC}  $*"
+}
+
+log_error() {
+    echo -e "${RED}✗${NC}  $*" >&2
+}
+
+log_debug() {
+    if [[ "$VERBOSE" == "true" ]]; then
+        echo -e "${PURPLE}[DEBUG]${NC} $*"
+    fi
+}
+
+# Show ASCII art banner
+show_banner() {
+    echo -e "${CYAN}"
+    cat << 'EOF'
+╔═══════════════════════════════════════════╗
+║     Context-Kit Service Manager v3.4.0     ║
+║         Unified Startup & Health Check      ║
+╚═══════════════════════════════════════════╝
+EOF
+    echo -e "${NC}"
+}
+
+# Help function
+show_help() {
+    cat << EOF
+Context-Kit Unified Startup Script
+
+USAGE:
+    $0 [OPTIONS]
+
+DESCRIPTION:
+    Starts and health checks all context-kit services with comprehensive monitoring.
+
+OPTIONS:
+    -h, --help          Show this help message
+    -v, --verbose       Enable verbose logging
+    -q, --quick         Skip dependency checks and terminal logging setup
+    -f, --force         Force restart of already running services
+    -c, --check         Health check only (don't start services)
+    -s, --status        Show detailed service status
+    -k, --kill          Stop all running services
+
+SERVICE ARCHITECTURE:
+    • Knowledge Graph API (Port 42003) - SQLite backend with analysis
+    • Dashboard UI (Port 42001) - React monitoring interface
+    • Logging Client - Multi-environment log capture
+    • MCP Integration - AI model context protocol
+
+EXAMPLES:
+    $0                  # Start all services with health checks
+    $0 --check          # Run health checks only
+    $0 --status         # Show detailed status
+    $0 --kill           # Stop all services
+
+LOGS:
+    Service logs: ${LOG_DIR}/
+    PID files: ${PID_DIR}/
+
+EOF
+}
+
+# Setup directories
+setup_directories() {
+    log_debug "Setting up directories..."
+    mkdir -p "${LOG_DIR}" "${PID_DIR}"
+}
+
+# Terminal logging setup functions
+setup_terminal_logging() {
+    # Try enhanced logger first, fall back to standard
+    local terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger-enhanced.sh"
+    if [[ ! -f "$terminal_logger" ]]; then
+        terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger.sh"
+    fi
+
+    if [[ -f "$terminal_logger" ]]; then
+        log_debug "Setting up terminal logging..."
+
+        # Try to source terminal logging with proper variable isolation
+        (
+            # Run in subshell to avoid variable conflicts
+            unset RED GREEN YELLOW BLUE PURPLE CYAN WHITE NC 2>/dev/null || true
+            if source "$terminal_logger" 2>/dev/null; then
+                # Export the functions to parent shell if possible
+                export -f tkr_log tkr_info tkr_warn tkr_error tkr_debug 2>/dev/null || true
+            fi
+        ) && {
+            log_info "Terminal logging enabled - commands will be automatically captured"
+            return 0
+        }
+
+        log_debug "Failed to source terminal logging in current session (variable conflicts)"
+        return 1
+    else
+        log_debug "Terminal logging not available at: $terminal_logger"
+        return 1
+    fi
+}
+
+setup_parent_shell_logging() {
+    # Try enhanced logger first, fall back to standard
+    local terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger-enhanced.sh"
+    if [[ ! -f "$terminal_logger" ]]; then
+        terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger.sh"
+    fi
+    local enable_script="${CONTEXT_KIT_DIR}/scripts/enable-terminal-logging"
+    local auto_enable_script="${CONTEXT_KIT_DIR}/scripts/auto-enable-logging"
+
+    if [[ -f "$terminal_logger" ]]; then
+        # Create a convenient enable script
+        cat > "$enable_script" << EOF
+#!/usr/bin/env bash
+# Auto-generated helper script to enable terminal logging
+# Source this script to enable terminal logging in your shell
+
+source "${terminal_logger}"
+echo "✅ Terminal logging enabled - commands will be captured and sent to dashboard"
+echo "📊 View logs at: http://localhost:42001"
+EOF
+        chmod +x "$enable_script"
+
+        # Create auto-enable script that tries to source automatically
+        cat > "$auto_enable_script" << 'EOF'
+#!/usr/bin/env bash
+# Automatic terminal logging enablement for Context-Kit
+# This script attempts to add logging to the current shell
+
+CONTEXT_KIT_LOGGER="$(dirname "$0")/../logging-client/tkr-logger.sh"
+
+if [[ -f "$CONTEXT_KIT_LOGGER" ]] && [[ "$PWD" == *"tkr-project-kit"* ]]; then
+    # Attempt to source in current shell context
+    if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$ZSH_VERSION" ]]; then
+        # Script is being sourced - safe to enable logging
+        source "$CONTEXT_KIT_LOGGER"
+        echo "✅ Terminal logging auto-enabled"
+    else
+        # Script is being executed - provide instructions
+        echo "To enable terminal logging, run:"
+        echo "source $(dirname "$0")/enable-terminal-logging"
+    fi
+else
+    echo "⚠️ Auto-logging only available in tkr-project-kit project directory"
+fi
+EOF
+        chmod +x "$auto_enable_script"
+
+        echo
+        # Try to auto-enable if we're in the right context
+        if [[ "$0" == *"start"* ]] && [[ -n "${BASH_SOURCE[0]:-$ZSH_NAME}" ]]; then
+            log_info "Attempting to auto-enable terminal logging..."
+            if source "$enable_script" 2>/dev/null; then
+                log_success "✅ Terminal logging auto-enabled for this session!"
+            else
+                log_warning "Auto-enable failed - manual setup required"
+            fi
+        fi
+
+        log_info "Terminal logging options:"
+        echo
+        echo -e "  ${GREEN}Automatic:${NC} source ${auto_enable_script}"
+        echo -e "  ${GREEN}Manual:${NC}    source ${enable_script}"
+        echo -e "  ${CYAN}Direct:${NC}    source ${terminal_logger}"
+        echo
+        echo -e "${YELLOW}Terminal logging will capture commands and send them to the dashboard${NC}"
+    fi
+}
+
+# Port checking functions
+is_port_in_use() {
+    local port="$1"
+    lsof -i ":${port}" >/dev/null 2>&1
+}
+
+check_all_ports() {
+    local available=true
+
+    echo
+    log_info "Checking port availability..."
+
+    for service in "${!SERVICES[@]}"; do
+        local port="${SERVICES[$service]}"
+        local name="${SERVICE_NAMES[$service]}"
+
+        if is_port_in_use "$port"; then
+            local process_info=$(lsof -i ":${port}" | tail -n +2 | head -1 | awk '{print $1 "(" $2 ")"}')
+            log_error "Port $port ($name) is in use by: $process_info"
+            available=false
+        else
+            log_success "Port $port ($name) is available"
+        fi
+    done
+
+    if [[ "$available" == "false" ]] && [[ "$FORCE_RESTART" == "false" ]]; then
+        echo
+        log_error "Port conflicts detected. Use --force to restart services."
+        return 1
+    fi
+
+    return 0
+}
+
+# Service detection functions
+get_service_pid() {
+    local service="$1"
+    local pid_file="${PID_DIR}/${service}.pid"
+
+    if [[ -f "$pid_file" ]]; then
+        local pid=$(cat "$pid_file")
+        if kill -0 "$pid" 2>/dev/null; then
+            echo "$pid"
+            return 0
+        else
+            rm -f "$pid_file"
+        fi
+    fi
+
+    return 1
+}
+
+is_service_running() {
+    local service="$1"
+    get_service_pid "$service" >/dev/null
+}
+
+# Enhanced health check functions
+health_check_service() {
+    local service="$1"
+    local port="${SERVICES[$service]}"
+    local name="${SERVICE_NAMES[$service]}"
+
+    # Check if process is running
+    local pid=$(get_service_pid "$service" || echo "none")
+
+    # Check port availability
+    local port_status="closed"
+    if is_port_in_use "$port"; then
+        port_status="open"
+    fi
+
+    # Check health endpoint
+    local health_status="unknown"
+    local response_time="N/A"
+
+    if [[ "$port_status" == "open" ]]; then
+        local start_time=$(date +%s%N)
+        if curl -s -o /dev/null -w "%{http_code}" "http://localhost:${port}/health" 2>/dev/null | grep -q "200\|204"; then
+            health_status="healthy"
+            local end_time=$(date +%s%N)
+            response_time="$((($end_time - $start_time) / 1000000))ms"
+        else
+            health_status="unhealthy"
+        fi
+    fi
+
+    # Display results
+    echo -e "\n  ${CYAN}$name${NC}"
+    echo -e "    Port:     $port ($port_status)"
+    echo -e "    PID:      $pid"
+    echo -e "    Health:   $(format_health_status "$health_status")"
+    echo -e "    Response: $response_time"
+
+    # Check specific service features
+    if [[ "$service" == "knowledge-graph" ]] && [[ "$health_status" == "healthy" ]]; then
+        local stats=$(curl -s "http://localhost:${port}/api/stats" 2>/dev/null | grep -oP '"entities":\K\d+' || echo "0")
+        echo -e "    Entities: $stats"
+    fi
+
+    if [[ "$service" == "dashboard" ]] && [[ "$health_status" == "healthy" ]]; then
+        echo -e "    URL:      ${BLUE}http://localhost:${port}${NC}"
+    fi
+
+    return $([ "$health_status" == "healthy" ] && echo 0 || echo 1)
+}
+
+format_health_status() {
+    local status="$1"
+    case "$status" in
+        healthy)
+            echo -e "${GREEN}● healthy${NC}"
+            ;;
+        unhealthy)
+            echo -e "${YELLOW}● unhealthy${NC}"
+            ;;
+        unknown)
+            echo -e "${RED}● unknown${NC}"
+            ;;
+    esac
+}
+
+# Full health check
+run_full_health_check() {
+    echo
+    log_info "Running comprehensive health checks..."
+
+    local all_healthy=true
+
+    for service in knowledge-graph dashboard; do
+        if ! health_check_service "$service"; then
+            all_healthy=false
+        fi
+    done
+
+    # Check logging integration
+    echo -e "\n  ${CYAN}Logging Client${NC}"
+    local terminal_logger="${CONTEXT_KIT_DIR}/logging-client/tkr-logger.sh"
+    if [[ -f "$terminal_logger" ]]; then
+        echo -e "    Status:   ${GREEN}● available${NC}"
+        echo -e "    Path:     $terminal_logger"
+    else
+        echo -e "    Status:   ${YELLOW}● not configured${NC}"
+    fi
+
+    # Check MCP integration
+    echo -e "\n  ${CYAN}MCP Integration${NC}"
+    local mcp_config="${CONTEXT_KIT_DIR}/mcp/config/mcp-config.json"
+    if [[ -f "$mcp_config" ]]; then
+        echo -e "    Status:   ${GREEN}● configured${NC}"
+        echo -e "    Config:   $mcp_config"
+    else
+        echo -e "    Status:   ${YELLOW}● not configured${NC}"
+    fi
+
+    echo
+    if [[ "$all_healthy" == "true" ]]; then
+        log_success "All services are healthy!"
+        return 0
+    else
+        log_warning "Some services need attention"
+        return 1
+    fi
+}
+
+# Service startup functions
+wait_for_service() {
+    local service="$1"
+    local port="${SERVICES[$service]}"
+    local name="${SERVICE_NAMES[$service]}"
+    local max_attempts=30
+    local attempt=1
+
+    echo -n "  Waiting for $name "
+
+    while [[ $attempt -le $max_attempts ]]; do
+        if curl -s -o /dev/null "http://localhost:${port}/health" 2>/dev/null; then
+            echo -e " ${GREEN}✓${NC}"
+            return 0
+        fi
+
+        echo -n "."
+        sleep 1
+        ((attempt++))
+    done
+
+    echo -e " ${RED}✗${NC}"
+    log_error "$name failed to start properly"
+    return 1
+}
+
+start_service() {
+    local service="$1"
+    local service_dir="${CONTEXT_KIT_DIR}/${service}"
+    local log_file="${LOG_DIR}/${service}.log"
+    local pid_file="${PID_DIR}/${service}.pid"
+    local name="${SERVICE_NAMES[$service]}"
+
+    log_info "Starting $name..."
+
+    # Check if already running
+    if is_service_running "$service" && [[ "$FORCE_RESTART" == "false" ]]; then
+        log_warning "$name is already running"
+        return 0
+    fi
+
+    # Stop if force restart
+    if [[ "$FORCE_RESTART" == "true" ]] && is_service_running "$service"; then
+        stop_service "$service"
+    fi
+
+    # Check dependencies
+    if [[ -n "${SERVICE_DEPS[$service]:-}" ]]; then
+        for dep in ${SERVICE_DEPS[$service]}; do
+            if ! is_service_running "$dep"; then
+                log_error "Dependency ${SERVICE_NAMES[$dep]} is not running"
+                return 1
+            fi
+        done
+    fi
+
+    # Start the service
+    cd "$service_dir"
+
+    # Install dependencies if needed
+    if [[ -f "package.json" ]] && [[ ! -d "node_modules" ]]; then
+        log_info "  Installing dependencies..."
+        npm install >> "$log_file" 2>&1
+    fi
+
+    # Determine start command
+    local start_cmd=""
+    case "$service" in
+        "knowledge-graph")
+            start_cmd="npm run dev:api"
+            ;;
+        "dashboard")
+            start_cmd="npm run dev"
+            ;;
+    esac
+
+    # Start service in background
+    nohup $start_cmd >> "$log_file" 2>&1 &
+    local pid=$!
+    echo "$pid" > "$pid_file"
+
+    log_debug "  Started with PID $pid"
+
+    # Wait for service to be ready
+    wait_for_service "$service"
+}
+
+stop_service() {
+    local service="$1"
+    local name="${SERVICE_NAMES[$service]}"
+    local pid_file="${PID_DIR}/${service}.pid"
+    local port="${SERVICES[$service]}"
+
+    log_info "Stopping $name..."
+
+    # Stop by PID
+    if [[ -f "$pid_file" ]]; then
+        local pid=$(cat "$pid_file")
+        if kill -0 "$pid" 2>/dev/null; then
+            kill "$pid" 2>/dev/null || true
+
+            # Wait for graceful shutdown
+            local attempts=10
+            while [[ $attempts -gt 0 ]] && kill -0 "$pid" 2>/dev/null; do
+                sleep 0.5
+                ((attempts--))
+            done
+
+            # Force kill if needed
+            if kill -0 "$pid" 2>/dev/null; then
+                kill -9 "$pid" 2>/dev/null || true
+            fi
+        fi
+        rm -f "$pid_file"
+    fi
+
+    # Kill any remaining processes on port
+    if is_port_in_use "$port"; then
+        lsof -ti ":${port}" | xargs kill -9 2>/dev/null || true
+    fi
+
+    log_success "$name stopped"
+}
+
+stop_all_services() {
+    log_info "Stopping all services..."
+
+    # Stop in reverse dependency order
+    for service in dashboard knowledge-graph; do
+        if is_service_running "$service"; then
+            stop_service "$service"
+        fi
+    done
+
+    log_success "All services stopped"
+}
+
+# Main execution
+main() {
+    local action="start"
+
+    # Parse arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                shift
+                ;;
+            -q|--quick)
+                QUICK_MODE=true
+                shift
+                ;;
+            -f|--force)
+                FORCE_RESTART=true
+                shift
+                ;;
+            -c|--check)
+                action="check"
+                shift
+                ;;
+            -s|--status)
+                action="status"
+                shift
+                ;;
+            -k|--kill)
+                action="kill"
+                shift
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                show_help
+                exit 1
+                ;;
+        esac
+    done
+
+    # Show banner
+    show_banner
+
+    # Setup
+    setup_directories
+
+    # Setup terminal logging early (enhanced version can buffer logs)
+    if [[ "$QUICK_MODE" == "false" ]] && [[ "$action" == "start" ]]; then
+        log_info "Initializing terminal logging (will buffer until services are ready)..."
+        setup_terminal_logging || true
+    fi
+
+    # Execute action
+    case "$action" in
+        start)
+            # Check ports first
+            if [[ "$QUICK_MODE" == "false" ]]; then
+                check_all_ports || exit 1
+            fi
+
+            echo
+            log_info "Starting Context-Kit services..."
+
+            # Start Knowledge Graph first (required for logging)
+            if ! start_service "knowledge-graph"; then
+                log_error "Failed to start ${SERVICE_NAMES["knowledge-graph"]}"
+                exit 1
+            fi
+
+            # Start remaining services
+            if ! start_service "dashboard"; then
+                log_error "Failed to start ${SERVICE_NAMES["dashboard"]}"
+                exit 1
+            fi
+
+            echo
+            log_success "All services started successfully!"
+
+            # Run health check
+            sleep 2
+            run_full_health_check
+
+            echo
+            log_info "Access points:"
+            echo -e "  Dashboard:    ${BLUE}http://localhost:42001${NC}"
+            echo -e "  Knowledge Graph API: ${BLUE}http://localhost:42003${NC}"
+            echo -e "  Logs:         ${LOG_DIR}/"
+
+            # Provide terminal logging setup for parent shell
+            if [[ "$QUICK_MODE" == "false" ]]; then
+                setup_parent_shell_logging
+            fi
+            ;;
+
+        check)
+            # Setup terminal logging if available for check action
+            if [[ "$QUICK_MODE" == "false" ]]; then
+                setup_terminal_logging || true
+            fi
+            run_full_health_check
+            ;;
+
+        status)
+            # Setup terminal logging if available for status action
+            if [[ "$QUICK_MODE" == "false" ]]; then
+                setup_terminal_logging || true
+            fi
+            run_full_health_check
+
+            echo
+            log_info "Process details:"
+            for service in knowledge-graph dashboard; do
+                if is_service_running "$service"; then
+                    local pid=$(get_service_pid "$service")
+                    local port="${SERVICES[$service]}"
+                    local cpu=$(ps -p "$pid" -o %cpu= 2>/dev/null || echo "N/A")
+                    local mem=$(ps -p "$pid" -o %mem= 2>/dev/null || echo "N/A")
+                    echo -e "  ${SERVICE_NAMES[$service]}:"
+                    echo -e "    PID: $pid, CPU: ${cpu}%, MEM: ${mem}%"
+                fi
+            done
+            ;;
+
+        kill)
+            stop_all_services
+            ;;
+    esac
+}
+
+# Cleanup handler
+cleanup() {
+    if [[ "$action" == "start" ]]; then
+        echo
+        log_info "Shutting down services..."
+        stop_all_services
+    fi
+}
+
+# Set up signal handlers
+trap cleanup EXIT INT TERM
+
+# Run main function
+main "$@"

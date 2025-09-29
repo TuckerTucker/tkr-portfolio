@@ -98,7 +98,7 @@ export class LoggingService {
         timestamp: Date.now(),
         level,
         message,
-        service: service || 'unknown',
+        service: service || this.config.serviceName,
         source: source || 'unknown',
         metadata: metadata || {},
         indexed_content: this.createIndexedContent(message, metadata || {})

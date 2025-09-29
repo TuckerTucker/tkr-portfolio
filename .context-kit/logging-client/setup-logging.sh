@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # TKR Context Kit - Comprehensive Logging Setup Script
 # Integrates all Wave 1, 2, and 3 components into a cohesive logging solution
 # Usage: ./setup-logging.sh [options]
@@ -9,7 +9,7 @@ set -euo pipefail
 SCRIPT_NAME="setup-logging"
 SCRIPT_VERSION="2.0.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 # Configuration files and directories (all within logging-client)
 CONFIG_DIR="$SCRIPT_DIR/config"
@@ -184,20 +184,24 @@ detect_project_type() {
     if [[ -x "$SCRIPTS_DIR/detect-build-tool.sh" ]]; then
         log "debug" "Running build tool detection..."
         local detection_result
-        if detection_result=$("$SCRIPTS_DIR/detect-build-tool.sh" "$PROJECT_ROOT" 2>&1); then
-            BUILD_TOOL_DETECTED="$detection_result"
-            log "success" "Project analysis completed"
+        detection_result=$("$SCRIPTS_DIR/detect-build-tool.sh" "$PROJECT_ROOT" 2>&1)
+        local exit_code=$?
 
-            if [[ "$VERBOSE" == "true" ]]; then
-                echo -e "${CYAN}Detection Results:${RESET}"
-                echo "$BUILD_TOOL_DETECTED"
-            fi
-        else
-            log "warning" "Build tool detection failed, proceeding with manual configuration"
-            BUILD_TOOL_DETECTED=""
+        BUILD_TOOL_DETECTED="$detection_result"
+        log "success" "Project analysis completed"
+
+        if [[ "$VERBOSE" == "true" ]]; then
+            echo -e "${CYAN}Detection Results:${RESET}"
+            echo "$BUILD_TOOL_DETECTED"
+        fi
+
+        # Note: Build tool detection now always exits 0, so this is just for future safety
+        if [[ $exit_code -ne 0 ]]; then
+            log "warning" "Build tool detection returned non-zero exit code but continuing anyway"
         fi
     else
         log "warning" "Build tool detection script not executable"
+        BUILD_TOOL_DETECTED=""
     fi
 }
 

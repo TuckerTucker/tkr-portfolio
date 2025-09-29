@@ -1,1 +1,0 @@
-We'll need to generate a screenshot for the taskboard of the tic-tac-toe json. 

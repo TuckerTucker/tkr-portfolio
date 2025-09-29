@@ -41,6 +41,10 @@ export {
   LoggingService
 } from './logging/index.js';
 
+// Configuration exports (JavaScript modules)
+// Note: These are JavaScript modules and will be available after build
+export * as Config from './config/index.js';
+
 // Module version and metadata
 export const CORE_VERSION = '1.0.0';
 export const CORE_NAME = '@tkr-context-kit/core';
@@ -55,7 +59,7 @@ export interface CoreModuleInfo {
 export const getCoreModuleInfo = (): CoreModuleInfo => ({
   version: CORE_VERSION,
   name: CORE_NAME,
-  components: ['database', 'search', 'knowledge-graph', 'logging', 'types', 'utils'],
+  components: ['database', 'search', 'knowledge-graph', 'logging', 'config', 'types', 'utils'],
   buildTime: new Date().toISOString()
 });
 
