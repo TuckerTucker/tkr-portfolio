@@ -18,6 +18,10 @@ import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
 import ProjectIntro from './ProjectIntro';
 import TicTacToe from './TicTacToe';
+import ParallelAgentsDemo from './ParallelAgentsDemo';
+import YAMLContextViewer from './YAMLContextViewer';
+import ConversationTurnFlow from './ConversationTurnFlow';
+import PortfolioMetrics from './PortfolioMetrics';
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -39,6 +43,10 @@ const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
 const ThemedProjectIntro = withSlideTheme(ProjectIntro);
 const ThemedTicTacToe = withSlideTheme(TicTacToe);
+const ThemedParallelAgentsDemo = withSlideTheme(ParallelAgentsDemo);
+const ThemedYAMLContextViewer = withSlideTheme(YAMLContextViewer);
+const ThemedConversationTurnFlow = withSlideTheme(ConversationTurnFlow);
+const ThemedPortfolioMetrics = withSlideTheme(PortfolioMetrics);
 
 // Export component registry map
 const htmlSlideComponents = {
@@ -60,6 +68,10 @@ const htmlSlideComponents = {
   NutrienShowcase: ThemedNutrienShowcase,
   ProjectIntro: ThemedProjectIntro,
   TicTacToe: ThemedTicTacToe,
+  ParallelAgentsDemo: ThemedParallelAgentsDemo,
+  YAMLContextViewer: ThemedYAMLContextViewer,
+  ConversationTurnFlow: ThemedConversationTurnFlow,
+  PortfolioMetrics: ThemedPortfolioMetrics,
 };
 
 export default htmlSlideComponents;

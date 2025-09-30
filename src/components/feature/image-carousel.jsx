@@ -39,15 +39,24 @@ DynamicHtmlSlide.propTypes = {
  * Displays a carousel of images, videos, and HTML components.
  * Based on .clinerules definition for image_carousel with HTML extension.
  * Enhanced with mobile support for vertical scrolling with HTML slides.
+ * Persists current slide position across page refreshes.
  */
 const ImageCarousel = ({
   items = [], // Array of { type: 'image' | 'video' | 'html', src/component, alt/props }
   className,
+  projectId, // Pass projectId to persist slide position per project
   ...props
 }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [api, setApi] = useState();
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(() => {
+    // Initialize from localStorage if available
+    if (projectId) {
+      const stored = localStorage.getItem(`carousel_${projectId}`);
+      return stored ? parseInt(stored, 10) : 0;
+    }
+    return 0;
+  });
 
   // Check if the screen is mobile-sized
   useEffect(() => {
@@ -63,16 +72,27 @@ const ImageCarousel = ({
     };
   }, []);
 
-  // Track current slide when carousel API is available
+  // Initialize carousel to stored position when API is ready
   useEffect(() => {
     if (!api) {
       return;
     }
 
+    // Restore to saved position on mount
+    if (current > 0 && current < items.length) {
+      api.scrollTo(current, true); // true = skip animation
+    }
+
     setCurrent(api.selectedScrollSnap());
 
     const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
+      const newIndex = api.selectedScrollSnap();
+      setCurrent(newIndex);
+
+      // Persist to localStorage
+      if (projectId) {
+        localStorage.setItem(`carousel_${projectId}`, newIndex.toString());
+      }
     };
 
     api.on("select", onSelect);
@@ -80,7 +100,7 @@ const ImageCarousel = ({
     return () => {
       api?.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, projectId, items.length, current]);
 
   if (!items || items.length === 0) {
     return null;
@@ -178,6 +198,7 @@ ImageCarousel.propTypes = {
     })
   ),
   className: PropTypes.string,
+  projectId: PropTypes.string,
 };
 
 export default ImageCarousel;

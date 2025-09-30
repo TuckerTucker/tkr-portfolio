@@ -40,7 +40,10 @@ const HomePage = () => {
         {error && <p>Error loading projects.</p>}
         {selectedProject && (
           <>
-            <ImageCarousel items={selectedProject.slides || []} />
+            <ImageCarousel
+              items={selectedProject.slides || []}
+              projectId={selectedProject.id}
+            />
           </>
         )}
       </div>

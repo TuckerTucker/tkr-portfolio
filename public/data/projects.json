@@ -323,171 +323,27 @@
       },
       {
         "type": "html",
-        "component": "UserPersona",
-        "props": {
-          "name": "AI Agent",
-          "role": "Primary User",
-          "demographics": {
-            "Processing": "Token-based",
-            "Memory": "Conversation-scoped",
-            "Strength": "File operations",
-            "Weakness": "Context rebuilding"
-          },
-          "goals": [
-            "Understand project structure immediately",
-            "Focus on problem-solving, not problem-discovery",
-            "Access comprehensive context upfront",
-            "Maintain consistency across conversations"
-          ],
-          "painPoints": [
-            "Relearning project architecture in every conversation",
-            "Spending time on context discovery vs actual work",
-            "Inconsistent understanding between sessions",
-            "Token waste on repetitive explanations"
-          ],
-          "behaviors": [
-            "Processes structured data more efficiently than prose",
-            "Prefers hierarchical information organization",
-            "Benefits from semantic vocabulary systems",
-            "Excels with progressive disclosure patterns"
-          ],
-          "quote": "Give me comprehensive context upfront so I can focus on solving your actual problems."
-        },
-        "alt": "AI Agent user persona showing needs and behaviors"
+        "component": "ParallelAgentsDemo",
+        "props": {},
+        "alt": "Interactive demonstration of parallel agent execution analyzing tkr-portfolio"
       },
       {
         "type": "html",
-        "component": "DesignSystem",
-        "props": {
-          "title": "The _project.yml Context Architecture",
-          "typography": [
-            {
-              "name": "Semantic Anchors",
-              "variants": [
-                {
-                  "name": "&tech-stack",
-                  "specs": "Reusable definition",
-                  "sample": "Creates shared vocabulary, reduces token count",
-                  "fontFamily": "monospace",
-                  "fontSize": "14px"
-                },
-                {
-                  "name": "~service_oriented",
-                  "specs": "Concept reference",
-                  "sample": "Defines architectural patterns consistently",
-                  "fontFamily": "monospace",
-                  "fontSize": "14px"
-                },
-                {
-                  "name": "Progressive Disclosure",
-                  "specs": "Layered information",
-                  "sample": "High-level meta → detailed operational patterns",
-                  "fontSize": "16px"
-                }
-              ]
-            }
-          ],
-          "colors": [
-            {
-              "name": "Information Hierarchy",
-              "variants": [
-                { "name": "Meta", "hex": "#3B82F6" },
-                { "name": "Architecture", "hex": "#10B981" },
-                { "name": "Operations", "hex": "#F59E0B" },
-                { "name": "Context", "hex": "#8B5CF6" }
-              ]
-            },
-            {
-              "name": "Token Efficiency",
-              "variants": [
-                { "name": "Before: 1000 lines", "hex": "#EF4444" },
-                { "name": "After: 300 lines", "hex": "#10B981" },
-                { "name": "Compression: 70%", "hex": "#3B82F6" }
-              ]
-            }
-          ]
-        },
-        "alt": "YAML context architecture showing semantic anchors and information hierarchy"
+        "component": "YAMLContextViewer",
+        "props": {},
+        "alt": "Interactive YAML context system with token efficiency comparison"
       },
       {
         "type": "html",
-        "component": "SkillsMatrix",
-        "props": {
-          "title": "AGx Design - Agent Experience as Primary User",
-          "categories": [
-            { "id": "research", "name": "User Research" },
-            { "id": "architecture", "name": "Information Architecture" },
-            { "id": "patterns", "name": "Interaction Patterns" }
-          ],
-          "skills": [
-            {
-              "id": "agent-interviews",
-              "name": "Agent Interviews",
-              "category": "research",
-              "proficiency": 5,
-              "description": "Regularly asking AI agents what they need to better understand contexts",
-              "experience": "Daily conversations",
-              "projects": ["Context format optimization", "Vocabulary system design"]
-            },
-            {
-              "id": "yaml-design",
-              "name": "YAML Architecture",
-              "category": "architecture",
-              "proficiency": 5,
-              "description": "Agents preferred YAML's hierarchical structure over JSON/Mermaid",
-              "experience": "Format comparison studies",
-              "projects": ["Semantic anchor system", "Progressive disclosure patterns"]
-            }
-          ]
-        },
-        "alt": "Skills matrix showing AGx design capabilities"
+        "component": "ConversationTurnFlow",
+        "props": {},
+        "alt": "Visualization of context persistence across conversation turns"
       },
       {
         "type": "html",
-        "component": "TechStack",
-        "props": {
-          "title": "Service-Oriented Architecture for Modularity",
-          "technologies": [
-            {
-              "name": "React Dashboard",
-              "icon": "⚛️",
-              "description": "Human visual interface"
-            },
-            {
-              "name": "Knowledge Graph",
-              "icon": "🕸️",
-              "description": "Component relationships"
-            },
-            {
-              "name": "MCP Integration",
-              "icon": "🔌",
-              "description": "Persistent AI memory"
-            }
-          ]
-        },
-        "alt": "Service-oriented architecture components"
-      },
-      {
-        "type": "html",
-        "component": "ProcessTimeline",
-        "props": {
-          "title": "Conversational Systems Design",
-          "description": "Building entire systems for human-AI collaboration where conversation is the primary interface",
-          "stages": [
-            {
-              "name": "Dual Interfaces",
-              "description": "Humans get visual dashboards, agents get structured data - same information, optimal formats",
-              "deliverable": "Interface Strategy"
-            },
-            {
-              "name": "Agent Orchestration",
-              "description": "Parallel agents update different parts, consolidation agent synthesizes results",
-              "deliverable": "Workflow Design"
-            }
-          ],
-          "activeStage": 2
-        },
-        "alt": "Process timeline showing evolution from problem to conversational systems design"
+        "component": "PortfolioMetrics",
+        "props": {},
+        "alt": "Real metrics from analyzing tkr-portfolio with parallel agents"
       }
     ]
   },
