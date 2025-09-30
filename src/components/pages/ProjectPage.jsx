@@ -8,12 +8,16 @@ import { useSelectedProject } from '../../hooks/SelectedProjectContext.jsx';
 /**
  * ProjectPage component
  * Displays a single project based on URL parameter.
+ * Optionally displays a specific slide if slideIndex is provided.
  * Validates project ID and redirects to first project if invalid.
  */
 function ProjectPage() {
-  const { projectId } = useParams();
+  const { projectId, slideIndex } = useParams();
   const { projects, loading, error } = useProjects();
   const { selectedProjectId } = useSelectedProject();
+
+  // Parse slideIndex to number (will be undefined if not in URL)
+  const initialSlideIndex = slideIndex !== undefined ? parseInt(slideIndex, 10) : undefined;
 
   // Loading state
   if (loading) {
@@ -65,6 +69,7 @@ function ProjectPage() {
           <ImageCarousel
             items={selectedProject.slides || []}
             projectId={selectedProject.id}
+            initialSlideIndex={initialSlideIndex}
           />
         )}
       </div>

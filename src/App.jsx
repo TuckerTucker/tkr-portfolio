@@ -23,6 +23,9 @@ function App() {
             {/* Project pages with URL parameter */}
             <Route path="/project/:projectId" element={<ProjectPage />} />
 
+            {/* Project with specific slide */}
+            <Route path="/project/:projectId/slide/:slideIndex" element={<ProjectPage />} />
+
             {/* Demos page */}
             <Route path="/demos" element={<DemoShowcase />} />
 

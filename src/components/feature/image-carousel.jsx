@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import {
   Carousel,
@@ -45,16 +46,28 @@ const ImageCarousel = ({
   items = [], // Array of { type: 'image' | 'video' | 'html', src/component, alt/props }
   className,
   projectId, // Pass projectId to persist slide position per project
+  initialSlideIndex, // Optional: initial slide from URL parameter
   ...props
 }) => {
+  const navigate = useNavigate();
+  const { projectId: urlProjectId } = useParams();
   const [isMobile, setIsMobile] = useState(false);
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(() => {
-    // Initialize from localStorage if available
+    // Priority: URL parameter > localStorage > 0
+    if (initialSlideIndex !== undefined && initialSlideIndex >= 0 && initialSlideIndex < items.length) {
+      return initialSlideIndex;
+    }
+
+    // Fallback to localStorage if available
     if (projectId) {
       const stored = localStorage.getItem(`carousel_${projectId}`);
-      return stored ? parseInt(stored, 10) : 0;
+      const storedIndex = stored ? parseInt(stored, 10) : 0;
+      if (storedIndex >= 0 && storedIndex < items.length) {
+        return storedIndex;
+      }
     }
+
     return 0;
   });
 
@@ -89,7 +102,13 @@ const ImageCarousel = ({
       const newIndex = api.selectedScrollSnap();
       setCurrent(newIndex);
 
-      // Persist to localStorage
+      // Update URL with slide index
+      if (projectId) {
+        // Navigate to /project/:projectId/slide/:slideIndex
+        navigate(`/project/${projectId}/slide/${newIndex}`, { replace: true });
+      }
+
+      // Also persist to localStorage as fallback
       if (projectId) {
         localStorage.setItem(`carousel_${projectId}`, newIndex.toString());
       }
@@ -100,7 +119,7 @@ const ImageCarousel = ({
     return () => {
       api?.off("select", onSelect);
     };
-  }, [api, projectId, items.length, current]);
+  }, [api, projectId, items.length, current, navigate]);
 
   if (!items || items.length === 0) {
     return null;
@@ -199,6 +218,7 @@ ImageCarousel.propTypes = {
   ),
   className: PropTypes.string,
   projectId: PropTypes.string,
+  initialSlideIndex: PropTypes.number,
 };
 
 export default ImageCarousel;
