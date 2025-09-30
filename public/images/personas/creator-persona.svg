@@ -1,0 +1,6 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="100" fill="#8B5CF6"/>
+  <circle cx="100" cy="80" r="30" fill="#A78BFA"/>
+  <path d="M60 160C60 134.1 79.1 110 100 110C120.9 110 140 134.1 140 160H60Z" fill="#A78BFA"/>
+  <text x="100" y="185" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="12">Marcus Rivera</text>
+</svg>

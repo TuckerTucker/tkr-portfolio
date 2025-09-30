@@ -13,7 +13,7 @@ const ProcessTimeline = ({
   stages = [],
   activeStage = 0,
   className,
-  isMobile, // Extract isMobile prop
+  isMobile, // Extract custom props to prevent DOM warnings
   ...props
 }) => {
   return (

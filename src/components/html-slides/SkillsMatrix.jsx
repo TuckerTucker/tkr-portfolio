@@ -13,7 +13,9 @@ const SkillsMatrix = ({
   skills = [],
   selectedCategory = null,
   className,
-  isMobile, // Extract isMobile prop
+  skillCategories, // Extract custom props to prevent DOM warnings
+  progressionInsights,
+  isMobile, // Extract isMobile prop to prevent DOM warnings
   ...props
 }) => {
   const [activeCategory, setActiveCategory] = useState(selectedCategory || 'all');

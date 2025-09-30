@@ -96,7 +96,7 @@ const UserPersona = ({
               {goals.map((goal, index) => (
                 <li key={index} className="text-white text-xs md:text-sm flex items-start">
                   <span className="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                  {goal}
+                  {typeof goal === 'string' ? goal : goal.description || goal.name || goal.title || ''}
                 </li>
               ))}
             </ul>
@@ -114,7 +114,7 @@ const UserPersona = ({
               {painPoints.map((point, index) => (
                 <li key={index} className="text-white text-xs md:text-sm flex items-start">
                   <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                  {point}
+                  {typeof point === 'string' ? point : point.description || point.name || point.title || ''}
                 </li>
               ))}
             </ul>
@@ -132,7 +132,7 @@ const UserPersona = ({
               {behaviors.map((behavior, index) => (
                 <li key={index} className="text-white text-xs md:text-sm flex items-start">
                   <span className="inline-block w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                  {behavior}
+                  {typeof behavior === 'string' ? behavior : behavior.description || behavior.name || behavior.title || ''}
                 </li>
               ))}
             </ul>
@@ -157,9 +157,36 @@ UserPersona.propTypes = {
   role: PropTypes.string,
   avatar: PropTypes.string,
   demographics: PropTypes.object,
-  goals: PropTypes.arrayOf(PropTypes.string),
-  painPoints: PropTypes.arrayOf(PropTypes.string),
-  behaviors: PropTypes.arrayOf(PropTypes.string),
+  goals: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string
+    })
+  ])),
+  painPoints: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      category: PropTypes.string,
+      frequency: PropTypes.string,
+      impact: PropTypes.string
+    })
+  ])),
+  behaviors: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      category: PropTypes.string,
+      frequency: PropTypes.string,
+      impact: PropTypes.string
+    })
+  ])),
   quote: PropTypes.string,
   isMobile: PropTypes.bool,
   className: PropTypes.string

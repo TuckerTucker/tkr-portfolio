@@ -14,7 +14,7 @@ const UsabilityMetrics = ({
   tasks = [],
   insights = [],
   className,
-  isMobile, // Extract isMobile prop
+  isMobile, // Extract isMobile prop to prevent DOM warnings
   ...props
 }) => {
   const [activeTab, setActiveTab] = useState('metrics');

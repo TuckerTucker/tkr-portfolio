@@ -22,6 +22,16 @@ import ParallelAgentsDemo from './ParallelAgentsDemo';
 import YAMLContextViewer from './YAMLContextViewer';
 import ConversationTurnFlow from './ConversationTurnFlow';
 import PortfolioMetrics from './PortfolioMetrics';
+
+// AI Skills Components
+import {
+  AIInteractionShowcase,
+  DualInterfaceDemo,
+  ContextEvolutionSlide,
+  ProjectImpactMetrics,
+  AgentConversationFlow
+} from '../ai-skills';
+
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -48,6 +58,13 @@ const ThemedYAMLContextViewer = withSlideTheme(YAMLContextViewer);
 const ThemedConversationTurnFlow = withSlideTheme(ConversationTurnFlow);
 const ThemedPortfolioMetrics = withSlideTheme(PortfolioMetrics);
 
+// AI Skills themed components
+const ThemedAIInteractionShowcase = withSlideTheme(AIInteractionShowcase);
+const ThemedDualInterfaceDemo = withSlideTheme(DualInterfaceDemo);
+const ThemedContextEvolutionSlide = withSlideTheme(ContextEvolutionSlide);
+const ThemedProjectImpactMetrics = withSlideTheme(ProjectImpactMetrics);
+const ThemedAgentConversationFlow = withSlideTheme(AgentConversationFlow);
+
 // Export component registry map
 const htmlSlideComponents = {
   TechStack: ThemedTechStack,
@@ -72,6 +89,13 @@ const htmlSlideComponents = {
   YAMLContextViewer: ThemedYAMLContextViewer,
   ConversationTurnFlow: ThemedConversationTurnFlow,
   PortfolioMetrics: ThemedPortfolioMetrics,
+
+  // AI Skills Components
+  AIInteractionShowcase: ThemedAIInteractionShowcase,
+  DualInterfaceDemo: ThemedDualInterfaceDemo,
+  ContextEvolutionSlide: ThemedContextEvolutionSlide,
+  ProjectImpactMetrics: ThemedProjectImpactMetrics,
+  AgentConversationFlow: ThemedAgentConversationFlow,
 };
 
 export default htmlSlideComponents;

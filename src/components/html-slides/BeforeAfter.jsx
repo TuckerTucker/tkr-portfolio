@@ -7,15 +7,18 @@ import { cn } from "@/lib/utils";
  * Creates an interactive slider to compare before and after designs.
  * Users can drag a divider to reveal more or less of each image.
  */
-const BeforeAfter = ({ 
+const BeforeAfter = ({
   title = "Design Comparison",
-  beforeImage = "", 
+  beforeImage = "",
   afterImage = "",
   beforeLabel = "Before",
   afterLabel = "After",
   defaultPosition = 50, // Default slider position (percentage)
   className,
-  ...props 
+  isMobile, // Extract isMobile prop to prevent DOM warnings
+  beforeState, // Extract custom props to prevent DOM warnings
+  afterState,
+  ...props
 }) => {
   const [sliderPosition, setSliderPosition] = useState(defaultPosition);
   const containerRef = useRef(null);
@@ -142,7 +145,10 @@ BeforeAfter.propTypes = {
   beforeLabel: PropTypes.string,
   afterLabel: PropTypes.string,
   defaultPosition: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  isMobile: PropTypes.bool,
+  beforeState: PropTypes.any,
+  afterState: PropTypes.any
 };
 
 export default BeforeAfter;
