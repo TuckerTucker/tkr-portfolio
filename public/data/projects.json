@@ -57,13 +57,11 @@
         "component": "ProjectIntro",
         "props": {
           "title": "TaskBoardAI: Designing for Human-AI Collaboration",
-          "description": "TaskBoardAI demonstrates how thoughtful interface design can create seamless collaboration between humans and AI agents. By understanding each user type's natural interaction patterns and designing for their strengths, we can create systems that feel intuitive to both humans and AI.\n\nThe key insight was recognizing that successful AI interaction design isn't about making AI work like humans, but about creating complementary interfaces that leverage each user's optimal interaction modality while maintaining shared access to the same underlying data.",
+          "description": "TaskBoardAI was born out of a frustration using markdown to-do lists becoming challenging to maintain. I wanted a way for both AI agents and humans to manage the same tasks effectively. This lightweight kanban demonstrates how thoughtful UX design can create seamless collaboration by giving people and AI an interface that works best for them while sharing the same underlying data.",
+          "image": "images/taskboard/Screenshot.png",
           "bulletPoints": [
-            "Dual interface design - visual for humans, structured for AI",
-            "File-based architecture leveraging AI agents' natural file operation skills",
-            "MCP integration eliminating repetitive context-setting",
-            "Card-first architecture enabling responsive real-time collaboration",
-            "Real-world validation through daily use in actual development projects"
+            "A lightweight kanban board built to solve real workflow challenges",
+            "Utilizes a dual interface design. Visual for people and structured data for AI agents"
           ],
           "colorScheme": "kanban"
         },
@@ -78,8 +76,8 @@
             {
               "id": "pain",
               "icon": "😫",
-              "label": "Pain Point",
-              "content": "When coding with an AI agent it's common to track development tasks using a markdown file. The challenge is that AI can understand an entire markdown document by simply by holding it in context. A person, on the other hand, needs to read the entire document to get the same level of understanding. AI can make multiple edits the document simultaneously. While a person need to edit the document word by word.",
+              "label": "Dual Interface. One Solution.",
+              "content": "The core insight: AI agents and humans have fundamentally different interaction preferences—humans prefer visual drag-and-drop experiences while AI agents work best with structured file operations.",
               "image": "images/taskboard/Screenshot.png",
               "imagePosition": "left",
               "imageAlt": "Frustrated developer looking at complex markdown files"
@@ -87,8 +85,8 @@
             {
               "id": "insight",
               "icon": "💡",
-              "label": "Insight",
-              "content": "Using a JSON format AI can see the plan structure instantly while a person would prefer the common kanban UI.",
+              "label": "For People",
+              "content": "Visual drag-and-drop kanban interface with real-time updates. Cards move smoothly between columns with markdown support for rich task descriptions, subtasks, tags, and dependencies",
               "image": "images/example-310x310.png",
               "imagePosition": "right",
               "imageAlt": "Split screen showing JSON data and kanban board UI"
@@ -96,8 +94,8 @@
             {
               "id": "goal",
               "icon": "🎯",
-              "label": "Goal",
-              "content": "Create a dual-interface kanban system where humans enjoy intuitive visual interactions while AI agents efficiently parse and modify the same task data through their preferred file-based operations - enabling true human-AI collaborative task management.",
+              "label": "For AI Agents",
+              "content": "Direct access to JSON structure through file operations. Model Context Protocol (MCP) integration provides automatic context. Card-first architecture enables single-attribute updates for efficient task reorganization.",
               "image": "images/example-310x310.png",
               "imagePosition": "left",
               "imageAlt": "Human and AI working together on the same kanban board"
@@ -108,78 +106,47 @@
       },
       {
         "type": "html",
-        "component": "InteractiveCards",
-        "props": {
-          "title": "Dual Interface Architecture",
-          "items": [
-            {
-              "id": "mcp",
-              "icon": "🔌",
-              "label": "MCP Protocol",
-              "content": "The MCP server provides automatic context to AI agents, eliminating the need to include JSON examples in every prompt. This creates natural conversations where agents can immediately understand and interact with the kanban structure without requiring database management skills or repeated context establishment.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "right",
-              "imageAlt": "MCP protocol diagram connecting AI agent to kanban system"
-            },
-            {
-              "id": "json",
-              "icon": "📄",
-              "label": "JSON Data Source",
-              "content": "File-based architecture serves as the single source of truth that both interfaces can access. AI agents leverage their existing file editing capabilities to modify tasks directly, while the JSON structure remains human-readable for transparency. The card-first design enables efficient updates - moving a card between columns requires only a single attribute change rather than restructuring the entire board.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "left",
-              "imageAlt": "JSON file structure with kanban card data"
-            },
-            {
-              "id": "webui",
-              "icon": "🖥️",
-              "label": "Web UI",
-              "content": "Responsive drag-and-drop interface that provides humans with the visual, tactile experience they expect from kanban boards. Real-time updates reflect changes made by either human users or AI agents, creating seamless collaboration where both parties can see the results of each other's work immediately.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "right",
-              "imageAlt": "Modern kanban web interface with drag and drop cards"
-            }
-          ]
-        },
-        "alt": "Dual interface approach demonstrating design for multiple user types"
-      },
-      {
-        "type": "html",
         "component": "InteractiveCode",
         "props": {
-          "title": "Kanban Creation Prompting",
+          "title": "Let's Walk through how to get a solid kanban board.",
           "items": [
             {
               "id": "spec",
               "icon": "📋",
-              "label": "Spec",
+              "label": "Spec Doc",
               "filePath": "tic-tac-toe-spec.md",
               "filename": "Technical Specification"
             },
             {
               "id": "plan",
               "icon": "📝",
-              "label": "Plan",
+              "label": "Create a Plan",
               "filePath": "tic-tac-toe-implementation.md",
               "filename": "Implementation Plan"
             },
             {
               "id": "prompt",
               "icon": "🤖",
-              "label": "Prompt",
+              "label": "Taskboard Prompt",
               "filePath": "taskboard-prompt.md",
-              "filename": "AI Generation Prompt"
+              "filename": "Taskboard Generation Prompt"
             },
             {
               "id": "json",
               "icon": "⚙️",
-              "label": "JSON",
+              "label": "The final JSON",
               "filePath": "taskboard-tic-tac-toe.json",
               "filename": "Generated Kanban Board"
             }
           ]
         },
         "alt": "Interactive workflow showing spec to kanban JSON generation process"
+      },
+      {
+        "type": "html",
+        "component": "TicTacToe",
+        "props": {},
+        "alt": "Interactive Tic-Tac-Toe game"
       },
       {
         "type": "html",

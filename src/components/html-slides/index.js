@@ -17,6 +17,7 @@ import PortfolioShowcase from './PortfolioShowcase';
 import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
 import ProjectIntro from './ProjectIntro';
+import TicTacToe from './TicTacToe';
 import withSlideTheme from './slide-wrapper';
 
 // Wrap all components with our theme-aware wrapper
@@ -37,6 +38,7 @@ const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
 const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
 const ThemedProjectIntro = withSlideTheme(ProjectIntro);
+const ThemedTicTacToe = withSlideTheme(TicTacToe);
 
 // Export component registry map
 const htmlSlideComponents = {
@@ -57,6 +59,7 @@ const htmlSlideComponents = {
   WorldplayShowcase: ThemedWorldplayShowcase,
   NutrienShowcase: ThemedNutrienShowcase,
   ProjectIntro: ThemedProjectIntro,
+  TicTacToe: ThemedTicTacToe,
 };
 
 export default htmlSlideComponents;
