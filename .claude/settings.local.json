@@ -86,7 +86,9 @@
       "Bash(.context-kit/scripts/setup-context-kit-mcp:*)",
       "Bash(python3:*)",
       "Bash(.context-kit/logging-client/installation-scripts/detect-build-tool.sh:*)",
-      "Bash(.context-kit/logging-client/setup-logging.sh:*)"
+      "Bash(.context-kit/logging-client/setup-logging.sh:*)",
+      "Bash(cat:*)",
+      "Bash(awk:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

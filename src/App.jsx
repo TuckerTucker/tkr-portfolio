@@ -1,58 +1,11 @@
-import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Footer from './components/layout/footer';
 import Navigation from './components/layout/Navigation';
-import CustomProjectPicker from './components/feature/custom-project-picker';
-import { useProjects } from './hooks/useProjects.js';
-import { useSelectedProject } from './hooks/SelectedProjectContext.jsx';
 import { useTheme } from './hooks/useTheme.jsx';
 
-import ImageCarousel from './components/feature/image-carousel.jsx';
+import HomePage from './components/pages/HomePage.jsx';
+import ProjectPage from './components/pages/ProjectPage.jsx';
 import DemoShowcase from './components/pages/DemoShowcase.jsx';
-
-const HomePage = () => {
-  const { projects, loading, error } = useProjects();
-  const { selectedProjectId, setSelectedProjectId } = useSelectedProject();
-
-  const selectedProject = projects.find((p) => p.id === selectedProjectId);
-  const selectedTitle = selectedProject ? selectedProject.title : 'Select a Project';
-
-  const handleSelectProject = (project) => {
-    setSelectedProjectId(project.id);
-  };
-
-  // Effect to select the first project by default
-  useEffect(() => {
-    if (!loading && projects.length > 0 && !selectedProjectId) {
-      setSelectedProjectId(projects[0].id);
-    }
-  }, [loading, projects, selectedProjectId, setSelectedProjectId]);
-
-  return (
-    <div className="flex flex-col gap-6 max-w-5xl w-full mx-auto">
-      {/* Project picker and content */}
-      <div className="flex flex-col gap-0">
-        <CustomProjectPicker
-          projects={projects}
-          selectedProjectTitle={selectedTitle}
-          selectedProject={selectedProject}
-          onSelectProject={handleSelectProject}
-        />
-        {loading && <p>Loading projects...</p>}
-        {error && <p>Error loading projects.</p>}
-        {selectedProject && (
-          <>
-            <ImageCarousel
-              items={selectedProject.slides || []}
-              projectId={selectedProject.id}
-            />
-          </>
-        )}
-      </div>
-
-    </div>
-  );
-};
 
 function App() {
   // Get theme for any additional theme-based logic
@@ -64,8 +17,17 @@ function App() {
         <Navigation />
         <main className="flex-grow max-w-6xl w-full mx-auto px-4 md:px-0 pt-0 flex flex-col gap-8">
           <Routes>
+            {/* Home redirects to first project */}
             <Route path="/" element={<HomePage />} />
+
+            {/* Project pages with URL parameter */}
+            <Route path="/project/:projectId" element={<ProjectPage />} />
+
+            {/* Demos page */}
             <Route path="/demos" element={<DemoShowcase />} />
+
+            {/* Catch-all: redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
         <Footer />

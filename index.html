@@ -5,6 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sean "Tucker" Harley | UX Designer</title>
+
+    <!-- Path restoration script for GitHub Pages SPA routing -->
+    <!-- CRITICAL: Must run BEFORE React loads to restore URL from 404.html redirect -->
+    <script>
+      (function() {
+        // Check if we were redirected from 404.html
+        var redirect = sessionStorage.redirect;
+
+        // Clean up immediately (one-time use)
+        delete sessionStorage.redirect;
+
+        // Restore the path if it exists and differs from current location
+        if (redirect && redirect !== window.location.pathname) {
+          // Use replaceState to avoid creating a history entry
+          window.history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <body style="background:#333">
     <div id="root"></div>

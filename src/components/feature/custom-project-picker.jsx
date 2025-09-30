@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ChevronDown } from 'lucide-react';
 import ProjectCardList from '@/components/custom/project-card-list';
 import { cn } from '@/lib/utils';
+import { useSelectedProject } from '@/hooks/SelectedProjectContext.jsx';
 
 /**
  * CustomProjectPicker component
@@ -52,10 +53,17 @@ const CustomProjectPicker = ({
     };
   }, [isOpen]);
 
+  const { navigateToProject } = useSelectedProject();
+
   const handleSelect = (project) => {
+    // NEW: Navigate through URL (preferred method)
+    navigateToProject(project.id);
+
+    // DEPRECATED: Call legacy callback if provided (backward compatibility)
     if (onSelectProject) {
       onSelectProject(project);
     }
+
     setIsOpen(false);
   };
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Single Page Application GitHub Pages redirect
+      // Captures the requested path and redirects to root for client-side routing
+
+      (function() {
+        // Capture the full path including query parameters and hash
+        var fullPath = window.location.pathname + window.location.search + window.location.hash;
+
+        // Store the path in sessionStorage for retrieval by index.html
+        sessionStorage.setItem('redirect', fullPath);
+
+        // Redirect to root (where index.html lives)
+        // Using replace() to avoid creating a history entry
+        window.location.replace(window.location.origin);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- No body content needed - redirect happens immediately -->
+  </body>
+</html>
