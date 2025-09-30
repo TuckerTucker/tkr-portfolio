@@ -8,12 +8,12 @@ import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider> {/* Provide theme context */}
-      <SelectedProjectProvider> {/* Provide selected project context */}
-        <HashRouter> {/* Wrap App with HashRouter */}
+    <HashRouter> {/* Router must be outermost to provide routing context */}
+      <ThemeProvider> {/* Provide theme context */}
+        <SelectedProjectProvider> {/* Provide selected project context - needs Router hooks */}
           <App />
-        </HashRouter>
-      </SelectedProjectProvider>
-    </ThemeProvider>
+        </SelectedProjectProvider>
+      </ThemeProvider>
+    </HashRouter>
   </StrictMode>,
 );
