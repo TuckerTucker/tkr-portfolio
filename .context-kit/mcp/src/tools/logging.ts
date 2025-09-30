@@ -8,6 +8,32 @@ import {
 } from '@tkr-context-kit/core';
 import { MCPServerConfig, ToolDefinition, ToolResponse } from '../types.js';
 
+// Import ServiceNameResolver for consistent service naming
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+let ServiceNameResolver: any;
+try {
+  const path = require('path');
+  const resolverPath = path.join(__dirname, '../../../logging-client/src/service-name-resolver.js');
+  const resolverModule = require(resolverPath);
+  ServiceNameResolver = resolverModule.getServiceNameResolver();
+} catch (error) {
+  console.warn('Failed to load ServiceNameResolver in logging tools:', error.message);
+  // Fallback ServiceNameResolver
+  ServiceNameResolver = {
+    resolveServiceName: (context = {}) => ({
+      serviceName: 'mcp-logging',
+      displayName: 'MCP Logging',
+      category: 'api-service',
+      confidence: 0.1,
+      source: 'fallback'
+    }),
+    validateServiceName: (name: string) => ({ isValid: true, errors: [] }),
+    sanitizeServiceName: (name: string) => String(name || 'unknown').toLowerCase()
+  };
+}
+
 // Legacy interface mapping for backward compatibility
 interface LogQueryFilters {
   service?: string;
@@ -111,44 +137,85 @@ export function setupLoggingTools(
   // Use the provided core logging service
   const logger = loggingService;
 
-  // Add defensive check for logger methods
+  // Get consistent service name for MCP logging operations
+  const mcpServiceInfo = ServiceNameResolver.resolveServiceName({
+    processInfo: {
+      type: 'mcp-server',
+      subtype: 'context-kit',
+      command: 'node'
+    },
+    packageInfo: {
+      name: '@tkr-context-kit/mcp'
+    },
+    explicitName: process.env.TKR_SERVICE_NAME
+  });
+
+  // Add defensive check for logger methods with consistent service naming
   const safeLogger = {
     debug: (message: string, metadata?: any) => {
       try {
+        const enhancedMetadata = {
+          service: mcpServiceInfo.serviceName,
+          serviceName: mcpServiceInfo.serviceName,
+          displayName: mcpServiceInfo.displayName,
+          component: 'mcp-logging-tools',
+          ...metadata
+        };
         if (logger && typeof logger.debug === 'function') {
-          return logger.debug(message, metadata);
+          return logger.debug(message, enhancedMetadata);
         }
-        console.log('[DEBUG]', message, metadata);
+        console.log(`[DEBUG:${mcpServiceInfo.displayName}]`, message, enhancedMetadata);
       } catch (error) {
         console.log('[DEBUG ERROR]', message, metadata, error);
       }
     },
     info: (message: string, metadata?: any) => {
       try {
+        const enhancedMetadata = {
+          service: mcpServiceInfo.serviceName,
+          serviceName: mcpServiceInfo.serviceName,
+          displayName: mcpServiceInfo.displayName,
+          component: 'mcp-logging-tools',
+          ...metadata
+        };
         if (logger && typeof logger.info === 'function') {
-          return logger.info(message, metadata);
+          return logger.info(message, enhancedMetadata);
         }
-        console.log('[INFO]', message, metadata);
+        console.log(`[INFO:${mcpServiceInfo.displayName}]`, message, enhancedMetadata);
       } catch (error) {
         console.log('[INFO ERROR]', message, metadata, error);
       }
     },
     warn: (message: string, metadata?: any) => {
       try {
+        const enhancedMetadata = {
+          service: mcpServiceInfo.serviceName,
+          serviceName: mcpServiceInfo.serviceName,
+          displayName: mcpServiceInfo.displayName,
+          component: 'mcp-logging-tools',
+          ...metadata
+        };
         if (logger && typeof logger.warn === 'function') {
-          return logger.warn(message, metadata);
+          return logger.warn(message, enhancedMetadata);
         }
-        console.warn('[WARN]', message, metadata);
+        console.warn(`[WARN:${mcpServiceInfo.displayName}]`, message, enhancedMetadata);
       } catch (error) {
         console.log('[WARN ERROR]', message, metadata, error);
       }
     },
     error: (message: string, metadata?: any) => {
       try {
+        const enhancedMetadata = {
+          service: mcpServiceInfo.serviceName,
+          serviceName: mcpServiceInfo.serviceName,
+          displayName: mcpServiceInfo.displayName,
+          component: 'mcp-logging-tools',
+          ...metadata
+        };
         if (logger && typeof logger.error === 'function') {
-          return logger.error(message, metadata);
+          return logger.error(message, enhancedMetadata);
         }
-        console.error('[ERROR]', message, metadata);
+        console.error(`[ERROR:${mcpServiceInfo.displayName}]`, message, enhancedMetadata);
       } catch (error) {
         console.log('[ERROR ERROR]', message, metadata, error);
       }
@@ -527,18 +594,61 @@ export function setupLoggingTools(
     safeLogger.debug('Getting available log services');
 
     try {
-      // For now, return a basic set of known services
-      const services = ['mcp-server', 'dashboard', 'knowledge-graph', 'logging-client'];
+      // Use ServiceNameResolver to get consistent service names and display names
+      const knownServices = [
+        { type: 'mcp-server', name: '@tkr-context-kit/mcp' },
+        { type: 'dev-server', name: '@tkr-context-kit/dashboard' },
+        { type: 'http-server', name: '@tkr-context-kit/knowledge-graph' },
+        { type: 'logging-client', name: '@tkr-context-kit/logging-client' },
+        { type: 'terminal', name: 'terminal' },
+        { type: 'build-tool', name: 'build-process' },
+        { type: 'test-runner', name: 'test-runner' }
+      ];
 
-      safeLogger.info('Log services retrieved', { count: services.length });
+      const services = knownServices.map(service => {
+        const resolved = ServiceNameResolver.resolveServiceName({
+          processInfo: { type: service.type },
+          packageInfo: { name: service.name }
+        });
+
+        return {
+          serviceName: resolved.serviceName,
+          displayName: resolved.displayName,
+          category: resolved.category,
+          type: service.type
+        };
+      });
+
+      // Add current MCP service to the list
+      services.unshift({
+        serviceName: mcpServiceInfo.serviceName,
+        displayName: mcpServiceInfo.displayName,
+        category: mcpServiceInfo.category,
+        type: 'mcp-server'
+      });
+
+      // Remove duplicates by serviceName
+      const uniqueServices = services.filter((service, index, self) =>
+        index === self.findIndex(s => s.serviceName === service.serviceName)
+      );
+
+      safeLogger.info('Log services retrieved with consistent naming', {
+        count: uniqueServices.length,
+        mcpService: mcpServiceInfo.displayName
+      });
+
       return {
         content: [
           {
             type: 'text',
             text: JSON.stringify({
-              services,
-              count: services.length,
-              note: 'Service list is currently hardcoded in core module integration'
+              services: uniqueServices,
+              count: uniqueServices.length,
+              categorySummary: uniqueServices.reduce((acc, service) => {
+                acc[service.category] = (acc[service.category] || 0) + 1;
+                return acc;
+              }, {} as Record<string, number>),
+              note: 'Service names resolved using ServiceNameResolver for consistency with dashboard'
             }, null, 2)
           }
         ]

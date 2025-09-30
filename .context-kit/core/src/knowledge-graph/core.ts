@@ -313,23 +313,26 @@ export class KnowledgeGraph {
 
     try {
       // Verify entities exist
-      const fromEntity = await this.getEntity(data.fromEntityId);
-      const toEntity = await this.getEntity(data.toEntityId);
+      const fromEntityId = data.from_id || data.fromEntityId;
+      const toEntityId = data.to_id || data.toEntityId;
+
+      const fromEntity = await this.getEntity(fromEntityId);
+      const toEntity = await this.getEntity(toEntityId);
 
       if (!fromEntity) {
-        throw new Error(`From entity not found: ${data.fromEntityId}`);
+        throw new Error(`From entity not found: ${fromEntityId}`);
       }
       if (!toEntity) {
-        throw new Error(`To entity not found: ${data.toEntityId}`);
+        throw new Error(`To entity not found: ${toEntityId}`);
       }
 
       const relation: Relation = {
         id: IdGenerator.generateRelationId(),
         type: data.type,
-        from_id: data.fromEntityId,
-        to_id: data.toEntityId,
-        fromEntityId: data.fromEntityId,
-        toEntityId: data.toEntityId,
+        from_id: fromEntityId,
+        to_id: toEntityId,
+        fromEntityId: fromEntityId,
+        toEntityId: toEntityId,
         properties: data.properties || {},
         created_at: Date.now()
       };
@@ -348,8 +351,8 @@ export class KnowledgeGraph {
       logger.info('Relation created', {
         relationId: relation.id,
         type: relation.type,
-        from: data.fromEntityId,
-        to: data.toEntityId
+        from: fromEntityId,
+        to: toEntityId
       });
 
       return relation;

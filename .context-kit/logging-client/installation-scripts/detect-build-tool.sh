@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # TKR Context Kit - Build Tool Detection Script
 # Automatically detects project build tools and suggests appropriate plugin setup
 # Usage: ./detect-build-tool.sh [project-dir]
@@ -27,6 +27,39 @@ RESET='\033[0m'
 DETECTED_TOOLS=""
 DETECTED_CONFIGS=""
 PLUGIN_RECOMMENDATIONS=""
+
+# Helper functions for pseudo-associative arrays (bash 3.x compatible)
+set_detected_config() {
+    local key="$1"
+    local value="$2"
+    DETECTED_CONFIGS="$DETECTED_CONFIGS${DETECTED_CONFIGS:+ }$key:$value"
+}
+
+get_detected_config() {
+    local key="$1"
+    echo "$DETECTED_CONFIGS" | tr ' ' '\n' | grep "^$key:" | cut -d: -f2- | head -1
+}
+
+set_plugin_recommendation() {
+    local key="$1"
+    local value="$2"
+    PLUGIN_RECOMMENDATIONS="$PLUGIN_RECOMMENDATIONS${PLUGIN_RECOMMENDATIONS:+ }$key:$value"
+}
+
+get_plugin_recommendation() {
+    local key="$1"
+    echo "$PLUGIN_RECOMMENDATIONS" | tr ' ' '\n' | grep "^$key:" | cut -d: -f2- | head -1
+}
+
+add_detected_tool() {
+    local tool="$1"
+    DETECTED_TOOLS="$DETECTED_TOOLS${DETECTED_TOOLS:+ }$tool"
+}
+
+has_detected_tool() {
+    local tool="$1"
+    echo "$DETECTED_TOOLS" | grep -q "\b$tool\b"
+}
 
 # ==============================================================================
 # UTILITY FUNCTIONS
@@ -79,7 +112,7 @@ detect_vite() {
     for config_file in "vite.config.js" "vite.config.ts" "vite.config.mjs" "vite.config.cjs"; do
         if check_file_exists "$config_file"; then
             vite_config="$config_file"
-            DETECTED_CONFIGS["vite"]="$config_file"
+            set_detected_config "vite" "$config_file"
             log DEBUG "Found Vite config: $config_file"
             break
         fi
@@ -96,11 +129,11 @@ detect_vite() {
 
     # Determine Vite usage
     if [[ -n "$vite_config" ]] || [[ "$has_vite_dep" == true ]]; then
-        DETECTED_TOOLS="$DETECTED_TOOLS vite"
+        add_detected_tool "vite"
 
         # Generate plugin recommendation
-        local plugin_path="$SCRIPT_DIR/../../plugins/vite/index.js"
-        PLUGIN_RECOMMENDATIONS="$PLUGIN_RECOMMENDATIONS vite:Import and configure TKR Logging Vite plugin in $vite_config;"
+        local plugin_path="$SCRIPT_DIR/../plugins/vite/index.js"
+        set_plugin_recommendation "vite" "Import and configure TKR Logging Vite plugin in $vite_config"
 
         log SUCCESS "Vite detected - Configuration: ${vite_config:-package.json}"
         return 0
@@ -120,7 +153,7 @@ detect_webpack() {
     for config_file in "webpack.config.js" "webpack.config.ts" "webpack.config.babel.js" "webpack.config.prod.js" "webpack.config.dev.js"; do
         if check_file_exists "$config_file"; then
             webpack_config="$config_file"
-            DETECTED_CONFIGS["webpack"]="$config_file"
+            set_detected_config "webpack" "$config_file"
             log DEBUG "Found Webpack config: $config_file"
             break
         fi
@@ -137,11 +170,11 @@ detect_webpack() {
 
     # Determine Webpack usage
     if [[ -n "$webpack_config" ]] || [[ "$has_webpack_dep" == true ]]; then
-        DETECTED_TOOLS["webpack"]="detected"
+        add_detected_tool "webpack"
 
         # Generate plugin recommendation
-        local plugin_path="$SCRIPT_DIR/../../plugins/webpack/index.js"
-        PLUGIN_RECOMMENDATIONS["webpack"]="Import and configure TKR Logging Webpack plugin in $webpack_config"
+        local plugin_path="$SCRIPT_DIR/../plugins/webpack/index.js"
+        set_plugin_recommendation "webpack" "Import and configure TKR Logging Webpack plugin in $webpack_config"
 
         log SUCCESS "Webpack detected - Configuration: ${webpack_config:-package.json}"
         return 0
@@ -156,8 +189,8 @@ detect_create_react_app() {
     if check_file_exists "package.json"; then
         local package_json_content="$(get_file_content "package.json")"
         if echo "$package_json_content" | grep -q '"react-scripts"'; then
-            DETECTED_TOOLS["create-react-app"]="detected"
-            PLUGIN_RECOMMENDATIONS["create-react-app"]="Use CRACO or eject to add TKR Logging Webpack plugin"
+            add_detected_tool "create-react-app"
+            set_plugin_recommendation "create-react-app" "Use CRACO or eject to add TKR Logging Webpack plugin"
             log SUCCESS "Create React App detected"
             return 0
         fi
@@ -176,7 +209,7 @@ detect_next_js() {
     for config_file in "next.config.js" "next.config.mjs" "next.config.ts"; do
         if check_file_exists "$config_file"; then
             nextjs_config="$config_file"
-            DETECTED_CONFIGS["nextjs"]="$config_file"
+            set_detected_config "nextjs" "$config_file"
             break
         fi
     done
@@ -190,8 +223,8 @@ detect_next_js() {
     fi
 
     if [[ -n "$nextjs_config" ]] || [[ "$has_next_dep" == true ]]; then
-        DETECTED_TOOLS["nextjs"]="detected"
-        PLUGIN_RECOMMENDATIONS["nextjs"]="Configure TKR Logging Webpack plugin in Next.js config webpack function"
+        add_detected_tool "nextjs"
+        set_plugin_recommendation "nextjs" "Configure TKR Logging Webpack plugin in Next.js config webpack function"
         log SUCCESS "Next.js detected - Configuration: ${nextjs_config:-package.json}"
         return 0
     fi
@@ -207,21 +240,22 @@ detect_node_js() {
     # Check for package.json
     if check_file_exists "package.json"; then
         is_node_project=true
-        DETECTED_CONFIGS["nodejs"]="package.json"
+        set_detected_config "nodejs" "package.json"
     fi
 
     # Check for common Node.js files
     for file in "server.js" "app.js" "index.js" "main.js"; do
         if check_file_exists "$file"; then
             is_node_project=true
-            DETECTED_CONFIGS["nodejs"]="${DETECTED_CONFIGS["nodejs"]:-}${DETECTED_CONFIGS["nodejs"]:+ }$file"
+            local existing_config="$(get_detected_config "nodejs")"
+            set_detected_config "nodejs" "${existing_config}${existing_config:+ }$file"
             break
         fi
     done
 
     if [[ "$is_node_project" == true ]]; then
-        DETECTED_TOOLS["nodejs"]="detected"
-        PLUGIN_RECOMMENDATIONS["nodejs"]="Use NODE_OPTIONS to require auto-init enhanced logging client"
+        add_detected_tool "nodejs"
+        set_plugin_recommendation "nodejs" "Use NODE_OPTIONS to require auto-init enhanced logging client"
         log SUCCESS "Node.js project detected"
         return 0
     fi
@@ -238,7 +272,7 @@ detect_typescript() {
     # Check for TypeScript configuration
     if check_file_exists "tsconfig.json"; then
         ts_config="tsconfig.json"
-        DETECTED_CONFIGS["typescript"]="tsconfig.json"
+        set_detected_config "typescript" "tsconfig.json"
     fi
 
     # Check package.json for TypeScript dependency
@@ -250,8 +284,8 @@ detect_typescript() {
     fi
 
     if [[ -n "$ts_config" ]] || [[ "$has_ts_dep" == true ]]; then
-        DETECTED_TOOLS["typescript"]="detected"
-        PLUGIN_RECOMMENDATIONS["typescript"]="TypeScript detected - logging client supports TS out of the box"
+        add_detected_tool "typescript"
+        set_plugin_recommendation "typescript" "TypeScript detected - logging client supports TS out of the box"
         log SUCCESS "TypeScript detected"
         return 0
     fi
@@ -294,11 +328,12 @@ run_detection() {
 
     if [[ $detected_count -eq 0 ]]; then
         log WARN "No supported build tools detected"
-        log INFO "Manual setup may be required"
-        return 1
+        log INFO "Manual setup may be required - this is not an error for multi-module projects"
+        log INFO "Terminal logging and Node.js options can still be configured"
+    else
+        log INFO "Detection complete: $detected_count tools found"
     fi
 
-    log INFO "Detection complete: $detected_count tools found"
     return 0
 }
 
@@ -310,11 +345,12 @@ generate_setup_recommendations() {
     echo "=================================="
 
     # Build tool specific recommendations
-    for tool in "${!DETECTED_TOOLS[@]}"; do
-        if [[ -n "${PLUGIN_RECOMMENDATIONS[$tool]:-}" ]]; then
+    for tool in $DETECTED_TOOLS; do
+        local recommendation="$(get_plugin_recommendation "$tool")"
+        if [[ -n "$recommendation" ]]; then
             echo
             echo "📦 $tool:"
-            echo "   ${PLUGIN_RECOMMENDATIONS[$tool]}"
+            echo "   $recommendation"
 
             # Add specific configuration examples
             case "$tool" in
@@ -361,9 +397,9 @@ generate_setup_recommendations() {
     # General recommendations
     echo
     echo "🔄 GENERAL SETUP STEPS:"
-    echo "1. Enable terminal logging: .context-kit/scripts/logging/enable-terminal.sh"
+    echo "1. Enable terminal logging: .context-kit/logging-client/installation-scripts/enable-terminal.sh"
     echo "2. Configure build plugins as shown above"
-    echo "3. Verify installation: .context-kit/scripts/logging/verify-installation.sh"
+    echo "3. Verify installation: .context-kit/logging-client/installation-scripts/verify-installation.sh"
     echo "4. Start your development server and check logs at http://localhost:42001"
 
     echo
@@ -376,21 +412,21 @@ print_detection_summary() {
 
     echo
     echo "Detected Tools:"
-    for tool in "${!DETECTED_TOOLS[@]}"; do
-        local config="${DETECTED_CONFIGS[$tool]:-N/A}"
-        echo "  ✅ $tool (config: $config)"
-    done
-
-    if [[ ${#DETECTED_TOOLS[@]} -eq 0 ]]; then
+    if [[ -n "$DETECTED_TOOLS" ]]; then
+        for tool in $DETECTED_TOOLS; do
+            local config="$(get_detected_config "$tool")"
+            echo "  ✅ $tool (config: ${config:-N/A})"
+        done
+    else
         echo "  ❌ No supported build tools detected"
     fi
 
     echo
     echo "Available Integrations:"
-    echo "  📁 Shell: .context-kit/shell/tkr-logging.sh"
-    echo "  🌐 Browser: .context-kit/browser-client/"
-    echo "  ⚡ Vite: .context-kit/plugins/vite/"
-    echo "  📦 Webpack: .context-kit/plugins/webpack/"
+    echo "  📁 Shell: .context-kit/logging-client/shell/tkr-logging.sh"
+    echo "  🌐 Browser: .context-kit/logging-client/browser/"
+    echo "  ⚡ Vite: .context-kit/logging-client/plugins/vite/"
+    echo "  📦 Webpack: .context-kit/logging-client/plugins/webpack/"
     echo "  🔧 Node.js: .context-kit/logging-client/src/auto-init-enhanced.js"
 }
 
@@ -404,21 +440,16 @@ main() {
     # Change to project directory
     cd "$PROJECT_DIR"
 
-    # Run detection
-    if run_detection; then
-        print_detection_summary
-        generate_setup_recommendations
+    # Run detection (always succeeds now)
+    run_detection
+    print_detection_summary
+    generate_setup_recommendations
 
-        if [[ "$DRY_RUN" == "true" ]]; then
-            log INFO "Dry run complete - no changes made"
-        fi
-
-        exit 0
-    else
-        log ERROR "Detection failed or no supported tools found"
-        print_detection_summary
-        exit 1
+    if [[ "$DRY_RUN" == "true" ]]; then
+        log INFO "Dry run complete - no changes made"
     fi
+
+    exit 0
 }
 
 # Show help if requested

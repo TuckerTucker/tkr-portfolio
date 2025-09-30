@@ -10,6 +10,8 @@ const { getProcessDetector } = require('./process-detector');
 const { FilterManager } = require('./filter-manager');
 const { BatchManager } = require('./batch-manager');
 const { MetadataEnricher } = require('./metadata-enricher');
+const { createEnhancedLogger } = require('./enhanced-logger');
+const { LogEnricher, EnrichmentStrategy } = require('./log-enrichment');
 
 class EnhancedTkrLogger {
   constructor(baseLogger, options = {}) {
@@ -21,6 +23,17 @@ class EnhancedTkrLogger {
     this.filterManager = this.createFilterManager();
     this.batchManager = this.createBatchManager();
     this.metadataEnricher = this.createMetadataEnricher();
+
+    // Initialize service name resolution components
+    this.enhancedLogger = createEnhancedLogger(baseLogger, {
+      enableServiceResolution: options.enableServiceResolution !== false,
+      enableCaching: options.enableCaching !== false,
+      performanceTracking: options.performanceTracking !== false
+    });
+    this.logEnricher = new LogEnricher({
+      strategy: options.enrichmentStrategy || EnrichmentStrategy.STANDARD,
+      enableCaching: options.enableCaching !== false
+    });
 
     // Performance tracking
     this.stats = {
@@ -97,6 +110,7 @@ class EnhancedTkrLogger {
 
   /**
    * Enhanced logging method that applies filtering, enrichment, and batching
+   * Now uses ServiceNameResolver for enhanced service identification
    */
   log(level, message, metadata = {}, component = '') {
     this.stats.logsProcessed++;
@@ -113,25 +127,41 @@ class EnhancedTkrLogger {
       return;
     }
 
-    // Enrich metadata
+    // Create base log entry
+    const baseLogEntry = {
+      timestamp: Date.now(),
+      level: level.toLowerCase(),
+      message,
+      metadata: metadata
+    };
+
+    // Enrich log entry with service name resolution
+    const enrichedLogEntry = this.logEnricher.enrichLogEntry(baseLogEntry, {
+      component: component
+    });
+
+    // Enrich metadata using existing enricher
     const enrichedMetadata = this.metadataEnricher.enrichMetadata(
-      metadata,
+      enrichedLogEntry.metadata,
       level,
       message,
       component
     );
 
-    // Prepare log data for batching (core module format)
+    // Prepare enhanced log data for batching (core module format with display fields)
     const logData = {
-      timestamp: Date.now(), // Core module expects milliseconds
-      level: level.toLowerCase(), // Core module expects lowercase levels
-      service: this.baseLogger.config.service,
+      timestamp: enrichedLogEntry.timestamp,
+      level: enrichedLogEntry.level,
+      service: enrichedLogEntry.service,               // Technical service name
+      display_name: enrichedLogEntry.display_name,     // NEW - User-friendly display name
+      category: enrichedLogEntry.category,             // NEW - Service category
       source: component || this.baseLogger.config.defaultSource || 'enhanced',
-      message,
+      message: enrichedLogEntry.message,
       metadata: {
         ...enrichedMetadata,
         serviceType: this.baseLogger.config.serviceType,
-        originalComponent: component || this.baseLogger.config.defaultSource
+        originalComponent: component || this.baseLogger.config.defaultSource,
+        serviceResolution: enrichedLogEntry.metadata.serviceResolution
       }
     };
 
@@ -139,12 +169,12 @@ class EnhancedTkrLogger {
     this.batchManager.add(logData);
     this.stats.logsBatched++;
 
-    // Also log to console if enabled (for immediate feedback)
+    // Also log to console if enabled (for immediate feedback with enhanced display)
     if (this.baseLogger.config.logToConsole) {
       const consoleMethod = level === 'fatal' ? 'error' : level;
       if (console[consoleMethod]) {
         console[consoleMethod](
-          `[${level.toUpperCase()}] ${logData.service}/${logData.source}: ${message}`,
+          `[${level.toUpperCase()}] ${logData.display_name}/${logData.source}: ${message}`,
           metadata
         );
       }
@@ -202,7 +232,7 @@ class EnhancedTkrLogger {
   }
 
   /**
-   * Get comprehensive statistics
+   * Get comprehensive statistics including service resolution metrics
    */
   getStats() {
     const now = Date.now();
@@ -213,6 +243,8 @@ class EnhancedTkrLogger {
       filter: this.filterManager.getStats(),
       batch: this.batchManager.getStats(),
       process: this.processDetector.getProcessInfo(),
+      serviceResolution: this.enhancedLogger ? this.enhancedLogger.getStats() : null,
+      logEnrichment: this.logEnricher ? this.logEnricher.getStats() : null,
       runtime: {
         uptime: runtime,
         logsPerSecond: runtime > 0 ? (this.stats.logsProcessed / (runtime / 1000)) : 0,
@@ -248,7 +280,7 @@ class EnhancedTkrLogger {
   }
 
   /**
-   * Update configuration
+   * Update configuration including service resolution settings
    */
   updateConfig(newConfig) {
     if (newConfig.filter) {
@@ -259,6 +291,12 @@ class EnhancedTkrLogger {
     }
     if (newConfig.metadata) {
       this.metadataEnricher.updateConfig(newConfig.metadata);
+    }
+    if (newConfig.serviceResolution && this.enhancedLogger) {
+      this.enhancedLogger.updateConfig(newConfig.serviceResolution);
+    }
+    if (newConfig.logEnrichment && this.logEnricher) {
+      this.logEnricher.updateConfig(newConfig.logEnrichment);
     }
   }
 }

@@ -2,6 +2,6 @@
 # Auto-generated helper script to enable terminal logging
 # Source this script to enable terminal logging in your shell
 
-source "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio/.context-kit/logging-client/tkr-logger.sh"
+source "/Volumes/tkr-riffic/@tkr-projects/tkr-portfolio/.context-kit/logging-client/tkr-logger-enhanced.sh"
 echo "✅ Terminal logging enabled - commands will be captured and sent to dashboard"
 echo "📊 View logs at: http://localhost:42001"

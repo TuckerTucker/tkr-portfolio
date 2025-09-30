@@ -9,7 +9,8 @@
     "./database": "./dist/database/index.js",
     "./knowledge-graph": "./dist/knowledge-graph/index.js",
     "./search": "./dist/search/index.js",
-    "./logging": "./dist/logging/index.js"
+    "./logging": "./dist/logging/index.js",
+    "./config": "./dist/config/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -23,7 +24,8 @@
     "better-sqlite3": "^9.6.0",
     "nanoid": "^5.0.0",
     "pino": "^8.16.0",
-    "pino-pretty": "^10.2.0"
+    "pino-pretty": "^10.2.0",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.0",

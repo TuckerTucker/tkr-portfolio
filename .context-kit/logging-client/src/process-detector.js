@@ -72,11 +72,17 @@ class ProcessDetector {
   }
 
   /**
-   * Determine the process type and subtype
+   * Determine the process type and subtype with enhanced detection
    */
   determineProcessType(argv, execPath, env, title) {
     const argvStr = argv.join(' ').toLowerCase();
     const execPathLower = execPath.toLowerCase();
+
+    // Enhanced terminal process detection
+    if (this.isTerminalProcess(env, argv, title)) {
+      const shellType = this.detectShellType(argv, title, env);
+      return { type: 'terminal', subtype: shellType };
+    }
 
     // NPM processes
     if (env.npm_lifecycle_event || env.npm_config_user_config || argvStr.includes('npm') || title.includes('npm')) {
@@ -95,13 +101,16 @@ class ProcessDetector {
       };
     }
 
-    // Vite dev server
-    if (argvStr.includes('vite') || env.VITE_USER_NODE_ENV) {
-      if (argvStr.includes('dev') || argvStr.includes('serve')) {
+    // Enhanced Vite dev server detection
+    if (argvStr.includes('vite') || env.VITE_USER_NODE_ENV || env.VITE_CJS_IGNORE_WARNING) {
+      if (argvStr.includes('dev') || argvStr.includes('serve') || env.npm_lifecycle_event === 'dev') {
         return { type: 'dev-server', subtype: 'vite' };
       }
-      if (argvStr.includes('build')) {
+      if (argvStr.includes('build') || env.npm_lifecycle_event === 'build') {
         return { type: 'build-tool', subtype: 'vite' };
+      }
+      if (argvStr.includes('preview') || env.npm_lifecycle_event === 'preview') {
+        return { type: 'dev-server', subtype: 'vite-preview' };
       }
       return { type: 'dev-tool', subtype: 'vite' };
     }
@@ -166,6 +175,77 @@ class ProcessDetector {
   }
 
   /**
+   * Enhanced terminal process detection
+   */
+  isTerminalProcess(env, argv, title) {
+    // Check TERM_PROGRAM for terminal applications
+    if (env.TERM_PROGRAM) {
+      const terminalApps = ['Apple_Terminal', 'iTerm.app', 'Terminal.app', 'Hyper', 'Alacritty', 'kitty'];
+      if (terminalApps.includes(env.TERM_PROGRAM)) {
+        return true;
+      }
+    }
+
+    // Check for terminal environment variables
+    if (env.TERM && env.TERM !== 'dumb') {
+      // Check if this is a shell process
+      const shells = ['bash', 'zsh', 'fish', 'sh', 'dash', 'csh', 'tcsh', 'ksh'];
+      if (argv.length > 0) {
+        const command = argv[0].split('/').pop();
+        if (shells.includes(command)) {
+          return true;
+        }
+      }
+
+      // Check process title for shell indicators
+      if (title && shells.some(shell => title.includes(shell))) {
+        return true;
+      }
+    }
+
+    // Check for SSH sessions
+    if (env.SSH_CLIENT || env.SSH_TTY || env.SSH_CONNECTION) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Detect the specific shell type
+   */
+  detectShellType(argv, title, env) {
+    const shells = ['bash', 'zsh', 'fish', 'sh', 'dash', 'csh', 'tcsh', 'ksh'];
+
+    // Check command line arguments
+    if (argv.length > 0) {
+      const command = argv[0].split('/').pop();
+      if (shells.includes(command)) {
+        return command;
+      }
+    }
+
+    // Check process title
+    if (title) {
+      for (const shell of shells) {
+        if (title.includes(shell)) {
+          return shell;
+        }
+      }
+    }
+
+    // Check SHELL environment variable
+    if (env.SHELL) {
+      const shellFromEnv = env.SHELL.split('/').pop();
+      if (shells.includes(shellFromEnv)) {
+        return shellFromEnv;
+      }
+    }
+
+    return 'unknown';
+  }
+
+  /**
    * Extract the main command being executed
    */
   extractCommand(argv, execPath) {
@@ -188,11 +268,32 @@ class ProcessDetector {
   }
 
   /**
-   * Detect parent process information
+   * Detect parent process information with enhanced terminal detection
    */
   detectParentProcess() {
     try {
       const env = process.env || {};
+
+      // Enhanced terminal detection using TERM_PROGRAM
+      if (env.TERM_PROGRAM) {
+        const terminalApps = {
+          'Apple_Terminal': { type: 'terminal', name: 'Terminal.app' },
+          'iTerm.app': { type: 'terminal', name: 'iTerm2' },
+          'vscode': { type: 'vscode', name: 'VS Code Terminal' },
+          'Terminal.app': { type: 'terminal', name: 'Terminal.app' },
+          'Hyper': { type: 'terminal', name: 'Hyper' },
+          'Alacritty': { type: 'terminal', name: 'Alacritty' },
+          'kitty': { type: 'terminal', name: 'kitty' }
+        };
+
+        if (terminalApps[env.TERM_PROGRAM]) {
+          return {
+            ...terminalApps[env.TERM_PROGRAM],
+            version: env.TERM_PROGRAM_VERSION || 'unknown',
+            termType: env.TERM || 'unknown'
+          };
+        }
+      }
 
       // npm parent info
       if (env.npm_config_user_config) {
@@ -210,19 +311,39 @@ class ProcessDetector {
         };
       }
 
-      // IDE/Editor parent info
-      if (env.TERM_PROGRAM === 'vscode') {
+      // Tmux detection
+      if (env.TMUX) {
         return {
-          type: 'vscode',
-          version: env.TERM_PROGRAM_VERSION || 'unknown'
+          type: 'tmux',
+          name: 'tmux',
+          version: env.TMUX_VERSION || 'unknown'
         };
       }
 
-      // Terminal info
-      if (env.TERM) {
+      // Screen detection
+      if (env.STY) {
+        return {
+          type: 'screen',
+          name: 'GNU Screen',
+          session: env.STY
+        };
+      }
+
+      // SSH detection
+      if (env.SSH_CLIENT || env.SSH_TTY || env.SSH_CONNECTION) {
+        return {
+          type: 'ssh',
+          name: 'SSH Session',
+          client: env.SSH_CLIENT || 'unknown'
+        };
+      }
+
+      // Generic terminal info
+      if (env.TERM && env.TERM !== 'dumb') {
         return {
           type: 'terminal',
-          name: env.TERM_PROGRAM || env.TERM || 'unknown'
+          name: env.TERM,
+          termType: env.TERM
         };
       }
 

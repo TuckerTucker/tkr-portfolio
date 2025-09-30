@@ -177,7 +177,7 @@ const AppWithServices: React.FC = () => {
   const transformLogs = (backendLogs: any[]): any[] => {
     const transformed = backendLogs.map((log, index) => ({
       id: log.id || `log-${index}`, // Generate ID if missing
-      timestamp: log.timestamp ? new Date(log.timestamp * 1000).toISOString() : new Date().toISOString(), // Convert Unix timestamp to ISO string
+      timestamp: log.timestamp ? new Date(log.timestamp).toISOString() : new Date().toISOString(), // timestamp is already in milliseconds
       level: (log.level?.toUpperCase() || 'INFO') as 'FATAL' | 'ERROR' | 'WARN' | 'INFO' | 'DEBUG', // Keep uppercase and ensure valid type
       service: log.service || 'Unknown',
       component: log.component, // Add component field

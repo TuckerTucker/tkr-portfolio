@@ -15,10 +15,6 @@
     "services:stop": "./scripts/manage-ports.sh stop", 
     "services:restart": "./scripts/manage-ports.sh restart",
     "services:status": "./scripts/manage-ports.sh status",
-    "analyze": "tsx -e \"import('./dist/examples/usage-examples.js')\"",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "test:coverage": "vitest --coverage",
     "test:simple": "node -e \"const kg = require('./dist/core/knowledge-graph-simple.js'); console.log('Simple knowledge graph loaded successfully');\"",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write src/**/*.ts",
@@ -40,11 +36,9 @@
     "@types/pino": "^6.3.12",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "@vitest/coverage-v8": "^1.0.0",
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
-    "tsx": "^4.0.0",
-    "vitest": "^1.0.0"
+    "tsx": "^4.0.0"
   },
   "peerDependencies": {
     "typescript": ">=4.5.0"

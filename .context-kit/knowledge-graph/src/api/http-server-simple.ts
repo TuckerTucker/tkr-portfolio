@@ -374,7 +374,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     try {
       const server = await KnowledgeGraphHttpServerSimple.create({
         port: 42003,
-        databasePath: 'knowledge-graph.db'
+        databasePath: process.env.CANONICAL_DATABASE_PATH || './knowledge-graph.db'
       });
 
       await server.start();

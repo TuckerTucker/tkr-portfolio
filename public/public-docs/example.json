@@ -1,0 +1,19 @@
+{
+  "projectName": "Example Project",
+  "version": "1.0.0",
+  "description": "A sample JSON configuration file",
+  "settings": {
+    "debug": true,
+    "theme": "dark",
+    "features": [
+      "syntax-highlighting",
+      "file-download",
+      "responsive-design"
+    ]
+  },
+  "metadata": {
+    "author": "Tucker",
+    "created": "2025-01-19",
+    "tags": ["demo", "json", "configuration"]
+  }
+}

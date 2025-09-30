@@ -8,13 +8,20 @@ import DesignSystem from './DesignSystem';
 import UserFlow from './UserFlow';
 import UsabilityMetrics from './UsabilityMetrics';
 import SkillsMatrix from './SkillsMatrix';
+import InteractiveCards from './InteractiveCards';
+import InteractiveCode from './InteractiveCode';
 import BornToTheWorld from './BornToTheWorld';
 import TheSparkAndTheArt from './TheSparkAndTheArt';
 import TheOffHoursCreative from './TheOffHoursCreative';
-import AgenticAIKanban from './AgenticAIKanban';
 import PortfolioShowcase from './PortfolioShowcase';
 import WorldplayShowcase from './WorldplayShowcase';
 import NutrienShowcase from './NutrienShowcase';
+import ProjectIntro from './ProjectIntro';
+import TicTacToe from './TicTacToe';
+import ParallelAgentsDemo from './ParallelAgentsDemo';
+import YAMLContextViewer from './YAMLContextViewer';
+import ConversationTurnFlow from './ConversationTurnFlow';
+import PortfolioMetrics from './PortfolioMetrics';
 
 // AI Skills Components
 import {
@@ -36,13 +43,20 @@ const ThemedDesignSystem = withSlideTheme(DesignSystem);
 const ThemedUserFlow = withSlideTheme(UserFlow);
 const ThemedUsabilityMetrics = withSlideTheme(UsabilityMetrics);
 const ThemedSkillsMatrix = withSlideTheme(SkillsMatrix);
+const ThemedInteractiveCards = withSlideTheme(InteractiveCards);
+const ThemedInteractiveCode = withSlideTheme(InteractiveCode);
 const ThemedBornToTheWorld = withSlideTheme(BornToTheWorld);
 const ThemedTheSparkAndTheArt = withSlideTheme(TheSparkAndTheArt);
 const ThemedTheOffHoursCreative = withSlideTheme(TheOffHoursCreative);
-const ThemedAgenticAIKanban = withSlideTheme(AgenticAIKanban);
 const ThemedPortfolioShowcase = withSlideTheme(PortfolioShowcase);
 const ThemedWorldplayShowcase = withSlideTheme(WorldplayShowcase);
 const ThemedNutrienShowcase = withSlideTheme(NutrienShowcase);
+const ThemedProjectIntro = withSlideTheme(ProjectIntro);
+const ThemedTicTacToe = withSlideTheme(TicTacToe);
+const ThemedParallelAgentsDemo = withSlideTheme(ParallelAgentsDemo);
+const ThemedYAMLContextViewer = withSlideTheme(YAMLContextViewer);
+const ThemedConversationTurnFlow = withSlideTheme(ConversationTurnFlow);
+const ThemedPortfolioMetrics = withSlideTheme(PortfolioMetrics);
 
 // AI Skills themed components
 const ThemedAIInteractionShowcase = withSlideTheme(AIInteractionShowcase);
@@ -61,13 +75,20 @@ const htmlSlideComponents = {
   UserFlow: ThemedUserFlow,
   UsabilityMetrics: ThemedUsabilityMetrics,
   SkillsMatrix: ThemedSkillsMatrix,
+  InteractiveCards: ThemedInteractiveCards,
+  InteractiveCode: ThemedInteractiveCode,
   BornToTheWorld: ThemedBornToTheWorld,
   TheSparkAndTheArt: ThemedTheSparkAndTheArt,
   TheOffHoursCreative: ThemedTheOffHoursCreative,
-  AgenticAIKanban: ThemedAgenticAIKanban,
   PortfolioShowcase: ThemedPortfolioShowcase,
   WorldplayShowcase: ThemedWorldplayShowcase,
   NutrienShowcase: ThemedNutrienShowcase,
+  ProjectIntro: ThemedProjectIntro,
+  TicTacToe: ThemedTicTacToe,
+  ParallelAgentsDemo: ThemedParallelAgentsDemo,
+  YAMLContextViewer: ThemedYAMLContextViewer,
+  ConversationTurnFlow: ThemedConversationTurnFlow,
+  PortfolioMetrics: ThemedPortfolioMetrics,
 
   // AI Skills Components
   AIInteractionShowcase: ThemedAIInteractionShowcase,

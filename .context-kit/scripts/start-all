@@ -324,7 +324,13 @@ start_knowledge_graph() {
     local log_file="${LOG_DIR}/${service}.log"
     local pid_file="${PID_DIR}/${service}.pid"
 
+    # Source centralized paths and export database path for the service
+    source "${CONTEXT_KIT_DIR}/scripts/paths.sh"
+    get_project_paths
+    export CANONICAL_DATABASE_PATH
+
     log_info "Starting $service service..."
+    log_debug "Using database path: $CANONICAL_DATABASE_PATH"
 
     if [[ "$DRY_RUN" == "true" ]]; then
         log_debug "[DRY RUN] Would start $service in $service_dir"
@@ -339,7 +345,7 @@ start_knowledge_graph() {
         npm install >> "$log_file" 2>&1
     fi
 
-    # Start the service - using dev:api to start HTTP server
+    # Start the service
     nohup npm run dev:api >> "$log_file" 2>&1 &
     local pid=$!
     echo "$pid" > "$pid_file"

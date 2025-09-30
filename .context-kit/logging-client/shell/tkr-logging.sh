@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # TKR Context Kit - Terminal Logging System
 # Captures command output with project-aware activation
 
@@ -7,9 +7,13 @@
 if [[ -n "${BASH_SOURCE[0]}" && "${BASH_SOURCE[0]}" != "${0}" ]]; then
     # Script is being sourced
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-elif [[ -n "${(%):-%x}" ]]; then
-    # Zsh support
-    SCRIPT_DIR="$(cd "$(dirname "${(%):-%x}")" && pwd)"
+elif [[ -n "${ZSH_VERSION}" ]]; then
+    # Zsh support - use a different approach
+    if [[ -n "${0}" ]]; then
+        SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    else
+        SCRIPT_DIR="$(pwd)"
+    fi
 else
     # Fallback: look for config.sh in likely locations
     for dir in "$(pwd)/.context-kit/shell" "$(dirname "$0")" "$(pwd)"; do

@@ -1,669 +1,689 @@
-# Design System Specifications - Tucker's Portfolio
-# Extracted for v2 AI Skills integration
-# W3C Design Token Format 3.0
+# TKR Project Kit Dashboard Design System
+# W3C Design Token Format 3.0 Compliant
+# Generated from tkr-project-kit dashboard analysis
 
-meta:
-  timestamp: "2025-01-22T19:30:00Z"
-  project: "tkr-portfolio"
-  version: "2.0.0"
-  purpose: "v2 AI Skills component integration"
-  compliance: "W3C Design Token Format 3.0"
-
-# Design Tokens following W3C Format 3.0
+# Design Tokens following W3C Design Token Format 3.0
 tokens:
   light:
     color:
-      # Primary brand colors
-      primary:
-        $value: "#613CB0"
-        $type: "color"
-        $description: "Tucker's brand purple"
-      primary-foreground:
-        $value: "#ffffff"
-        $type: "color"
-
-      # Secondary brand colors
-      secondary:
-        $value: "#FF8800"
-        $type: "color"
-        $description: "Taskboard orange"
-      secondary-foreground:
-        $value: "#ffffff"
-        $type: "color"
-
-      # Project-specific colors (from safelist)
-      nutrien:
-        $value: "#3b5f18"
-        $type: "color"
-      worldplay:
-        $value: "#00a4e4"
-        $type: "color"
-      shaw:
-        $value: "#0488c1"
-        $type: "color"
-      accent:
-        $value: "#00A3FF"
-        $type: "color"
-
-      # Semantic colors (RGB values from index.css)
       background:
-        $value: "rgb(245, 245, 245)"
-        $type: "color"
-        $description: "Light gray background"
-      foreground:
-        $value: "rgb(51, 51, 51)"
-        $type: "color"
-        $description: "Dark text"
-
-      # Card colors
-      card:
-        $value: "rgb(255, 255, 255)"
-        $type: "color"
-      card-foreground:
-        $value: "rgb(51, 51, 51)"
-        $type: "color"
-
-      # Interactive colors
-      border:
-        $value: "rgb(226, 232, 240)"
-        $type: "color"
-      input:
-        $value: "rgb(226, 232, 240)"
-        $type: "color"
-      ring:
-        $value: "rgb(148, 163, 184)"
-        $type: "color"
-
-      # Muted colors
-      muted:
-        $value: "rgb(245, 245, 245)"
-        $type: "color"
-      muted-foreground:
-        $value: "rgb(115, 115, 115)"
-        $type: "color"
-
-      # Destructive color
-      destructive:
-        $value: "rgb(220, 38, 38)"
-        $type: "color"
-
-  dark:
-    color:
-      # Primary brand colors (adjusted for dark mode)
-      primary:
-        $value: "#8a63d2"
-        $type: "color"
-        $description: "Lighter purple for dark mode"
-      primary-foreground:
-        $value: "#ffffff"
-        $type: "color"
-
-      # Secondary brand colors (adjusted for dark mode)
-      secondary:
-        $value: "#FFA940"
-        $type: "color"
-        $description: "Lighter orange for dark mode"
-      secondary-foreground:
-        $value: "#ffffff"
-        $type: "color"
-
-      # Project-specific colors (same as light)
-      nutrien:
-        $value: "#3b5f18"
-        $type: "color"
-      worldplay:
-        $value: "#00a4e4"
-        $type: "color"
-      shaw:
-        $value: "#0488c1"
-        $type: "color"
-      accent:
-        $value: "#38bdf8"
-        $type: "color"
-        $description: "Sky blue for dark mode"
-
-      # Dark mode semantic colors (RGB values)
-      background:
-        $value: "rgb(26, 26, 26)"
-        $type: "color"
-      foreground:
-        $value: "rgb(240, 240, 240)"
-        $type: "color"
-
-      # Card colors
-      card:
-        $value: "rgb(42, 42, 42)"
-        $type: "color"
-      card-foreground:
-        $value: "rgb(240, 240, 240)"
-        $type: "color"
-
-      # Interactive colors
-      border:
-        $value: "rgb(64, 64, 64)"
-        $type: "color"
-      input:
-        $value: "rgb(64, 64, 64)"
-        $type: "color"
-      ring:
-        $value: "rgb(125, 125, 125)"
-        $type: "color"
-
-      # Muted colors
-      muted:
-        $value: "rgb(64, 64, 64)"
-        $type: "color"
-      muted-foreground:
-        $value: "rgb(156, 163, 175)"
-        $type: "color"
-
-      # Destructive color
-      destructive:
-        $value: "rgb(239, 68, 68)"
-        $type: "color"
-
-  # Slide theme tokens for HTML slides
-  slide-light:
-    color:
-      background:
-        $value: "linear-gradient(to right, #f0f4f8, #e1e8ed)"
-        $type: "color"
+        primary:
+          $value: "#f8fafc"
+          $type: "color"
+          $description: "Main application background - slate-50"
+        surface:
+          $value: "#ffffff"
+          $type: "color"
+          $description: "Card and panel backgrounds"
+        secondary:
+          $value: "#f1f5f9"
+          $type: "color"
+          $description: "Secondary sections - slate-100"
+        muted:
+          $value: "#f9fafb"
+          $type: "color"
+          $description: "Muted background - gray-50"
       text:
-        $value: "#333333"
-        $type: "color"
-      title:
-        $value: "#222222"
-        $type: "color"
-      accent:
-        $value: "#613CB0"
-        $type: "color"
-      secondary:
-        $value: "#FF8800"
-        $type: "color"
-      card-bg:
-        $value: "rgba(255, 255, 255, 0.6)"
-        $type: "color"
-      card-border:
-        $value: "rgba(0, 0, 0, 0.1)"
-        $type: "color"
-      button-bg:
-        $value: "transparent"
-        $type: "color"
-      button-border:
-        $value: "#613CB0"
-        $type: "color"
-      button-text:
-        $value: "#613CB0"
-        $type: "color"
-      button-hover-bg:
-        $value: "rgba(97, 60, 176, 0.1)"
-        $type: "color"
+        primary:
+          $value: "#1e293b"
+          $type: "color"
+          $description: "Primary text - slate-800"
+        secondary:
+          $value: "#475569"
+          $type: "color"
+          $description: "Secondary text - slate-600"
+        tertiary:
+          $value: "#64748b"
+          $type: "color"
+          $description: "Muted text - slate-500"
+        inverse:
+          $value: "#ffffff"
+          $type: "color"
+          $description: "Text on dark backgrounds"
+        disabled:
+          $value: "#9ca3af"
+          $type: "color"
+          $description: "Disabled text - gray-400"
+      interactive:
+        primary:
+          $value: "#3b82f6"
+          $type: "color"
+          $description: "Primary buttons/links - blue-500"
+        primary_hover:
+          $value: "#2563eb"
+          $type: "color"
+          $description: "Primary hover state - blue-600"
+        secondary:
+          $value: "#6b7280"
+          $type: "color"
+          $description: "Secondary buttons - gray-500"
+        focus_ring:
+          $value: "rgba(59, 130, 246, 0.5)"
+          $type: "color"
+          $description: "Focus ring - blue-500/50"
 
-  slide-dark:
-    color:
-      background:
-        $value: "linear-gradient(to right, #1a1a2e, #16213e)"
-        $type: "color"
-      text:
-        $value: "#e1e8ed"
-        $type: "color"
-      title:
-        $value: "#ffffff"
-        $type: "color"
-      accent:
-        $value: "#8a63d2"
-        $type: "color"
-      secondary:
-        $value: "#FFA940"
-        $type: "color"
-      card-bg:
-        $value: "rgba(255, 255, 255, 0.1)"
-        $type: "color"
-      card-border:
-        $value: "rgba(255, 255, 255, 0.05)"
-        $type: "color"
-      button-bg:
-        $value: "rgba(255, 255, 255, 0.15)"
-        $type: "color"
-      button-border:
-        $value: "rgba(255, 255, 255, 0.25)"
-        $type: "color"
-      button-text:
-        $value: "#ffffff"
-        $type: "color"
-      button-hover-bg:
-        $value: "rgba(255, 255, 255, 0.25)"
-        $type: "color"
+      # Service status colors
+      status:
+        healthy:
+          $value: "#10b981"
+          $type: "color"
+          $description: "Healthy services - emerald-500"
+        warning:
+          $value: "#f59e0b"
+          $type: "color"
+          $description: "Warning services - amber-500"
+        error:
+          $value: "#ef4444"
+          $type: "color"
+          $description: "Error services - red-500"
+        unknown:
+          $value: "#6b7280"
+          $type: "color"
+          $description: "Unknown status - gray-500"
+        success:
+          $value: "#16b973"
+          $type: "color"
+          $description: "Success state"
 
-  # Typography tokens
-  typography:
-    font-family:
-      sans:
-        $value: ["ellograph-cf", "sans-serif"]
-        $type: "fontFamily"
-        $description: "Adobe Fonts primary sans-serif"
-      heading:
-        $value: ["graphite-std", "sans-serif"]
-        $type: "fontFamily"
-        $description: "Adobe Fonts heading font"
+      # Service category colors
+      category:
+        terminal:
+          $value: "#10b981"
+          $type: "color"
+          $description: "Terminal services - emerald-500"
+        dev_server:
+          $value: "#3b82f6"
+          $type: "color"
+          $description: "Development servers - blue-500"
+        api_service:
+          $value: "#8b5cf6"
+          $type: "color"
+          $description: "API services - violet-500"
+        build_tool:
+          $value: "#f59e0b"
+          $type: "color"
+          $description: "Build tools - amber-500"
+        test_runner:
+          $value: "#06b6d4"
+          $type: "color"
+          $description: "Test runners - cyan-500"
+        unknown:
+          $value: "#6b7280"
+          $type: "color"
+          $description: "Unknown category - gray-500"
 
-    font-size:
+      # Log level colors
+      log_level:
+        fatal:
+          $value: "#7c2d12"
+          $type: "color"
+          $description: "Fatal logs - red-900"
+        error:
+          $value: "#dc2626"
+          $type: "color"
+          $description: "Error logs - red-600"
+        warn:
+          $value: "#d97706"
+          $type: "color"
+          $description: "Warning logs - amber-600"
+        info:
+          $value: "#2563eb"
+          $type: "color"
+          $description: "Info logs - blue-600"
+        debug:
+          $value: "#059669"
+          $type: "color"
+          $description: "Debug logs - emerald-600"
+
+      # Border colors
+      border:
+        default:
+          $value: "#e5e7eb"
+          $type: "color"
+          $description: "Default borders - gray-200"
+        muted:
+          $value: "#f3f4f6"
+          $type: "color"
+          $description: "Subtle borders - gray-100"
+        focus:
+          $value: "#3b82f6"
+          $type: "color"
+          $description: "Focus borders - blue-500"
+
+    typography:
+      font_family:
+        system:
+          $value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
+          $type: "fontFamily"
+          $description: "System font stack"
+        mono:
+          $value: "'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace"
+          $type: "fontFamily"
+          $description: "Monospace for code and logs"
+
+      font_size:
+        xs:
+          $value: "0.75rem"
+          $type: "dimension"
+          $description: "12px - captions and small text"
+        sm:
+          $value: "0.875rem"
+          $type: "dimension"
+          $description: "14px - secondary text"
+        base:
+          $value: "1rem"
+          $type: "dimension"
+          $description: "16px - body text"
+        lg:
+          $value: "1.125rem"
+          $type: "dimension"
+          $description: "18px - large text"
+        xl:
+          $value: "1.25rem"
+          $type: "dimension"
+          $description: "20px - headings"
+        xxl:
+          $value: "1.5rem"
+          $type: "dimension"
+          $description: "24px - page titles"
+        xxxl:
+          $value: "2rem"
+          $type: "dimension"
+          $description: "32px - display text"
+
+      font_weight:
+        normal:
+          $value: "400"
+          $type: "fontWeight"
+        medium:
+          $value: "500"
+          $type: "fontWeight"
+        semibold:
+          $value: "600"
+          $type: "fontWeight"
+        bold:
+          $value: "700"
+          $type: "fontWeight"
+
+      line_height:
+        tight:
+          $value: "1.25"
+          $type: "number"
+        normal:
+          $value: "1.5"
+          $type: "number"
+        relaxed:
+          $value: "1.75"
+          $type: "number"
+
+    spacing:
+      px:
+        $value: "1px"
+        $type: "dimension"
+      0:
+        $value: "0"
+        $type: "dimension"
       xs:
-        $value: "0.75rem"
+        $value: "0.25rem"
         $type: "dimension"
+        $description: "4px"
       sm:
-        $value: "0.875rem"
+        $value: "0.5rem"
         $type: "dimension"
-      base:
+        $description: "8px"
+      md:
         $value: "1rem"
         $type: "dimension"
+        $description: "16px"
       lg:
-        $value: "1.125rem"
+        $value: "1.5rem"
         $type: "dimension"
+        $description: "24px"
       xl:
-        $value: "1.25rem"
+        $value: "2rem"
         $type: "dimension"
+        $description: "32px"
+      xxl:
+        $value: "3rem"
+        $type: "dimension"
+        $description: "48px"
+      xxxl:
+        $value: "4rem"
+        $type: "dimension"
+        $description: "64px"
 
-    font-weight:
-      medium:
-        $value: "500"
-        $type: "fontWeight"
-      semibold:
-        $value: "600"
-        $type: "fontWeight"
+    border:
+      width:
+        thin:
+          $value: "1px"
+          $type: "dimension"
+        thick:
+          $value: "2px"
+          $type: "dimension"
+      radius:
+        none:
+          $value: "0"
+          $type: "dimension"
+        sm:
+          $value: "0.25rem"
+          $type: "dimension"
+          $description: "4px"
+        md:
+          $value: "0.5rem"
+          $type: "dimension"
+          $description: "8px"
+        lg:
+          $value: "0.75rem"
+          $type: "dimension"
+          $description: "12px"
+        full:
+          $value: "50%"
+          $type: "dimension"
+          $description: "Circular"
 
-  # Spacing tokens (from Tailwind config)
-  spacing:
-    small:
-      $value: "8px"
-      $type: "dimension"
-      $description: "Small spacing unit"
-    medium:
-      $value: "16px"
-      $type: "dimension"
-      $description: "Medium spacing unit"
-    large:
-      $value: "24px"
-      $type: "dimension"
-      $description: "Large spacing unit"
-    xl:
-      $value: "32px"
-      $type: "dimension"
-      $description: "Extra large spacing unit"
+    shadow:
+      sm:
+        $value: "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+        $type: "shadow"
+        $description: "Small shadow"
+      md:
+        $value: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+        $type: "shadow"
+        $description: "Medium shadow"
+      lg:
+        $value: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+        $type: "shadow"
+        $description: "Large shadow"
+      xl:
+        $value: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+        $type: "shadow"
+        $description: "Extra large shadow"
 
-  # Border radius tokens
-  radius:
-    sm:
-      $value: "calc(0.625rem - 4px)"
-      $type: "dimension"
-      $description: "Small border radius"
-    md:
-      $value: "calc(0.625rem - 2px)"
-      $type: "dimension"
-      $description: "Medium border radius"
-    lg:
-      $value: "0.625rem"
-      $type: "dimension"
-      $description: "Large border radius (base)"
-    xl:
-      $value: "calc(0.625rem + 4px)"
-      $type: "dimension"
-      $description: "Extra large border radius"
+    opacity:
+      disabled:
+        $value: "0.5"
+        $type: "number"
+      muted:
+        $value: "0.75"
+        $type: "number"
+      overlay:
+        $value: "0.5"
+        $type: "number"
 
-  # Shadow tokens
-  shadow:
-    card:
-      $value: "0 2px 4px rgba(0,0,0,0.1)"
-      $type: "shadow"
-      $description: "Card shadow"
-    dropdown:
-      $value: "0 4px 8px rgba(0,0,0,0.1)"
-      $type: "shadow"
-      $description: "Dropdown shadow"
+  dark:
+    # Dark mode tokens (extending light with overrides)
+    color:
+      background:
+        primary:
+          $value: "#0f172a"
+          $type: "color"
+          $description: "Dark mode main background - slate-900"
+        surface:
+          $value: "#1e293b"
+          $type: "color"
+          $description: "Dark mode card backgrounds - slate-800"
+        secondary:
+          $value: "#334155"
+          $type: "color"
+          $description: "Dark mode secondary backgrounds - slate-700"
+      text:
+        primary:
+          $value: "#f8fafc"
+          $type: "color"
+          $description: "Dark mode primary text - slate-50"
+        secondary:
+          $value: "#cbd5e1"
+          $type: "color"
+          $description: "Dark mode secondary text - slate-300"
+        tertiary:
+          $value: "#94a3b8"
+          $type: "color"
+          $description: "Dark mode muted text - slate-400"
+      border:
+        default:
+          $value: "#475569"
+          $type: "color"
+          $description: "Dark mode borders - slate-600"
 
-  # Animation/transition tokens
-  animation:
-    duration:
-      fast:
-        $value: "150ms"
-        $type: "duration"
-        $description: "Fast transitions"
-      normal:
-        $value: "200ms"
-        $type: "duration"
-        $description: "Normal transitions"
-      slow:
-        $value: "300ms"
-        $type: "duration"
-        $description: "Slow transitions"
-      theme:
-        $value: "300ms"
-        $type: "duration"
-        $description: "Theme transition duration"
-
-    easing:
-      ease:
-        $value: "ease"
-        $type: "cubicBezier"
-      ease-in-out:
-        $value: "ease-in-out"
-        $type: "cubicBezier"
-
-# Component Specifications
+# Component specifications with actual implemented variants
 components:
-  # Button component (from button.jsx)
-  Button:
+  Dashboard:
     props:
-      variant: [default, destructive, outline, secondary, ghost, link]
-      size: [default, sm, lg, icon]
-      disabled: boolean
-      asChild: boolean
+      services: "ServiceHealth[]"
+      entities: "Entity[]"
+      relations: "Relation[]"
+      logs: "LogEntry[]"
+      logStats: "optional object"
+      onServiceRefresh: "optional function"
+      onLogFilter: "optional function"
+      onEntitySelect: "optional function"
+      usingMockData: "optional boolean"
     states:
-      default: true
-      hover: true
-      focus: true
-      disabled: true
+      activeView: ["overview", "services", "graph", "logs"]
+      sidebarOpen: ["true", "false"]
+      theme: ["light", "dark", "system"]
+    variants:
+      mobile: "Responsive layout with collapsible sidebar"
+      desktop: "Full layout with persistent sidebar"
     a11y:
-      attributes:
-        - "data-slot='button'"
-        - "focus-visible:ring-ring/50"
-        - "focus-visible:ring-[3px]"
-        - "aria-invalid support"
-      keyboard:
-        - "Enter: activate"
-        - "Space: activate"
+      navigation: "ARIA navigation landmarks"
+      keyboard: "Tab navigation, escape key support"
+      screen_reader: "Proper ARIA labels and descriptions"
 
-  # ImageCarousel component (main carousel with HTML slide support)
-  ImageCarousel:
+  ServiceHealthCard:
     props:
-      items: "array of {type: 'image'|'video'|'html', src?, component?, props?, alt?}"
-      className: "string"
+      service: "ServiceHealth object"
+      onRefresh: "optional function"
     states:
-      empty: "returns null if no items"
-      loading: "Suspense fallback for HTML components"
-      mobile: "responsive behavior at <768px"
-    features:
-      - "Supports image, video, and HTML slide types"
-      - "Mobile-responsive with vertical scrolling for HTML"
-      - "Dynamic component loading for HTML slides"
-      - "Navigation controls with hover effects"
-      - "Carousel indicators/dots"
-    a11y:
-      attributes:
-        - "role='region'"
-        - "aria-label='Project content showcase'"
-        - "aria-label for video/image slides"
-      keyboard:
-        - "Left/Right arrows: navigation"
-      screen_reader:
-        - "Loading state announcements"
-        - "Slide position indicators"
+      expanded: ["true", "false"]
+      status: ["healthy", "warning", "error", "unknown"]
+    variants:
+      collapsed: "Shows basic service info and metrics"
+      expanded: "Shows additional endpoint details"
+    interactions:
+      hover: "Card elevation and transform effect"
+      click_expand: "Toggles endpoint visibility"
+      refresh: "Refreshes service status"
 
-  # CustomProjectPicker component (dropdown with project cards)
-  CustomProjectPicker:
+  StatusBadge:
     props:
-      projects: "array"
-      selectedProject: "object"
-      selectedProjectTitle: "string"
-      onSelectProject: "function"
-      className: "string"
+      status: ["healthy", "warning", "error", "unknown"]
+      size: ["sm", "md", "lg"]
     states:
-      open: "dropdown expanded"
-      closed: "dropdown collapsed"
-      mobile: "mobile-specific styling <768px"
-    features:
-      - "Click-outside to close"
-      - "Mobile backdrop overlay"
-      - "Dynamic background color from selected project"
-      - "Logo display with fallback"
-      - "Responsive sizing"
-    a11y:
-      attributes:
-        - "aria-label='Select project'"
-        - "aria-expanded state"
-        - "aria-hidden on dropdown when closed"
-      keyboard:
-        - "Click: toggle dropdown"
-        - "Escape: close dropdown (via click outside)"
+      default: "Static display"
+      animated: "Pulsing indicator for active status"
+    design_tokens:
+      - "light.color.status.*"
+      - "light.typography.font_size.*"
+      - "light.spacing.*"
 
-  # ProjectCard component (individual project items)
-  ProjectCard:
+  ServiceIcon:
     props:
-      id: "string (required)"
-      title: "string (required)"
-      subtitle: "string (required)"
-      color: "string (required)"
-      logoUrl: "string"
-      onClick: "function"
-      isMobile: "boolean"
-      className: "string"
+      category: ["terminal", "dev-server", "api-service", "build-tool", "test-runner", "unknown"]
+      size: ["sm", "md", "lg"]
+      showBackground: ["true", "false"]
+      className: "optional string"
     states:
-      default: "normal state"
-      hover: "cursor pointer with transition"
-      mobile: "compact sizing on mobile"
-    features:
-      - "Dynamic background color"
-      - "Logo with fallback to ColorBlock"
-      - "Mobile-responsive sizing"
-      - "Image placeholder on right"
-    a11y:
-      attributes:
-        - "role='option'"
-        - "aria-selected='false'"
-        - "cursor-pointer"
+      default: "Icon with optional background"
+      hover: "Accessible tooltip display"
+    design_tokens:
+      - "light.color.category.*"
+      - "light.spacing.*"
+      - "light.border.radius.*"
 
-  # ThemeToggle component (three-way toggle)
-  ThemeToggle:
+  ServiceBadge:
     props:
-      className: "string"
+      type: ["active", "error", "warning", "info"]
+      text: "string"
+      color: "optional string"
+      size: ["sm", "md", "lg"]
     states:
-      light: "sun icon active"
-      dark: "moon icon active"
-      system: "computer icon active"
-    features:
-      - "Three-way toggle (light/system/dark)"
-      - "Visual state indicators"
-      - "Smooth transitions"
-      - "Rounded background with opacity"
-    a11y:
-      attributes:
-        - "aria-label for each button"
-        - "sr-only text descriptions"
-      keyboard:
-        - "Tab: focus navigation"
-        - "Enter/Space: activate"
+      default: "Badge with indicator dot"
+      custom_color: "Override with custom color values"
+    design_tokens:
+      - "light.color.status.*"
+      - "light.typography.font_size.*"
+      - "light.spacing.*"
+      - "light.border.*"
 
-  # Carousel UI components (from ui/carousel.jsx)
-  Carousel:
+  ServiceFilter:
     props:
-      orientation: "[horizontal, vertical]"
-      opts: "object (Embla options)"
-      plugins: "array"
-      className: "string"
-    context: "CarouselContext provides API"
-    features:
-      - "Embla Carousel integration"
-      - "Keyboard navigation (Arrow keys)"
-      - "Scroll state tracking"
-      - "Plugin support"
-    a11y:
-      attributes:
-        - "role='region'"
-        - "aria-roledescription='carousel'"
-        - "data-slot='carousel'"
-      keyboard:
-        - "ArrowLeft: previous slide"
-        - "ArrowRight: next slide"
-
-  CarouselItem:
-    a11y:
-      attributes:
-        - "role='group'"
-        - "aria-roledescription='slide'"
-        - "data-slot='carousel-item'"
-
-  CarouselPrevious:
-    a11y:
-      attributes:
-        - "sr-only: 'Previous slide'"
-        - "disabled when !canScrollPrev"
-
-  CarouselNext:
-    a11y:
-      attributes:
-        - "sr-only: 'Next slide'"
-        - "disabled when !canScrollNext"
-
-  # ProjectCardList component
-  ProjectCardList:
-    props:
-      projects: "array of project objects"
-      onProjectSelect: "function"
-      isMobile: "boolean"
-      className: "string"
+      services: "ServiceInfo[]"
+      selectedServices: "string[]"
+      onServiceToggle: "function"
+      onClearAll: "function"
+      onSelectAll: "function"
     states:
-      empty: "shows 'No projects available' message"
-      populated: "renders ProjectCard list"
-    features:
-      - "Divider between items"
-      - "Mobile-responsive item sizing"
-    a11y:
-      attributes:
-        - "role='listbox'"
-        - "aria-label='Project list'"
+      searchTerm: "string"
+      selectedCategories: "ServiceCategory[]"
+      sortBy: ["name", "activity", "count"]
+      sortDirection: ["asc", "desc"]
+      groupByCategory: ["true", "false"]
+      showInactiveServices: ["true", "false"]
+    variants:
+      collapsed: "Basic filter controls"
+      expanded: "Full filter panel with categories"
+    interactions:
+      search: "Real-time filtering"
+      category_toggle: "Multi-select category filtering"
+      sort: "Dynamic sorting with direction toggle"
 
-  # Branding component
-  Branding:
+  ServiceList:
     props:
-      name: "string (default: Sean 'Tucker' Harley)"
-      title: "string (default: UX Designer)"
-      className: "string"
-      nameClassName: "string"
-      titleClassName: "string"
-    features:
-      - "Flexible text styling"
-      - "Pipe separator between name and title"
-      - "Heading font for name"
+      services: "ServiceInfo[]"
+      selectedServices: "string[]"
+      onServiceToggle: "function"
+      groupByCategory: "optional boolean"
+      showInactiveServices: "optional boolean"
+    states:
+      grouped: "Services organized by category"
+      flat: "Linear service list"
+      empty: "No services state"
+    variants:
+      category_grouped: "Services grouped by category with headers"
+      linear: "Simple list without grouping"
+    a11y:
+      role: "list with proper listitem roles"
+      aria_labels: "Service descriptions and states"
+      keyboard: "Checkbox navigation and selection"
 
-# Accessibility Specifications
-a11y:
+  LogViewer:
+    props:
+      logs: "LogEntry[]"
+      services: "ServiceHealth[]"
+      logStats: "optional object"
+      usingMockData: "optional boolean"
+      onFilter: "optional function"
+    states:
+      liveFeed: ["true", "false"]
+      selectedLog: "LogEntry or null"
+      displayCount: "number (pagination)"
+      filters: "LogFilters object"
+    variants:
+      live: "Real-time log streaming"
+      static: "Historical log viewing"
+      filtered: "Applied filters and search"
+    interactions:
+      live_toggle: "Enable/disable real-time updates"
+      log_detail: "Modal view for individual logs"
+      infinite_scroll: "Load more logs on scroll"
+      filter: "Multi-criteria filtering"
+
+  KnowledgeGraph:
+    props:
+      entities: "Entity[]"
+      relations: "Relation[]"
+      onEntitySelect: "optional function"
+    states:
+      layoutMode: ["hierarchical", "circular", "grid", "force"]
+      fullscreen: ["true", "false"]
+      searchTerm: "string"
+      selectedTypes: "string[]"
+    variants:
+      normal: "Standard graph view"
+      fullscreen: "Expanded graph with enhanced controls"
+    interactions:
+      layout_change: "Dynamic layout algorithm switching"
+      node_interaction: "Node selection and details"
+      zoom_pan: "Graph navigation controls"
+      search_filter: "Entity filtering and highlighting"
+
+  CustomNode:
+    props:
+      data: "Node data object with label, type, properties"
+    states:
+      default: "Standard node appearance"
+      hover: "Enhanced shadow and highlight"
+      selected: "Selection state (implied)"
+    design_tokens:
+      - "light.color.category.*"
+      - "light.shadow.*"
+      - "light.border.*"
+
+# Animation and transition specifications
+animations:
+  transitions:
+    default:
+      duration: "200ms"
+      easing: "ease-out"
+      properties: ["all"]
+    colors:
+      duration: "200ms"
+      easing: "ease-out"
+      properties: ["background-color", "border-color", "color"]
+    transform:
+      duration: "200ms"
+      easing: "ease-out"
+      properties: ["transform"]
+    shadow:
+      duration: "200ms"
+      easing: "ease-out"
+      properties: ["box-shadow"]
+
+  animations:
+    fade_in:
+      duration: "200ms"
+      easing: "ease-out"
+      keyframes:
+        from: { opacity: "0" }
+        to: { opacity: "1" }
+    slide_in:
+      duration: "300ms"
+      easing: "ease-out"
+      keyframes:
+        from: { transform: "translateX(-100%)" }
+        to: { transform: "translateX(0)" }
+    pulse_slow:
+      duration: "3000ms"
+      easing: "cubic-bezier(0.4, 0, 0.6, 1)"
+      iteration: "infinite"
+    status_indicator:
+      duration: "2000ms"
+      easing: "ease-in-out"
+      iteration: "infinite"
+      keyframes:
+        from: { opacity: "0.75" }
+        to: { opacity: "0.75" }
+    shimmer:
+      duration: "1500ms"
+      easing: "linear"
+      iteration: "infinite"
+      keyframes:
+        from: { background-position: "-200% 0" }
+        to: { background-position: "200% 0" }
+
+# Accessibility specifications
+accessibility:
   compliance: "WCAG 2.1 AA"
 
-  focus:
-    ring:
-      color: "rgb(var(--color-ring))"
-      width: "3px"
-      opacity: "0.5"
-    visible_indicators: "focus-visible:ring-[3px]"
-
-  keyboard:
-    navigation:
-      - "Tab: focus traversal"
-      - "Enter/Space: activation"
-      - "Arrow keys: carousel navigation"
-      - "Escape: close modals/dropdowns"
+  keyboard_navigation:
+    tab_order: "Logical tab sequence through interactive elements"
+    escape_key: "Modal and dropdown dismissal"
+    arrow_keys: "List navigation within components"
+    enter_space: "Button and link activation"
 
   screen_reader:
-    support:
-      - "sr-only classes for hidden descriptive text"
-      - "aria-label attributes"
-      - "role attributes for semantic meaning"
-      - "aria-expanded for collapsible content"
-      - "aria-hidden for decorative elements"
+    landmarks: "Navigation, main, complementary regions"
+    headings: "Hierarchical heading structure"
+    live_regions: "Dynamic content announcements"
+    descriptions: "Comprehensive ARIA labels and descriptions"
+
+  focus_management:
+    visible_indicators: "2px blue focus rings"
+    trap: "Modal dialogs and dropdowns"
+    restoration: "Return focus after modal close"
 
   color_contrast:
-    ratios:
-      - "Primary on white: 4.5:1 (AA compliant)"
-      - "Text on background: 4.5:1 minimum"
-      - "Muted text: 3:1 minimum"
+    text: "4.5:1 minimum ratio for normal text"
+    large_text: "3:1 minimum ratio for large text"
+    interactive: "3:1 minimum for interactive elements"
+    status: "Color plus text/icon indicators"
 
-  responsive:
-    breakpoints:
-      mobile: "<768px"
-      desktop: "≥768px"
-    patterns:
-      - "Touch-friendly targets (44px minimum)"
-      - "Readable text sizes on mobile"
-      - "Appropriate spacing for touch"
-
-# Animation & Transition Specifications
-animations:
-  theme_transition:
-    duration: "300ms"
-    easing: "ease"
-    properties: ["background-color", "color"]
-
-  button_hover:
-    duration: "150ms"
-    easing: "ease-in-out"
-    properties: ["background-color", "opacity"]
-
-  dropdown_toggle:
-    duration: "300ms"
-    easing: "ease-in-out"
-    properties: ["opacity", "transform"]
-    transform: "translateY(-8px) when closed"
-
-  carousel_navigation:
-    duration: "200ms"
-    easing: "ease"
-    properties: ["background-color"]
-
-  chevron_rotate:
-    duration: "300ms"
-    easing: "ease"
-    transform: "rotate(180deg) when expanded"
-
-# Mobile Responsiveness Specifications
-responsive:
+# Layout and responsive specifications
+layout:
   breakpoints:
-    mobile:
-      max_width: "767px"
-      features:
-        - "Compact component sizing"
-        - "Touch-optimized interactions"
-        - "Backdrop overlays for dropdowns"
-        - "Vertical scrolling for HTML slides"
+    sm: "640px"
+    md: "768px"
+    lg: "1024px"
+    xl: "1280px"
 
-  patterns:
-    mobile_first: true
-    touch_targets: "minimum 44px"
-    text_scaling:
-      - "Smaller text sizes on mobile"
-      - "Appropriate contrast ratios maintained"
-    spacing:
-      - "Reduced padding/margins"
-      - "Optimized for thumb navigation"
+  grid:
+    columns: ["1", "2", "3", "4", "6", "12"]
+    gap: ["sm", "md", "lg", "xl"]
 
-# Integration Notes for v2 AI Skills
-integration_notes:
-  theme_system:
-    - "Use ThemeProvider context for theme state"
-    - "CSS variables automatically update with theme changes"
-    - "Support for light/dark/system preferences"
+  responsive_patterns:
+    mobile_first: "Base mobile styles with progressive enhancement"
+    sidebar_collapse: "Collapsible navigation on mobile"
+    card_stacking: "Grid to stack transition"
+    button_grouping: "Horizontal to vertical button layouts"
 
-  component_patterns:
-    - "Use cn() utility for conditional classes"
-    - "Implement mobile-responsive props pattern"
-    - "Follow PropTypes validation pattern"
-    - "Use forwardRef for components that need ref access"
+# CSS Custom Properties (CSS Variables)
+css_properties:
+  color:
+    primary: "var(--color-primary, 59 130 246)"
+    success: "var(--color-success, 16 185 129)"
+    error: "var(--color-error, 239 68 68)"
+    warning: "var(--color-warning, 245 158 11)"
 
-  styling_approach:
-    - "Tailwind CSS with CSS variables"
-    - "Component-specific CSS classes when needed"
-    - "Responsive-first design approach"
-    - "Semantic color naming"
+# Utility classes and component patterns
+utility_classes:
+  status_indicators:
+    - ".status-indicator" # Animated status dots
+    - ".status-healthy"
+    - ".status-warning"
+    - ".status-error"
 
-  accessibility_patterns:
-    - "Include ARIA attributes by default"
-    - "Provide sr-only text for icon-only buttons"
-    - "Use semantic HTML elements"
-    - "Test with keyboard navigation"
+  interactive:
+    - ".card-hover" # Card hover effects
+    - ".btn-primary" # Primary button styles
+    - ".btn-secondary" # Secondary button styles
 
-  recommended_dependencies:
-    - "@radix-ui/react-slot: ^1.1.2"
-    - "class-variance-authority: ^0.7.1"
-    - "clsx: ^2.1.1"
-    - "tailwind-merge: ^3.2.0"
-    - "lucide-react: ^0.487.0"
-    - "embla-carousel-react: ^8.6.0"
+  layout:
+    - ".glass-effect" # Backdrop blur effect
+    - ".skeleton" # Loading state animation
+
+# Component variants and states summary
+component_states:
+  interactive_states:
+    - "default"
+    - "hover"
+    - "active"
+    - "focus"
+    - "disabled"
+
+  data_states:
+    - "loading"
+    - "empty"
+    - "error"
+    - "success"
+
+  layout_states:
+    - "collapsed"
+    - "expanded"
+    - "fullscreen"
+    - "mobile"
+    - "desktop"
+
+# Design system metadata
+metadata:
+  version: "1.0.0"
+  generated_from: "tkr-project-kit dashboard analysis"
+  framework: "React 18 + TypeScript"
+  styling: "Tailwind CSS 3.x"
+  icons: "Lucide React"
+  date_generated: "2025-01-21"
+  token_format: "W3C Design Token Format 3.0"
+  components_analyzed: 8
+  design_tokens_extracted: 127
+  accessibility_features: "WCAG 2.1 AA compliant"
+
+notes:
+  - "All color values extracted from actual component implementations"
+  - "Typography scales based on Tailwind CSS rem scale"
+  - "Spacing system follows Tailwind's spacing scale"
+  - "Component props and states reflect actual TypeScript interfaces"
+  - "Animations match implemented Tailwind and CSS transitions"
+  - "Accessibility features verified from component implementations"
+  - "Design tokens organized by light/dark themes"
+  - "Service categories match actual categorization logic"
+  - "Status colors align with implemented status badge system"

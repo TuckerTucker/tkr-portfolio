@@ -20,7 +20,6 @@ PORTS_TO_CHECK=(
     42001  # Dashboard (React SPA)
     42003  # Knowledge Graph API (Backend)
     42005  # Logging Service (Future)
-    42006  # Storybook (Component Documentation)
     42007  # MCP Tools (Future)
     42009  # Auto Logging Monitoring (Future)
 )
@@ -85,7 +84,7 @@ fi
 if [[ -n "$YAML_FILE" ]] && [[ -f "$YAML_FILE" ]]; then
     if command -v yq >/dev/null 2>&1; then
         # Extract ports from current _context-kit.yml structure
-        YAML_PORTS=$(yq eval '.ops.port_allocation | [.dashboard, .knowledge_graph_api, .storybook, .logging_service, .mcp_tools, .auto_logging_monitoring] | .[]' "$YAML_FILE" 2>/dev/null || true)
+        YAML_PORTS=$(yq eval '.ops.port_allocation | to_entries | .[].value' "$YAML_FILE" 2>/dev/null || true)
         if [[ -n "$YAML_PORTS" ]]; then
             PORTS_TO_CHECK=()
             while IFS= read -r port; do

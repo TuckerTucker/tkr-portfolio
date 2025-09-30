@@ -49,8 +49,11 @@ get_project_paths() {
         echo "ERROR: Could not find project root from any search path" >&2
         return 1
     fi
-    
-    PROJECT_ROOT="$found_root"
+
+    # Only set PROJECT_ROOT if it's not already set (to avoid readonly variable error)
+    if [[ -z "$PROJECT_ROOT" ]]; then
+        PROJECT_ROOT="$found_root"
+    fi
     
     # Debug: Show what we're working with (uncomment for debugging)
     # echo "DEBUG: PROJECT_ROOT='$PROJECT_ROOT'" >&2
@@ -62,7 +65,10 @@ get_project_paths() {
     export SCRIPTS_DIR="$PROJECT_ROOT/$scripts_dir_name"
     export KNOWLEDGE_GRAPH_DIR="$PROJECT_ROOT/$knowledge_graph_dir_name"
     export PROJECT_CONFIG="$PROJECT_ROOT/.context-kit/_context-kit.yml"
-    
+
+    # Canonical database path - single source of truth
+    export CANONICAL_DATABASE_PATH="$KNOWLEDGE_GRAPH_DIR/knowledge-graph.db"
+
     return 0
 }
 
@@ -73,6 +79,7 @@ debug_paths() {
     echo "SCRIPTS_DIR: $SCRIPTS_DIR"
     echo "KNOWLEDGE_GRAPH_DIR: $KNOWLEDGE_GRAPH_DIR"
     echo "PROJECT_CONFIG: $PROJECT_CONFIG"
+    echo "CANONICAL_DATABASE_PATH: $CANONICAL_DATABASE_PATH"
     echo "=========================="
 }
 
@@ -83,4 +90,9 @@ get_script_dir() {
 
 get_project_root() {
     echo "$PROJECT_ROOT"
+}
+
+# Helper function for services to get the canonical database path
+get_database_path() {
+    echo "$CANONICAL_DATABASE_PATH"
 }

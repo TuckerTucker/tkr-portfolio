@@ -39,6 +39,7 @@ import {
   Minimize,
 } from 'lucide-react';
 import clsx from 'clsx';
+import { ServiceFilter, ServiceIcon, type ServiceInfo, type ServiceCategory } from './components';
 
 // TypeScript Interfaces
 interface ServiceHealth {
@@ -130,6 +131,44 @@ interface LogFilters {
   search?: string;
   refresh?: number; // Used to trigger re-fetch for live feed
 }
+
+// Helper function to categorize services based on name patterns
+const categorizeService = (serviceName: string): ServiceCategory => {
+  const name = serviceName.toLowerCase();
+
+  if (name.includes('terminal') || name.includes('bash') || name.includes('shell')) {
+    return 'terminal';
+  }
+  if (name.includes('dev') || name.includes('server') || name.includes('vite') || name.includes('webpack')) {
+    return 'dev-server';
+  }
+  if (name.includes('api') || name.includes('service') || name.includes('context-kit')) {
+    return 'api-service';
+  }
+  if (name.includes('build') || name.includes('webpack') || name.includes('rollup') || name.includes('esbuild')) {
+    return 'build-tool';
+  }
+  if (name.includes('test') || name.includes('jest') || name.includes('vitest') || name.includes('cypress')) {
+    return 'test-runner';
+  }
+  return 'unknown';
+};
+
+// Helper function to generate display names from technical service names
+const generateDisplayName = (serviceName: string): string => {
+  // Handle common patterns
+  if (serviceName === 'Session') return 'Terminal Session';
+  if (serviceName === 'unknown') return 'Unknown Service';
+  if (serviceName.includes('context-kit')) return 'Context Kit API';
+  if (serviceName.includes('dashboard')) return 'Dashboard Server';
+  if (serviceName.includes('knowledge-graph')) return 'Knowledge Graph';
+
+  // For other services, capitalize and clean up
+  return serviceName
+    .split(/[-_\s]+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
 
 // Custom ReactFlow Node Component
 const CustomNode: React.FC<{ data: any }> = ({ data }) => {
@@ -380,6 +419,10 @@ const LogViewer: React.FC<{
   const [displayCount, setDisplayCount] = useState(100); // Start with 100 logs
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
+  // Enhanced service filter state
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [showEnhancedServiceFilter, setShowEnhancedServiceFilter] = useState(false);
+
   const levelColors = {
     'FATAL': 'text-red-800 bg-red-200',
     'ERROR': 'text-red-600 bg-red-100',
@@ -423,6 +466,89 @@ const LogViewer: React.FC<{
     return Array.from(new Set(logs.map(log => log.service)));
   }, [logs]);
 
+  // Transform logs data to ServiceInfo for enhanced service filter
+  const serviceInfos = useMemo(() => {
+    const serviceMap = new Map<string, {
+      logCount: number;
+      lastActivity: Date;
+      isActive: boolean;
+    }>();
+
+    // Analyze logs to build service information
+    logs.forEach(log => {
+      const serviceName = log.service;
+      const logTime = new Date(log.timestamp);
+
+      if (!serviceMap.has(serviceName)) {
+        serviceMap.set(serviceName, {
+          logCount: 0,
+          lastActivity: logTime,
+          isActive: false
+        });
+      }
+
+      const serviceData = serviceMap.get(serviceName)!;
+      serviceData.logCount += 1;
+
+      // Update last activity if this log is more recent
+      if (logTime > serviceData.lastActivity) {
+        serviceData.lastActivity = logTime;
+      }
+
+      // Consider service active if it has logs in the last 10 minutes
+      const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+      if (logTime > tenMinutesAgo) {
+        serviceData.isActive = true;
+      }
+    });
+
+    // Convert to ServiceInfo array
+    const serviceInfoArray: ServiceInfo[] = Array.from(serviceMap.entries()).map(([serviceName, data]) => ({
+      serviceName,
+      displayName: generateDisplayName(serviceName),
+      category: categorizeService(serviceName),
+      logCount: data.logCount,
+      isActive: data.isActive,
+      lastActivity: data.lastActivity
+    }));
+
+    return serviceInfoArray;
+  }, [logs]);
+
+  // Service filter handlers for enhanced service filter
+  const handleServiceToggle = useCallback((serviceName: string) => {
+    setSelectedServices(prev => {
+      const newSelected = prev.includes(serviceName)
+        ? prev.filter(s => s !== serviceName)
+        : [...prev, serviceName];
+
+      // Update the main filter state
+      const newFilters = {
+        ...filters,
+        service: newSelected.length > 0 ? newSelected : undefined
+      };
+      setFilters(newFilters);
+      onFilter?.(newFilters);
+
+      return newSelected;
+    });
+  }, [filters, onFilter]);
+
+  const handleClearAllServices = useCallback(() => {
+    setSelectedServices([]);
+    const newFilters = { ...filters, service: undefined };
+    setFilters(newFilters);
+    onFilter?.(newFilters);
+  }, [filters, onFilter]);
+
+  const handleSelectAllServices = useCallback(() => {
+    const allServiceNames = serviceInfos.map(s => s.serviceName);
+    setSelectedServices(allServiceNames);
+    const newFilters = { ...filters, service: allServiceNames };
+    setFilters(newFilters);
+    onFilter?.(newFilters);
+  }, [serviceInfos, filters, onFilter]);
+
   // Close filters dropdown when clicking outside
   const handleClickOutside = useCallback((event: MouseEvent) => {
     const target = event.target as Element;
@@ -441,6 +567,17 @@ const LogViewer: React.FC<{
       {/* Stats Overview */}
       <StatsOverview logs={logs} services={services} logStats={logStats} usingMockData={usingMockData} />
 
+      {/* Enhanced Service Filter */}
+      {showEnhancedServiceFilter && (
+        <ServiceFilter
+          services={serviceInfos}
+          selectedServices={selectedServices}
+          onServiceToggle={handleServiceToggle}
+          onClearAll={handleClearAllServices}
+          onSelectAll={handleSelectAllServices}
+        />
+      )}
+
       {/* Log Viewer */}
       <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
@@ -456,6 +593,19 @@ const LogViewer: React.FC<{
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full sm:w-64"
             />
           </div>
+
+          {/* Enhanced Service Filter Toggle */}
+          <button
+            onClick={() => setShowEnhancedServiceFilter(!showEnhancedServiceFilter)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              showEnhancedServiceFilter
+                ? 'bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200'
+                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200'
+            }`}
+          >
+            <ServiceIcon category="api-service" size="sm" showBackground={false} />
+            <span className="hidden sm:inline">{showEnhancedServiceFilter ? 'Enhanced Filter' : 'Service Filter'}</span>
+          </button>
 
           {/* Live Feed Toggle */}
           <button
@@ -546,6 +696,15 @@ const LogViewer: React.FC<{
                         </label>
                       ))}
                     </div>
+                    <div className="mt-3 pt-2 border-t border-gray-200">
+                      <button
+                        onClick={() => setShowEnhancedServiceFilter(true)}
+                        className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                      >
+                        <ServiceIcon category="api-service" size="sm" showBackground={false} />
+                        <span>Use Enhanced Service Filter</span>
+                      </button>
+                    </div>
                   </div>
 
                   {/* Clear Filters Button */}
@@ -553,6 +712,7 @@ const LogViewer: React.FC<{
                     <button
                       onClick={() => {
                         setFilters({});
+                        setSelectedServices([]); // Also clear selected services
                         setDisplayCount(100); // Reset display count when clearing filters
                         onFilter?.({});
                       }}

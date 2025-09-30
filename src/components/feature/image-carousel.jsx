@@ -39,27 +39,68 @@ DynamicHtmlSlide.propTypes = {
  * Displays a carousel of images, videos, and HTML components.
  * Based on .clinerules definition for image_carousel with HTML extension.
  * Enhanced with mobile support for vertical scrolling with HTML slides.
+ * Persists current slide position across page refreshes.
  */
 const ImageCarousel = ({
   items = [], // Array of { type: 'image' | 'video' | 'html', src/component, alt/props }
   className,
+  projectId, // Pass projectId to persist slide position per project
   ...props
 }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [api, setApi] = useState();
+  const [current, setCurrent] = useState(() => {
+    // Initialize from localStorage if available
+    if (projectId) {
+      const stored = localStorage.getItem(`carousel_${projectId}`);
+      return stored ? parseInt(stored, 10) : 0;
+    }
+    return 0;
+  });
 
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // 768px is the standard md breakpoint
     };
-    
+
     checkMobile(); // Check on initial render
     window.addEventListener('resize', checkMobile); // Check on resize
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  // Initialize carousel to stored position when API is ready
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    // Restore to saved position on mount
+    if (current > 0 && current < items.length) {
+      api.scrollTo(current, true); // true = skip animation
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    const onSelect = () => {
+      const newIndex = api.selectedScrollSnap();
+      setCurrent(newIndex);
+
+      // Persist to localStorage
+      if (projectId) {
+        localStorage.setItem(`carousel_${projectId}`, newIndex.toString());
+      }
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api?.off("select", onSelect);
+    };
+  }, [api, projectId, items.length, current]);
 
   if (!items || items.length === 0) {
     return null;
@@ -72,7 +113,7 @@ const ImageCarousel = ({
       aria-label="Project content showcase"
       {...props}
     >
-      <Carousel>
+      <Carousel setApi={setApi}>
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
@@ -127,9 +168,17 @@ const ImageCarousel = ({
         {/* Carousel indicators/dots */}
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {items.map((_, index) => (
-            <span
+            <button
               key={index}
-              className="w-2 h-2 rounded-full bg-white opacity-50"
+              className={cn(
+                "w-2 h-2 rounded-full transition-opacity",
+                index === current ? "opacity-100" : "opacity-50"
+              )}
+              style={{
+                backgroundColor: 'var(--slide-text, white)'
+              }}
+              onClick={() => api?.scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
@@ -149,6 +198,7 @@ ImageCarousel.propTypes = {
     })
   ),
   className: PropTypes.string,
+  projectId: PropTypes.string,
 };
 
 export default ImageCarousel;

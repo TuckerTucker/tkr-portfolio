@@ -11,10 +11,8 @@ export {
   type LogEntry
 } from '@tkr-context-kit/core';
 
-// Export local implementations
-export { ProjectScanner } from './integration/project-scanner.js';
-export { StaticAnalyzer } from './analyzers/static-analyzer.js';
-export { StorybookAnalyzer } from './analyzers/storybook-analyzer.js';
+// Local implementations removed - transitioning to agent-based analysis
+// Analysis functionality moved to Claude Code agents using MCP CRUD operations
 
 // HTTP API
 export { KnowledgeGraphHttpServerSimple } from './api/http-server-simple.js';
