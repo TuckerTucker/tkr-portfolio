@@ -242,37 +242,83 @@ const PortfolioMetrics = ({ className = "" }) => {
             >
 {`meta:
   kit: tkr-portfolio
+  fmt: 1
   type: portfolio-website
-  stack: "React 19 + Vite + Tailwind"
+  desc: "Interactive portfolio website with
+    React 19, dynamic carousels, HTML
+    slides, and Storybook"
+  ver: "1.1.0"
+  stack: &tech-stack "React 19 + Vite +
+    Tailwind + Storybook + Radix UI +
+    Embla Carousel + GitHub Pages"
+  achievements: ["44 React components",
+    "23 interactive HTML slides",
+    "Carousel position persistence",
+    "Dual-site deployment"]
 
-arch:
-  patterns:
-    - "Component-based architecture"
-    - "Theme system with CSS variables"
-    - "Responsive design mobile-first"
-    - "Storybook component library"
+# Dependencies
+deps:
+  js:
+    prod:
+      react: {v: "^19.1.0"}
+      react-dom: {v: "^19.1.0"}
+      tailwindcss: {v: "^3.4.3"}
+      embla-carousel-react: {v: "^8.6.0"}
+    dev:
+      vite: {v: "^6.2.0"}
+      storybook: {v: "^9.1.6"}
 
-  components:
-    layout: [Header, CustomProjectPicker, ImageCarousel]
-    slides: [ProjectIntro, InteractiveCards, TicTacToe]
-    ui: [Toggle, Button, Badge]
-
+# Structure
 struct:
   src:
     components:
-      layout: {n: 8, desc: "Layout components"}
-      html-slides: {n: 18, desc: "Interactive slides"}
-      ui: {n: 7, desc: "UI primitives"}
+      feature: {n: 5, files: [
+        image-carousel.jsx,
+        custom-project-picker.jsx
+      ]}
+      html-slides: {n: 24, desc: "23
+        interactive slides + index"}
+      layout: {n: 2}
+      ui: {n: 5}
 
+# Projects
+projects:
+  count: 6
+  list:
+    - id: tkr_context_kit
+      slides: 6
+      components: [ParallelAgentsDemo,
+        YAMLContextViewer,
+        ConversationTurnFlow,
+        PortfolioMetrics]
+
+# Design System
 design:
-  tokens:
-    color:
-      primary: "#6366f1"
-      secondary: "#10b981"
-      accent: "#8b5cf6"
-    typography:
-      heading: "graphite-std"
-      body: "ellograph-cf"`}
+  colors:
+    brand:
+      tucker: "#613CB0"
+      tkr_context_kit: "#8B5CF6"
+      kanban: "#FF8800"
+  typography:
+    display: {family: "graphite-std"}
+    body: {family: "ellograph-cf"}
+
+# Architecture
+arch:
+  patterns:
+    - "localStorage persistence"
+    - "Dynamic component loading"
+    - "Radix UI primitives"
+    - "GitHub Pages dual-site"
+
+# Recent Changes
+changes:
+  additions:
+    - "ConversationTurnFlow.jsx"
+    - "ParallelAgentsDemo.jsx"
+    - "PortfolioMetrics.jsx"
+    - "YAMLContextViewer.jsx"
+    - "Carousel persistence"`}
             </pre>
           </div>
         </div>
