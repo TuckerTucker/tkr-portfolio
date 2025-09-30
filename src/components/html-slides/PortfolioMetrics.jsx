@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DynamicIcon from '../ui/DynamicIcon';
 
 /**
  * PortfolioMetrics - Real metrics from analyzing tkr-portfolio
@@ -11,18 +12,18 @@ const PortfolioMetrics = ({ className = "" }) => {
       title: 'Components Discovered',
       total: 33,
       breakdown: [
-        { name: 'HTML Slides', count: 18, icon: '🎨', color: '#3b82f6' },
-        { name: 'Layout', count: 8, icon: '📐', color: '#8b5cf6' },
-        { name: 'UI Components', count: 7, icon: '🧩', color: '#10b981' }
+        { name: 'HTML Slides', count: 18, icon: 'Palette', color: '#3b82f6' },
+        { name: 'Layout', count: 8, icon: 'Ruler', color: '#8b5cf6' },
+        { name: 'UI Components', count: 7, icon: 'Puzzle', color: '#10b981' }
       ]
     },
     relationships: {
       title: 'Relationships Mapped',
       total: 62,
       breakdown: [
-        { name: 'DEPENDS_ON', count: 45, icon: '🔗', description: 'Import dependencies' },
-        { name: 'USES_HOOK', count: 12, icon: '🪝', description: 'React hooks usage' },
-        { name: 'DATA_FLOW', count: 5, icon: '📊', description: 'Props & state flow' }
+        { name: 'DEPENDS_ON', count: 45, icon: 'Link', description: 'Import dependencies' },
+        { name: 'USES_HOOK', count: 12, icon: 'Anchor', description: 'React hooks usage' },
+        { name: 'DATA_FLOW', count: 5, icon: 'BarChart3', description: 'Props & state flow' }
       ]
     },
     efficiency: {
@@ -34,14 +35,6 @@ const PortfolioMetrics = ({ className = "" }) => {
       items: [
         { label: 'YAML Context', value: '2.1 KB', percentage: 1.3, color: 'green' },
         { label: 'Full Source', value: '156 KB', percentage: 100, color: 'red' }
-      ]
-    },
-    performance: {
-      title: 'Agent Performance',
-      items: [
-        { label: 'Sequential Time', value: '12-15s', color: 'red' },
-        { label: 'Parallel Time', value: '4-7s', color: 'yellow' },
-        { label: 'With YAML', value: 'Instant', color: 'green' }
       ]
     },
     contextWindow: {
@@ -84,7 +77,12 @@ const PortfolioMetrics = ({ className = "" }) => {
               {metrics.discovery.breakdown.map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg">{item.icon}</span>
+                    <DynamicIcon
+                      name={item.icon}
+                      size={18}
+                      color={item.color}
+                      ariaLabel={`${item.name} icon`}
+                    />
                     <span className="text-xs" style={{ color: 'var(--slide-text)' }}>{item.name}</span>
                   </div>
                   <span className="font-bold text-base" style={{ color: item.color }}>
@@ -114,7 +112,12 @@ const PortfolioMetrics = ({ className = "" }) => {
                 <div key={idx}>
                   <div className="flex items-center justify-between mb-0.5">
                     <div className="flex items-center gap-2">
-                      <span className="text-base">{item.icon}</span>
+                      <DynamicIcon
+                        name={item.icon}
+                        size={16}
+                        style={{ color: 'var(--slide-text)' }}
+                        ariaLabel={`${item.name} icon`}
+                      />
                       <span className="text-xs font-medium" style={{ color: 'var(--slide-text)' }}>
                         {item.name}
                       </span>
@@ -180,48 +183,7 @@ const PortfolioMetrics = ({ className = "" }) => {
             </div>
           </div>
 
-          {/* Agent Performance */}
-          <div
-            className="p-4 rounded-lg flex flex-col"
-            style={{
-              backgroundColor: 'var(--slide-card-bg)',
-              border: '1px solid var(--slide-card-border)'
-            }}
-          >
-            <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-              {metrics.performance.title}
-            </h3>
-            <div className="space-y-2 flex-1">
-              {metrics.performance.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-2 rounded-lg"
-                  style={{
-                    backgroundColor: 'rgba(0,0,0,0.2)',
-                    border: `1px solid ${
-                      item.color === 'red' ? '#ef4444' :
-                      item.color === 'yellow' ? '#f59e0b' :
-                      '#10b981'
-                    }`
-                  }}
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs" style={{ color: 'var(--slide-text)' }}>
-                      {item.label}
-                    </span>
-                    <span className={`font-mono font-bold text-sm text-${item.color}-500`}>
-                      {item.value}
-                    </span>
-                  </div>
-                </div>
-              ))}
-              <div className="pt-2 text-center">
-                <div className="text-xs opacity-60" style={{ color: 'var(--slide-text)' }}>
-                  Analysis of 33 components<br />with parallel agents
-                </div>
-              </div>
-            </div>
-          </div>
+      
         </div>
 
         {/* Right Column: YAML Sample */}
@@ -232,8 +194,9 @@ const PortfolioMetrics = ({ className = "" }) => {
             border: '1px solid var(--slide-card-border)'
           }}
         >
-          <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-            📄 tkr-portfolio YAML
+          <h3 className="font-semibold text-base mb-3 flex items-center gap-2" style={{ color: 'var(--slide-title)' }}>
+            <DynamicIcon name="FileText" size={16} style={{ color: 'var(--slide-title)' }} />
+            tkr-portfolio YAML
           </h3>
           <div className="flex-1 overflow-y-auto">
             <pre

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DynamicIcon from '../ui/DynamicIcon';
 
 /**
  * ConversationTurnFlow - Shows how YAML persists across conversation turns
@@ -14,10 +15,10 @@ const ConversationTurnFlow = ({ className = "" }) => {
       userMessage: 'What components are in my portfolio?',
       withoutYAML: {
         steps: [
-          '🔍 Search for component files',
-          '📂 List directories',
-          '📄 Read multiple files',
-          '🤔 Analyze structure'
+          'Search for component files',
+          'List directories',
+          'Read multiple files',
+          'Analyze structure'
         ],
         time: '8-12 seconds',
         tokens: '~3,200',
@@ -25,9 +26,9 @@ const ConversationTurnFlow = ({ className = "" }) => {
       },
       withYAML: {
         steps: [
-          '📋 Load YAML context (instant)',
-          '✨ Already knows structure',
-          '💬 Respond immediately'
+          'Load YAML context (instant)',
+          'Already knows structure',
+          'Respond immediately'
         ],
         time: '1-2 seconds',
         tokens: '~1,400',
@@ -39,10 +40,10 @@ const ConversationTurnFlow = ({ className = "" }) => {
       userMessage: 'How does TicTacToe relate to other components?',
       withoutYAML: {
         steps: [
-          '🔍 Find TicTacToe.jsx again',
-          '📄 Re-read the file',
-          '🔗 Search for imports',
-          '📂 Check related files'
+          'Find TicTacToe.jsx again',
+          'Re-read the file',
+          'Search for imports',
+          'Check related files'
         ],
         time: '6-10 seconds',
         tokens: '~2,800',
@@ -50,9 +51,9 @@ const ConversationTurnFlow = ({ className = "" }) => {
       },
       withYAML: {
         steps: [
-          '📋 Reference existing context',
-          '🔗 Look up relationships map',
-          '💬 Provide answer'
+          'Reference yaml context',
+          'Look up relationships map',
+          'Provide answer'
         ],
         time: '1-2 seconds',
         tokens: '~800',
@@ -64,10 +65,10 @@ const ConversationTurnFlow = ({ className = "" }) => {
       userMessage: "Let's update TicTacToe to add a score tracker",
       withoutYAML: {
         steps: [
-          '🔍 Find file location again',
-          '📄 Read current implementation',
-          '✏️ Make modifications',
-          '💾 Write changes'
+          'Find file location again',
+          'Read current implementation',
+          'Make modifications',
+          'Write changes'
         ],
         time: '5-8 seconds',
         tokens: '~2,400',
@@ -75,10 +76,9 @@ const ConversationTurnFlow = ({ className = "" }) => {
       },
       withYAML: {
         steps: [
-          '📋 Know exact location',
-          '📄 Read specific file',
-          '✏️ Apply changes',
-          '🔄 Update context'
+          'Reference file location from yaml context',
+          'Retreive specific file',
+          'Apply changes'
         ],
         time: '2-3 seconds',
         tokens: '~1,200',
@@ -138,13 +138,16 @@ const ConversationTurnFlow = ({ className = "" }) => {
             {/* User Message - Chat Bubble Style */}
             <div className="mb-3">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl">👤</span>
+                <DynamicIcon
+                  name="User"
+                  size={24}
+                  style={{ color: 'var(--slide-text)' }}
+                  ariaLabel="User icon"
+                />
                 <span className="text-sm font-bold" style={{ color: 'var(--slide-text)' }}>
                   Tucker
                 </span>
-                <span className="text-xs opacity-60" style={{ color: 'var(--slide-text)' }}>
-                  • Turn {currentTurn + 1}
-                </span>
+      
               </div>
               <div
                 className="p-4 rounded-xl relative"
@@ -176,7 +179,7 @@ const ConversationTurnFlow = ({ className = "" }) => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-xs opacity-80" style={{ color: 'var(--slide-text)' }}>
-                    With YAML
+                    context-kit.yml
                   </span>
                   <span className="font-mono font-bold text-sm text-green-500">
                     {withTotal.toLocaleString()}
@@ -200,13 +203,19 @@ const ConversationTurnFlow = ({ className = "" }) => {
           {/* Without YAML */}
           <div className="flex flex-col min-h-0">
             <div className="mb-2 flex items-center gap-2 p-2 rounded-lg" style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
-              <span className="text-2xl">🤖</span>
+              <DynamicIcon
+                name="Bot"
+                size={24}
+                style={{ color: '#ef4444' }}
+                ariaLabel="AI Agent icon"
+              />
               <div className="flex flex-col">
                 <span className="text-sm font-bold text-red-500">
-                  AI AGENT
+                  
                 </span>
-                <span className="text-xs opacity-80" style={{ color: 'var(--slide-text)' }}>
-                  ❌ Without YAML
+                <span className="text-xs opacity-80 flex items-center gap-1" style={{ color: 'var(--slide-text)' }}>
+                  
+                  Without YAML
                 </span>
               </div>
             </div>
@@ -220,9 +229,7 @@ const ConversationTurnFlow = ({ className = "" }) => {
               <div className="space-y-3">
                 {/* Steps */}
                 <div>
-                  <div className="text-xs font-semibold mb-1.5 opacity-60" style={{ color: 'var(--slide-text)' }}>
-                    STEPS
-                  </div>
+                 
                   <div className="space-y-1.5">
                     {currentTurnData.withoutYAML.steps.map((step, idx) => (
                       <div
@@ -262,7 +269,8 @@ const ConversationTurnFlow = ({ className = "" }) => {
                 {/* Response Preview - Chat Bubble Style */}
                 <div className="pt-2 border-t" style={{ borderColor: 'var(--slide-card-border)' }}>
                   <div className="text-xs font-bold mb-2 text-red-500 flex items-center gap-1">
-                    💬 RESPONSE
+                    <DynamicIcon name="MessageCircle" size={24} style={{ color: '#ef4444' }} />
+                  
                   </div>
                   <div
                     className="p-3 rounded-lg text-sm"
@@ -283,13 +291,18 @@ const ConversationTurnFlow = ({ className = "" }) => {
           {/* With YAML */}
           <div className="flex flex-col min-h-0">
             <div className="mb-2 flex items-center gap-2 p-2 rounded-lg" style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)' }}>
-              <span className="text-2xl">🤖</span>
+              <DynamicIcon
+                name="Bot"
+                size={24}
+                style={{ color: '#10b981' }}
+                ariaLabel="AI Agent icon"
+              />
               <div className="flex flex-col">
                 <span className="text-sm font-bold text-green-500">
-                  AI AGENT
+                  
                 </span>
-                <span className="text-xs opacity-80" style={{ color: 'var(--slide-text)' }}>
-                  ✅ With YAML
+                <span className="text-xs opacity-80 flex items-center gap-1" style={{ color: 'var(--slide-text)' }}>
+                  context-kit.yml
                 </span>
               </div>
             </div>
@@ -303,9 +316,7 @@ const ConversationTurnFlow = ({ className = "" }) => {
               <div className="space-y-3">
                 {/* Steps */}
                 <div>
-                  <div className="text-xs font-semibold mb-1.5 opacity-60" style={{ color: 'var(--slide-text)' }}>
-                    STEPS
-                  </div>
+                  
                   <div className="space-y-1.5">
                     {currentTurnData.withYAML.steps.map((step, idx) => (
                       <div
@@ -345,7 +356,8 @@ const ConversationTurnFlow = ({ className = "" }) => {
                 {/* Response Preview - Chat Bubble Style */}
                 <div className="pt-2 border-t" style={{ borderColor: 'var(--slide-card-border)' }}>
                   <div className="text-xs font-bold mb-2 text-green-500 flex items-center gap-1">
-                    💬 RESPONSE
+                    <DynamicIcon name="MessageCircle" size={24} style={{ color: '#10b981' }} />
+                
                   </div>
                   <div
                     className="p-3 rounded-lg text-sm"

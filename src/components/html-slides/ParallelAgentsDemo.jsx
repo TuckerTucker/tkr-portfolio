@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import DynamicIcon from '../ui/DynamicIcon';
 
 /**
  * ParallelAgentsDemo - Interactive visualization of parallel agent execution
@@ -12,7 +13,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
     {
       id: 'component-analyzer',
       name: 'Component Analyzer',
-      icon: '🔍',
+      icon: 'Search',
       phase: 1,
       duration: 2000,
       status: 'pending',
@@ -23,7 +24,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
     {
       id: 'import-mapper',
       name: 'Import Mapper',
-      icon: '🔗',
+      icon: 'Link',
       phase: 2,
       duration: 3000,
       status: 'pending',
@@ -34,7 +35,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
     {
       id: 'hooks-analyzer',
       name: 'Hooks Analyzer',
-      icon: '🪝',
+      icon: 'Anchor',
       phase: 2,
       duration: 3000,
       status: 'pending',
@@ -45,7 +46,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
     {
       id: 'data-flow',
       name: 'Data Flow',
-      icon: '📊',
+      icon: 'BarChart3',
       phase: 3,
       duration: 2000,
       status: 'pending',
@@ -164,7 +165,12 @@ const ParallelAgentsDemo = ({ className = "" }) => {
               >
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">{agent.icon}</span>
+                    <DynamicIcon
+                      name={agent.icon}
+                      size={20}
+                      style={{ color: 'var(--slide-text)' }}
+                      ariaLabel={`${agent.name} icon`}
+                    />
                     <div>
                       <div className="font-semibold text-sm" style={{ color: 'var(--slide-text)' }}>
                         {agent.name}
@@ -174,10 +180,16 @@ const ParallelAgentsDemo = ({ className = "" }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-xs font-medium" style={{ color: 'var(--slide-text)' }}>
-                    {agent.status === 'pending' && '⏸️'}
-                    {agent.status === 'running' && '⏳'}
-                    {agent.status === 'complete' && '✅'}
+                  <div className="flex items-center" style={{ color: 'var(--slide-text)' }}>
+                    {agent.status === 'pending' && (
+                      <DynamicIcon name="Pause" size={16} style={{ color: 'var(--slide-text)' }} />
+                    )}
+                    {agent.status === 'running' && (
+                      <DynamicIcon name="Loader2" size={16} className="animate-spin" style={{ color: 'var(--slide-text)' }} />
+                    )}
+                    {agent.status === 'complete' && (
+                      <DynamicIcon name="CheckCircle2" size={16} style={{ color: '#10b981' }} />
+                    )}
                   </div>
                 </div>
 
@@ -215,7 +227,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
                 color: 'var(--slide-text)'
               }}
             >
-              {isRunning ? '⏳ Running...' : '▶️ Start Analysis'}
+              {isRunning ? 'Running...' : 'Start Analysis'}
             </button>
             <button
               onClick={handleReset}
@@ -226,7 +238,7 @@ const ParallelAgentsDemo = ({ className = "" }) => {
                 color: 'var(--slide-text)'
               }}
             >
-              🔄 Reset
+              Reset
             </button>
           </div>
         </div>
@@ -241,8 +253,9 @@ const ParallelAgentsDemo = ({ className = "" }) => {
               border: '1px solid var(--slide-card-border)'
             }}
           >
-            <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-              ⏱️ Time Comparison
+            <h3 className="font-semibold text-base mb-3 flex items-center gap-2" style={{ color: 'var(--slide-title)' }}>
+              <DynamicIcon name="Clock" size={16} style={{ color: 'var(--slide-title)' }} />
+              Time Comparison
             </h3>
             <div className="space-y-3">
               <div>
@@ -280,8 +293,9 @@ const ParallelAgentsDemo = ({ className = "" }) => {
               border: '1px solid var(--slide-card-border)'
             }}
           >
-            <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-              📊 Execution Waves
+            <h3 className="font-semibold text-base mb-3 flex items-center gap-2" style={{ color: 'var(--slide-title)' }}>
+              <DynamicIcon name="BarChart3" size={16} style={{ color: 'var(--slide-title)' }} />
+              Execution Waves
             </h3>
             <div className="space-y-2">
               {[1, 2, 3].map((phase) => {
@@ -309,9 +323,14 @@ const ParallelAgentsDemo = ({ className = "" }) => {
                         </span>
                         <div className="flex gap-1">
                           {phaseAgents.map(agent => (
-                            <span key={agent.id} className="text-sm">
-                              {agent.icon}
-                            </span>
+                            <div key={agent.id}>
+                              <DynamicIcon
+                                name={agent.icon}
+                                size={14}
+                                style={{ color: 'var(--slide-text)' }}
+                                ariaLabel={`${agent.name} icon`}
+                              />
+                            </div>
                           ))}
                         </div>
                       </div>

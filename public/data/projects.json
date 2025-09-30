@@ -75,7 +75,7 @@
           "items": [
             {
               "id": "pain",
-              "icon": "😫",
+              "icon": "Frown",
               "label": "Dual Interface. One Solution.",
               "content": "The core insight: AI agents and humans have fundamentally different interaction preferences—humans prefer visual drag-and-drop experiences while AI agents work best with structured file operations.",
               "image": "images/taskboard/Screenshot.png",
@@ -84,7 +84,7 @@
             },
             {
               "id": "insight",
-              "icon": "💡",
+              "icon": "Lightbulb",
               "label": "For People",
               "content": "Visual drag-and-drop kanban interface with real-time updates. Cards move smoothly between columns with markdown support for rich task descriptions, subtasks, tags, and dependencies",
               "image": "images/example-310x310.png",
@@ -93,7 +93,7 @@
             },
             {
               "id": "goal",
-              "icon": "🎯",
+              "icon": "Target",
               "label": "For AI Agents",
               "content": "Direct access to JSON structure through file operations. Model Context Protocol (MCP) integration provides automatic context. Card-first architecture enables single-attribute updates for efficient task reorganization.",
               "image": "images/example-310x310.png",
@@ -112,28 +112,28 @@
           "items": [
             {
               "id": "spec",
-              "icon": "📋",
+              "icon": "ClipboardList",
               "label": "Spec Doc",
               "filePath": "tic-tac-toe-spec.md",
               "filename": "Technical Specification"
             },
             {
               "id": "plan",
-              "icon": "📝",
+              "icon": "FileEdit",
               "label": "Create a Plan",
               "filePath": "tic-tac-toe-implementation.md",
               "filename": "Implementation Plan"
             },
             {
               "id": "prompt",
-              "icon": "🤖",
+              "icon": "Bot",
               "label": "Taskboard Prompt",
               "filePath": "taskboard-prompt.md",
               "filename": "Taskboard Generation Prompt"
             },
             {
               "id": "json",
-              "icon": "⚙️",
+              "icon": "Settings",
               "label": "The final JSON",
               "filePath": "taskboard-tic-tac-toe.json",
               "filename": "Generated Kanban Board"
@@ -292,7 +292,7 @@
           "items": [
             {
               "id": "agx-concept",
-              "icon": "🧠",
+              "icon": "Brain",
               "label": "AGx Concept",
               "content": "Agent Experience (AGx) Design treats AI agents as primary users with their own needs, preferences, and cognitive patterns. Just as UX design optimizes for human interaction patterns, AGx design creates information architectures and interfaces specifically tailored for how AI agents process, understand, and interact with systems.",
               "image": "images/example-310x310.png",
@@ -301,7 +301,7 @@
             },
             {
               "id": "user-research",
-              "icon": "🔬",
+              "icon": "Microscope",
               "label": "AI User Research",
               "content": "We conducted user research directly with AI agents, iterating on YAML architectures based on their feedback about information density, semantic clarity, and processing efficiency. This human-AI collaborative design process revealed insights about how agents consume context differently than humans.",
               "image": "images/example-310x310.png",
@@ -310,7 +310,7 @@
             },
             {
               "id": "system-impact",
-              "icon": "⚡",
+              "icon": "Zap",
               "label": "System Impact",
               "content": "The result is a 70% reduction in token usage while maintaining information density, persistent context that eliminates repetitive explanations, and conversational systems that make every human-AI interaction more effective and productive.",
               "image": "images/example-310x310.png",

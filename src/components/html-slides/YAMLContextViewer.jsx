@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DynamicIcon from '../ui/DynamicIcon';
 
 /**
  * YAMLContextViewer - Interactive demonstration of YAML context system
@@ -10,7 +11,7 @@ const YAMLContextViewer = ({ className = "" }) => {
     {
       id: 'source',
       name: 'Full Component Source',
-      icon: '📄',
+      icon: 'FileText',
       enabled: false,
       tokens: 45000,
       description: 'Complete source code (exceeds context!)',
@@ -22,7 +23,7 @@ const YAMLContextViewer = ({ className = "" }) => {
     {
       id: 'structure',
       name: 'Project Structure',
-      icon: '📁',
+      icon: 'Folder',
       enabled: true,
       tokens: 500,
       description: '33 components organized by category',
@@ -35,7 +36,7 @@ const YAMLContextViewer = ({ className = "" }) => {
     {
       id: 'relationships',
       name: 'Component Relationships',
-      icon: '🔗',
+      icon: 'Link',
       enabled: true,
       tokens: 400,
       description: 'Import chains and dependencies',
@@ -48,7 +49,7 @@ const YAMLContextViewer = ({ className = "" }) => {
     {
       id: 'design',
       name: 'Design System',
-      icon: '🎨',
+      icon: 'Palette',
       enabled: true,
       tokens: 300,
       description: 'Colors from projects.json brands',
@@ -61,7 +62,7 @@ const YAMLContextViewer = ({ className = "" }) => {
     {
       id: 'architecture',
       name: 'Data Architecture',
-      icon: '⚙️',
+      icon: 'Settings',
       enabled: true,
       tokens: 200,
       description: 'How projects.json drives slides',
@@ -114,7 +115,7 @@ const YAMLContextViewer = ({ className = "" }) => {
                 color: 'var(--slide-text)'
               }}
             >
-              ✅ Optimal
+              Optimal
             </button>
             <button
               onClick={() => handleToggleAll(true)}
@@ -125,7 +126,7 @@ const YAMLContextViewer = ({ className = "" }) => {
                 color: 'var(--slide-text)'
               }}
             >
-              ⚠️ Include All
+              Include All
             </button>
           </div>
 
@@ -151,7 +152,12 @@ const YAMLContextViewer = ({ className = "" }) => {
                       className="w-4 h-4 rounded"
                       onClick={(e) => e.stopPropagation()}
                     />
-                    <span className="text-xl">{section.icon}</span>
+                    <DynamicIcon
+                      name={section.icon}
+                      size={20}
+                      style={{ color: 'var(--slide-text)' }}
+                      ariaLabel={`${section.name} icon`}
+                    />
                     <div>
                       <div className="font-semibold text-sm" style={{ color: 'var(--slide-text)' }}>
                         {section.name}
@@ -196,8 +202,9 @@ const YAMLContextViewer = ({ className = "" }) => {
               border: '1px solid var(--slide-card-border)'
             }}
           >
-            <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-              📊 Context Window Usage
+            <h3 className="font-semibold text-base mb-3 flex items-center gap-2" style={{ color: 'var(--slide-title)' }}>
+              <DynamicIcon name="BarChart3" size={16} style={{ color: 'var(--slide-title)' }} />
+              Context Window Usage
             </h3>
             <div className="mb-3">
               <div className="flex justify-between mb-1">
@@ -232,7 +239,7 @@ const YAMLContextViewer = ({ className = "" }) => {
             {percentageUsed > 50 && (
               <div className="p-2 rounded-lg bg-red-500 bg-opacity-10 border border-red-500 border-opacity-30">
                 <div className="text-xs font-medium text-red-500">
-                  ⚠️ Context window overload!
+                  Context window overload!
                 </div>
                 <div className="text-xs mt-1 opacity-80" style={{ color: 'var(--slide-text)' }}>
                   Disable "Full Component Source"
@@ -243,7 +250,7 @@ const YAMLContextViewer = ({ className = "" }) => {
             {percentageUsed <= 50 && (
               <div className="p-2 rounded-lg bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30">
                 <div className="text-xs font-medium text-green-500">
-                  ✅ Optimal context usage
+                  Optimal context usage
                 </div>
                 <div className="text-xs mt-1 opacity-80" style={{ color: 'var(--slide-text)' }}>
                   Efficient YAML compression
@@ -260,8 +267,9 @@ const YAMLContextViewer = ({ className = "" }) => {
               border: '1px solid var(--slide-card-border)'
             }}
           >
-            <h3 className="font-semibold text-base mb-3" style={{ color: 'var(--slide-title)' }}>
-              💾 Compression Benefits
+            <h3 className="font-semibold text-base mb-3 flex items-center gap-2" style={{ color: 'var(--slide-title)' }}>
+              <DynamicIcon name="Save" size={16} style={{ color: 'var(--slide-title)' }} />
+              Compression Benefits
             </h3>
             <div className="space-y-3">
               <div>
@@ -307,15 +315,15 @@ const YAMLContextViewer = ({ className = "" }) => {
 
               <div className="pt-2 space-y-2 text-xs opacity-80" style={{ color: 'var(--slide-text)' }}>
                 <div className="flex items-start gap-2">
-                  <span>✓</span>
+                  <DynamicIcon name="Check" size={12} style={{ color: '#10b981' }} />
                   <span>Loaded in every conversation</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span>✓</span>
+                  <DynamicIcon name="Check" size={12} style={{ color: '#10b981' }} />
                   <span>No repetitive exploration</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span>✓</span>
+                  <DynamicIcon name="Check" size={12} style={{ color: '#10b981' }} />
                   <span>Immediate comprehension</span>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Download } from 'lucide-react';
 import Prism from 'prismjs';
 import { ZoomableImage } from '../common/ImageLightbox';
+import DynamicIcon from '../ui/DynamicIcon';
 
 // Import Prism languages
 import 'prismjs/components/prism-json';
@@ -147,7 +148,7 @@ const InteractiveCode = ({
             >
               {/* Icon on Left */}
               {item.icon && (
-                <div className="text-2xl mr-3">
+                <div className="mr-3">
                   {typeof item.icon === 'string' && item.icon.startsWith('/') ? (
                     <img
                       src={item.icon}
@@ -155,7 +156,12 @@ const InteractiveCode = ({
                       className="w-6 h-6 object-contain"
                     />
                   ) : (
-                    <span>{item.icon}</span>
+                    <DynamicIcon
+                      name={item.icon}
+                      size={24}
+                      style={{ color: 'var(--slide-text)' }}
+                      ariaLabel={`${item.label} icon`}
+                    />
                   )}
                 </div>
               )}
