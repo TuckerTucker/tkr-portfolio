@@ -1,1513 +1,284 @@
 [
-  {
-    "id": "tucker",
-    "title": "Tucker",
-    "color": "#613CB0",
-    "subtitle": "About the designer",
-    "logoUrl": "Tucker.svg",
-    "description": "I'm a UX Designer & Developer who crafts user-centered digital experiences. With a background in songwriting, podcasting, and creative community building, I bring a unique perspective to design that combines analytical thinking with creative storytelling.",
-    "bullets": [
-      "UX Designer with 8+ years experience",
-      "Full-stack developer (React, Node.js, Python)",
-      "Creator & host of The Spark & The Art podcast",
-      "Singer-songwriter and creative community builder"
-    ],
-    "slides": [
-      {
-        "type": "video",
-        "src": "slides/tucker/designing_stuff.mp4",
-        "alt": "Born to the World album showcase"
+{
+  "id": "context-kit-agx",
+  "title": "Context Kit",
+  "subtitle": "Agent Experience (AGx) Design",
+  "color": "#8B5CF6",
+  "description": "Pioneering work in Agent Experience Design, treating AI agents as primary users with their own needs and interaction patterns. Demonstrates how UX principles apply to designing for AI collaboration through semantic YAML architectures, service-oriented design, and persistent context systems.",
+  "bullets": [
+    "AGx Design: UX principles applied to AI agents as primary users",
+    "75% token reduction through semantic YAML optimization (1000→300 lines)",
+    "User research conducted WITH AI agents through iterative feedback",
+    "Service-oriented architecture with parallel agent orchestration",
+    "Persistent context via MCP - zero re-exploration overhead"
+  ],
+  "slides": [
+    {
+      "type": "html",
+      "component": "ProjectIntro",
+      "props": {
+        "title": "Context Kit",
+        "subtitle": "Agent Experience (AGx) Design",
+        "description": "AI agents were re-exploring my project structure every conversation, wasting 26+ seconds scanning files, reading docs, and mapping relationships that hadn't changed. I realized agents have fundamentally different information needs than humans—they can consume thousands of lines instantly but waste time navigating file systems. AGx Design treats AI agents as primary users with their own interaction patterns and needs.",
+        "bullets": [
+          "Problem: Agents re-explored project structure every conversation (26+ seconds wasted)",
+          "Insight: AI agents process information differently—instant consumption, inefficient navigation",
+          "Solution: AGx Design applies UX principles to AI agent experience",
+          "Result: 75% token reduction, 90% time reduction through user research WITH agents"
+        ],
+        "image": "context-kit-dashboard.png",
+        "imageAlt": "Context Kit dashboard showing service health and knowledge graph"
       },
-      {
-        "type": "html",
-        "component": "BornToTheWorld",
-        "props": {},
-        "alt": "Born to the World album showcase"
-      },
-      {
-        "type": "html",
-        "component": "TheSparkAndTheArt",
-        "props": {},
-        "alt": "The Spark & The Art podcast showcase"
-      },
-      {
-        "type": "html",
-        "component": "TheOffHoursCreative",
-        "props": {},
-        "alt": "The Off-Hours Creative community showcase"
-      }
-    ]
-  },
-  {
-    "id": "agentic_ai_kanban",
-    "title": "Taskboard ",
-    "color": "#FF8800",
-    "subtitle": "A Kanban for Human-AI collaboration",
-    "logoUrl": "taskboard.svg",
-    "description": "TaskBoardAI is a lightweight, file-based kanban board system designed for AI agents and human-in-the-loop collaboration. It bridges the gap between AI assistants and human project management, allowing both to maintain and manipulate shared project boards with synchronized updates.",
-    "bullets": [
-      "MCP Server integration for AI assistant compatibility",
-      "JSON-based architecture for easy AI parsing",
-      "Rich markdown with subtasks and dependencies",
-      "Real-time collaboration with webhooks"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "ProjectIntro",
-        "props": {
-          "title": "TaskBoardAI: Designing for Human-AI Collaboration",
-          "description": "TaskBoardAI was born out of a frustration using markdown to-do lists becoming challenging to maintain. I wanted a way for both AI agents and humans to manage the same tasks effectively. This lightweight kanban demonstrates how thoughtful UX design can create seamless collaboration by giving people and AI an interface that works best for them while sharing the same underlying data.",
-          "image": "images/taskboard/Screenshot.png",
-          "bulletPoints": [
-            "A lightweight kanban board built to solve real workflow challenges",
-            "Utilizes a dual interface design. Visual for people and structured data for AI agents"
-          ],
-          "colorScheme": "kanban"
-        },
-        "alt": "Introduction to TaskBoardAI project and human-AI collaboration approach"
-      },
-      {
-        "type": "html",
-        "component": "InteractiveCards",
-        "props": {
-          "title": "The Problem To Be Solved",
-          "items": [
-            {
-              "id": "pain",
-              "icon": "Frown",
-              "label": "Dual Interface. One Solution.",
-              "content": "The core insight: AI agents and humans have fundamentally different interaction preferences—humans prefer visual drag-and-drop experiences while AI agents work best with structured file operations.",
-              "image": "images/taskboard/Screenshot.png",
-              "imagePosition": "left",
-              "imageAlt": "Frustrated developer looking at complex markdown files"
-            },
-            {
-              "id": "insight",
-              "icon": "Lightbulb",
-              "label": "For People",
-              "content": "Visual drag-and-drop kanban interface with real-time updates. Cards move smoothly between columns with markdown support for rich task descriptions, subtasks, tags, and dependencies",
-              "image": "images/example-310x310.png",
-              "imagePosition": "right",
-              "imageAlt": "Split screen showing JSON data and kanban board UI"
-            },
-            {
-              "id": "goal",
-              "icon": "Target",
-              "label": "For AI Agents",
-              "content": "Direct access to JSON structure through file operations. Model Context Protocol (MCP) integration provides automatic context. Card-first architecture enables single-attribute updates for efficient task reorganization.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "left",
-              "imageAlt": "Human and AI working together on the same kanban board"
-            }
-          ]
-        },
-        "alt": "Problem identification and solution approach with interactive exploration"
-      },
-      {
-        "type": "html",
-        "component": "InteractiveCode",
-        "props": {
-          "title": "Let's Walk through how to get a solid kanban board.",
-          "items": [
-            {
-              "id": "spec",
-              "icon": "ClipboardList",
-              "label": "Spec Doc",
-              "filePath": "tic-tac-toe-spec.md",
-              "filename": "Technical Specification"
-            },
-            {
-              "id": "plan",
-              "icon": "FileEdit",
-              "label": "Create a Plan",
-              "filePath": "tic-tac-toe-implementation.md",
-              "filename": "Implementation Plan"
-            },
-            {
-              "id": "prompt",
-              "icon": "Bot",
-              "label": "Taskboard Prompt",
-              "filePath": "taskboard-prompt.md",
-              "filename": "Taskboard Generation Prompt"
-            },
-            {
-              "id": "json",
-              "icon": "Settings",
-              "label": "The final JSON",
-              "filePath": "taskboard-tic-tac-toe.json",
-              "filename": "Generated Kanban Board"
-            }
-          ]
-        },
-        "alt": "Interactive workflow showing spec to kanban JSON generation process"
-      },
-      {
-        "type": "html",
-        "component": "TicTacToe",
-        "props": {},
-        "alt": "Interactive Tic-Tac-Toe game"
-      },
-      {
-        "type": "html",
-        "component": "UserFlow",
-        "props": {
-          "title": "Card-First Architecture for Real-Time Collaboration",
-          "description": "How single attribute changes enable responsive interactions",
-          "flowSteps": [
-            {
-              "label": "Card Created",
-              "title": "New Task Card",
-              "description": "Card object created with default column assignment",
-              "userActions": ["User adds task title", "System assigns unique ID"],
-              "systemResponse": "Card appears in 'To Do' column"
-            },
-            {
-              "label": "Card Moved",
-              "title": "Column Change",
-              "description": "Single attribute update moves card between columns",
-              "userActions": ["Human drags card", "AI agent updates column property"],
-              "systemResponse": "Card instantly appears in new column",
-              "decisionPoints": ["Validation checks", "State consistency"]
-            },
-            {
-              "label": "Multi-User",
-              "title": "Collaboration",
-              "description": "Both humans and AI agents see changes immediately",
-              "userActions": ["Human sees visual update", "AI reads new JSON state"],
-              "systemResponse": "Synchronized state across interfaces"
-            }
-          ]
-        },
-        "alt": "User flow showing card movement and real-time collaboration"
-      },
-      {
-        "type": "html",
-        "component": "UsabilityMetrics",
-        "props": {
-          "title": "Validation Through Real-World Use",
-          "participants": 1,
-          "metrics": [
-            {
-              "name": "Daily Usage",
-              "value": "3+ months",
-              "percentage": 100,
-              "description": "Used tool daily while creating other projects"
-            },
-            {
-              "name": "Error Recovery",
-              "value": "Real-time",
-              "percentage": 95,
-              "description": "Discussed errors with AI agents for solutions"
-            },
-            {
-              "name": "Workflow Integration",
-              "value": "Seamless",
-              "percentage": 90,
-              "description": "Became part of natural development process"
-            }
-          ],
-          "tasks": [
-            {
-              "name": "Task Creation",
-              "description": "Adding new tasks via drag-and-drop or AI",
-              "successRate": 100,
-              "avgTime": "< 30 sec"
-            },
-            {
-              "name": "Status Updates",
-              "description": "Moving cards between columns",
-              "successRate": 100,
-              "avgTime": "< 5 sec"
-            },
-            {
-              "name": "AI Integration",
-              "description": "AI agents updating board structure",
-              "successRate": 95,
-              "avgTime": "< 10 sec"
-            }
-          ],
-          "insights": [
-            {
-              "type": "positive",
-              "title": "Natural Collaboration Pattern",
-              "description": "The dual interface approach created intuitive human-AI collaboration",
-              "impact": "high"
-            },
-            {
-              "type": "positive",
-              "title": "Real-Time Feedback Loop",
-              "description": "Using the tool while building other projects provided continuous validation",
-              "impact": "high"
-            },
-            {
-              "type": "info",
-              "title": "Evolution of Understanding",
-              "description": "Project evolved from markdown frustration to deeper exploration of AI-human task management",
-              "impact": "medium"
-            }
-          ]
-        },
-        "alt": "Real-world usage metrics and insights from daily use"
-      }
-    ]
-  },
-  {
-    "id": "tkr_context_kit",
-    "title": "tkr-context-kit",
-    "color": "#8B5CF6",
-    "subtitle": "Agent Experience (AGx) Design for AI Collaboration",
-    "logoUrl": "Tucker.svg",
-    "description": "A comprehensive toolkit pioneering Agent Experience (AGx) Design - treating AI agents as primary users with their own needs, preferences, and interaction patterns. Features semantic YAML architectures, service-oriented design, and persistent context systems for enhanced human-AI collaboration.",
-    "bullets": [
-      "Agent Experience (AGx) design methodology with AI as primary user",
-      "70% token reduction through semantic anchor YAML architecture",
-      "11 specialized AI agents for context-aware development",
-      "Service-oriented architecture with React dashboard and knowledge graph",
-      "MCP integration for persistent AI memory across conversations"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "ProjectIntro",
-        "props": {
-          "title": "tkr-context-kit: Pioneering Agent Experience (AGx) Design",
-          "description": "tkr-context-kit represents pioneering work in Agent Experience (AGx) Design - essentially UX design for AI agents. By conducting user research with AI agents themselves and designing information architecture for their consumption patterns, this project demonstrates how we can create systems that optimize human-AI collaboration.\n\nThe breakthrough insight was treating AI agents as primary users with their own needs, preferences, and cognitive patterns. This led to designing semantic architectures, progressive context disclosure, and conversational memory systems that make every interaction more effective.",
-          "bulletPoints": [
-            "Agent Experience (AGx) design with AI agents as primary users",
-            "User research conducted directly with AI agents for iterative feedback",
-            "Semantic anchor YAML system reducing token count by 70% while maintaining information density",
-            "Service-oriented architecture enabling modular AI collaboration tools",
-            "Conversational systems design for persistent context and memory across interactions"
-          ],
-          "colorScheme": "contextkit"
-        },
-        "alt": "Introduction to tkr-context-kit and Agent Experience design approach"
-      },
-      {
-        "type": "html",
-        "component": "InteractiveCards",
-        "props": {
-          "title": "Agent Experience (AGx) Design Philosophy",
-          "items": [
-            {
-              "id": "agx-concept",
-              "icon": "Brain",
-              "label": "AGx Concept",
-              "content": "Agent Experience (AGx) Design treats AI agents as primary users with their own needs, preferences, and cognitive patterns. Just as UX design optimizes for human interaction patterns, AGx design creates information architectures and interfaces specifically tailored for how AI agents process, understand, and interact with systems.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "left",
-              "imageAlt": "AI agent interacting with optimized data structures"
-            },
-            {
-              "id": "user-research",
-              "icon": "Microscope",
-              "label": "AI User Research",
-              "content": "We conducted user research directly with AI agents, iterating on YAML architectures based on their feedback about information density, semantic clarity, and processing efficiency. This human-AI collaborative design process revealed insights about how agents consume context differently than humans.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "right",
-              "imageAlt": "Collaborative design session between human and AI"
-            },
-            {
-              "id": "system-impact",
-              "icon": "Zap",
-              "label": "System Impact",
-              "content": "The result is a 70% reduction in token usage while maintaining information density, persistent context that eliminates repetitive explanations, and conversational systems that make every human-AI interaction more effective and productive.",
-              "image": "images/example-310x310.png",
-              "imagePosition": "left",
-              "imageAlt": "Performance metrics showing efficiency improvements"
-            }
-          ]
-        },
-        "alt": "Agent Experience design philosophy and approach"
-      },
-      {
-        "type": "html",
-        "component": "ParallelAgentsDemo",
-        "props": {},
-        "alt": "Interactive demonstration of parallel agent execution analyzing tkr-portfolio"
-      },
-      {
-        "type": "html",
-        "component": "YAMLContextViewer",
-        "props": {},
-        "alt": "Interactive YAML context system with token efficiency comparison"
-      },
-      {
-        "type": "html",
-        "component": "ConversationTurnFlow",
-        "props": {},
-        "alt": "Visualization of context persistence across conversation turns"
-      },
-      {
-        "type": "html",
-        "component": "PortfolioMetrics",
-        "props": {},
-        "alt": "Real metrics from analyzing tkr-portfolio with parallel agents"
-      }
-    ]
-  },
-  {
-    "id": "tkr_portfolio",
-    "title": "TKR Portfolio",
-    "color": "#6366f1",
-    "subtitle": "Meta-showcase of this very portfolio",
-    "logoUrl": "Tucker.svg",
-    "description": "A meta-presentation showcasing the design and development process behind the portfolio website you are looking at.",
-    "bullets": [
-      "React 19 + Vite modern development stack",
-      "Comprehensive design system with Tailwind CSS",
-      "Storybook component library integration",
-      "GitHub Pages deployment with dual-site strategy",
-      "AI-friendly documentation and project structure"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "PortfolioShowcase",
-        "props": {},
-        "alt": "Portfolio website showcase with interface screenshot"
-      },
-      {
-        "type": "html",
-        "component": "TechStack",
-    "props": {
-      "title": "Portfolio Tech Stack",
-      "technologies": [
-        {
-          "name": "React 19",
-          "description": "Latest React with concurrent features",
-          "icon": "/images/tech_stack/React-icon.svg"
-        },
-        {
-          "name": "Vite",
-          "description": "Fast build tool and dev server",
-          "icon": "/images/tech_stack/Vitejs-logo.svg"
-        },
-        {
-          "name": "Tailwind CSS",
-          "description": "Utility-first CSS framework",
-          "icon": "/images/tech_stack/Tailwind_CSS_Logo.svg"
-        },
-        {
-          "name": "Storybook",
-          "description": "Component development environment",
-          "icon": "/images/tech_stack/icon-storybook-default.png"
-        },
-        {
-          "name": "Radix UI",
-          "description": "Accessible component primitives",
-          "icon": {
-            "light": "/images/tech_stack/radix-ui-light.svg",
-            "dark": "/images/tech_stack/radix-ui-dark.svg"
+      "alt": "Introduction to Context Kit and Agent Experience Design"
+    },
+    {
+      "type": "html",
+      "component": "InteractiveCards",
+      "props": {
+        "title": "What is AGx Design?",
+        "subtitle": "Applying UX principles to AI agent experience",
+        "cards": [
+          {
+            "icon": "Brain",
+            "label": "AGx Concept",
+            "title": "What is AGx?",
+            "content": "AGx (Agent Experience) Design applies UX principles to AI agent experience. Just as UX designers conduct user research with humans to understand mental models, I conduct user research WITH AI agents to understand what context formats work best for them.",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Search",
+            "label": "Research Method",
+            "title": "How do you research agents?",
+            "content": "I ask agents directly: 'What context helps you understand this better?' 'What's missing?' 'What's redundant?' Through iterative conversations, agents told me YAML semantic anchors reduce repetition, hierarchical structure mirrors their processing, and progressive disclosure lets them scan efficiently.",
+            "image": null,
+            "position": "right"
+          },
+          {
+            "icon": "Target",
+            "label": "Core Principles",
+            "title": "AGx Design Principles",
+            "content": "1. Understand agent cognition - how do AI agents process information? 2. Design for token efficiency - eliminate repetitive exploration. 3. Enable progressive disclosure - agents scan overview, drill down as needed. 4. Maintain human accessibility - humans must read and maintain the system.",
+            "image": null,
+            "position": "left"
           }
-        },
-        {
-          "name": "GitHub Pages",
-          "description": "Static site hosting",
-          "icon": {
-            "light": "/images/tech_stack/github-mark.svg",
-            "dark": "/images/tech_stack/github-mark-white.svg"
-          }
-        }
-      ]
-        },
-        "alt": "Technology stack powering the TKR Portfolio"
+        ]
       },
-      {
-        "type": "html",
-        "component": "DesignSystem",
-    "props": {
-      "title": "Portfolio Design System",
-      "colors": [
-        {
-          "name": "Primary Colors",
-          "variants": [
-            {
-              "name": "Primary",
-              "hex": "#6366f1"
-            },
-            {
-              "name": "Primary Light",
-              "hex": "#818cf8"
-            },
-            {
-              "name": "Primary Dark",
-              "hex": "#4f46e5"
-            }
-          ]
-        },
-        {
-          "name": "Secondary Colors",
-          "variants": [
-            {
-              "name": "Secondary",
-              "hex": "#10b981"
-            },
-            {
-              "name": "Accent",
-              "hex": "#8b5cf6"
-            },
-            {
-              "name": "Neutral",
-              "hex": "#64748b"
-            }
-          ]
-        },
-        {
-          "name": "Brand Colors",
-          "variants": [
-            {
-              "name": "Tucker",
-              "hex": "#613CB0"
-            },
-            {
-              "name": "TKR Portfolio",
-              "hex": "#6366f1"
-            },
-            {
-              "name": "Agentic AI Kanban",
-              "hex": "#FF8800"
-            },
-            {
-              "name": "Nutrien",
-              "hex": "#3b5f18"
-            },
-            {
-              "name": "Worldplay",
-              "hex": "#00a4e4"
-            }
-          ]
-        }
-      ],
-      "typography": [
-        {
-          "name": "Display & Headings",
-          "variants": [
-            {
-              "name": "Display",
-              "specs": "48px/1.1 graphite-std",
-              "fontFamily": "graphite-std",
-              "fontSize": "3rem",
-              "fontWeight": "700",
-              "lineHeight": "1.1",
-              "sample": "Sean Tucker Harley"
-            },
-            {
-              "name": "H1 Heading",
-              "specs": "32px/1.2 graphite-std",
-              "fontFamily": "graphite-std",
-              "fontSize": "2rem",
-              "fontWeight": "600",
-              "lineHeight": "1.2",
-              "sample": "UX Design Portfolio"
-            },
-            {
-              "name": "H2 Section",
-              "specs": "24px/1.3 graphite-std",
-              "fontFamily": "graphite-std",
-              "fontSize": "1.5rem",
-              "fontWeight": "500",
-              "lineHeight": "1.3",
-              "sample": "Featured Projects"
-            }
-          ]
-        },
-        {
-          "name": "Body & UI Text",
-          "variants": [
-            {
-              "name": "Body Regular",
-              "specs": "16px/1.6 ellograph-cf",
-              "fontFamily": "ellograph-cf",
-              "fontSize": "1rem",
-              "fontWeight": "400",
-              "lineHeight": "1.6",
-              "sample": "Crafting user-centered digital experiences with modern web technologies."
-            },
-            {
-              "name": "Body Small",
-              "specs": "14px/1.5 ellograph-cf",
-              "fontFamily": "ellograph-cf",
-              "fontSize": "0.875rem",
-              "fontWeight": "400",
-              "lineHeight": "1.5",
-              "sample": "React components built with accessibility and performance in mind."
-            },
-            {
-              "name": "UI Labels",
-              "specs": "12px/1.4 system-ui",
-              "fontFamily": "system-ui",
-              "fontSize": "0.75rem",
-              "fontWeight": "500",
-              "lineHeight": "1.4",
-              "sample": "VIEW PROJECT • DARK MODE • STORYBOOK"
-            }
-          ]
-        }
-      ],
-      "components": [
-        {
-          "name": "View Component Library",
-          "description": "Explore all components in Storybook",
-          "link": "/storybook"
-        },
-        {
-          "name": "Theme Components",
-          "description": "Colors, Typography, and Design Tokens",
-          "link": "/storybook/?path=/story/theme-colors--default"
-        },
-        {
-          "name": "Navigation Components",
-          "description": "Project Picker and Header",
-          "link": "/storybook/?path=/story/navigation-customprojectpicker--default"
-        },
-        {
-          "name": "Content Components",
-          "description": "Image Carousel and HTML Slides",
-          "link": "/storybook/?path=/story/content-imagecarousel--default"
-        }
-      ]
-        },
-        "alt": "Design system tokens and components"
-      }
-    ]
-  },
-  {
-    "id": "nutrien",
-    "title": "Nutrien",
-    "color": "#3b5f18",
-    "subtitle": "Safety Portal",
-    "logoUrl": "nutrien.svg",
-    "description": "Nutrien, the world's largest provider of crop inputs and services, needed a solution to streamline safety document management across 1300 branch locations. The Operating Standards feature simplifies how staff download required global documents and upload completed forms while maintaining compliance.",
-    "bullets": [
-      "Designed an intuitive interface connecting global standards with local branch files",
-      "Created responsive components that maintain consistent sizing across all devices",
-      "Used user testing insights to identify and address critical compliance concerns",
-      "Improved document organization to prevent errors in safety audits"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "NutrienShowcase",
-        "props": {},
-        "alt": "Nutrien Safety Portal multi-file uploader showcase"
-      }
-    ]
-  },
-  {
-    "id": "worldplay",
-    "title": "Worldplay",
-    "color": "#00a4e4",
-    "subtitle": "Analytics Dashboard — Discovery Process",
-    "logoUrl": "worldplay.svg",
-    "description": "Worldplay needed a comprehensive analytics dashboard to help the internal customer support teams understand the live stream events in real-time. The dashboard provides real-time insights into viewer behavior, content performance, and revenue metrics.",
-    "bullets": [
-      "Real-time analytics visualization",
-      "Custom report builder",
-      "Audience segmentation tools"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "WorldplayShowcase",
-        "props": {},
-        "alt": "Worldplay analytics dashboard showcase"
-      }
-    ]
-  },
-  {
-    "id": "context_kit_v2",
-    "title": "Context-Kit v2",
-    "color": "#8B5CF6",
-    "subtitle": "AI-Powered Development Toolkit",
-    "logoUrl": "Tucker.svg",
-    "description": "Context-Kit v2 represents a paradigm shift in AI-human collaboration workflows. This comprehensive toolkit demonstrates AGx Design principles through multi-service architecture, intelligent logging, and seamless MCP integration for Claude Code enhancement.",
-    "bullets": [
-      "AGx Design methodology for AI-human workflow optimization",
-      "Multi-service TypeScript architecture with workspace coordination",
-      "Comprehensive logging ecosystem across browser, Node.js, and terminal",
-      "SQLite knowledge graph with FTS5 full-text search capabilities",
-      "YAML optimization reducing configuration complexity by 70%"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "ProcessTimeline",
-        "props": {
-          "title": "Problem to Solution Journey",
-          "subtitle": "Transforming AI-Human Development Workflows",
-          "phases": [
-            {
-              "phase": "Discovery",
-              "title": "Fragment Frustration",
-              "description": "Developers juggling multiple AI agents, scattered context, and inconsistent workflows",
-              "duration": "Week 1-2",
-              "insights": ["Context switching costs", "Manual state management", "Workflow fragmentation"],
-              "color": "#EF4444"
-            },
-            {
-              "phase": "Research",
-              "title": "AGx Design Foundation",
-              "description": "Researching AI-agent collaboration patterns and identifying workflow optimization opportunities",
-              "duration": "Week 3-4",
-              "insights": ["User research WITH AI agents", "Workflow pattern analysis", "Service architecture planning"],
-              "color": "#F59E0B"
-            },
-            {
-              "phase": "Architecture",
-              "title": "Service Orchestration",
-              "description": "Designing multi-service architecture with unified core module and coordinated builds",
-              "duration": "Week 5-8",
-              "insights": ["Workspace-based coordination", "TypeScript strict mode", "Port management strategy"],
-              "color": "#3B82F6"
-            },
-            {
-              "phase": "Integration",
-              "title": "MCP & Logging Ecosystem",
-              "description": "Implementing comprehensive logging and MCP server for Claude Code integration",
-              "duration": "Week 9-12",
-              "insights": ["Auto-capture mechanisms", "Multi-environment logging", "AI context management"],
-              "color": "#8B5CF6"
-            },
-            {
-              "phase": "Optimization",
-              "title": "YAML Evolution",
-              "description": "Optimizing project documentation from 1000+ lines to 300 focused lines",
-              "duration": "Week 13-14",
-              "insights": ["Token efficiency", "Context compression", "AI-readable documentation"],
-              "color": "#10B981"
-            }
-          ]
-        },
-        "alt": "Context-Kit v2 development process timeline"
-      },
-      {
-        "type": "html",
-        "component": "TechStack",
-        "props": {
-          "title": "Service Architecture",
-          "subtitle": "Enterprise-Scale Multi-Service Ecosystem",
-          "technologies": [
-            {
-              "name": "Unified Core",
-              "description": "Shared TypeScript library with comprehensive type definitions",
-              "icon": "/images/tech_stack/typescript-icon.svg",
-              "category": "Foundation"
-            },
-            {
-              "name": "React Dashboard",
-              "description": "Real-time service monitoring and log visualization (Port 42001)",
-              "icon": "/images/tech_stack/React-icon.svg",
-              "category": "Frontend"
-            },
-            {
-              "name": "Knowledge Graph API",
-              "description": "SQLite + FTS5 backend for project analysis (Port 42003)",
-              "icon": "/images/tech_stack/sqlite-icon.svg",
-              "category": "Backend"
-            },
-            {
-              "name": "Logging Client",
-              "description": "Multi-environment automatic capture (Browser, Node.js, Terminal)",
-              "icon": "/images/tech_stack/nodejs-icon.svg",
-              "category": "Integration"
-            },
-            {
-              "name": "MCP Server",
-              "description": "Model Context Protocol for AI assistant integration",
-              "icon": "/images/tech_stack/ai-icon.svg",
-              "category": "AI Integration"
-            },
-            {
-              "name": "NPM Workspaces",
-              "description": "Coordinated build system with 5 service packages",
-              "icon": "/images/tech_stack/npm-icon.svg",
-              "category": "Architecture"
-            }
-          ]
-        },
-        "alt": "Context-Kit v2 technical architecture and service stack"
-      },
-      {
-        "type": "html",
-        "component": "AIInteractionShowcase",
-        "props": {
-          "title": "AGx Design in Action",
-          "subtitle": "Human-AI Workflow Coordination",
-          "humanInterface": {
-            "title": "Developer Experience",
-            "description": "Traditional development workflow enhanced with AI context awareness",
-            "elements": [
+      "alt": "AGx Design philosophy and core principles"
+    },
+    {
+      "type": "html",
+      "component": "ConversationExamples",
+      "props": {
+        "title": "User Research with AI Agents",
+        "subtitle": "Iterative design decisions through agent feedback",
+        "conversations": [
+          {
+            "id": "format-exploration",
+            "topic": "Format Exploration: XML vs Markdown vs YAML",
+            "exchanges": [
               {
-                "type": "input",
-                "content": "npm run dev - Start coordinated services",
-                "action": "Execute"
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Goal: a way to create context for an ai agent to understand a repo. Which formats are available? Which makes the most sense for an ai agent? And why. How might we ensure the final solution works for people and agents."
               },
               {
-                "type": "output",
-                "content": "Services: Dashboard (42001), API (42003), Logs (Active)",
-                "action": "Monitor"
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "XML emerges as the optimal choice. It provides semantic clarity with clear boundaries between concepts, flexible metadata, token efficiency for quick section identification, and mixed human/agent readability."
               },
               {
-                "type": "control",
-                "content": "Real-time service health monitoring",
-                "action": "View Dashboard"
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "The xml seems like a good direction but there is a lot of extra characters that would lead to context bloat."
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "You're absolutely right. Let me reconsider with token efficiency as the primary constraint. Markdown with conventions is the sweet spot: Natural for LLMs (trained heavily on markdown), minimal overhead (just ## and code fences), and human-readable by default. It gives you 98.5%+ token efficiency."
+              },
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "This feels like it would require a specific design standard to keep consistent. Is there a format that already has specifications but offers the same benefits?"
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "Excellent point. CommonMark + YAML Front Matter. This combination is fully specified: CommonMark has a complete, unambiguous spec, YAML 1.2 is ISO standard. You don't need to invent a format—CommonMark IS the specification."
+              },
+              {
+                "type": "decision",
+                "speaker": "Design Decision",
+                "message": "Use CommonMark + YAML front matter. Create convention document defining required sections (Overview, Structure, Files) + JSON Schema for front matter validation. Leverage existing specs rather than inventing new format."
               }
-            ],
-            "capabilities": ["Service Orchestration", "Health Monitoring", "Log Aggregation", "Port Management"]
-          },
-          "aiInterface": {
-            "title": "Claude Code Integration",
-            "description": "MCP server providing rich project context and logging insights",
-            "elements": [
-              {
-                "type": "input",
-                "content": "Project analysis with knowledge graph queries",
-                "action": "Analyze"
-              },
-              {
-                "type": "output",
-                "content": "33,705 files indexed with dependency relationships",
-                "action": "Explore"
-              },
-              {
-                "type": "control",
-                "content": "Automated context compression and YAML optimization",
-                "action": "Optimize"
-              }
-            ],
-            "capabilities": ["Project Analysis", "Context Compression", "Dependency Tracing", "Log Query"]
-          },
-          "sharedData": [
-            {
-              "type": "metrics",
-              "label": "Service Status",
-              "value": "5 services active"
-            },
-            {
-              "type": "performance",
-              "label": "Context Compression",
-              "value": "1000→300 lines (70%)"
-            },
-            {
-              "type": "integration",
-              "label": "MCP Connection",
-              "value": "Real-time sync"
-            }
-          ],
-          "syncIndicators": [
-            {"label": "Service coordination"},
-            {"label": "Log aggregation"},
-            {"label": "Context sharing"}
-          ]
-        },
-        "alt": "AGx Design demonstration showing human-AI workflow coordination"
-      },
-      {
-        "type": "html",
-        "component": "ContextEvolutionSlide",
-        "props": {
-          "title": "YAML Optimization Journey",
-          "subtitle": "From Verbose to Focused Documentation",
-          "beforeStats": {
-            "lines": 1000,
-            "sections": 25,
-            "redundancy": "High",
-            "readability": "Poor"
-          },
-          "afterStats": {
-            "lines": 300,
-            "sections": 8,
-            "redundancy": "Minimal",
-            "readability": "Excellent"
-          },
-          "improvements": [
-            {
-              "category": "Token Efficiency",
-              "before": "Verbose descriptions with repetitive information",
-              "after": "Compressed, context-rich documentation optimized for AI consumption",
-              "impact": "70% reduction in token usage"
-            },
-            {
-              "category": "Structure",
-              "before": "Scattered information across multiple sections",
-              "after": "Hierarchical organization with clear dependencies",
-              "impact": "Enhanced navigation and comprehension"
-            },
-            {
-              "category": "Maintenance",
-              "before": "Manual updates across disconnected files",
-              "after": "Single source of truth with automated synchronization",
-              "impact": "Reduced maintenance overhead"
-            }
-          ],
-          "methodology": "AGx Design principles applied to documentation architecture"
-        },
-        "alt": "YAML optimization showing evolution from 1000 to 300 lines"
-      },
-      {
-        "type": "html",
-        "component": "ProjectImpactMetrics",
-        "props": {
-          "title": "Results & Learning",
-          "subtitle": "Measurable Impact of AGx Design Implementation",
-          "metrics": [
-            {
-              "category": "Development Efficiency",
-              "before": "Fragmented workflows, manual context switching",
-              "after": "Coordinated services with automated context management",
-              "improvement": "60% faster AI collaboration setup",
-              "measurement": "Time to productive AI interaction"
-            },
-            {
-              "category": "Documentation Quality",
-              "before": "1000+ line verbose YAML configurations",
-              "after": "300-line optimized, AI-readable documentation",
-              "improvement": "70% reduction in token consumption",
-              "measurement": "Context processing efficiency"
-            },
-            {
-              "category": "Service Reliability",
-              "before": "Manual service coordination, port conflicts",
-              "after": "Automated orchestration with health monitoring",
-              "improvement": "99% uptime with zero-conflict deployment",
-              "measurement": "Service availability metrics"
-            }
-          ],
-          "learnings": [
-            "AGx Design enables measurable workflow optimization",
-            "Multi-service architecture requires unified core coordination",
-            "AI-readable documentation significantly improves collaboration efficiency",
-            "Comprehensive logging provides crucial debugging insights"
-          ],
-          "nextSteps": [
-            "Expand MCP integration to more development tools",
-            "Implement adaptive context compression based on usage patterns",
-            "Create reusable AGx Design templates for other projects"
-          ]
-        },
-        "alt": "Context-Kit v2 project impact metrics and learning outcomes"
-      }
-    ]
-  },
-  {
-    "id": "taskboard_ai_v2",
-    "title": "TaskBoardAI v2",
-    "color": "#FF6B35",
-    "subtitle": "Dual Interface AI Collaboration",
-    "logoUrl": "taskboard.svg",
-    "description": "TaskBoardAI v2 revolutionizes project management through dual-interface design, enabling seamless collaboration between human visual workflows and AI agent task manipulation. A breakthrough in human-AI interface design for project coordination.",
-    "bullets": [
-      "Dual-interface design optimized for both human and AI interaction patterns",
-      "Real-time synchronization between Kanban visual interface and JSON API",
-      "MCP Server integration enabling AI agents to read and manipulate project boards",
-      "File-based architecture ensuring data portability and AI accessibility",
-      "Validated through extensive user testing with markdown list frustrated users"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "UserPersona",
-        "props": {
-          "title": "The Frustrated Markdown User",
-          "subtitle": "Primary Research Insights",
-          "persona": {
-            "name": "Sarah Chen",
-            "role": "Senior Product Manager",
-            "company": "Tech Startup",
-            "image": "/images/personas/frustrated-user.svg",
-            "quote": "I love markdown for documentation, but tracking project progress in text lists feels like swimming upstream."
-          },
-          "demographics": {
-            "experience": "5+ years in product management",
-            "tools": "GitHub, Notion, Linear, various markdown editors",
-            "teamSize": "8-12 cross-functional team members",
-            "context": "Fast-paced startup environment"
-          },
-          "painPoints": [
-            {
-              "category": "Workflow Friction",
-              "description": "Converting markdown task lists to visual boards is manual and time-consuming",
-              "frequency": "Daily",
-              "impact": "High"
-            },
-            {
-              "category": "Collaboration Barriers",
-              "description": "Team members prefer visual kanban while she thinks in structured text",
-              "frequency": "Weekly",
-              "impact": "Medium"
-            },
-            {
-              "category": "AI Integration Gaps",
-              "description": "AI agents can read markdown but can't interact with visual project boards",
-              "frequency": "Weekly",
-              "impact": "High"
-            }
-          ],
-          "goals": [
-            "Maintain markdown workflow for planning and documentation",
-            "Provide team with visual kanban interface for collaboration",
-            "Enable AI agents to participate in project management",
-            "Reduce manual synchronization between formats"
-          ],
-          "research": {
-            "method": "User interviews + prototype testing",
-            "participants": 8,
-            "duration": "3 weeks",
-            "key_finding": "Users want format flexibility without workflow disruption"
-          }
-        },
-        "alt": "User persona representing frustrated markdown users needing visual collaboration"
-      },
-      {
-        "type": "html",
-        "component": "DualInterfaceDemo",
-        "props": {
-          "title": "Human vs AI Interaction Patterns",
-          "subtitle": "Optimized Interfaces for Different User Types",
-          "humanInterface": {
-            "title": "Visual Kanban Board",
-            "description": "Drag-and-drop interface optimized for human visual processing",
-            "features": [
-              "Drag-and-drop task management",
-              "Visual progress indicators",
-              "Color-coded priority system",
-              "Real-time collaboration cursors"
-            ],
-            "interactionPattern": "Visual, spatial, gesture-based",
-            "screenshot": "/images/taskboard/human-interface.svg"
-          },
-          "aiInterface": {
-            "title": "JSON API & MCP Integration",
-            "description": "Structured data interface optimized for AI agent consumption",
-            "features": [
-              "RESTful JSON API endpoints",
-              "MCP server for Claude integration",
-              "Structured task metadata",
-              "Webhook notifications"
-            ],
-            "interactionPattern": "Structured, programmatic, event-driven",
-            "screenshot": "/images/taskboard/ai-interface.svg"
-          },
-          "synchronization": {
-            "method": "Real-time bidirectional sync",
-            "technology": "File-based JSON with change detection",
-            "latency": "< 100ms",
-            "conflicts": "Last-write-wins with merge strategies"
-          },
-          "benefits": [
-            "Humans get intuitive visual interface",
-            "AI agents get structured data access",
-            "No workflow disruption for either user type",
-            "Real-time collaboration maintained"
-          ]
-        },
-        "alt": "Dual interface demonstration showing human visual and AI structured interaction patterns"
-      },
-      {
-        "type": "html",
-        "component": "BeforeAfter",
-        "props": {
-          "title": "Transformation Impact",
-          "subtitle": "From Fragmented Lists to Unified Workflow",
-          "beforeState": {
-            "title": "Markdown Lists",
-            "description": "Static text-based task tracking",
-            "image": "/images/taskboard/before-markdown.svg",
-            "characteristics": [
-              "Static markdown checklist files",
-              "Manual progress tracking",
-              "No visual project overview",
-              "Limited AI integration",
-              "Team collaboration friction"
-            ],
-            "painPoints": [
-              "Hard to see project overview",
-              "Manual status updates",
-              "No real-time collaboration",
-              "AI agents can't manipulate tasks"
             ]
           },
-          "afterState": {
-            "title": "Dual-Interface System",
-            "description": "Dynamic, collaborative project management",
-            "image": "/images/taskboard/after-kanban.svg",
-            "characteristics": [
-              "Visual kanban interface for humans",
-              "JSON API for AI agent access",
-              "Real-time synchronization",
-              "File-based data portability",
-              "MCP server integration"
-            ],
-            "benefits": [
-              "Clear visual project overview",
-              "Automated status tracking",
-              "Real-time team collaboration",
-              "AI agents as active participants"
+          {
+            "id": "token-optimization",
+            "topic": "Box Characters: Token Optimization",
+            "exchanges": [
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Does my addition of the 'never use box characters' create confusion or contradict other parts of the spec? The box characters contribute to context bloat."
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "Good catch! You're right—there's a contradiction. Section 4.1.3 says 'NEVER use box characters' but Section 6.1 says 'indentation or tree characters.'"
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "I recommend Option 1: Remove tree characters entirely. Your instinct about token bloat is correct. Box characters add visual appeal but consume extra tokens for no semantic value."
+              },
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Proceed with option 1."
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "Updated Section 4.1.3: 'MUST NOT use box-drawing characters (├──, │, └──, etc.)' and Section 6.1: 'Use consistent indentation only, no box-drawing characters.'"
+              },
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Are there other places in the spec we could update to reduce token bloat?"
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "Great question! Section numbering (~5% savings), repetitive MUST/SHOULD/MAY (~10% savings), duplicate examples, and verbose field descriptions. Could reduce the spec by 20-30% without losing essential information."
+              },
+              {
+                "type": "decision",
+                "speaker": "Design Decision",
+                "message": "Removed box characters completely. Updated spec to 'indentation only, no box-drawing characters.' Extended principle to all context design: every character must justify its token cost. Tucker identified bloat issue and drove optimization."
+              }
             ]
-          },
-          "metrics": {
-            "timeToProjectOverview": {
-              "before": "5-10 minutes",
-              "after": "Instant visual scan"
-            },
-            "taskUpdateEfficiency": {
-              "before": "Manual text editing",
-              "after": "Drag-and-drop or API call"
-            },
-            "aiCollaborationCapability": {
-              "before": "Read-only markdown parsing",
-              "after": "Full CRUD operations via MCP"
-            }
           }
-        },
-        "alt": "Before and after comparison showing transformation from markdown lists to integrated kanban system"
+        ]
       },
-      {
-        "type": "html",
-        "component": "TechStack",
-        "props": {
-          "title": "Technical Architecture",
-          "subtitle": "Dual-Interface System Implementation",
-          "technologies": [
-            {
-              "name": "React + TypeScript",
-              "description": "Modern web interface with drag-and-drop kanban functionality",
-              "icon": "/images/tech_stack/React-icon.svg",
-              "category": "Frontend"
-            },
-            {
-              "name": "File-Based JSON",
-              "description": "Portable data storage enabling version control and AI accessibility",
-              "icon": "/images/tech_stack/json-icon.svg",
-              "category": "Data"
-            },
-            {
-              "name": "MCP Server",
-              "description": "Model Context Protocol integration for Claude Code collaboration",
-              "icon": "/images/tech_stack/ai-icon.svg",
-              "category": "AI Integration"
-            },
-            {
-              "name": "RESTful API",
-              "description": "HTTP endpoints for programmatic task manipulation and status queries",
-              "icon": "/images/tech_stack/api-icon.svg",
-              "category": "Backend"
-            },
-            {
-              "name": "React DnD",
-              "description": "Accessible drag-and-drop interaction with keyboard navigation support",
-              "icon": "/images/tech_stack/dnd-icon.svg",
-              "category": "UX"
-            },
-            {
-              "name": "Webhook System",
-              "description": "Real-time notifications for external service integration",
-              "icon": "/images/tech_stack/webhook-icon.svg",
-              "category": "Integration"
-            }
-          ],
-          "architecture": {
-            "pattern": "Dual-interface with shared data layer",
-            "dataFlow": "Bidirectional sync between visual UI and JSON API",
-            "scalability": "File-based architecture supports distributed teams",
-            "accessibility": "WCAG 2.1 AA compliant with screen reader support"
+      "alt": "User research conversations with AI agents"
+    },
+     {
+      "type": "html",
+      "component": "YAMLContextViewer",
+      "props": {},
+      "alt": "Interactive YAML optimization demonstration"
+    },
+    {
+      "type": "html",
+      "component": "InteractiveCards",
+      "props": {
+        "title": "Service-Oriented Architecture",
+        "subtitle": "Modular services optimized for different user types",
+        "cards": [
+          {
+            "icon": "Layout",
+            "label": "Visual Interface",
+            "title": "React Dashboard (Port 42001)",
+            "content": "Unified React dashboard aggregating all toolkit functionality. Provides real-time service health monitoring, log viewing, and performance metrics. Human-optimized interface with visual feedback and interactive controls.",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Database",
+            "label": "Data Backend",
+            "title": "Knowledge Graph API (Port 42003)",
+            "content": "SQLite + FTS5 storage enabling agents to query component relationships without file traversal. HTTP API provides structured access to entities, relationships, and project knowledge graph. Agent-optimized for fast context retrieval.",
+            "image": null,
+            "position": "right"
+          },
+          {
+            "icon": "FileText",
+            "label": "Debug Intelligence",
+            "title": "Logging Service",
+            "content": "Centralized logging service with structured output for debugging. Agents can reference logs to understand system behavior, trace execution paths, and identify issues without manual exploration. Multi-environment capture (browser, Node, terminal).",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Zap",
+            "label": "Persistent Memory",
+            "title": "MCP Integration",
+            "content": "Model Context Protocol server providing persistent AI memory across conversations. Context automatically loaded every conversation—no more re-exploration of project structure. Zero overhead context awareness via STDIO protocol.",
+            "image": null,
+            "position": "right"
           }
-        },
-        "alt": "TaskBoardAI v2 technical stack showing dual-interface architecture"
+        ]
       },
-      {
-        "type": "html",
-        "component": "ProjectImpactMetrics",
-        "props": {
-          "title": "Validation Results",
-          "subtitle": "User Testing and Performance Metrics",
-          "metrics": [
-            {
-              "category": "User Adoption",
-              "before": "Resistance to visual project management tools",
-              "after": "Enthusiastic adoption with maintained markdown workflows",
-              "improvement": "87% user satisfaction increase",
-              "measurement": "Post-implementation user interviews (n=8)"
-            },
-            {
-              "category": "Task Management Efficiency",
-              "before": "5-10 minute project status assessment",
-              "after": "Instant visual overview with detailed drill-down",
-              "improvement": "80% reduction in status assessment time",
-              "measurement": "Time-to-insight user testing"
-            },
-            {
-              "category": "AI Collaboration Capability",
-              "before": "AI agents limited to read-only markdown parsing",
-              "after": "Full CRUD operations through MCP integration",
-              "improvement": "Complete AI agent task management capability",
-              "measurement": "Claude Code integration testing"
-            }
-          ],
-          "learnings": [
-            "Dual-interface design eliminates forced workflow changes",
-            "File-based architecture maintains data portability and version control",
-            "MCP integration enables true AI-human collaboration",
-            "Visual interfaces significantly improve project comprehension"
-          ],
-          "validation": {
-            "method": "Comparative user testing with existing tools",
-            "participants": 8,
-            "duration": "2 weeks",
-            "key_metrics": ["Task completion time", "Error rates", "User satisfaction", "AI integration effectiveness"]
+      "alt": "Service-oriented architecture breakdown"
+    },
+    {
+      "type": "html",
+      "component": "BeforeAfter",
+      "props": {
+        "title": "Conversation Efficiency Transformation",
+        "beforeTitle": "Without Context Kit",
+        "beforeDescription": "Agent exploration overhead every conversation",
+        "beforeImage": null,
+        "beforePoints": [
+          "Search for component files (8 seconds)",
+          "Read existing documentation (12 seconds)",
+          "Map project structure (6 seconds)",
+          "Finally answer the question",
+          "~3,200 tokens consumed in exploration"
+        ],
+        "beforePainPoints": [
+          "Every conversation starts with re-learning",
+          "Wasted time on repetitive exploration",
+          "Token budget depleted on context setup",
+          "No persistent memory between sessions"
+        ],
+        "afterTitle": "With Context Kit",
+        "afterDescription": "Instant context awareness from conversation start",
+        "afterImage": null,
+        "afterPoints": [
+          "Context pre-loaded via MCP",
+          "Immediate project understanding",
+          "Direct task execution",
+          "~800 tokens for full context",
+          "Zero re-exploration overhead"
+        ],
+        "afterBenefits": [
+          "Instant conversation productivity",
+          "75% token reduction (3200 → 800)",
+          "90% time reduction (26s → 2-3s)",
+          "Persistent context across sessions"
+        ],
+        "metrics": [
+          {
+            "label": "Time to First Response",
+            "before": "26+ seconds",
+            "after": "2-3 seconds",
+            "improvement": "90% reduction"
           },
-          "nextSteps": [
-            "Expand MCP integration to additional AI platforms",
-            "Add advanced filtering and search capabilities",
-            "Implement team analytics and productivity insights"
-          ]
-        },
-        "alt": "TaskBoardAI v2 validation results and user testing metrics"
-      }
-    ]
-  },
-  {
-    "id": "ai_progress_steps_v2",
-    "title": "AI Progress Steps v2",
-    "color": "#10B981",
-    "subtitle": "5-Stage AI Collaboration Journey",
-    "logoUrl": "Tucker.svg",
-    "description": "AI Progress Steps v2 maps the evolutionary journey of AI-human collaboration proficiency through five distinct stages. This framework helps individuals and teams understand their current capabilities and provides clear pathways for advancement in AI-powered workflows.",
-    "bullets": [
-      "Comprehensive 5-stage framework mapping AI collaboration evolution",
-      "Skills assessment matrix with clear progression indicators",
-      "Emotional journey mapping showing confidence and capability growth",
-      "Prompt evolution tracking from basic requests to complex workflows",
-      "Creator-level persona representing advanced AI collaboration mastery"
-    ],
-    "slides": [
-      {
-        "type": "html",
-        "component": "ProcessTimeline",
-        "props": {
-          "title": "5-Stage AI Collaboration Journey",
-          "subtitle": "Evolution from Chatter to Creator",
-          "stages": [
-            {
-              "name": "Chatter",
-              "description": "Basic conversation with AI, like casual chat - scattered thoughts and simple questions",
-              "duration": "First encounters",
-              "insights": ["'Hey! Make a cool app'", "Simple requests", "No clear direction"],
-              "color": "#EF4444"
-            },
-            {
-              "name": "Prompter",
-              "description": "Role: Dev Lead. Goal: Act as a Sr Python Developer. Pair programming with a junior.",
-              "duration": "Learning structure",
-              "insights": ["Task-specific bots using Role.Goal.Tasks", "Structured frameworks", "Clear objectives"],
-              "color": "#F59E0B"
-            },
-            {
-              "name": "Collaborator",
-              "description": "Name: Librarian. Role: Retrieve and save text from a given web page. Tools: web-scraper, write-to-system",
-              "duration": "Building tools",
-              "insights": ["Named AI personas", "Tool integration", "Context beyond the repo"],
-              "color": "#3B82F6"
-            },
-            {
-              "name": "Coordinator",
-              "description": "@Librarian get the latest documentation from www.example.com @DevLead Review the updated docs and audit current codebase to identify any required changes",
-              "duration": "Multi-agent orchestration",
-              "insights": ["Coordinate multiple bots and agents", "Complex task decomposition", "System-level thinking"],
-              "color": "#8B5CF6"
-            },
-            {
-              "name": "Creator",
-              "description": "Goal: A SaaS application with full technical specs, project/specs, design files in /project/design, and three parallel agents to review docs and codebase",
-              "duration": "Innovation leadership",
-              "insights": ["Create complex software by orchestrating bots and agents", "Well-architected project content", "Novel collaboration patterns"],
-              "color": "#10B981"
-            }
-          ]
-        },
-        "alt": "Five-stage AI collaboration journey from chatter to creator"
-      },
-      {
-        "type": "html",
-        "component": "UserFlow",
-        "props": {
-          "title": "Emotional Journey Mapping",
-          "subtitle": "Confidence and Capability Growth Through AI Collaboration Stages",
-          "flowSteps": [
-            {
-              "label": "Chatter",
-              "description": "Casual exploration phase with scattered thoughts and simple requests. No clear strategy or direction in AI interactions.",
-              "emotion": "Casual Exploration",
-              "confidence": 15,
-              "capability": 10,
-              "thoughts": ["Just chatting with AI", "Scattered requests", "No clear strategy"],
-              "userActions": ["Random questions", "Simple tasks", "Treating AI like a search engine"],
-              "touchpoints": ["First ChatGPT interactions", "Basic assistance requests", "Curiosity-driven exploration"]
-            },
-            {
-              "label": "Prompter",
-              "description": "Learning structured prompt techniques using Role.Goal.Tasks framework for consistent, repeatable interactions.",
-              "emotion": "Structured Learning",
-              "confidence": 35,
-              "capability": 30,
-              "thoughts": ["Learning proper prompt structure", "Role.Goal.Tasks framework", "Building repeatable patterns"],
-              "userActions": ["Using structured prompts", "Creating task-specific bots", "Following frameworks"],
-              "touchpoints": ["Prompt engineering tutorials", "Structured AI interactions", "Consistent results"]
-            },
-            {
-              "label": "Collaborator",
-              "description": "Building specialized AI team members with named personas and tool integration beyond basic chat.",
-              "emotion": "Tool Integration",
-              "confidence": 65,
-              "capability": 60,
-              "thoughts": ["AI as a specialized team member", "Building custom tools", "Context beyond simple chat"],
-              "userActions": ["Creating named AI personas", "Tool integration", "Web scraping and system interaction"],
-              "touchpoints": ["Custom AI agents", "Tool-enabled workflows", "Extended AI capabilities"]
-            },
-            {
-              "label": "Coordinator",
-              "description": "Orchestrating multiple AI agents with @mentions for parallel execution and complex task decomposition.",
-              "emotion": "System Orchestration",
-              "confidence": 85,
-              "capability": 85,
-              "thoughts": ["Multi-agent coordination", "Complex task decomposition", "System-level thinking"],
-              "userActions": ["@mentions for agent coordination", "Parallel task execution", "Agent specialization"],
-              "touchpoints": ["Multi-agent workflows", "Complex project coordination", "Agent orchestration platforms"]
-            },
-            {
-              "label": "Creator",
-              "description": "Building AI-enhanced products and novel collaboration patterns while teaching methodologies to others.",
-              "emotion": "Innovation Leadership",
-              "confidence": 95,
-              "capability": 95,
-              "thoughts": ["Building novel AI experiences", "Architecting complex systems", "Teaching through innovation"],
-              "userActions": ["Creating AI-enhanced products", "Orchestrating development teams", "Publishing methodologies"],
-              "touchpoints": ["Context-kit systems", "Portfolio implementations", "Industry recognition"]
-            }
-          ],
-          "insights": [
-            "Confidence grows exponentially as structure and frameworks are learned",
-            "Tool integration transforms AI from chat assistant to specialized team member",
-            "Multi-agent coordination requires system-level thinking and architecture skills",
-            "Creator level involves building novel AI experiences and teaching methodologies"
-          ]
-        },
-        "alt": "Emotional journey mapping showing confidence and capability growth across AI collaboration stages"
-      },
-      {
-        "type": "html",
-        "component": "SkillsMatrix",
-        "props": {
-          "title": "Skills Development Matrix",
-          "subtitle": "Capabilities and Competencies at Each Stage",
-          "categories": ["Communication Style & Structure", "AI Understanding & Orchestration", "Task Structure & Tool Integration", "Results Quality & System Architecture"],
-          "skills": [
-            {
-              "id": "chatter-comm",
-              "name": "Chatter Communication",
-              "category": "Communication Style & Structure",
-              "level": 1,
-              "description": "Casual chat, scattered requests, no clear direction"
-            },
-            {
-              "id": "chatter-understand",
-              "name": "Chatter Understanding",
-              "category": "AI Understanding & Orchestration",
-              "level": 1,
-              "description": "Basic awareness, treating AI like a search engine"
-            },
-            {
-              "id": "prompter-comm",
-              "name": "Prompter Communication",
-              "category": "Communication Style & Structure",
-              "level": 2,
-              "description": "Role.Goal.Tasks framework, structured approach"
-            },
-            {
-              "id": "prompter-understand",
-              "name": "Prompter Understanding",
-              "category": "AI Understanding & Orchestration",
-              "level": 2,
-              "description": "Learning proper prompt structure and frameworks"
-            },
-            {
-              "id": "collaborator-comm",
-              "name": "Collaborator Communication",
-              "category": "Communication Style & Structure",
-              "level": 3,
-              "description": "Named AI personas, specialized roles"
-            },
-            {
-              "id": "collaborator-understand",
-              "name": "Collaborator Understanding",
-              "category": "AI Understanding & Orchestration",
-              "level": 3,
-              "description": "AI as specialized team members with tools"
-            },
-            {
-              "id": "coordinator-comm",
-              "name": "Coordinator Communication",
-              "category": "Communication Style & Structure",
-              "level": 4,
-              "description": "@mentions for agent coordination, parallel execution"
-            },
-            {
-              "id": "coordinator-understand",
-              "name": "Coordinator Understanding",
-              "category": "AI Understanding & Orchestration",
-              "level": 4,
-              "description": "Multi-agent orchestration, system-level thinking"
-            },
-            {
-              "id": "creator-comm",
-              "name": "Creator Communication",
-              "category": "Communication Style & Structure",
-              "level": 5,
-              "description": "Novel AI collaboration patterns, teaching methodologies"
-            },
-            {
-              "id": "creator-understand",
-              "name": "Creator Understanding",
-              "category": "AI Understanding & Orchestration",
-              "level": 5,
-              "description": "Architecting complex AI-enhanced systems"
-            }
-          ],
-          "skillCategories": [
-            "Communication Style & Structure",
-            "AI Understanding & Orchestration",
-            "Task Structure & Tool Integration",
-            "Results Quality & System Architecture"
-          ],
-          "progressionInsights": [
-            "Structure and frameworks are the foundation for effective AI collaboration",
-            "Tool integration transforms AI from simple chat to specialized capabilities",
-            "Multi-agent coordination requires architectural thinking and system design",
-            "Creator level involves building novel patterns and teaching others"
-          ]
-        },
-        "alt": "Skills matrix showing capability progression across five AI collaboration stages"
-      },
-      {
-        "type": "ai-skills",
-        "component": "AgentConversationFlow",
-        "props": {
-          "title": "Prompt Evolution Across Stages",
-          "subtitle": "How Communication with AI Agents Develops Over Time",
-          "conversationStages": [
-            {
-              "stage": "Chatter",
-              "level": 1,
-              "prompt": "Hey! Make a cool app",
-              "context": "Casual, no clear direction or structure",
-              "aiResponse": "I'd love to help! Could you tell me what kind of app you're thinking about? What problem should it solve?",
-              "outcome": "Vague response, requires multiple follow-ups",
-              "learningPoint": "Scattered thoughts need focus to be actionable"
-            },
-            {
-              "stage": "Prompter",
-              "level": 2,
-              "prompt": "Role: Dev Lead\nGoal: Act as a Senior Python Developer\nTasks: Help me with pair programming for a web scraper that extracts product data",
-              "context": "Structured prompt using Role.Goal.Tasks framework",
-              "aiResponse": "As a Senior Python Developer, I'll help you build a robust web scraper. Let's start by identifying the target website and discussing the data structure...",
-              "outcome": "Clear, actionable guidance with technical depth",
-              "learningPoint": "Structure dramatically improves AI response quality"
-            },
-            {
-              "stage": "Collaborator",
-              "level": 3,
-              "prompt": "Name: Librarian\nRole: Retrieve and save text from a given web page\nTools: web-scraper, write-to-system\n\nLibrarian, please extract all documentation from https://docs.example.com and save it to our knowledge base.",
-              "context": "Named AI persona with specific tools and capabilities",
-              "aiResponse": "[Systematic extraction of documentation with proper formatting, error handling, and knowledge base integration]",
-              "outcome": "Autonomous task completion with tool integration",
-              "learningPoint": "Named personas with tools enable specialized workflows"
-            },
-            {
-              "stage": "Coordinator",
-              "level": 4,
-              "prompt": "@Librarian get the latest documentation from www.example.com\n@DevLead Review the updated docs and audit the current codebase to identify any required changes\n@QAEngineer Create test scenarios based on the new requirements",
-              "context": "Multi-agent coordination with @mentions and parallel tasks",
-              "aiResponse": "[Coordinated response from multiple specialized agents working in parallel, with cross-references and integrated deliverables]",
-              "outcome": "Complex multi-agent workflow execution",
-              "learningPoint": "Agent coordination enables system-level problem solving"
-            },
-            {
-              "stage": "Creator",
-              "level": 5,
-              "prompt": "Goal: Create a comprehensive SaaS application with full technical specifications, project documentation in /project/specs, design files in /project/design, and orchestrate three parallel agents: @Architect for system design, @Developer for implementation, @Designer for UI/UX. Each agent should have context beyond the current repo and coordinate their outputs for a production-ready portfolio system.",
-              "context": "Multi-layered system creation with agent orchestration",
-              "aiResponse": "[Sophisticated coordination of multiple specialized agents creating interconnected deliverables, with automatic context management and production-ready outputs]",
-              "outcome": "Complete system architecture with coordinated implementation",
-              "learningPoint": "AI becomes a strategic thinking partner"
-            }
-          ],
-          "evolutionPatterns": [
-            "Prompts evolve from vague to highly specific",
-            "Context provision becomes increasingly sophisticated",
-            "Role definition and constraints emerge in advanced stages",
-            "Multi-turn and complex request handling develops",
-            "Strategic thinking integration appears at creator level"
-          ]
-        },
-        "alt": "Agent conversation flow showing prompt evolution from basic to sophisticated across five stages"
-      },
-      {
-        "type": "html",
-        "component": "UserPersona",
-        "props": {
-          "title": "The Creator Level Persona",
-          "subtitle": "Advanced AI Collaboration Mastery",
-          "persona": {
-            "name": "Marcus Rivera",
-            "role": "Senior Product Designer & AI Innovation Lead",
-            "company": "Digital Innovation Agency",
-            "image": "/images/personas/creator-persona.svg",
-            "quote": "AI isn't just a tool in my workflow—it's my creative thinking partner. We build experiences together that neither of us could imagine alone."
+          {
+            "label": "Token Consumption",
+            "before": "~3,200 tokens",
+            "after": "~800 tokens",
+            "improvement": "75% reduction"
           },
-          "demographics": {
-            "experience": "8+ years in design, 3+ years in AI collaboration",
-            "tools": "Claude Code, GPT-4, Midjourney, custom AI workflows, MCP integrations",
-            "teamSize": "Leads AI adoption across 25-person agency",
-            "context": "Innovation-focused agency serving Fortune 500 clients"
+          {
+            "label": "Context Re-exploration",
+            "before": "Every conversation",
+            "after": "Never",
+            "improvement": "100% elimination"
           },
-          "capabilities": [
-            {
-              "category": "Strategic AI Integration",
-              "description": "Builds AI-enhanced product experiences and novel interaction patterns",
-              "examples": ["AI-powered design systems", "Intelligent user research workflows", "Automated accessibility testing"]
-            },
-            {
-              "category": "Advanced Prompt Engineering",
-              "description": "Creates sophisticated multi-turn conversations and complex reasoning chains",
-              "examples": ["Chain-of-thought design critiques", "Multi-agent workflow orchestration", "Context-aware design generation"]
-            },
-            {
-              "category": "Innovation Leadership",
-              "description": "Mentors others and drives organizational AI transformation",
-              "examples": ["Internal AI training programs", "Client AI consultation", "Industry conference speaking"]
-            }
-          ],
-          "workflow": {
-            "daily": "Begins each project with AI-assisted research, uses collaborative prompting for ideation, integrates AI feedback throughout design iterations",
-            "weekly": "Refines AI workflows based on project learnings, shares innovations with team, explores new AI capabilities",
-            "monthly": "Publishes insights on AI-design collaboration, mentors junior designers, advises clients on AI integration"
-          },
-          "achievements": [
-            "Reduced design iteration time by 60% through AI collaboration",
-            "Built agency's first AI-enhanced design system",
-            "Recognized as 'AI Innovation Leader' at Design+AI Conference 2024",
-            "Created reusable AI workflow templates adopted across industry"
-          ],
-          "mindset": {
-            "core_belief": "AI amplifies human creativity rather than replacing it",
-            "approach": "Collaborative partnership with AI as thinking partner",
-            "future_vision": "AI-human design teams creating previously impossible experiences"
+          {
+            "label": "Agent Efficiency",
+            "before": "70% overhead",
+            "after": "5% overhead",
+            "improvement": "93% improvement"
           }
-        },
-        "alt": "Creator-level persona representing advanced AI collaboration mastery"
-      }
-    ]
-  }
+        ]
+      },
+      "alt": "Before and after context efficiency comparison"
+    }
+  ]
+}
 ]

@@ -22,6 +22,7 @@ import ParallelAgentsDemo from './ParallelAgentsDemo';
 import YAMLContextViewer from './YAMLContextViewer';
 import ConversationTurnFlow from './ConversationTurnFlow';
 import PortfolioMetrics from './PortfolioMetrics';
+import ConversationExamples from './ConversationExamples';
 
 // AI Skills Components
 import {
@@ -57,6 +58,7 @@ const ThemedParallelAgentsDemo = withSlideTheme(ParallelAgentsDemo);
 const ThemedYAMLContextViewer = withSlideTheme(YAMLContextViewer);
 const ThemedConversationTurnFlow = withSlideTheme(ConversationTurnFlow);
 const ThemedPortfolioMetrics = withSlideTheme(PortfolioMetrics);
+const ThemedConversationExamples = withSlideTheme(ConversationExamples);
 
 // AI Skills themed components
 const ThemedAIInteractionShowcase = withSlideTheme(AIInteractionShowcase);
@@ -89,6 +91,7 @@ const htmlSlideComponents = {
   YAMLContextViewer: ThemedYAMLContextViewer,
   ConversationTurnFlow: ThemedConversationTurnFlow,
   PortfolioMetrics: ThemedPortfolioMetrics,
+  ConversationExamples: ThemedConversationExamples,
 
   // AI Skills Components
   AIInteractionShowcase: ThemedAIInteractionShowcase,

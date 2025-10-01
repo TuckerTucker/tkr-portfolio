@@ -23,8 +23,10 @@ const ProjectImpactMetrics = ({
   showAnimation = true,
   animationDuration = 2000,
   className,
-  nextSteps, // Extract custom props to prevent DOM warnings
-  isMobile, // Extract isMobile prop to prevent DOM warnings
+  // Extract custom props to prevent DOM warnings
+  nextSteps,
+  isMobile,
+  biggerPicture,
   ...props
 }) => {
   const [animatedValues, setAnimatedValues] = useState({});

@@ -15,9 +15,18 @@ const BeforeAfter = ({
   afterLabel = "After",
   defaultPosition = 50, // Default slider position (percentage)
   className,
-  isMobile, // Extract isMobile prop to prevent DOM warnings
-  beforeState, // Extract custom props to prevent DOM warnings
+  // Extract custom props to prevent DOM warnings
+  isMobile,
+  beforeState,
   afterState,
+  beforeTitle,
+  beforeDescription,
+  beforePoints,
+  beforePainPoints,
+  afterTitle,
+  afterDescription,
+  afterPoints,
+  afterBenefits,
   ...props
 }) => {
   const [sliderPosition, setSliderPosition] = useState(defaultPosition);
@@ -77,19 +86,116 @@ const BeforeAfter = ({
     };
   }, []);
 
+  // Determine if we're in image mode or text mode
+  const isImageMode = beforeImage && afterImage;
+
+  // Render text comparison mode
+  if (!isImageMode) {
+    return (
+      <div className={cn("w-full h-full flex flex-col p-4 md:p-6 bg-gradient-to-br from-slate-900 to-slate-800", className)} {...props}>
+        {/* Header */}
+        <div className="mb-3 md:mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
+        </div>
+
+        {/* Two-column comparison */}
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 overflow-y-auto min-h-0">
+          {/* After Column (Left - Green) */}
+          <div className="bg-green-900/20 border-2 border-green-500/50 rounded-lg p-3 md:p-4 flex flex-col overflow-y-auto">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0"></div>
+              <h3 className="text-base md:text-lg font-bold text-green-300">{afterTitle || afterLabel}</h3>
+            </div>
+
+            {afterDescription && (
+              <p className="text-xs md:text-sm text-gray-300 mb-2 italic leading-snug">{afterDescription}</p>
+            )}
+
+            {afterPoints && afterPoints.length > 0 && (
+              <div className="mb-2">
+                <ul className="space-y-1">
+                  {afterPoints.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 text-xs md:text-sm text-gray-200 leading-snug">
+                      <span className="text-green-400 mt-0.5 flex-shrink-0 text-sm">✓</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {afterBenefits && afterBenefits.length > 0 && (
+              <div className="mt-auto pt-2 border-t border-green-500/30">
+                <h4 className="text-xs font-semibold text-green-300 mb-1">Benefits:</h4>
+                <ul className="space-y-0.5">
+                  {afterBenefits.map((point, idx) => (
+                    <li key={idx} className="text-xs text-gray-300 flex items-start gap-1.5 leading-snug">
+                      <span className="text-green-400 flex-shrink-0">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Before Column (Right - Red) */}
+          <div className="bg-red-900/20 border-2 border-red-500/50 rounded-lg p-3 md:p-4 flex flex-col overflow-y-auto">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500 flex-shrink-0"></div>
+              <h3 className="text-base md:text-lg font-bold text-red-300">{beforeTitle || beforeLabel}</h3>
+            </div>
+
+            {beforeDescription && (
+              <p className="text-xs md:text-sm text-gray-300 mb-2 italic leading-snug">{beforeDescription}</p>
+            )}
+
+            {beforePoints && beforePoints.length > 0 && (
+              <div className="mb-2">
+                <ul className="space-y-1">
+                  {beforePoints.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 text-xs md:text-sm text-gray-200 leading-snug">
+                      <span className="text-red-400 mt-0.5 flex-shrink-0 text-sm">✗</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {beforePainPoints && beforePainPoints.length > 0 && (
+              <div className="mt-auto pt-2 border-t border-red-500/30">
+                <h4 className="text-xs font-semibold text-red-300 mb-1">Pain Points:</h4>
+                <ul className="space-y-0.5">
+                  {beforePainPoints.map((point, idx) => (
+                    <li key={idx} className="text-xs text-gray-300 flex items-start gap-1.5 leading-snug">
+                      <span className="text-red-400 flex-shrink-0">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render image comparison mode (original functionality)
   return (
     <div className={cn("w-full h-full flex flex-col p-6 bg-gradient-to-r from-gray-900 to-gray-800", className)} {...props}>
       <div className="mb-4">
         <h2 className="text-2xl font-heading text-white">{title}</h2>
       </div>
-      
+
       {/* Comparison container */}
-      <div 
+      <div
         ref={containerRef}
         className="relative flex-grow w-full h-full rounded-lg overflow-hidden cursor-ew-resize select-none touch-none"
       >
         {/* Before image (full width) */}
-        <div 
+        <div
           className="absolute inset-0 bg-center bg-no-repeat bg-cover"
           style={{ backgroundImage: `url(${beforeImage})` }}
         >
@@ -98,11 +204,11 @@ const BeforeAfter = ({
             {beforeLabel}
           </div>
         </div>
-        
+
         {/* After image (variable width based on slider) */}
-        <div 
+        <div
           className="absolute inset-0 bg-center bg-no-repeat bg-cover"
-          style={{ 
+          style={{
             backgroundImage: `url(${afterImage})`,
             width: `${sliderPosition}%`,
             clipPath: `inset(0 0 0 0)`
@@ -113,11 +219,11 @@ const BeforeAfter = ({
             {afterLabel}
           </div>
         </div>
-        
+
         {/* Slider handle */}
-        <div 
+        <div
           className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize"
-          style={{ 
+          style={{
             left: `calc(${sliderPosition}% - 2px)`,
           }}
         >
@@ -140,15 +246,23 @@ const BeforeAfter = ({
 
 BeforeAfter.propTypes = {
   title: PropTypes.string,
-  beforeImage: PropTypes.string.isRequired,
-  afterImage: PropTypes.string.isRequired,
+  beforeImage: PropTypes.string,
+  afterImage: PropTypes.string,
   beforeLabel: PropTypes.string,
   afterLabel: PropTypes.string,
   defaultPosition: PropTypes.number,
   className: PropTypes.string,
   isMobile: PropTypes.bool,
   beforeState: PropTypes.any,
-  afterState: PropTypes.any
+  afterState: PropTypes.any,
+  beforeTitle: PropTypes.string,
+  beforeDescription: PropTypes.string,
+  beforePoints: PropTypes.array,
+  beforePainPoints: PropTypes.array,
+  afterTitle: PropTypes.string,
+  afterDescription: PropTypes.string,
+  afterPoints: PropTypes.array,
+  afterBenefits: PropTypes.array
 };
 
 export default BeforeAfter;

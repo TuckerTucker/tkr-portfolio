@@ -5,27 +5,57 @@ import DynamicIcon from '../ui/DynamicIcon';
 
 const InteractiveCards = ({
   title = "",
+  subtitle = "",
   items = [],
+  cards = [], // Support both 'items' and 'cards' prop names
   className = ""
 }) => {
-  const [selectedId, setSelectedId] = useState(items[0]?.id || null);
-  const selectedItem = items.find(item => item.id === selectedId);
+  // Use items or cards, whichever is provided
+  const cardItems = items.length > 0 ? items : cards;
+
+  // Ensure each item has an ID
+  const normalizedItems = cardItems.map((item, index) => ({
+    ...item,
+    id: item.id || `card-${index}`
+  }));
+
+  const [selectedId, setSelectedId] = useState(normalizedItems[0]?.id || null);
+  const selectedItem = normalizedItems.find(item => item.id === selectedId);
 
   useEffect(() => {
-    console.log('InteractiveCards mounted, ZoomableImage imported:', ZoomableImage);
+    // console.log('InteractiveCards mounted, ZoomableImage imported:', ZoomableImage);
   }, []);
+
+  // Show message if no items
+  if (normalizedItems.length === 0) {
+    return (
+      <div className={`flex items-center justify-center h-full p-6 md:p-8 ${className}`}>
+        <div className="text-center" style={{ color: 'var(--slide-text)', opacity: 0.6 }}>
+          <p>No cards available</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex flex-col h-full p-6 md:p-8 ${className}`}>
-      {title && (
-        <h2 className="font-heading text-2xl md:text-3xl font-bold mb-6" style={{ color: 'var(--slide-title)' }}>
-          {title}
-        </h2>
-      )}
+      {/* Header with title and subtitle */}
+      <div className="mb-6">
+        {title && (
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mb-2" style={{ color: 'var(--slide-title)' }}>
+            {title}
+          </h2>
+        )}
+        {subtitle && (
+          <p className="text-base md:text-lg" style={{ color: 'var(--slide-text)', opacity: 0.8 }}>
+            {subtitle}
+          </p>
+        )}
+      </div>
 
       {/* Icon Cards - Horizontal Layout */}
       <div className="flex flex-wrap gap-3 mb-6">
-        {items.map((item) => {
+        {normalizedItems.map((item) => {
           const isSelected = item.id === selectedId;
           return (
             <button
@@ -111,13 +141,13 @@ const InteractiveCards = ({
 
             {/* Content Area */}
             <div className={`${selectedItem.image ? 'flex-1' : ''} space-y-4`}>
-              {/* Optional subtitle */}
-              {selectedItem.subtitle && (
+              {/* Optional card title */}
+              {(selectedItem.title || selectedItem.subtitle) && (
                 <h3
                   className="font-semibold text-lg md:text-xl"
                   style={{ color: 'var(--slide-title)' }}
                 >
-                  {selectedItem.subtitle}
+                  {selectedItem.title || selectedItem.subtitle}
                 </h3>
               )}
 
@@ -176,17 +206,21 @@ const InteractiveCards = ({
 
 InteractiveCards.propTypes = {
   title: PropTypes.string,
+  subtitle: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     icon: PropTypes.string,
     label: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
+    title: PropTypes.string, // Support both 'subtitle' and 'title' for card title
     content: PropTypes.string.isRequired,
     bullets: PropTypes.arrayOf(PropTypes.string),
     image: PropTypes.string, // Path to image (any aspect ratio)
     imagePosition: PropTypes.oneOf(['left', 'right']), // Image position (default: left)
-    imageAlt: PropTypes.string // Alt text for image
+    imageAlt: PropTypes.string, // Alt text for image
+    position: PropTypes.string // Alternative to imagePosition
   })),
+  cards: PropTypes.array, // Support both 'items' and 'cards' prop names
   className: PropTypes.string
 };
 
