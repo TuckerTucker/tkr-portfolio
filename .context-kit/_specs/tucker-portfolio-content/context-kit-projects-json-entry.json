@@ -1,0 +1,329 @@
+{
+  "id": "context-kit-agx",
+  "title": "Context Kit",
+  "subtitle": "Agent Experience (AGx) Design",
+  "color": "#8B5CF6",
+  "description": "Pioneering work in Agent Experience Design, treating AI agents as primary users with their own needs and interaction patterns. Demonstrates how UX principles apply to designing for AI collaboration through semantic YAML architectures, service-oriented design, and persistent context systems.",
+  "bullets": [
+    "AGx Design: UX principles applied to AI agents as primary users",
+    "75% token reduction through semantic YAML optimization (1000→300 lines)",
+    "User research conducted WITH AI agents through iterative feedback",
+    "Service-oriented architecture with parallel agent orchestration",
+    "Persistent context via MCP - zero re-exploration overhead"
+  ],
+  "slides": [
+    {
+      "type": "html",
+      "component": "ProjectIntro",
+      "props": {
+        "title": "Context Kit",
+        "subtitle": "Agent Experience (AGx) Design",
+        "description": "AI agents were re-exploring my project structure every conversation, wasting 26+ seconds scanning files, reading docs, and mapping relationships that hadn't changed. I realized agents have fundamentally different information needs than humans—they can consume thousands of lines instantly but waste time navigating file systems. AGx Design treats AI agents as primary users with their own interaction patterns and needs.",
+        "bullets": [
+          "Problem: Agents re-explored project structure every conversation (26+ seconds wasted)",
+          "Insight: AI agents process information differently—instant consumption, inefficient navigation",
+          "Solution: AGx Design applies UX principles to AI agent experience",
+          "Result: 75% token reduction, 90% time reduction through user research WITH agents"
+        ],
+        "image": "context-kit-dashboard.png",
+        "imageAlt": "Context Kit dashboard showing service health and knowledge graph"
+      },
+      "alt": "Introduction to Context Kit and Agent Experience Design"
+    },
+    {
+      "type": "html",
+      "component": "InteractiveCards",
+      "props": {
+        "title": "What is AGx Design?",
+        "subtitle": "Applying UX principles to AI agent experience",
+        "cards": [
+          {
+            "icon": "Brain",
+            "label": "AGx Concept",
+            "title": "What is AGx?",
+            "content": "AGx (Agent Experience) Design applies UX principles to AI agent experience. Just as UX designers conduct user research with humans to understand mental models, I conduct user research WITH AI agents to understand what context formats work best for them.",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Search",
+            "label": "Research Method",
+            "title": "How do you research agents?",
+            "content": "I ask agents directly: 'What context helps you understand this better?' 'What's missing?' 'What's redundant?' Through iterative conversations, agents told me YAML semantic anchors reduce repetition, hierarchical structure mirrors their processing, and progressive disclosure lets them scan efficiently.",
+            "image": null,
+            "position": "right"
+          },
+          {
+            "icon": "Target",
+            "label": "Core Principles",
+            "title": "AGx Design Principles",
+            "content": "1. Understand agent cognition - how do AI agents process information? 2. Design for token efficiency - eliminate repetitive exploration. 3. Enable progressive disclosure - agents scan overview, drill down as needed. 4. Maintain human accessibility - humans must read and maintain the system.",
+            "image": null,
+            "position": "left"
+          }
+        ]
+      },
+      "alt": "AGx Design philosophy and core principles"
+    },
+    {
+      "type": "html",
+      "component": "YAMLContextViewer",
+      "props": {},
+      "alt": "Interactive YAML optimization demonstration"
+    },
+    {
+      "type": "html",
+      "component": "ConversationExamples",
+      "props": {
+        "title": "User Research with AI Agents",
+        "subtitle": "Iterative design decisions through agent feedback",
+        "conversations": [
+          {
+            "id": "format-selection",
+            "topic": "YAML vs JSON: Format Selection",
+            "exchanges": [
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Would JSON be better than YAML for the context file?"
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "YAML has advantages for context files. The semantic anchors (&anchor and *reference) let me see relationships without reading the same content multiple times. JSON would require full duplication or complex referencing. The hierarchical indentation also helps me quickly scan structure levels."
+              },
+              {
+                "type": "decision",
+                "speaker": "Design Decision",
+                "message": "Stuck with YAML + added inline comments explaining architectural decisions since agents told me this helped them understand *why* not just *what*."
+              }
+            ]
+          },
+          {
+            "id": "progressive-disclosure",
+            "topic": "Progressive Disclosure Discovery",
+            "exchanges": [
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Do you use all the detail in the services section every time?"
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "No. Usually I scan the meta and struct sections first to build a mental model. I only dive into detailed service specs when working on that specific service. The two-tier structure (overview + detail) is efficient."
+              },
+              {
+                "type": "decision",
+                "speaker": "Design Decision",
+                "message": "Restructured to have lightweight references at top level, detailed specs in dedicated sections. Agents can now scan efficiently and drill down only when needed."
+              }
+            ]
+          },
+          {
+            "id": "token-optimization",
+            "topic": "Box Characters: Token Optimization",
+            "exchanges": [
+              {
+                "type": "human",
+                "speaker": "Tucker",
+                "message": "Does my addition of the 'never use box characters' create confusion or contradict other parts of the spec? The box characters contribute to context bloat."
+              },
+              {
+                "type": "agent",
+                "speaker": "Claude",
+                "message": "Good catch! You're right—there's a contradiction. Section 4.1.3 says 'NEVER use box characters' but Section 6.1 says 'indentation or tree characters.' I recommend Option 1: Remove tree characters entirely. Your instinct about token bloat is correct. Box characters add visual appeal but consume extra tokens for no semantic value."
+              },
+              {
+                "type": "decision",
+                "speaker": "Design Decision",
+                "message": "Removed box characters completely. Updated spec to 'indentation only, no box-drawing characters.' This principle extends to all context design: every character must justify its token cost. Tucker identified the bloat issue, not Claude."
+              }
+            ]
+          }
+        ]
+      },
+      "alt": "User research conversations with AI agents"
+    },
+    {
+      "type": "html",
+      "component": "InteractiveCards",
+      "props": {
+        "title": "Service-Oriented Architecture",
+        "subtitle": "Modular services optimized for different user types",
+        "cards": [
+          {
+            "icon": "Layout",
+            "label": "Visual Interface",
+            "title": "React Dashboard (Port 42001)",
+            "content": "Unified React dashboard aggregating all toolkit functionality. Provides real-time service health monitoring, log viewing, and performance metrics. Human-optimized interface with visual feedback and interactive controls.",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Database",
+            "label": "Data Backend",
+            "title": "Knowledge Graph API (Port 42003)",
+            "content": "SQLite + FTS5 storage enabling agents to query component relationships without file traversal. HTTP API provides structured access to entities, relationships, and project knowledge graph. Agent-optimized for fast context retrieval.",
+            "image": null,
+            "position": "right"
+          },
+          {
+            "icon": "FileText",
+            "label": "Debug Intelligence",
+            "title": "Logging Service",
+            "content": "Centralized logging service with structured output for debugging. Agents can reference logs to understand system behavior, trace execution paths, and identify issues without manual exploration. Multi-environment capture (browser, Node, terminal).",
+            "image": null,
+            "position": "left"
+          },
+          {
+            "icon": "Zap",
+            "label": "Persistent Memory",
+            "title": "MCP Integration",
+            "content": "Model Context Protocol server providing persistent AI memory across conversations. Context automatically loaded every conversation—no more re-exploration of project structure. Zero overhead context awareness via STDIO protocol.",
+            "image": null,
+            "position": "right"
+          }
+        ]
+      },
+      "alt": "Service-oriented architecture breakdown"
+    },
+    {
+      "type": "html",
+      "component": "ParallelAgentsDemo",
+      "props": {},
+      "alt": "Parallel agent orchestration demonstration"
+    },
+    {
+      "type": "html",
+      "component": "BeforeAfter",
+      "props": {
+        "title": "Conversation Efficiency Transformation",
+        "beforeTitle": "Without Context Kit",
+        "beforeDescription": "Agent exploration overhead every conversation",
+        "beforeImage": null,
+        "beforePoints": [
+          "Search for component files (8 seconds)",
+          "Read existing documentation (12 seconds)",
+          "Map project structure (6 seconds)",
+          "Finally answer the question",
+          "~3,200 tokens consumed in exploration"
+        ],
+        "beforePainPoints": [
+          "Every conversation starts with re-learning",
+          "Wasted time on repetitive exploration",
+          "Token budget depleted on context setup",
+          "No persistent memory between sessions"
+        ],
+        "afterTitle": "With Context Kit",
+        "afterDescription": "Instant context awareness from conversation start",
+        "afterImage": null,
+        "afterPoints": [
+          "Context pre-loaded via MCP",
+          "Immediate project understanding",
+          "Direct task execution",
+          "~800 tokens for full context",
+          "Zero re-exploration overhead"
+        ],
+        "afterBenefits": [
+          "Instant conversation productivity",
+          "75% token reduction (3200 → 800)",
+          "90% time reduction (26s → 2-3s)",
+          "Persistent context across sessions"
+        ],
+        "metrics": [
+          {
+            "label": "Time to First Response",
+            "before": "26+ seconds",
+            "after": "2-3 seconds",
+            "improvement": "90% reduction"
+          },
+          {
+            "label": "Token Consumption",
+            "before": "~3,200 tokens",
+            "after": "~800 tokens",
+            "improvement": "75% reduction"
+          },
+          {
+            "label": "Context Re-exploration",
+            "before": "Every conversation",
+            "after": "Never",
+            "improvement": "100% elimination"
+          },
+          {
+            "label": "Agent Efficiency",
+            "before": "70% overhead",
+            "after": "5% overhead",
+            "improvement": "93% improvement"
+          }
+        ]
+      },
+      "alt": "Before and after context efficiency comparison"
+    },
+    {
+      "type": "html",
+      "component": "ProjectImpactMetrics",
+      "props": {
+        "title": "Key Lessons & Impact",
+        "subtitle": "What we learned from designing for AI agents",
+        "metrics": [
+          {
+            "category": "Agent Experience Design",
+            "before": "No systematic approach to AI agent workflows",
+            "after": "Established AGx Design methodology with proven patterns",
+            "improvement": "Foundation for treating agents as primary users",
+            "measurement": "User research WITH agents, iterative feedback loops"
+          },
+          {
+            "category": "Context Efficiency",
+            "before": "1000+ line verbose YAML with 26+ second exploration overhead",
+            "after": "300-line optimized YAML with instant context awareness",
+            "improvement": "75% token reduction, 90% time reduction",
+            "measurement": "Real conversation metrics across 100+ sessions"
+          },
+          {
+            "category": "Collaboration Patterns",
+            "before": "Sequential agent execution, manual context management",
+            "after": "Parallel agent orchestration with persistent memory",
+            "improvement": "8-10 minutes → 2-3 minutes for comprehensive analysis",
+            "measurement": "context-init workflow timing studies"
+          }
+        ],
+        "learnings": [
+          {
+            "title": "Agents Are Users Too",
+            "description": "They have preferences, limitations, and optimal interaction patterns. Treat agent experience design with the same rigor as human UX."
+          },
+          {
+            "title": "Token Efficiency Matters",
+            "description": "Every repeated exploration is wasted tokens. Context systems should eliminate repetitive work while maintaining comprehensiveness."
+          },
+          {
+            "title": "Semantic Compression Works",
+            "description": "Using anchors, references, and shared vocabulary dramatically reduces content size without losing information density."
+          },
+          {
+            "title": "Progressive Disclosure Applies",
+            "description": "Agents don't need all information all the time. Structure context so they can scan efficiently and dive deep only when needed."
+          },
+          {
+            "title": "Iteration with Agent Feedback",
+            "description": "Ask agents what works and what doesn't. They'll tell you exactly what information helps them and what's just noise."
+          },
+          {
+            "title": "Dual Interfaces Are Powerful",
+            "description": "Designing different interaction modes for the same data lets each user type work in their optimal pattern."
+          }
+        ],
+        "nextSteps": [
+          "History system for recurring bugs and solutions—let agents learn from past work",
+          "Expand AGx patterns to other development tools and workflows",
+          "Publish AGx Design methodology for broader community adoption",
+          "Develop AGx design patterns catalog (like UX pattern libraries for humans)"
+        ],
+        "biggerPicture": "We're at the beginning of understanding how to design for AI agent experience. The principles I'm discovering—semantic compression, progressive disclosure, dual interfaces, agent feedback loops—will become foundational patterns as more designers start thinking about AGx. Just as we have established UX patterns for humans (navigation, forms, feedback), we'll develop established AGx patterns for agents (context architecture, query interfaces, orchestration systems)."
+      },
+      "alt": "Key lessons, impact metrics, and future vision"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "title": "User Research with AI Agents",
+  "subtitle": "Iterative design decisions through agent feedback",
+  "conversations": [
+    {
+      "id": "format-exploration",
+      "topic": "Format Exploration: XML vs Markdown vs YAML",
+      "exchanges": [
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "Goal: a way to create context for an ai agent to understand a repo. Which formats are available? Which makes the most sense for an ai agent? And why. How might we ensure the final solution works for people and agents."
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "XML emerges as the optimal choice. It provides semantic clarity with clear boundaries between concepts, flexible metadata, token efficiency for quick section identification, and mixed human/agent readability."
+        },
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "The xml seems like a good direction but there is a lot of extra characters that would lead to context bloat."
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "You're absolutely right. Let me reconsider with token efficiency as the primary constraint. Markdown with conventions is the sweet spot: Natural for LLMs (trained heavily on markdown), minimal overhead (just ## and code fences), and human-readable by default. It gives you 98.5%+ token efficiency."
+        },
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "This feels like it would require a specific design standard to keep consistent. Is there a format that already has specifications but offers the same benefits?"
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "Excellent point. CommonMark + YAML Front Matter. This combination is fully specified: CommonMark has a complete, unambiguous spec, YAML 1.2 is ISO standard. You don't need to invent a format—CommonMark IS the specification."
+        },
+        {
+          "type": "decision",
+          "speaker": "Design Decision",
+          "message": "Use CommonMark + YAML front matter. Create convention document defining required sections (Overview, Structure, Files) + JSON Schema for front matter validation. Leverage existing specs rather than inventing new format."
+        }
+      ]
+    },
+    {
+      "id": "progressive-disclosure",
+      "topic": "Progressive Disclosure Discovery",
+      "exchanges": [
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "Do you use all the detail in the services section every time?"
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "No. Usually I scan the meta and struct sections first to build a mental model. I only dive into detailed service specs when working on that specific service. The two-tier structure (overview + detail) is efficient."
+        },
+        {
+          "type": "decision",
+          "speaker": "Design Decision",
+          "message": "Restructured to have lightweight references at top level, detailed specs in dedicated sections. Agents can now scan efficiently and drill down only when needed."
+        }
+      ]
+    },
+    {
+      "id": "token-optimization",
+      "topic": "Box Characters: Token Optimization",
+      "exchanges": [
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "Does my addition of the 'never use box characters' create confusion or contradict other parts of the spec? The box characters contribute to context bloat."
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "Good catch! You're right—there's a contradiction. Section 4.1.3 says 'NEVER use box characters' but Section 6.1 says 'indentation or tree characters.'"
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "I recommend Option 1: Remove tree characters entirely. Your instinct about token bloat is correct. Box characters add visual appeal but consume extra tokens for no semantic value."
+        },
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "Proceed with option 1."
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "Updated Section 4.1.3: 'MUST NOT use box-drawing characters (├──, │, └──, etc.)' and Section 6.1: 'Use consistent indentation only, no box-drawing characters.'"
+        },
+        {
+          "type": "human",
+          "speaker": "Tucker",
+          "message": "Are there other places in the spec we could update to reduce token bloat?"
+        },
+        {
+          "type": "agent",
+          "speaker": "Claude",
+          "message": "Great question! Section numbering (~5% savings), repetitive MUST/SHOULD/MAY (~10% savings), duplicate examples, and verbose field descriptions. Could reduce the spec by 20-30% without losing essential information."
+        },
+        {
+          "type": "decision",
+          "speaker": "Design Decision",
+          "message": "Removed box characters completely. Updated spec to 'indentation only, no box-drawing characters.' Extended principle to all context design: every character must justify its token cost. Tucker identified bloat issue and drove optimization."
+        }
+      ]
+    }
+  ]
+}
