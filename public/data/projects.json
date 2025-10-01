@@ -4,6 +4,7 @@
   "title": "Context Kit",
   "subtitle": "Agent Experience (AGx) Design",
   "color": "#8B5CF6",
+  "logoUrl": "context-kit.svg",
   "description": "Pioneering work in Agent Experience Design, treating AI agents as primary users with their own needs and interaction patterns. Demonstrates how UX principles apply to designing for AI collaboration through semantic YAML architectures, service-oriented design, and persistent context systems.",
   "bullets": [
     "AGx Design: UX principles applied to AI agents as primary users",
