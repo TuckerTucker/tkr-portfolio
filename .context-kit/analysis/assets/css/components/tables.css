@@ -1,0 +1,129 @@
+/**
+ * Table Components
+ * Data display tables
+ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-md) 0;
+    background: var(--color-bg-surface);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+thead {
+    background: var(--color-bg-secondary);
+}
+
+th {
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: var(--border-width-thick) solid var(--color-border-default);
+}
+
+td {
+    padding: var(--spacing-md);
+    border-bottom: var(--border-width-thin) solid var(--color-border-default);
+    color: var(--color-text-secondary);
+}
+
+tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+tbody tr:hover {
+    background: var(--color-bg-secondary);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table Variants */
+.table-striped tbody tr:nth-child(even) {
+    background: var(--color-bg-muted);
+}
+
+.table-bordered {
+    border: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.table-bordered th,
+.table-bordered td {
+    border-right: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.table-bordered th:last-child,
+.table-bordered td:last-child {
+    border-right: none;
+}
+
+.table-compact th,
+.table-compact td {
+    padding: var(--spacing-sm);
+}
+
+/* Responsive Table */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    .table-responsive table {
+        font-size: var(--font-size-sm);
+    }
+
+    .table-responsive th,
+    .table-responsive td {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* Table Cell Alignment */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Sortable Tables */
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: var(--spacing-xl);
+}
+
+th.sortable:hover {
+    background: var(--color-bg-muted);
+}
+
+th.sortable::after {
+    content: '⇅';
+    position: absolute;
+    right: var(--spacing-md);
+    opacity: 0.5;
+}
+
+th.sortable.asc::after {
+    content: '↑';
+    opacity: 1;
+}
+
+th.sortable.desc::after {
+    content: '↓';
+    opacity: 1;
+}

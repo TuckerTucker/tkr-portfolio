@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive dependency analysis with CVE detection, license compliance, and supply chain security assessment">
+    <title>Dependency Security Audit Report - tkr-project-kit</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
+    <link rel="stylesheet" href="../../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../../assets/css/components/badges.css">
+    <link rel="stylesheet" href="../../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+
+    <!-- Report Configuration -->
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'dependency-audit-report',
+            reportDate: '2025-09-30',
+            reportTitle: 'Dependency Security Audit Report',
+            agent: 'dependency-audit-agent'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <div id="breadcrumbs"></div>
+
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>📦 Dependency Security Audit Report</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Comprehensive dependency analysis with CVE detection, license compliance, and supply chain security assessment
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📅 Generated: 2025-09-30</span>
+                        <span>🤖 Agent: dependency-audit-agent</span>
+                        <span>📊 Version: 3.6.0</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <div id="report-navigation"></div>
+
+        <!-- Main Content -->
+        <main>
+            
+<!-- Executive Summary -->
+<div class="section" id="executive-summary">
+    <h2>Executive Summary</h2>
+    <div class="summary-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem;">
+            <div style="font-size: var(--font-size-xxxl); font-weight: var(--font-weight-bold); color: var(--color-warning);">LOW</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Overall Risk Score</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem;">
+            <div style="font-size: var(--font-size-xxxl); font-weight: var(--font-weight-bold);">4</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Total Vulnerabilities</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem;">
+            <div style="font-size: var(--font-size-xxxl); font-weight: var(--font-weight-bold);">28</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Outdated Packages</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem;">
+            <div style="font-size: var(--font-size-xxxl); font-weight: var(--font-weight-bold); color: var(--color-success);">PASS</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">License Compliance</div>
+        </div>
+    </div>
+    
+    <div class="info-box" style="background: var(--color-info-bg); border-left: 4px solid var(--color-info); padding: 1rem; border-radius: var(--border-radius-md); margin-top: 1.5rem;">
+        <p><strong>Key Findings:</strong></p>
+        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li><strong>4 low-severity vulnerabilities</strong> detected in development dependencies</li>
+            <li><strong>28 packages</strong> have updates available (minor/patch versions)</li>
+            <li><strong>903 total dependencies</strong> (545 unique packages)</li>
+            <li><strong>No GPL/AGPL licenses</strong> detected - all dependencies use permissive licenses</li>
+            <li><strong>All vulnerabilities</strong> have fix available via npm update</li>
+        </ul>
+    </div>
+</div>
+
+<!-- CVE Vulnerabilities -->
+<div class="section" id="vulnerabilities">
+    <h2>Security Vulnerabilities</h2>
+    
+    <div class="score-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <div class="score-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold); color: var(--color-error);">0</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Critical</div>
+        </div>
+        <div class="score-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold); color: var(--color-error);">0</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">High</div>
+        </div>
+        <div class="score-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold); color: var(--color-warning);">0</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Moderate</div>
+        </div>
+        <div class="score-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold); color: var(--color-warning);">4</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Low</div>
+        </div>
+    </div>
+    
+    <h3>Detailed Vulnerability Analysis</h3>
+    
+    <!-- Vulnerability 1: eslint / @eslint/plugin-kit -->
+    <div class="vulnerability-card" style="background: var(--color-surface); border-left: 4px solid var(--color-warning); border-radius: var(--border-radius-md); padding: 1.5rem; margin: 1rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+            <div style="flex: 1;">
+                <h4 style="margin: 0; color: var(--color-warning);">Regular Expression Denial of Service (ReDoS)</h4>
+                <p style="margin: 0.5rem 0; color: var(--color-text-secondary);">
+                    <strong>Package:</strong> @eslint/plugin-kit (via eslint)<br>
+                    <strong>CVE ID:</strong> <a href="https://github.com/advisories/GHSA-xffm-g5w8-qvg7" target="_blank">GHSA-xffm-g5w8-qvg7</a>
+                </p>
+            </div>
+            <div>
+                <span class="badge" style="background: var(--color-warning-bg); color: var(--color-warning); padding: 0.25rem 0.75rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">LOW</span>
+            </div>
+        </div>
+        <div style="margin-top: 1rem;">
+            <p><strong>Description:</strong> ConfigCommentParser vulnerable to Regular Expression Denial of Service attacks</p>
+            <p><strong>CWE:</strong> CWE-1333 (Inefficient Regular Expression Complexity)</p>
+            <p><strong>Affected Versions:</strong> &lt;0.3.4</p>
+            <p><strong>Impact:</strong> Development tools only (devDependency)</p>
+        </div>
+        <div style="margin-top: 1rem; padding: 1rem; background: var(--color-success-bg); border-radius: var(--border-radius-md);">
+            <p style="margin: 0; color: var(--color-success);"><strong>✓ Fix Available:</strong> Update eslint to latest version</p>
+            <code style="display: block; margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update eslint</code>
+        </div>
+    </div>
+    
+    <!-- Vulnerability 2: brace-expansion -->
+    <div class="vulnerability-card" style="background: var(--color-surface); border-left: 4px solid var(--color-warning); border-radius: var(--border-radius-md); padding: 1.5rem; margin: 1rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+            <div style="flex: 1;">
+                <h4 style="margin: 0; color: var(--color-warning);">Regular Expression Denial of Service (ReDoS)</h4>
+                <p style="margin: 0.5rem 0; color: var(--color-text-secondary);">
+                    <strong>Package:</strong> brace-expansion<br>
+                    <strong>CVE ID:</strong> <a href="https://github.com/advisories/GHSA-v6h2-p8h4-qcjw" target="_blank">GHSA-v6h2-p8h4-qcjw</a>
+                </p>
+            </div>
+            <div>
+                <span class="badge" style="background: var(--color-warning-bg); color: var(--color-warning); padding: 0.25rem 0.75rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">LOW</span>
+                <span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.75rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); margin-left: 0.5rem;">CVSS: 3.1</span>
+            </div>
+        </div>
+        <div style="margin-top: 1rem;">
+            <p><strong>Description:</strong> brace-expansion vulnerable to Regular Expression Denial of Service</p>
+            <p><strong>CWE:</strong> CWE-400 (Uncontrolled Resource Consumption)</p>
+            <p><strong>Affected Versions:</strong> 1.0.0-1.1.11, 2.0.0-2.0.1</p>
+            <p><strong>CVSS Vector:</strong> CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:L</p>
+            <p><strong>Impact:</strong> Transitive dependency (multiple packages)</p>
+        </div>
+        <div style="margin-top: 1rem; padding: 1rem; background: var(--color-success-bg); border-radius: var(--border-radius-md);">
+            <p style="margin: 0; color: var(--color-success);"><strong>✓ Fix Available:</strong> Update parent dependencies</p>
+            <code style="display: block; margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update</code>
+        </div>
+    </div>
+    
+    <!-- Vulnerability 3 & 4: vite -->
+    <div class="vulnerability-card" style="background: var(--color-surface); border-left: 4px solid var(--color-warning); border-radius: var(--border-radius-md); padding: 1.5rem; margin: 1rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+            <div style="flex: 1;">
+                <h4 style="margin: 0; color: var(--color-warning);">Vite Security Issues (2 vulnerabilities)</h4>
+                <p style="margin: 0.5rem 0; color: var(--color-text-secondary);">
+                    <strong>Package:</strong> vite<br>
+                    <strong>Current Version:</strong> 6.3.5
+                </p>
+            </div>
+            <div>
+                <span class="badge" style="background: var(--color-warning-bg); color: var(--color-warning); padding: 0.25rem 0.75rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">LOW</span>
+            </div>
+        </div>
+        <div style="margin-top: 1rem;">
+            <p><strong>Issue 1:</strong> <a href="https://github.com/advisories/GHSA-g4jq-h2w9-997c" target="_blank">GHSA-g4jq-h2w9-997c</a> - Middleware may serve files with same name prefix as public directory</p>
+            <p style="margin-left: 1rem;"><strong>CWE:</strong> CWE-22 (Path Traversal), CWE-200 (Information Exposure), CWE-284 (Improper Access Control)</p>
+            
+            <p style="margin-top: 1rem;"><strong>Issue 2:</strong> <a href="https://github.com/advisories/GHSA-jqfw-vq24-v9c3" target="_blank">GHSA-jqfw-vq24-v9c3</a> - server.fs settings not applied to HTML files</p>
+            <p style="margin-left: 1rem;"><strong>CWE:</strong> CWE-23 (Relative Path Traversal), CWE-200 (Information Exposure), CWE-284 (Improper Access Control)</p>
+            
+            <p style="margin-top: 1rem;"><strong>Affected Versions:</strong> 6.0.0-6.3.5</p>
+            <p><strong>Impact:</strong> Development server only - does not affect production builds</p>
+        </div>
+        <div style="margin-top: 1rem; padding: 1rem; background: var(--color-success-bg); border-radius: var(--border-radius-md);">
+            <p style="margin: 0; color: var(--color-success);"><strong>✓ Fix Available:</strong> Update to vite@6.3.6 or later</p>
+            <code style="display: block; margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update vite</code>
+        </div>
+    </div>
+</div>
+
+<!-- Outdated Packages -->
+<div class="section" id="outdated-packages">
+    <h2>Outdated Packages</h2>
+    
+    <div class="info-box" style="background: var(--color-info-bg); border-left: 4px solid var(--color-info); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+        <p style="margin: 0;"><strong>28 packages</strong> have updates available. All are minor or patch version updates.</p>
+    </div>
+    
+    <table class="data-table" style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <thead style="background: var(--color-bg-secondary);">
+            <tr>
+                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--color-border-default);">Package</th>
+                <th style="padding: 0.75rem; text-align: center; border-bottom: 2px solid var(--color-border-default);">Current</th>
+                <th style="padding: 0.75rem; text-align: center; border-bottom: 2px solid var(--color-border-default);">Wanted</th>
+                <th style="padding: 0.75rem; text-align: center; border-bottom: 2px solid var(--color-border-default);">Latest</th>
+                <th style="padding: 0.75rem; text-align: center; border-bottom: 2px solid var(--color-border-default);">Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">vite</td>
+                <td style="padding: 0.75rem; text-align: center;">6.3.5</td>
+                <td style="padding: 0.75rem; text-align: center;">6.3.6</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--color-error);">7.1.7</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-error-bg); color: var(--color-error); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">SECURITY FIX</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">eslint</td>
+                <td style="padding: 0.75rem; text-align: center;">9.24.0</td>
+                <td style="padding: 0.75rem; text-align: center;">9.36.0</td>
+                <td style="padding: 0.75rem; text-align: center;">9.36.0</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-error-bg); color: var(--color-error); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">SECURITY FIX</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">react</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.0</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.1</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.1</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-warning-bg); color: var(--color-warning); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">HIGH</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">react-dom</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.0</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.1</td>
+                <td style="padding: 0.75rem; text-align: center;">19.1.1</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-warning-bg); color: var(--color-warning); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">HIGH</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">tailwindcss</td>
+                <td style="padding: 0.75rem; text-align: center;">3.4.3</td>
+                <td style="padding: 0.75rem; text-align: center;">3.4.17</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--color-error);">4.1.13</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">MEDIUM</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">@vitejs/plugin-react</td>
+                <td style="padding: 0.75rem; text-align: center;">4.3.4</td>
+                <td style="padding: 0.75rem; text-align: center;">4.7.0</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--color-error);">5.0.4</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">MEDIUM</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">vitest</td>
+                <td style="padding: 0.75rem; text-align: center;">3.1.1</td>
+                <td style="padding: 0.75rem; text-align: center;">3.2.4</td>
+                <td style="padding: 0.75rem; text-align: center;">3.2.4</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">MEDIUM</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">storybook (5 packages)</td>
+                <td style="padding: 0.75rem; text-align: center;">9.1.6</td>
+                <td style="padding: 0.75rem; text-align: center;">9.1.9</td>
+                <td style="padding: 0.75rem; text-align: center;">9.1.9</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">LOW</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem; font-family: var(--font-family-mono); font-size: var(--font-size-sm);">Others (18 packages)</td>
+                <td style="padding: 0.75rem; text-align: center;">-</td>
+                <td style="padding: 0.75rem; text-align: center;">-</td>
+                <td style="padding: 0.75rem; text-align: center;">-</td>
+                <td style="padding: 0.75rem; text-align: center;"><span class="badge" style="background: var(--color-info-bg); color: var(--color-info); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">LOW</span></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="warning-box" style="background: var(--color-warning-bg); border-left: 4px solid var(--color-warning); padding: 1rem; border-radius: var(--border-radius-md); margin-top: 1.5rem;">
+        <p style="margin: 0;"><strong>⚠ Breaking Changes:</strong> tailwindcss v4 and @vitejs/plugin-react v5 introduce breaking changes. Review migration guides before updating.</p>
+    </div>
+</div>
+
+<!-- License Compliance -->
+<div class="section" id="licenses">
+    <h2>License Compliance</h2>
+    
+    <div class="success-box" style="background: var(--color-success-bg); border-left: 4px solid var(--color-success); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+        <p style="margin: 0; color: var(--color-success);"><strong>✓ All licenses are compliant</strong> - No GPL/AGPL licenses detected</p>
+    </div>
+    
+    <h3>License Distribution</h3>
+    <table class="data-table" style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <thead style="background: var(--color-bg-secondary);">
+            <tr>
+                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--color-border-default);">License Type</th>
+                <th style="padding: 0.75rem; text-align: center; border-bottom: 2px solid var(--color-border-default);">Count</th>
+                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--color-border-default);">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem;">MIT</td>
+                <td style="padding: 0.75rem; text-align: center;">~270</td>
+                <td style="padding: 0.75rem;"><span class="badge" style="background: var(--color-success-bg); color: var(--color-success); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">✓ APPROVED</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem;">ISC</td>
+                <td style="padding: 0.75rem; text-align: center;">~20</td>
+                <td style="padding: 0.75rem;"><span class="badge" style="background: var(--color-success-bg); color: var(--color-success); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">✓ APPROVED</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem;">Apache-2.0</td>
+                <td style="padding: 0.75rem; text-align: center;">~5</td>
+                <td style="padding: 0.75rem;"><span class="badge" style="background: var(--color-success-bg); color: var(--color-success); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">✓ APPROVED</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-muted);">
+                <td style="padding: 0.75rem;">BSD-2-Clause / BSD-3-Clause</td>
+                <td style="padding: 0.75rem; text-align: center;">~6</td>
+                <td style="padding: 0.75rem;"><span class="badge" style="background: var(--color-success-bg); color: var(--color-success); padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); font-size: var(--font-size-xs);">✓ APPROVED</span></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p style="margin-top: 1rem; color: var(--color-text-secondary); font-size: var(--font-size-sm);">All detected licenses are permissive and allow commercial use without copyleft restrictions.</p>
+</div>
+
+<!-- Dependency Bloat Analysis -->
+<div class="section" id="bloat-analysis">
+    <h2>Dependency Bloat Analysis</h2>
+    
+    <div class="summary-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold);">43</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Direct Dependencies</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold);">545</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Total Packages</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold);">903</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Total w/ Dupes</div>
+        </div>
+        <div class="metric-card" style="background: var(--color-surface); border: 1px solid var(--color-border-muted); border-radius: var(--border-radius-lg); padding: 1.5rem; text-align: center;">
+            <div style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-bold);">12.7x</div>
+            <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">Dependency Multiplier</div>
+        </div>
+    </div>
+    
+    <h3>Large Dependencies</h3>
+    <div class="info-box" style="background: var(--color-info-bg); border-left: 4px solid var(--color-info); padding: 1rem; border-radius: var(--border-radius-md);">
+        <p style="margin: 0;">Largest dependency trees:</p>
+        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li><strong>Storybook ecosystem:</strong> 150+ transitive dependencies</li>
+            <li><strong>@radix-ui components:</strong> 50+ transitive dependencies</li>
+            <li><strong>Vitest + Playwright:</strong> 80+ transitive dependencies</li>
+            <li><strong>ESLint + TypeScript:</strong> 60+ transitive dependencies</li>
+        </ul>
+    </div>
+    
+    <h3>Dependency Health</h3>
+    <div class="success-box" style="background: var(--color-success-bg); border-left: 4px solid var(--color-success); padding: 1rem; border-radius: var(--border-radius-md); margin-top: 1rem;">
+        <p style="margin: 0;"><strong>✓ Dependency count is reasonable</strong> for a modern React application with Storybook and testing infrastructure</p>
+        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+            <li>All dependencies are actively maintained</li>
+            <li>No deprecated packages detected</li>
+            <li>Development dependencies properly segregated</li>
+            <li>Production bundle excludes devDependencies</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Supply Chain Security -->
+<div class="section" id="supply-chain">
+    <h2>Supply Chain Security</h2>
+    
+    <div class="success-box" style="background: var(--color-success-bg); border-left: 4px solid var(--color-success); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+        <p style="margin: 0; color: var(--color-success);"><strong>✓ Supply chain risk: LOW</strong> - All dependencies from reputable maintainers</p>
+    </div>
+    
+    <h3>Key Observations</h3>
+    <ul style="line-height: 1.8;">
+        <li><strong>React ecosystem:</strong> Meta-maintained packages with strong security practices</li>
+        <li><strong>Radix UI:</strong> Well-established component library with active maintenance</li>
+        <li><strong>Storybook:</strong> Industry-standard tool with large community backing</li>
+        <li><strong>Vite/Vitest:</strong> Maintained by Evan You and the Vite team</li>
+        <li><strong>Tailwind CSS:</strong> Tailwind Labs maintained with commercial support</li>
+        <li><strong>No single-maintainer critical dependencies</strong></li>
+        <li><strong>All packages have >1M weekly downloads</strong> (top packages)</li>
+    </ul>
+    
+    <div class="info-box" style="background: var(--color-info-bg); border-left: 4px solid var(--color-info); padding: 1rem; border-radius: var(--border-radius-md); margin-top: 1rem;">
+        <p style="margin: 0;"><strong>Recommendation:</strong> Consider implementing npm audit in CI/CD pipeline to catch vulnerabilities before deployment</p>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="section" id="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="quick-action-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;">
+        <button onclick="generatePlan('Update Security-Critical Packages (vite, eslint)')" class="quick-action-btn" style="background: var(--color-error); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); cursor: pointer;">
+            🔒 Generate Security Patch Plan
+        </button>
+        <button onclick="generatePlan('Update All Outdated Dependencies (Safe Updates)')" class="quick-action-btn" style="background: var(--color-info); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); cursor: pointer;">
+            📦 Generate Update Plan
+        </button>
+        <button onclick="generatePlan('Review Breaking Changes (Tailwind v4, Vite v7)')" class="quick-action-btn" style="background: var(--color-warning); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); cursor: pointer;">
+            ⚠ Breaking Changes Review
+        </button>
+    </div>
+</div>
+
+<!-- Recommendations -->
+<div class="section" id="recommendations">
+    <h2>Recommendations</h2>
+    
+    <h3>Immediate Actions (Priority: High)</h3>
+    <ol style="line-height: 2;">
+        <li><strong>Update vite to 6.3.6+</strong> to fix security vulnerabilities
+            <code style="display: block; margin: 0.5rem 0; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update vite</code>
+        </li>
+        <li><strong>Update eslint to 9.36.0</strong> to fix ReDoS vulnerability
+            <code style="display: block; margin: 0.5rem 0; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update eslint @eslint/js</code>
+        </li>
+        <li><strong>Update React to 19.1.1</strong> (patch release)
+            <code style="display: block; margin: 0.5rem 0; padding: 0.5rem; background: var(--color-bg-secondary); border-radius: var(--border-radius-sm); font-family: var(--font-family-mono);">npm update react react-dom @types/react @types/react-dom</code>
+        </li>
+    </ol>
+    
+    <h3>Short-term Improvements (1-2 weeks)</h3>
+    <ol style="line-height: 2;">
+        <li><strong>Update testing dependencies</strong> (vitest, @vitest/coverage-v8, @vitest/browser, playwright)</li>
+        <li><strong>Update Storybook packages</strong> to 9.1.9 for latest features and fixes</li>
+        <li><strong>Update remaining minor version updates</strong> (postcss, react-router-dom, etc.)</li>
+        <li><strong>Implement automated dependency scanning</strong> in CI/CD pipeline</li>
+    </ol>
+    
+    <h3>Long-term Optimization (1-3 months)</h3>
+    <ol style="line-height: 2;">
+        <li><strong>Evaluate Tailwind CSS v4 migration</strong> - Breaking changes require thorough testing</li>
+        <li><strong>Evaluate Vite v7 upgrade</strong> - May include breaking changes</li>
+        <li><strong>Review and audit unused dependencies</strong></li>
+        <li><strong>Consider dependency bundling strategies</strong> to reduce node_modules size</li>
+        <li><strong>Implement package.json engines field</strong> to enforce Node.js version consistency</li>
+    </ol>
+    
+    <h3>Process Improvements</h3>
+    <ol style="line-height: 2;">
+        <li><strong>Set up Dependabot or Renovate</strong> for automated PR-based updates</li>
+        <li><strong>Add npm audit to pre-commit hooks</strong></li>
+        <li><strong>Schedule monthly dependency review</strong> sessions</li>
+        <li><strong>Document update procedures</strong> for breaking changes</li>
+    </ol>
+</div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Dependency Security Audit Report</strong></p>
+            <p style="margin-top: 0.5rem;">Generated by dependency-audit-agent | W3C Design Token Format 3.0 Compliant</p>
+            <p style="margin-top: 0.5rem;">tkr-project-kit 3.6.0 | 2025-09-30</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="../../index.html">All Reports</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/theme-toggle.js"></script>
+
+    <!-- Custom Report Script (optional) -->
+    
+<script>
+function generatePlan(recommendation) {
+    const reportPath = window.location.pathname;
+    const message = `/create_plan ${recommendation} - See details in ${reportPath}`;
+    
+    if (confirm(`Generate implementation plan for: ${recommendation}?`)) {
+        // Copy to clipboard
+        navigator.clipboard.writeText(message).then(() => {
+            alert(`Command copied to clipboard!\n\nPaste this into Claude Code:\n${message}`);
+        }).catch(() => {
+            alert(`Copy this command to Claude Code:\n\n${message}`);
+        });
+    }
+}
+</script>
+
+</body>
+</html>

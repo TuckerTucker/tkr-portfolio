@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive test coverage analysis with quality assessment, flaky test detection, and test pyramid compliance evaluation">
+    <title>Test Coverage Analysis Report - tkr-project-kit</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
+    <link rel="stylesheet" href="../../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../../assets/css/components/badges.css">
+    <link rel="stylesheet" href="../../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+
+    <!-- Report Configuration -->
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'test-coverage-report',
+            reportDate: '2025-09-30',
+            reportTitle: 'Test Coverage Analysis Report',
+            agent: 'test-coverage-agent'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <div id="breadcrumbs"></div>
+
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>🧪 Test Coverage Analysis Report</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Comprehensive test coverage analysis with quality assessment, flaky test detection, and test pyramid compliance evaluation
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📅 Generated: 2025-09-30</span>
+                        <span>🤖 Agent: test-coverage-agent</span>
+                        <span>📊 Version: 3.6.0</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <div id="report-navigation"></div>
+
+        <!-- Main Content -->
+        <main>
+            
+<section class="section">
+    <h2>Executive Summary</h2>
+    <div class="metrics-grid">
+        <div class="metric-card critical">
+            <div class="metric-value">1.3%</div>
+            <div class="metric-label">Statement Coverage</div>
+            <div class="metric-trend down">▼ Critical - Target: 80%</div>
+        </div>
+        <div class="metric-card critical">
+            <div class="metric-value">0.8%</div>
+            <div class="metric-label">Branch Coverage</div>
+            <div class="metric-trend down">▼ Critical - Target: 80%</div>
+        </div>
+        <div class="metric-card critical">
+            <div class="metric-value">1.5%</div>
+            <div class="metric-label">Function Coverage</div>
+            <div class="metric-trend down">▼ Critical - Target: 80%</div>
+        </div>
+        <div class="metric-card critical">
+            <div class="metric-value">1.3%</div>
+            <div class="metric-label">Line Coverage</div>
+            <div class="metric-trend down">▼ Critical - Target: 80%</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <div class="card">
+            <h3>Coverage Summary</h3>
+            <table class="data-table">
+                <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+                <tr><td>Total Source Files</td><td>77</td><td><span class="badge badge-info">Baseline</span></td></tr>
+                <tr><td>Files with Tests</td><td>1</td><td><span class="badge badge-critical">Critical Gap</span></td></tr>
+                <tr><td>Untested Files</td><td>76</td><td><span class="badge badge-critical">98.7% Untested</span></td></tr>
+                <tr><td>Test Files</td><td>1</td><td><span class="badge badge-warning">Minimal</span></td></tr>
+                <tr><td>Storybook Stories</td><td>9</td><td><span class="badge badge-success">Visual Testing</span></td></tr>
+                <tr><td>Total Source Lines</td><td>~10,474</td><td><span class="badge badge-info">Baseline</span></td></tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Critical Coverage Gaps</h2>
+    <div class="card critical">
+        <h3>High-Risk Untested Components</h3>
+        <p style="margin-bottom: 1rem;">These components have critical business logic or user-facing functionality without test coverage:</p>
+        <table class="data-table">
+            <thead><tr><th>Component Path</th><th>Risk Level</th><th>Reason</th></tr></thead>
+            <tbody>
+                <tr><td><code>src/App.jsx</code></td><td><span class="badge badge-critical">HIGH</span></td><td>Main application component, routing logic</td></tr>
+                <tr><td><code>src/hooks/useProjects.js</code></td><td><span class="badge badge-critical">HIGH</span></td><td>Data fetching logic, error handling</td></tr>
+                <tr><td><code>src/hooks/SelectedProjectContext.jsx</code></td><td><span class="badge badge-critical">HIGH</span></td><td>Context provider, state management</td></tr>
+                <tr><td><code>src/hooks/useTheme.jsx</code></td><td><span class="badge badge-warning">MEDIUM</span></td><td>Theme management, localStorage interaction</td></tr>
+                <tr><td><code>src/components/layout/Navigation.jsx</code></td><td><span class="badge badge-warning">MEDIUM</span></td><td>Navigation logic, routing</td></tr>
+                <tr><td><code>src/components/pages/HomePage.jsx</code></td><td><span class="badge badge-warning">MEDIUM</span></td><td>Main page component</td></tr>
+                <tr><td><code>src/components/pages/ProjectPage.jsx</code></td><td><span class="badge badge-warning">MEDIUM</span></td><td>Project display logic</td></tr>
+                <tr><td><code>src/components/ui/carousel.jsx</code></td><td><span class="badge badge-warning">MEDIUM</span></td><td>Complex UI component with embla-carousel</td></tr>
+                <tr><td><code>src/components/ui/button.jsx</code></td><td><span class="badge badge-info">LOW</span></td><td>UI component with variants</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+        <h3>Component Categories Without Tests</h3>
+        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Core Application (3 files)</strong>: App.jsx, main.jsx - No routing tests</li>
+            <li><strong>Custom Hooks (3 files)</strong>: useProjects, useTheme, SelectedProjectContext - No hook tests</li>
+            <li><strong>Layout Components (3 files)</strong>: Navigation, Header, Footer - No layout tests</li>
+            <li><strong>Page Components (3 files)</strong>: HomePage, ProjectPage, DemoShowcase - No page integration tests</li>
+            <li><strong>UI Components (15+ files)</strong>: Button, Card, Carousel, Dropdown - Minimal component tests</li>
+            <li><strong>Feature Components (30+ files)</strong>: AI Skills components, HTML Slides - Only 1 component tested</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Test Quality Assessment</h2>
+    <div class="metrics-grid">
+        <div class="metric-card good">
+            <div class="metric-value">7/10</div>
+            <div class="metric-label">Test Quality Score</div>
+            <div class="metric-trend">Good structure, limited coverage</div>
+        </div>
+        <div class="metric-card good">
+            <div class="metric-value">18</div>
+            <div class="metric-label">Total Test Cases</div>
+            <div class="metric-trend">Single component tested</div>
+        </div>
+        <div class="metric-card warning">
+            <div class="metric-value">1.8</div>
+            <div class="metric-label">Avg Assertions/Test</div>
+            <div class="metric-trend">Could be more thorough</div>
+        </div>
+        <div class="metric-card good">
+            <div class="metric-value">0</div>
+            <div class="metric-label">Anti-patterns Found</div>
+            <div class="metric-trend up">✓ No .only or .skip</div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+        <h3>Existing Test Analysis: AIInteractionShowcase.test.jsx</h3>
+        <div style="margin-top: 1rem;">
+            <h4>Strengths:</h4>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li>✓ Well-structured with describe/it blocks</li>
+                <li>✓ Proper setup with beforeEach and mocking</li>
+                <li>✓ Tests multiple scenarios (desktop, mobile, empty states)</li>
+                <li>✓ Includes accessibility testing (ARIA labels)</li>
+                <li>✓ Tests props, interactions, and edge cases</li>
+                <li>✓ No anti-patterns (.only, .skip)</li>
+                <li>✓ Clear test descriptions</li>
+            </ul>
+            <h4 style="margin-top: 1rem;">Areas for Improvement:</h4>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li>⚠ Some tests could have more assertions per test case</li>
+                <li>⚠ Missing tests for user interactions (fireEvent/waitFor imported but not fully utilized)</li>
+                <li>⚠ Could benefit from snapshot testing for complex UI</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Flaky Test Detection</h2>
+    <div class="card good">
+        <h3>Test Stability Analysis</h3>
+        <p style="margin-bottom: 1rem;">Analysis of test execution consistency and timing-sensitive code:</p>
+        <table class="data-table">
+            <tr><th>Category</th><th>Status</th><th>Details</th></tr>
+            <tr><td>Test Execution</td><td><span class="badge badge-critical">Failed</span></td><td>Tests failed due to missing dependencies</td></tr>
+            <tr><td>Timing Dependencies</td><td><span class="badge badge-good">None Detected</span></td><td>No setTimeout/setInterval in test files</td></tr>
+            <tr><td>External Dependencies</td><td><span class="badge badge-warning">Configuration Issue</span></td><td>Vitest workspace configuration issues</td></tr>
+            <tr><td>Browser Tests</td><td><span class="badge badge-critical">Setup Required</span></td><td>Playwright not installed</td></tr>
+        </table>
+    </div>
+
+    <div class="card warning" style="margin-top: 1rem;">
+        <h3>Configuration Issues</h3>
+        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+            <li>Missing package.json test script - No "test" command defined</li>
+            <li>@testing-library/react not installed as dependency</li>
+            <li>Playwright browsers not installed (npx playwright install required)</li>
+            <li>JSDOM dependency missing for some test files</li>
+            <li>Webpack dependency missing for plugin tests</li>
+            <li>.context-kit test files using wrong test framework (describe/it not defined)</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Test Pyramid Compliance</h2>
+    <div class="card">
+        <h3>Test Distribution</h3>
+        <div style="margin-bottom: 1rem;"><strong>Current Distribution:</strong></div>
+        <table class="data-table">
+            <tr><th>Test Type</th><th>Count</th><th>Percentage</th><th>Target</th><th>Status</th></tr>
+            <tr><td>Unit Tests</td><td>18</td><td>66.7%</td><td>70%</td><td><span class="badge badge-warning">Close to target</span></td></tr>
+            <tr><td>Integration Tests</td><td>0</td><td>0.0%</td><td>20%</td><td><span class="badge badge-critical">Missing</span></td></tr>
+            <tr><td>E2E Tests</td><td>0</td><td>0.0%</td><td>10%</td><td><span class="badge badge-critical">Missing</span></td></tr>
+            <tr><td>Storybook (Visual)</td><td>9</td><td>33.3%</td><td>N/A</td><td><span class="badge badge-good">Good coverage</span></td></tr>
+        </table>
+
+        <div style="margin-top: 1rem; padding: 1rem; background: var(--color-warning-bg); border-left: 4px solid var(--color-warning);">
+            <strong>⚠ Test Pyramid Imbalance Detected</strong>
+            <p style="margin-top: 0.5rem;">
+                The project has minimal unit tests (18 tests for 1 component) and zero integration/E2E tests. 
+                While Storybook provides visual testing, it doesn't replace functional tests for business logic.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Test Execution Performance</h2>
+    <div class="card">
+        <h3>Execution Metrics</h3>
+        <table class="data-table">
+            <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+            <tr><td>Total Test Suites</td><td>34 (25 passed, 9 failed)</td><td><span class="badge badge-warning">Configuration Issues</span></td></tr>
+            <tr><td>Test Execution Time</td><td>1.47s</td><td><span class="badge badge-good">Fast</span></td></tr>
+            <tr><td>Transform Time</td><td>536ms</td><td><span class="badge badge-good">Reasonable</span></td></tr>
+            <tr><td>Failed Tests</td><td>9 (dependency/config issues)</td><td><span class="badge badge-critical">Needs Fix</span></td></tr>
+        </table>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Quick Actions</h2>
+    <div class="quick-action-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#" onclick="generatePlan('Add Core Tests'); return false;" class="quick-action-btn">
+            🧪 Generate Core Testing Plan
+        </a>
+        <a href="#" onclick="generatePlan('Fix Test Configuration'); return false;" class="quick-action-btn">
+            🔧 Generate Config Fix Plan
+        </a>
+        <a href="#" onclick="generatePlan('Add Hook Tests'); return false;" class="quick-action-btn">
+            🪝 Generate Hook Testing Plan
+        </a>
+        <a href="#" onclick="generatePlan('Add Integration Tests'); return false;" class="quick-action-btn">
+            🔗 Generate Integration Testing Plan
+        </a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Recommendations</h2>
+    <div class="card">
+        <h3>Priority 1: Critical (Immediate Action Required)</h3>
+        <ol style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Fix Test Configuration</strong>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Install missing dependencies: @testing-library/react, jsdom</li>
+                    <li>Add "test" script to package.json</li>
+                    <li>Configure Vitest properly for component tests</li>
+                    <li>Install Playwright: npx playwright install</li>
+                </ul>
+            </li>
+            <li><strong>Test Critical Path Components</strong>
+                <ul style="margin-left: 1.5rem;">
+                    <li>App.jsx - Routing and application structure</li>
+                    <li>useProjects hook - Data fetching and error handling</li>
+                    <li>SelectedProjectContext - State management</li>
+                </ul>
+            </li>
+            <li><strong>Establish Coverage Baseline</strong>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Set coverage thresholds in vitest config</li>
+                    <li>Target minimum 40% coverage initially</li>
+                    <li>Gradually increase to 80%</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+        <h3>Priority 2: High (Within Sprint)</h3>
+        <ol style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Add Hook Tests</strong> - Test custom hooks (useTheme, useProjects) with React Testing Library's renderHook</li>
+            <li><strong>Add UI Component Tests</strong> - Test Button, Card, Carousel with user interactions</li>
+            <li><strong>Add Integration Tests</strong> - Test page components with routing and context</li>
+            <li><strong>Fix .context-kit Tests</strong> - Configure proper test environment for logging client tests</li>
+        </ol>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+        <h3>Priority 3: Medium (Next Sprint)</h3>
+        <ol style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Add E2E Tests</strong> - Use Playwright for critical user flows</li>
+            <li><strong>Improve Test Quality</strong> - Add more assertions, edge cases, and snapshot tests</li>
+            <li><strong>Add Performance Tests</strong> - Test component rendering performance</li>
+            <li><strong>Add Accessibility Tests</strong> - Expand a11y testing beyond ARIA labels</li>
+        </ol>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+        <h3>Testing Strategy</h3>
+        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Unit Tests (Target: 70%)</strong>: Focus on hooks, utilities, and individual components</li>
+            <li><strong>Integration Tests (Target: 20%)</strong>: Test component interactions, routing, and context</li>
+            <li><strong>E2E Tests (Target: 10%)</strong>: Test critical user journeys (project navigation, theme switching)</li>
+            <li><strong>Visual Tests (Existing)</strong>: Continue using Storybook for component visual testing</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Next Steps</h2>
+    <div class="card">
+        <h3>Immediate Actions</h3>
+        <ol style="margin-left: 1.5rem; line-height: 1.8;">
+            <li>Install test dependencies: <code>npm install --save-dev @testing-library/react @testing-library/user-event jsdom</code></li>
+            <li>Add test script to package.json: <code>"test": "vitest"</code></li>
+            <li>Install Playwright: <code>npx playwright install</code></li>
+            <li>Create vitest.config.ts with coverage configuration</li>
+            <li>Write tests for App.jsx focusing on routing logic</li>
+            <li>Write tests for useProjects hook focusing on data fetching</li>
+            <li>Set up CI/CD to run tests on every commit</li>
+        </ol>
+    </div>
+</section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Test Coverage Analysis Report</strong></p>
+            <p style="margin-top: 0.5rem;">Generated by test-coverage-agent | W3C Design Token Format 3.0 Compliant</p>
+            <p style="margin-top: 0.5rem;">tkr-project-kit 3.6.0 | 2025-09-30</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="../../index.html">All Reports</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/theme-toggle.js"></script>
+
+    <!-- Custom Report Script (optional) -->
+    
+<script>
+function generatePlan(recommendation) {
+    const message = '/create_plan ' + recommendation + ' - Based on Test Coverage Report';
+    if (confirm('Generate implementation plan for: ' + recommendation + '?')) {
+        alert('Copy this command to Claude Code:\n\n' + message);
+    }
+}
+</script>
+
+</body>
+</html>

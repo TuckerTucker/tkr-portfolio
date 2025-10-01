@@ -250,7 +250,7 @@ Run tests with: `node test-migration.cjs`
 - Extend service mapping patterns based on usage analytics
 
 ### Contact
-This migration system was developed by Agent 3 in the service name enhancement orchestration. For issues or questions, refer to the orchestration documentation or the agent status files in `.claude/orchestration/status/`.
+This migration system was developed by Agent 3 in the service name enhancement orchestration.
 
 ---
 

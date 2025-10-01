@@ -1,0 +1,148 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-01T00:53:40.698Z",
+  "reports": [
+    {
+      "date": "2025-09-30",
+      "count": 8,
+      "reports": [
+        {
+          "id": "accessibility",
+          "filename": "accessibility-report.html",
+          "title": "Accessibility Audit Report - tkr-portfolio",
+          "type": "Phase 2",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "total": 0
+          },
+          "summary": "",
+          "size": 42950,
+          "modified": "2025-09-30T23:39:42.000Z"
+        },
+        {
+          "id": "code-quality",
+          "filename": "code-quality-report.html",
+          "title": "Code Quality Analysis Report - tkr-portfolio",
+          "type": "Phase 1",
+          "score": 72,
+          "issues": {
+            "critical": 7,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "total": 7
+          },
+          "summary": "Code Quality Analysis Report",
+          "size": 39126,
+          "modified": "2025-09-30T23:31:19.000Z"
+        },
+        {
+          "id": "commit-pr-quality",
+          "filename": "commit-pr-quality-report.html",
+          "title": "Commit & PR Quality Report - tkr-portfolio",
+          "type": "Phase 3",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "total": 4
+          },
+          "summary": "78 commits (84%) include detailed commit bodies explaining the \"why\" behind changes.",
+          "size": 34518,
+          "modified": "2025-10-01T00:53:32.000Z"
+        },
+        {
+          "id": "dependency-audit",
+          "filename": "dependency-audit-report.html",
+          "title": "Dependency Security Audit Report",
+          "type": "Phase 1",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 4,
+            "total": 545
+          },
+          "summary": "Key Findings:",
+          "size": 37258,
+          "modified": "2025-09-30T23:29:55.000Z"
+        },
+        {
+          "id": "performance",
+          "filename": "performance-report.html",
+          "title": "⚡ Performance Analysis Report - tkr-portfolio",
+          "type": "Phase 2",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 10,
+            "medium": 0,
+            "low": 0,
+            "total": 4
+          },
+          "summary": "",
+          "size": 44257,
+          "modified": "2025-09-30T23:44:44.000Z"
+        },
+        {
+          "id": "security",
+          "filename": "security-report.html",
+          "title": "Security Audit Report - tkr-portfolio",
+          "type": "Phase 1",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 4,
+            "total": 4
+          },
+          "summary": "",
+          "size": 41611,
+          "modified": "2025-09-30T23:31:18.000Z"
+        },
+        {
+          "id": "test-coverage-full-content",
+          "filename": "test-coverage-full-content.html",
+          "title": "🧪 Test Coverage Analysis Report - tkr-portfolio",
+          "type": "Other",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "total": 0
+          },
+          "summary": "",
+          "size": 2452,
+          "modified": "2025-09-30T23:49:04.000Z"
+        },
+        {
+          "id": "test-coverage",
+          "filename": "test-coverage-report.html",
+          "title": "Test Coverage Analysis Report",
+          "type": "Phase 2",
+          "score": null,
+          "issues": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "total": 77
+          },
+          "summary": "Test Coverage Analysis Report",
+          "size": 19981,
+          "modified": "2025-09-30T23:52:12.000Z"
+        }
+      ]
+    }
+  ]
+}

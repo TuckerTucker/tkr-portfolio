@@ -1,0 +1,51 @@
+/**
+ * Light Theme
+ * tkr-project-kit Analysis Reports
+ *
+ * Default light color scheme
+ */
+
+[data-theme="light"],
+:root {
+    /* Colors - Background */
+    --color-bg-primary: #f8fafc;
+    --color-bg-surface: #ffffff;
+    --color-bg-secondary: #f1f5f9;
+    --color-bg-muted: #f9fafb;
+
+    /* Colors - Text */
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #475569;
+    --color-text-tertiary: #64748b;
+    --color-text-inverse: #ffffff;
+    --color-text-disabled: #9ca3af;
+
+    /* Colors - Interactive */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+    --color-secondary: #6b7280;
+    --color-focus-ring: rgba(59, 130, 246, 0.5);
+
+    /* Colors - Status */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+
+    /* Colors - Severity */
+    --color-severity-critical: #dc2626;
+    --color-severity-high: #ea580c;
+    --color-severity-medium: #d97706;
+    --color-severity-low: #059669;
+
+    /* Colors - Border */
+    --color-border-default: #e5e7eb;
+    --color-border-muted: #f3f4f6;
+    --color-border-focus: #3b82f6;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}

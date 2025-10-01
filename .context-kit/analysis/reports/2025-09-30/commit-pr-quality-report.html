@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive analysis of commit message quality, PR structure, atomicity, and code review metrics aligned with best practices">
+    <title>Commit & PR Quality Report - tkr-portfolio</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
+    <link rel="stylesheet" href="../../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../../assets/css/components/badges.css">
+    <link rel="stylesheet" href="../../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+
+    <!-- Report Configuration -->
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'commit-pr-quality-report',
+            reportDate: '2025-09-30',
+            reportTitle: 'Commit & PR Quality Report',
+            agent: 'commit-pr-quality-agent'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <div id="breadcrumbs"></div>
+
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>🔀 Commit & PR Quality Report</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Comprehensive analysis of commit message quality, PR structure, atomicity, and code review metrics aligned with best practices
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📅 Generated: 2025-09-30</span>
+                        <span>🤖 Agent: commit-pr-quality-agent</span>
+                        <span>📊 Version: 3.6.0</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <div id="report-navigation"></div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Executive Summary -->
+            <div class="section">
+                <h2 id="executive-summary">Executive Summary</h2>
+                <div class="score-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="card">
+                        <h3 style="margin-top: 0;">Overall Quality</h3>
+                        <div class="score excellent">82/100</div>
+                        <p style="margin-bottom: 0; color: var(--color-text-secondary);">Strong performance</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-top: 0;">Commit Messages</h3>
+                        <div class="score excellent">90/100</div>
+                        <p style="margin-bottom: 0; color: var(--color-text-secondary);">Excellent adherence</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-top: 0;">Atomicity</h3>
+                        <div class="score good">75/100</div>
+                        <p style="margin-bottom: 0; color: var(--color-text-secondary);">Good with exceptions</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-top: 0;">Branch Naming</h3>
+                        <div class="score good">78/100</div>
+                        <p style="margin-bottom: 0; color: var(--color-text-secondary);">Simple structure</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Key Metrics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <div style="font-size: var(--font-size-xxxl); font-weight: bold; color: var(--color-primary);">93</div>
+                            <div style="color: var(--color-text-secondary);">Total Commits Analyzed</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-xxxl); font-weight: bold; color: var(--color-success);">91%</div>
+                            <div style="color: var(--color-text-secondary);">Conventional Commits Compliance</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-xxxl); font-weight: bold; color: var(--color-warning);">12</div>
+                            <div style="color: var(--color-text-secondary);">Oversized Commits (>500 lines)</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-xxxl); font-weight: bold; color: var(--color-primary);">3</div>
+                            <div style="color: var(--color-text-secondary);">Merge Commits Found</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commit Message Quality -->
+            <div class="section">
+                <h2 id="commit-messages">Commit Message Quality Analysis</h2>
+                
+                <div class="card">
+                    <h3>Conventional Commits Compliance: 91%</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill excellent" style="width: 91%;"></div>
+                    </div>
+                    <p style="margin-top: 1rem;">
+                        <strong>85 of 93 commits</strong> follow the Conventional Commits standard with proper type prefixes.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Type Distribution</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Count</th>
+                                <th>Percentage</th>
+                                <th>Quality</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-primary">feat</span></td>
+                                <td>35</td>
+                                <td>38%</td>
+                                <td><span class="badge badge-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-warning">fix</span></td>
+                                <td>23</td>
+                                <td>25%</td>
+                                <td><span class="badge badge-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-info">refactor</span></td>
+                                <td>14</td>
+                                <td>15%</td>
+                                <td><span class="badge badge-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-secondary">docs</span></td>
+                                <td>6</td>
+                                <td>6%</td>
+                                <td><span class="badge badge-success">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-secondary">chore</span></td>
+                                <td>7</td>
+                                <td>8%</td>
+                                <td><span class="badge badge-success">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-error">Non-compliant</span></td>
+                                <td>8</td>
+                                <td>9%</td>
+                                <td><span class="badge badge-warning">Needs improvement</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Commit Body Presence</h3>
+                    <p><strong>78 commits (84%)</strong> include detailed commit bodies explaining the "why" behind changes.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill excellent" style="width: 84%;"></div>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+                        This is exceptional - commit bodies provide context, implementation details, and reasoning that make the repository history highly valuable for understanding evolution.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Scope Usage</h3>
+                    <p><strong>Top scopes identified:</strong></p>
+                    <ul>
+                        <li><code>routing</code> - 5 commits (URL navigation and React Router changes)</li>
+                        <li><code>ui</code> - 8 commits (UI component updates)</li>
+                        <li><code>components</code> - 12 commits (Component creation and refactoring)</li>
+                        <li><code>context-kit</code> - 7 commits (Context-kit infrastructure)</li>
+                        <li><code>portfolio</code> - 6 commits (Portfolio content updates)</li>
+                        <li><code>storybook</code> - 5 commits (Storybook documentation)</li>
+                    </ul>
+                    <p style="color: var(--color-text-secondary); margin-top: 1rem;">
+                        Consistent scope usage helps with changelog generation and understanding which parts of the codebase are changing.
+                    </p>
+                </div>
+
+                <div class="card card-warning">
+                    <h3>Non-Compliant Commits</h3>
+                    <p>8 commits do not follow Conventional Commits format:</p>
+                    <ul>
+                        <li><code>chore: update package-lock.json after dependency sync</code> - Missing scope but acceptable for automated updates</li>
+                        <li>Several merge commits without proper formatting</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Recommendation:</strong> Use commit hooks to enforce format before commits are created.</p>
+                </div>
+            </div>
+
+            <!-- Commit Atomicity -->
+            <div class="section">
+                <h2 id="atomicity">Commit Atomicity Assessment</h2>
+                
+                <div class="card">
+                    <h3>Commit Size Distribution</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Size Category</th>
+                                <th>Line Range</th>
+                                <th>Count</th>
+                                <th>Percentage</th>
+                                <th>Assessment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiny</td>
+                                <td>1-50 lines</td>
+                                <td>28</td>
+                                <td>30%</td>
+                                <td><span class="badge badge-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+                                <td>51-200 lines</td>
+                                <td>35</td>
+                                <td>38%</td>
+                                <td><span class="badge badge-success">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td>201-500 lines</td>
+                                <td>18</td>
+                                <td>19%</td>
+                                <td><span class="badge badge-warning">Acceptable</span></td>
+                            </tr>
+                            <tr>
+                                <td>Large</td>
+                                <td>501-1000 lines</td>
+                                <td>8</td>
+                                <td>9%</td>
+                                <td><span class="badge badge-warning">Needs review</span></td>
+                            </tr>
+                            <tr>
+                                <td>Very Large</td>
+                                <td>>1000 lines</td>
+                                <td>4</td>
+                                <td>4%</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card card-warning">
+                    <h3>Oversized Commits Requiring Attention</h3>
+                    <p><strong>12 commits exceed 500 lines changed</strong> - these should ideally be split:</p>
+                    <ol>
+                        <li>
+                            <strong>b27651db</strong> - <code>docs(orchestration): add comprehensive parallel agent plan</code><br>
+                            <span class="badge badge-error">3,583 lines</span> - Documentation commits can be large, acceptable
+                        </li>
+                        <li>
+                            <strong>27cbc6cc</strong> - <code>refactor(context-kit): consolidate architecture and enhance service infrastructure</code><br>
+                            <span class="badge badge-error">8,500+ lines</span> - Major refactoring, ideally should be split into multiple commits
+                        </li>
+                        <li>
+                            <strong>b838ab2b</strong> - <code>feat(portfolio): implement v2 AI Skills showcase</code><br>
+                            <span class="badge badge-error">7,200+ lines</span> - Feature addition, could be split by component
+                        </li>
+                        <li>
+                            <strong>b92562a3</strong> - <code>feat: establish comprehensive multi-service development toolkit</code><br>
+                            <span class="badge badge-error">12,000+ lines</span> - Initial project setup, acceptable for first commit
+                        </li>
+                    </ol>
+                    <p style="margin-top: 1rem;"><strong>Note:</strong> Large documentation and initial setup commits are acceptable. Feature and refactor commits should be split when possible.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Files Modified Per Commit</h3>
+                    <ul>
+                        <li><strong>Average:</strong> 8.4 files per commit</li>
+                        <li><strong>Median:</strong> 4 files per commit</li>
+                        <li><strong>Mode:</strong> 1-3 files (most common)</li>
+                    </ul>
+                    <p style="color: var(--color-text-secondary); margin-top: 1rem;">
+                        Most commits modify a small number of related files, indicating good logical grouping.
+                    </p>
+                </div>
+
+                <div class="card card-success">
+                    <h3>Positive Atomicity Patterns</h3>
+                    <ul>
+                        <li>Fix commits are typically small and focused (avg 50-100 lines)</li>
+                        <li>Refactor commits clearly document what was restructured</li>
+                        <li>Feature commits include tests and documentation together</li>
+                        <li>Dependency updates are isolated in separate commits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Branch Naming -->
+            <div class="section">
+                <h2 id="branch-naming">Branch Naming Conventions</h2>
+                
+                <div class="card">
+                    <h3>Branch Structure Analysis</h3>
+                    <p><strong>Total branches:</strong> 4 (2 local, 2 remote tracking)</p>
+                    <ul>
+                        <li><code>main</code> - Primary development branch</li>
+                        <li><code>gh-pages</code> - GitHub Pages deployment branch</li>
+                        <li><code>origin/main</code> - Remote tracking</li>
+                        <li><code>origin/gh-pages</code> - Remote tracking</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Branch Naming Assessment</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pattern</th>
+                                <th>Compliance</th>
+                                <th>Assessment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Simple trunk-based</td>
+                                <td>100%</td>
+                                <td><span class="badge badge-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td>Descriptive names</td>
+                                <td>100%</td>
+                                <td><span class="badge badge-success">Clear purpose</span></td>
+                            </tr>
+                            <tr>
+                                <td>Feature branches</td>
+                                <td>N/A</td>
+                                <td><span class="badge badge-info">Trunk-based workflow</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Workflow Pattern</h3>
+                    <p><strong>Trunk-based development detected:</strong></p>
+                    <ul>
+                        <li>All development happens on <code>main</code> branch</li>
+                        <li>Direct commits to main (93 commits)</li>
+                        <li>Minimal merge commits (only 3 found)</li>
+                        <li>Clean linear history</li>
+                    </ul>
+                    <p style="color: var(--color-text-secondary); margin-top: 1rem;">
+                        This is a valid workflow for solo developers or small teams. For larger teams, consider feature branches with PR reviews.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Code Review Metrics -->
+            <div class="section">
+                <h2 id="code-review">Code Review Metrics</h2>
+                
+                <div class="card card-info">
+                    <h3>Pull Request Analysis</h3>
+                    <p><strong>Status:</strong> GitHub CLI not available - cannot analyze PRs</p>
+                    <p>Based on commit history analysis:</p>
+                    <ul>
+                        <li><strong>Merge commits:</strong> 3 found in history</li>
+                        <li><strong>Direct commits to main:</strong> 90 commits (97%)</li>
+                        <li><strong>Workflow:</strong> Trunk-based development (direct commits)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Commit Frequency Analysis</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Commits</th>
+                                <th>Pattern</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>September 2025</td>
+                                <td>50</td>
+                                <td><span class="badge badge-success">Active development</span></td>
+                            </tr>
+                            <tr>
+                                <td>April 2025</td>
+                                <td>20</td>
+                                <td><span class="badge badge-success">Steady progress</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 2025</td>
+                                <td>12</td>
+                                <td><span class="badge badge-info">Maintenance</span></td>
+                            </tr>
+                            <tr>
+                                <td>June 2025</td>
+                                <td>8</td>
+                                <td><span class="badge badge-info">Low activity</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+                        September shows significant feature development activity with 50 commits, indicating active work on v2 AI Skills showcase and routing improvements.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Best Practices Violations -->
+            <div class="section">
+                <h2 id="violations">Best Practices & Violations</h2>
+                
+                <div class="card card-error">
+                    <h3>Critical Issues</h3>
+                    <ol>
+                        <li>
+                            <strong>Very large commits:</strong> 4 commits exceed 1,000 lines changed
+                            <p style="color: var(--color-text-secondary);">While some are initial setup/docs, feature commits should be split for easier review and rollback.</p>
+                        </li>
+                        <li>
+                            <strong>No PR review process:</strong> 97% direct commits to main
+                            <p style="color: var(--color-text-secondary);">Consider implementing PRs with reviews for quality gates, even for solo projects.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card card-warning">
+                    <h3>Moderate Issues</h3>
+                    <ol>
+                        <li>
+                            <strong>9% non-conventional commits:</strong> 8 commits lack proper type prefix
+                            <p style="color: var(--color-text-secondary);">Implement git hooks to enforce conventional commit format.</p>
+                        </li>
+                        <li>
+                            <strong>Large refactors:</strong> Several refactor commits exceed 500 lines
+                            <p style="color: var(--color-text-secondary);">Break refactors into smaller logical steps for easier review and debugging.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card card-success">
+                    <h3>Strengths</h3>
+                    <ul>
+                        <li>Excellent commit message quality with detailed bodies (84%)</li>
+                        <li>Consistent use of conventional commit types</li>
+                        <li>Clear scope usage for organizing changes</li>
+                        <li>Good logical grouping of related file changes</li>
+                        <li>Linear history without complex merge patterns</li>
+                        <li>Active development with regular commits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="section">
+                <h2 id="recommendations">Recommendations</h2>
+                
+                <div class="card">
+                    <h3>High Priority</h3>
+                    <ol>
+                        <li>
+                            <strong>Implement commit message hooks</strong>
+                            <p>Use <code>commitlint</code> with <code>husky</code> to enforce conventional commits format:</p>
+                            <pre style="background: var(--color-bg-secondary); padding: 1rem; border-radius: 4px; overflow-x: auto;">npm install --save-dev @commitlint/cli @commitlint/config-conventional husky
+npx husky install
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit $1'</pre>
+                        </li>
+                        <li>
+                            <strong>Break large commits into smaller pieces</strong>
+                            <p>Target: Keep commits under 200 lines when possible, max 500 lines for features</p>
+                            <ul>
+                                <li>Split by logical functionality</li>
+                                <li>Separate refactoring from feature additions</li>
+                                <li>Keep test additions with the code they test</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3>Medium Priority</h3>
+                    <ol>
+                        <li>
+                            <strong>Consider feature branch workflow</strong>
+                            <p>Even for solo projects, PRs provide:</p>
+                            <ul>
+                                <li>Opportunity to review changes before merging</li>
+                                <li>CI/CD validation gates</li>
+                                <li>Better change documentation via PR descriptions</li>
+                                <li>Practice for team collaboration</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Add breaking change indicators</strong>
+                            <p>Use <code>BREAKING CHANGE:</code> footer in commit bodies for API changes:</p>
+                            <pre style="background: var(--color-bg-secondary); padding: 1rem; border-radius: 4px;">feat(api): redesign authentication flow
+
+BREAKING CHANGE: Auth tokens now require refresh flow.
+Old tokens will be invalidated after migration.</pre>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3>Low Priority</h3>
+                    <ol>
+                        <li>
+                            <strong>Standardize scope naming</strong>
+                            <p>Create a documented list of valid scopes to maintain consistency:</p>
+                            <ul>
+                                <li><code>ui</code> - UI components and styling</li>
+                                <li><code>routing</code> - Navigation and URL handling</li>
+                                <li><code>context-kit</code> - Context kit infrastructure</li>
+                                <li><code>storybook</code> - Storybook documentation</li>
+                                <li><code>portfolio</code> - Portfolio content</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Use conventional commit tools</strong>
+                            <p>Consider CLI tools like <code>commitizen</code> for interactive commit message creation:</p>
+                            <pre style="background: var(--color-bg-secondary); padding: 1rem; border-radius: 4px;">npm install -g commitizen
+commitizen init cz-conventional-changelog --save-dev --save-exact</pre>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2 id="quick-actions">Quick Actions</h2>
+                <div class="quick-action-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" onclick="generatePlan('Implement commitlint and husky for commit message validation'); return false;" class="quick-action-btn">
+                        📝 Generate Commit Standards Plan
+                    </a>
+                    <a href="#" onclick="generatePlan('Implement feature branch workflow with PR templates'); return false;" class="quick-action-btn">
+                        🔀 Generate PR Guidelines Plan
+                    </a>
+                    <a href="#" onclick="generatePlan('Refactor large commits into smaller atomic changes'); return false;" class="quick-action-btn">
+                        ✂️ Generate Atomicity Plan
+                    </a>
+                    <a href="#" onclick="generatePlan('Add breaking change documentation standards'); return false;" class="quick-action-btn">
+                        ⚠️ Generate Breaking Change Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Commit Quality Timeline -->
+            <div class="section">
+                <h2 id="timeline">Commit Quality Timeline</h2>
+                
+                <div class="card">
+                    <h3>Recent Trends (Last 30 Commits)</h3>
+                    <p><strong>September 2025 Activity:</strong></p>
+                    <ul>
+                        <li>Focus on routing improvements (5 commits)</li>
+                        <li>UI component refactoring (8 commits)</li>
+                        <li>Bug fixes for React warnings (7 commits)</li>
+                        <li>Documentation updates (4 commits)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+                        Pattern shows iterative development with good fix-commit discipline. Multiple small fix commits indicate active testing and refinement.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Quality Evolution</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Period</th>
+                                <th>Conventional Commits %</th>
+                                <th>Avg Commit Size</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>September 2025</td>
+                                <td>96%</td>
+                                <td>125 lines</td>
+                                <td><span class="badge badge-success">Improving</span></td>
+                            </tr>
+                            <tr>
+                                <td>April-June 2025</td>
+                                <td>85%</td>
+                                <td>350 lines</td>
+                                <td><span class="badge badge-warning">Mixed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Earlier</td>
+                                <td>88%</td>
+                                <td>450 lines</td>
+                                <td><span class="badge badge-info">Baseline</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem; color: var(--color-success);">
+                        <strong>Positive trend:</strong> Recent commits show improved adherence to conventions and smaller, more focused changes.
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Commit & PR Quality Report</strong></p>
+            <p style="margin-top: 0.5rem;">Generated by commit-pr-quality-agent | W3C Design Token Format 3.0 Compliant</p>
+            <p style="margin-top: 0.5rem;">tkr-project-kit 3.6.0 | 2025-09-30</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="../../index.html">All Reports</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/theme-toggle.js"></script>
+
+    <!-- Custom Report Script -->
+    <script>
+        function generatePlan(recommendation) {
+            const message = `/create_plan ${recommendation} - Based on Commit & PR Quality Report at ${window.location.pathname}`;
+            if (confirm(`Generate implementation plan for:\n\n${recommendation}\n\nCopy the command to run in Claude Code?`)) {
+                // Copy to clipboard if available
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(message).then(() => {
+                        alert('Command copied to clipboard! Paste it into Claude Code.');
+                    }).catch(() => {
+                        alert(`Copy this command to Claude Code:\n\n${message}`);
+                    });
+                } else {
+                    alert(`Copy this command to Claude Code:\n\n${message}`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

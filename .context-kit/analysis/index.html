@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Repository Review Dashboard - Track code quality, security, performance, and compliance metrics over time">
+    <title>Repository Review Dashboard - tkr-project-kit</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/themes/light.css">
+    <link rel="stylesheet" href="assets/css/themes/dark.css">
+    <link rel="stylesheet" href="assets/css/components/cards.css">
+    <link rel="stylesheet" href="assets/css/components/badges.css">
+    <link rel="stylesheet" href="assets/css/components/tables.css">
+    <link rel="stylesheet" href="assets/css/components/progress.css">
+    <link rel="stylesheet" href="assets/css/components/buttons.css">
+    <link rel="stylesheet" href="assets/css/components/navigation.css">
+
+    <style>
+        .report-card {
+            border-left: 4px solid var(--color-interactive-primary);
+            transition: all 0.2s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .latest-badge {
+            background: linear-gradient(135deg, var(--color-interactive-primary), var(--color-status-healthy));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-bg-muted);
+            border-radius: var(--border-radius-md);
+        }
+        .metric-value {
+            font-size: var(--font-size-xxxl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-primary);
+        }
+        .metric-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-tertiary);
+            margin-top: 0.25rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-border-default);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.625rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-interactive-primary);
+            border: 2px solid var(--color-bg-primary);
+        }
+    </style>
+
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'index',
+            reportDate: new Date().toISOString().split('T')[0],
+            reportTitle: 'Repository Review Dashboard'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>📊 Repository Review Dashboard</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Track code quality, security, performance, and compliance metrics over time
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📦 Repository: tkr-project-kit</span>
+                        <span>📊 Version: 3.6.0</span>
+                        <span>🤖 Agents: 9 specialized reviewers</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Latest Review Summary -->
+            <section id="latest-review">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2>🎯 Latest Review</h2>
+                    <span class="latest-badge">2025-01-30</span>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--color-interactive-primary);">
+                    <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1.5rem;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <h3 style="margin-top: 0;">Overall Repository Health: 69/100 (C+)</h3>
+                            <p style="color: var(--color-text-secondary); margin-top: 0.75rem; line-height: 1.6;">
+                                Strong architectural foundations with excellent commit practices (87/100) and solid architecture
+                                consistency (82/100). Critical attention needed for performance optimization (35/100), test
+                                coverage expansion (19.7%), and accessibility compliance (62%).
+                            </p>
+                            <div style="margin-top: 1rem;">
+                                <a href="reports/2025-01-30/consolidated-summary.html" class="btn btn-primary">
+                                    View Full Report →
+                                </a>
+                            </div>
+                        </div>
+                        <div class="metric-grid" style="min-width: 300px;">
+                            <div class="metric-item">
+                                <div class="metric-value">9</div>
+                                <div class="metric-label">Agents Run</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">100%</div>
+                                <div class="metric-label">Success Rate</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">10</div>
+                                <div class="metric-label">Critical Issues</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">316</div>
+                                <div class="metric-label">Files Analyzed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Metrics -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border-default);">
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Security</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">Moderate</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-warning); margin-top: 0.25rem;">5 high issues</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Code Quality</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">75/100</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-healthy); margin-top: 0.25rem;">Grade: B+</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Performance</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">35/100</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-error); margin-top: 0.25rem;">Grade: D</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Test Coverage</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">19.7%</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-error); margin-top: 0.25rem;">94 untested files</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Accessibility</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">62%</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-warning); margin-top: 0.25rem;">WCAG 2.1 AA</div>
+                        </div>
+                        <div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-tertiary);">Architecture</div>
+                            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-top: 0.25rem;">82/100</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-status-healthy); margin-top: 0.25rem;">Strong IoC</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Reports -->
+            <section id="all-reports" style="margin-top: 3rem;">
+                <h2>📄 All Reviews</h2>
+
+                <div class="timeline" style="margin-top: 1.5rem;">
+                    <!-- 2025-01-30 Review -->
+                    <div class="timeline-item">
+                        <div class="report-card card">
+                            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                                <div style="flex: 1; min-width: 250px;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <h3 style="margin: 0;">2025-01-30</h3>
+                                        <span class="badge" style="background: var(--color-status-healthy); color: white;">Latest</span>
+                                    </div>
+                                    <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">
+                                        Full repository review - Overall health: 69/100 (C+)
+                                    </p>
+                                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                                        <span class="badge" style="background: var(--color-status-error); color: white;">2 Critical</span>
+                                        <span class="badge" style="background: var(--color-status-warning); color: white;">5 High</span>
+                                        <span class="badge" style="background: var(--color-interactive-primary); color: white;">9 Agents</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <a href="reports/2025-01-30/consolidated-summary.html" class="btn btn-primary">
+                                        View Summary
+                                    </a>
+                                    <details style="margin-top: 0.5rem;">
+                                        <summary style="cursor: pointer; color: var(--color-interactive-primary); font-size: var(--font-size-sm);">
+                                            Individual Reports (9)
+                                        </summary>
+                                        <div style="margin-top: 0.5rem; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                                            <a href="reports/2025-01-30/security-report.html" style="font-size: var(--font-size-sm);">🔒 Security</a>
+                                            <a href="reports/2025-01-30/code-quality-report.html" style="font-size: var(--font-size-sm);">🎯 Code Quality</a>
+                                            <a href="reports/2025-01-30/dependency-audit-report.html" style="font-size: var(--font-size-sm);">📦 Dependencies</a>
+                                            <a href="reports/2025-01-30/performance-report.html" style="font-size: var(--font-size-sm);">⚡ Performance</a>
+                                            <a href="reports/2025-01-30/test-coverage-report.html" style="font-size: var(--font-size-sm);">🧪 Test Coverage</a>
+                                            <a href="reports/2025-01-30/accessibility-report.html" style="font-size: var(--font-size-sm);">♿ Accessibility</a>
+                                            <a href="reports/2025-01-30/architecture-report.html" style="font-size: var(--font-size-sm);">🏗️ Architecture</a>
+                                            <a href="reports/2025-01-30/documentation-report.html" style="font-size: var(--font-size-sm);">📚 Documentation</a>
+                                            <a href="reports/2025-01-30/commit-pr-quality-report.html" style="font-size: var(--font-size-sm);">✅ Commit/PR Quality</a>
+                                        </div>
+                                    </details>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for future reviews -->
+                    <div class="timeline-item" style="opacity: 0.5;">
+                        <div class="card">
+                            <div style="text-align: center; padding: 2rem; color: var(--color-text-tertiary);">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+                                <p>Previous reviews will appear here</p>
+                                <p style="margin-top: 0.5rem; font-size: var(--font-size-sm);">
+                                    Run <code>/repo-review</code> to generate new reports
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section id="quick-actions" style="margin-top: 3rem;">
+                <h2>⚡ Quick Actions</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔍</div>
+                        <h3 style="margin: 0;">Run New Review</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">
+                            Execute full repository analysis
+                        </p>
+                        <code style="display: block; margin-top: 1rem; padding: 0.5rem; background: var(--color-bg-muted); border-radius: var(--border-radius-sm);">
+                            /repo-review
+                        </code>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔒</div>
+                        <h3 style="margin: 0;">Security Review</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">
+                            Focus on security vulnerabilities
+                        </p>
+                        <code style="display: block; margin-top: 1rem; padding: 0.5rem; background: var(--color-bg-muted); border-radius: var(--border-radius-sm);">
+                            /repo-review security
+                        </code>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+                        <h3 style="margin: 0;">Performance Review</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">
+                            Analyze performance bottlenecks
+                        </p>
+                        <code style="display: block; margin-top: 1rem; padding: 0.5rem; background: var(--color-bg-muted); border-radius: var(--border-radius-sm);">
+                            /repo-review performance
+                        </code>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">♿</div>
+                        <h3 style="margin: 0;">Compliance Review</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: var(--font-size-sm);">
+                            Check accessibility & docs
+                        </p>
+                        <code style="display: block; margin-top: 1rem; padding: 0.5rem; background: var(--color-bg-muted); border-radius: var(--border-radius-sm);">
+                            /repo-review compliance
+                        </code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section id="about" style="margin-top: 3rem;">
+                <h2>ℹ️ About Repository Reviews</h2>
+
+                <div class="card">
+                    <p style="line-height: 1.8; color: var(--color-text-secondary);">
+                        The repository review system uses 9 specialized AI agents to comprehensively analyze code quality,
+                        security, performance, accessibility, testing, documentation, dependencies, architecture, and commit practices.
+                        Reviews are coordinated in 3 phases with dependency management to ensure thorough, accurate analysis.
+                    </p>
+
+                    <h3 style="margin-top: 1.5rem;">Available Review Modes</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Full</strong> - Complete review across all 9 agents (default)</li>
+                        <li><strong>Security</strong> - Security and dependency vulnerabilities only</li>
+                        <li><strong>Quality</strong> - Code quality and architecture only</li>
+                        <li><strong>Performance</strong> - Performance and test coverage only</li>
+                        <li><strong>Compliance</strong> - Accessibility, documentation, commit quality</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem;">9 Specialized Agents</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+                        <div>🔒 Security Agent</div>
+                        <div>🎯 Code Quality Agent</div>
+                        <div>📦 Dependency Audit Agent</div>
+                        <div>⚡ Performance Agent</div>
+                        <div>🧪 Test Coverage Agent</div>
+                        <div>♿ Accessibility Agent</div>
+                        <div>🏗️ Architecture Agent</div>
+                        <div>📚 Documentation Agent</div>
+                        <div>✅ Commit/PR Quality Agent</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Repository Review Dashboard</strong></p>
+            <p style="margin-top: 0.5rem;">W3C Design Token Format 3.0 Compliant | tkr-project-kit 3.6.0</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
+
+    <script>
+        // Auto-discover report dates dynamically (future enhancement)
+        // This could scan the reports directory and populate the timeline automatically
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Repository Review Dashboard loaded');
+        });
+    </script>
+</body>
+</html>

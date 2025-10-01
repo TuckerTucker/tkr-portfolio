@@ -7,6 +7,20 @@ description: Orchestrate comprehensive knowledge graph analysis using all availa
 
 Executes a coordinated analysis workflow using all knowledge graph agents to build a comprehensive understanding of the tkr-project-kit codebase.
 
+## Execution Instructions
+
+When this command is invoked, execute the following steps:
+
+1. **Initialize Orchestration**: Create a todo list to track agent execution phases
+2. **Execute Agents by Phase**: Use the Task tool to launch agents in sequence:
+   - Phase 1: Launch `react-component-analyzer`, then `import-relationship-mapper`
+   - Phase 2: Launch `react-hooks-analyzer` and `data-flow-analyzer`
+   - Phase 3: Launch `storybook-component-analyzer`
+   - Phase 4: Launch `validation-agent` (if --validate flag is set)
+   - Phase 5: Launch `storybook-maintainer` (if maintenance mode)
+3. **Wait for Completion**: Each agent must complete before dependent agents start
+4. **Generate Report**: Summarize results from all agents
+
 ## Usage
 ```bash
 /kg-orchestrate [mode] [--validate] [--incremental]
@@ -26,23 +40,23 @@ Executes a coordinated analysis workflow using all knowledge graph agents to bui
 
 ## Orchestration Workflow
 
+The command will execute agents in the following phases using the Task tool:
+
 ### Phase 1: Foundation Analysis
 Execute core component and relationship analysis:
 
 1. **React Component Analysis**
-   ```bash
-   Task: react-component-analyzer
-   Purpose: Create UIComponent entities for all React components
-   Output: Component entities with metadata
-   ```
+   - Agent: `react-component-analyzer`
+   - Purpose: Create UIComponent entities for all React components
+   - Output: Component entities with metadata
+   - Execution: Launched via Task tool
 
 2. **Import Relationship Mapping**
-   ```bash
-   Task: import-relationship-mapper
-   Purpose: Create DEPENDS_ON relationships based on import statements
-   Dependencies: react-component-analyzer results
-   Output: Component dependency graph
-   ```
+   - Agent: `import-relationship-mapper`
+   - Purpose: Create DEPENDS_ON relationships based on import statements
+   - Dependencies: Waits for react-component-analyzer to complete
+   - Output: Component dependency graph
+   - Execution: Launched via Task tool after #1 completes
 
 ### Phase 2: Behavioral Analysis
 Analyze component behavior and usage patterns:

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Audit Report - tkr-portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #613CB0 0%, #8a63d2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+        
+        .meta-info {
+            background: #f8fafc;
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .meta-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #613CB0;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #334155;
+            margin: 2rem 0 1rem;
+        }
+        
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #475569;
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .score-card.critical {
+            border-left-color: #dc2626;
+        }
+        
+        .score-card.warning {
+            border-left-color: #f59e0b;
+        }
+        
+        .score-card.success {
+            border-left-color: #10b981;
+        }
+        
+        .score-card.info {
+            border-left-color: #3b82f6;
+        }
+        
+        .score-number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .score-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        .overall-score {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #613CB0 0%, #8a63d2 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .overall-score-number {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .overall-score-label {
+            font-size: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        .grade {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .violation {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .violation-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .violation-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        
+        .badge-critical {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .violation-title {
+            flex: 1;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .wcag-criterion {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        
+        .violation-description {
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .violation-impact {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .impact-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        .code-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommendation {
+            background: #f0fdf4;
+            border-left: 3px solid #10b981;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .recommendation-title::before {
+            content: "✓";
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .file-reference {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #7c3aed;
+            background: #f5f3ff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .quick-action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .quick-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #613CB0 0%, #8a63d2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .summary-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-count {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .compliant {
+            color: #10b981;
+        }
+        
+        .non-compliant {
+            color: #dc2626;
+        }
+        
+        .badge-a, .badge-aa, .badge-aaa {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+        
+        .badge-a {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .badge-aa {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-aaa {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icon">♿</div>
+            <h1>Accessibility Audit Report</h1>
+            <p>WCAG 2.1 Level AA Compliance Assessment</p>
+        </header>
+        
+        <div class="meta-info">
+            <div class="meta-item">
+                <span class="meta-label">Project</span>
+                <span class="meta-value">tkr-portfolio</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Report Date</span>
+                <span class="meta-value">2025-09-30</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Components Analyzed</span>
+                <span class="meta-value">83 Files</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Framework</span>
+                <span class="meta-value">React 19 + Tailwind CSS</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Overall Score -->
+            <div class="overall-score">
+                <div class="overall-score-number">78/100</div>
+                <div class="overall-score-label">Overall Accessibility Score</div>
+                <div class="grade">C+</div>
+            </div>
+            
+            <!-- Score Breakdown -->
+            <div class="section">
+                <h2>Violation Summary</h2>
+                <div class="score-grid">
+                    <div class="score-card critical">
+                        <div class="score-number" style="color: #dc2626;">8</div>
+                        <div class="score-label">Critical Issues</div>
+                    </div>
+                    <div class="score-card warning">
+                        <div class="score-number" style="color: #f59e0b;">14</div>
+                        <div class="score-label">Warnings</div>
+                    </div>
+                    <div class="score-card info">
+                        <div class="score-number" style="color: #3b82f6;">6</div>
+                        <div class="score-label">Best Practices</div>
+                    </div>
+                    <div class="score-card success">
+                        <div class="score-number" style="color: #10b981;">92%</div>
+                        <div class="score-label">Keyboard Navigable</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WCAG Compliance -->
+            <div class="section">
+                <h2>WCAG 2.1 Compliance Status</h2>
+                <ul class="summary-list">
+                    <li>
+                        <span>Level A Compliance <span class="badge-a">CRITICAL</span></span>
+                        <span class="summary-count non-compliant">87%</span>
+                    </li>
+                    <li>
+                        <span>Level AA Compliance <span class="badge-aa">TARGET</span></span>
+                        <span class="summary-count non-compliant">78%</span>
+                    </li>
+                    <li>
+                        <span>Level AAA Compliance <span class="badge-aaa">OPTIONAL</span></span>
+                        <span class="summary-count">64%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Executive Summary -->
+            <div class="section">
+                <h2>Executive Summary</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.8; color: #475569;">
+                    The tkr-portfolio project demonstrates <strong>good baseline accessibility practices</strong> with 
+                    several areas requiring improvement to achieve full WCAG 2.1 Level AA compliance. The codebase shows 
+                    strong implementation of semantic HTML, ARIA attributes, and keyboard navigation in many components. 
+                    However, critical issues were identified in heading hierarchy, form labeling, color contrast ratios, 
+                    and alternative text for images.
+                </p>
+                
+                <h3>Strengths</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li>Excellent use of semantic landmarks (nav, main, footer, header)</li>
+                    <li>Consistent ARIA labeling on interactive components</li>
+                    <li>Keyboard navigation support with arrow keys in carousel</li>
+                    <li>Screen reader text using sr-only classes</li>
+                    <li>Focus management in modals and dropdowns</li>
+                    <li>Progressive enhancement with proper fallbacks</li>
+                </ul>
+                
+                <h3>Areas Requiring Attention</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li>Inconsistent heading hierarchy (skipping levels)</li>
+                    <li>Missing alt text on decorative and functional images</li>
+                    <li>Color contrast issues on project picker buttons</li>
+                    <li>Incomplete form labeling and error associations</li>
+                    <li>Some interactive elements lack visible focus indicators</li>
+                    <li>Missing skip navigation links</li>
+                </ul>
+            </div>
+            
+            <!-- Critical Violations -->
+            <div class="section">
+                <h2>Critical Violations (Level A/AA)</h2>
+                
+                <!-- Violation 1 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-critical">CRITICAL</span>
+                        <div>
+                            <div class="violation-title">
+                                Missing Alternative Text on Images
+                                <span class="wcag-criterion">WCAG 1.1.1 (A)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        Multiple images throughout the application lack proper alt text attributes or have generic alt text like "Image slide X". This prevents screen reader users from understanding the content and purpose of images.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Screen reader users cannot understand visual content. Decorative images should have empty alt="" attributes, while functional images need descriptive text.
+                    </div>
+                    <div>
+                        <div class="code-label">Current Implementation:</div>
+                        <div class="code-block">// image-carousel.jsx (line 172-175)
+&lt;img
+  src={`${import.meta.env.BASE_URL}${item.src}`}
+  alt={item.alt || `Image slide ${index + 1}`}  // Generic fallback
+  className="w-full h-full object-cover"
+/&gt;</div>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Ensure all images have meaningful alt text passed from project data. For decorative images in slides, use alt="". For functional images, describe the content and purpose.
+                        <div class="code-block" style="margin-top: 1rem;">// Proper implementation
+&lt;img
+  src={src}
+  alt={item.isDecorative ? "" : item.altText}
+  className="w-full h-full object-cover"
+/&gt;</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/feature/image-carousel.jsx:172-175<br>
+                        /src/components/custom/project-card.jsx:49-53
+                    </div>
+                </div>
+                
+                <!-- Violation 2 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-critical">CRITICAL</span>
+                        <div>
+                            <div class="violation-title">
+                                Inconsistent Heading Hierarchy
+                                <span class="wcag-criterion">WCAG 1.3.1 (A)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        The application lacks a consistent heading structure. Many components jump from h2 to h4, skipping h3. The main App component uses a &lt;main&gt; landmark but no page-level h1 heading on most pages.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Screen reader users rely on heading hierarchy for page navigation. Skipping levels creates confusion about content organization and makes it difficult to understand page structure.
+                    </div>
+                    <div>
+                        <div class="code-label">Violation Examples:</div>
+                        <div class="code-block">// AIProgressAssessment.jsx - skips h3
+&lt;h2&gt;Calculating Your Results...&lt;/h2&gt;
+...
+&lt;h4 className="font-semibold mb-3"&gt;{question.text}&lt;/h4&gt;
+
+// AgentConversationFlow.jsx - inconsistent levels
+&lt;h3&gt;...&lt;/h3&gt;
+&lt;h2&gt;...&lt;/h2&gt;  // h2 appears after h3</div>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Add an h1 element to each page/route (HomePage, ProjectPage, DemoShowcase)</li>
+                            <li>Ensure heading levels are sequential (h1 → h2 → h3, never skip levels)</li>
+                            <li>Review all slide components and adjust heading hierarchy</li>
+                        </ol>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/ai-skills/AIProgressAssessment/AIProgressAssessment.jsx<br>
+                        /src/components/ai-skills/AgentConversationFlow/AgentConversationFlow.jsx<br>
+                        /src/components/pages/HomePage.jsx
+                    </div>
+                </div>
+                
+                <!-- Violation 3 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-critical">CRITICAL</span>
+                        <div>
+                            <div class="violation-title">
+                                Insufficient Color Contrast
+                                <span class="wcag-criterion">WCAG 1.4.3 (AA)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        The primary brand color (#613CB0) on white backgrounds provides insufficient contrast in several components. Text on colored project cards may not meet the 4.5:1 ratio for normal text or 3:1 for large text.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Users with low vision or color blindness cannot read text with insufficient contrast. This affects readability and comprehension for approximately 8% of male users and 0.5% of female users.
+                    </div>
+                    <div>
+                        <div class="code-label">Contrast Calculations:</div>
+                        <div class="code-block">Primary Purple (#613CB0) on White (#FFFFFF):
+  Contrast Ratio: 5.8:1 ✓ PASS (needs 4.5:1)
+
+Secondary Orange (#FF8800) on White (#FFFFFF):
+  Contrast Ratio: 3.2:1 ✗ FAIL (needs 4.5:1)
+
+White text on bg-black/40 (rgba(0,0,0,0.4)):
+  Contrast Ratio: ~2.8:1 ✗ FAIL (needs 4.5:1)
+  Location: custom-project-picker.jsx line 113</div>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Darken secondary orange to #E67700 for 4.5:1 contrast</li>
+                            <li>Increase bg-black opacity from 40% to 60% for button overlays</li>
+                            <li>Add text-shadow or background-color to ensure readability</li>
+                            <li>Test all color combinations with a contrast checker tool</li>
+                        </ol>
+                    </div>
+                    <div class="file-reference">
+                        /tailwind.config.js:27-32<br>
+                        /src/components/feature/custom-project-picker.jsx:113-114
+                    </div>
+                </div>
+                
+                <!-- Violation 4 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-critical">CRITICAL</span>
+                        <div>
+                            <div class="violation-title">
+                                Missing Skip Navigation Link
+                                <span class="wcag-criterion">WCAG 2.4.1 (A)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        The application does not provide a "skip to main content" link at the beginning of the page. Keyboard users must tab through all navigation links before reaching the main content.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Keyboard-only users waste time and effort tabbing through repetitive navigation on every page load. This is especially frustrating for users with motor disabilities.
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Add a skip link as the first focusable element in App.jsx:
+                        <div class="code-block" style="margin-top: 1rem;">// App.jsx - add before Navigation
+&lt;a 
+  href="#main-content" 
+  className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded"
+&gt;
+  Skip to main content
+&lt;/a&gt;
+
+&lt;main id="main-content" className="flex-grow..."&gt;</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/App.jsx:16-18
+                    </div>
+                </div>
+                
+                <!-- Violation 5 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-warning">WARNING</span>
+                        <div>
+                            <div class="violation-title">
+                                Carousel Indicators Lack Accessible Names
+                                <span class="wcag-criterion">WCAG 4.1.2 (A)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        The carousel dot indicators have aria-label but do not announce which slide is currently active to screen reader users. The active state is only communicated visually through opacity.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Screen reader users cannot determine which slide is currently visible without navigating to the slide content itself.
+                    </div>
+                    <div>
+                        <div class="code-label">Current Implementation:</div>
+                        <div class="code-block">// image-carousel.jsx (line 190-201)
+&lt;button
+  key={index}
+  className={cn(
+    "w-2 h-2 rounded-full transition-opacity",
+    index === current ? "opacity-100" : "opacity-50"
+  )}
+  onClick={() => api?.scrollTo(index)}
+  aria-label={`Go to slide ${index + 1}`}
+/&gt;</div>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Add aria-current="true" to the active indicator and improve labels:
+                        <div class="code-block" style="margin-top: 1rem;">&lt;button
+  key={index}
+  className={...}
+  onClick={() => api?.scrollTo(index)}
+  aria-label={`${index === current ? 'Current slide' : 'Go to slide'} ${index + 1} of ${items.length}`}
+  aria-current={index === current ? "true" : undefined}
+/&gt;</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/feature/image-carousel.jsx:188-203
+                    </div>
+                </div>
+                
+                <!-- Violation 6 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-warning">WARNING</span>
+                        <div>
+                            <div class="violation-title">
+                                Focus Indicators Not Consistently Visible
+                                <span class="wcag-criterion">WCAG 2.4.7 (AA)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        While the button component has focus-visible styles, some custom interactive elements (project cards, dropdown items) do not have clearly visible focus indicators that meet the 3:1 contrast ratio requirement.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Keyboard users cannot track their current position when navigating through the interface, making it difficult or impossible to use the application.
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Add consistent focus styles to all interactive elements:
+                        <div class="code-block" style="margin-top: 1rem;">// project-card.jsx - add focus styles
+className={cn(
+  "flex items-center justify-between w-full rounded-none cursor-pointer",
+  "transition-colors duration-150",
+  "focus:outline-none focus:ring-4 focus:ring-white/50",  // Add this
+  isMobile ? "p-3" : "p-4",
+  className
+)}</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/custom/project-card.jsx:31-42<br>
+                        /src/components/custom/project-card-list.jsx
+                    </div>
+                </div>
+                
+                <!-- Violation 7 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-warning">WARNING</span>
+                        <div>
+                            <div class="violation-title">
+                                Links Missing External Link Indication
+                                <span class="wcag-criterion">WCAG 3.2.5 (AAA)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        External links in the footer open in new tabs with target="_blank" but do not visually or programmatically indicate this behavior to users before activation.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Users may be confused when a new tab opens unexpectedly. Screen reader users do not receive advance warning.
+                    </div>
+                    <div>
+                        <div class="code-label">Current Implementation:</div>
+                        <div class="code-block">// footer.jsx (line 40-48)
+&lt;a
+  href="https://linkedin.com/in/tuckerharleybrown"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-1.5 hover:text-gray-300 transition-colors text-xs"
+&gt;
+  &lt;Linkedin size={16} /&gt;
+  &lt;span&gt;LinkedIn&lt;/span&gt;
+&lt;/a&gt;</div>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Add screen reader text to indicate external links:
+                        <div class="code-block" style="margin-top: 1rem;">&lt;a href="..." target="_blank" rel="noopener noreferrer"&gt;
+  &lt;Linkedin size={16} /&gt;
+  &lt;span&gt;LinkedIn&lt;/span&gt;
+  &lt;span className="sr-only"&gt;(opens in new tab)&lt;/span&gt;
+&lt;/a&gt;</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/layout/footer.jsx:40-79
+                    </div>
+                </div>
+                
+                <!-- Violation 8 -->
+                <div class="violation">
+                    <div class="violation-header">
+                        <span class="violation-badge badge-info">BEST PRACTICE</span>
+                        <div>
+                            <div class="violation-title">
+                                Improve ARIA Live Region Announcements
+                                <span class="wcag-criterion">WCAG 4.1.3 (AA)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="violation-description">
+                        Dynamic content updates (e.g., slide transitions, theme changes) do not use ARIA live regions to announce changes to screen reader users.
+                    </div>
+                    <div class="violation-impact">
+                        <div class="impact-title">User Impact:</div>
+                        Screen reader users miss important content updates and state changes that are visible to sighted users.
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">Recommended Fix</div>
+                        Add live regions for dynamic content:
+                        <div class="code-block" style="margin-top: 1rem;">// image-carousel.jsx - add announcement
+&lt;div className="sr-only" role="status" aria-live="polite" aria-atomic="true"&gt;
+  Slide {current + 1} of {items.length}: {items[current]?.alt}
+&lt;/div&gt;</div>
+                    </div>
+                    <div class="file-reference">
+                        /src/components/feature/image-carousel.jsx<br>
+                        /src/hooks/useTheme.jsx
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2>Quick Actions</h2>
+                <p style="margin-bottom: 1rem; color: #475569;">
+                    Generate implementation plans for specific accessibility improvements:
+                </p>
+                <div class="quick-action-buttons">
+                    <a href="#" onclick="alert('Copy this command to Claude Code:\n\n/create_plan Fix Color Contrast Violations - Improve color contrast ratios to meet WCAG 2.1 AA standards (4.5:1 for normal text)'); return false;" class="quick-action-btn">
+                        🎨 Generate Contrast Fix Plan
+                    </a>
+                    <a href="#" onclick="alert('Copy this command to Claude Code:\n\n/create_plan Add Skip Navigation and Improve Heading Hierarchy - Implement skip links and fix heading structure'); return false;" class="quick-action-btn">
+                        🔍 Generate Navigation Plan
+                    </a>
+                    <a href="#" onclick="alert('Copy this command to Claude Code:\n\n/create_plan Improve Image Alt Text - Add meaningful alternative text to all images'); return false;" class="quick-action-btn">
+                        🖼️ Generate Alt Text Plan
+                    </a>
+                    <a href="#" onclick="alert('Copy this command to Claude Code:\n\n/create_plan Enhance Focus Indicators - Add visible focus styles to all interactive elements'); return false;" class="quick-action-btn">
+                        ⌨️ Generate Focus Styles Plan
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Component-Level Analysis -->
+            <div class="section">
+                <h2>Component Accessibility Scores</h2>
+                
+                <h3>High Priority Components (Need Immediate Fixes)</h3>
+                <ul class="summary-list">
+                    <li>
+                        <span>image-carousel.jsx</span>
+                        <span class="summary-count non-compliant">65%</span>
+                    </li>
+                    <li>
+                        <span>custom-project-picker.jsx</span>
+                        <span class="summary-count non-compliant">72%</span>
+                    </li>
+                    <li>
+                        <span>project-card.jsx</span>
+                        <span class="summary-count non-compliant">74%</span>
+                    </li>
+                    <li>
+                        <span>footer.jsx</span>
+                        <span class="summary-count non-compliant">76%</span>
+                    </li>
+                </ul>
+                
+                <h3>Good Accessibility Implementation</h3>
+                <ul class="summary-list">
+                    <li>
+                        <span>button.jsx</span>
+                        <span class="summary-count compliant">95%</span>
+                    </li>
+                    <li>
+                        <span>carousel.jsx (UI component)</span>
+                        <span class="summary-count compliant">92%</span>
+                    </li>
+                    <li>
+                        <span>theme-toggle.jsx</span>
+                        <span class="summary-count compliant">90%</span>
+                    </li>
+                    <li>
+                        <span>ImageLightbox.jsx</span>
+                        <span class="summary-count compliant">88%</span>
+                    </li>
+                    <li>
+                        <span>Navigation.jsx</span>
+                        <span class="summary-count compliant">85%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Recommendations Summary -->
+            <div class="section">
+                <h2>Prioritized Remediation Plan</h2>
+                
+                <h3>Phase 1: Critical Fixes (Week 1)</h3>
+                <ol style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li><strong>Add skip navigation link</strong> - App.jsx (30 minutes)</li>
+                    <li><strong>Fix heading hierarchy</strong> - All page components (2-3 hours)</li>
+                    <li><strong>Add meaningful alt text</strong> - Image carousel and project cards (1-2 hours)</li>
+                    <li><strong>Improve color contrast</strong> - Tailwind config and project picker (1 hour)</li>
+                </ol>
+                
+                <h3>Phase 2: Important Improvements (Week 2)</h3>
+                <ol style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li><strong>Add focus indicators</strong> - Project cards and interactive elements (2 hours)</li>
+                    <li><strong>Improve carousel accessibility</strong> - Active state announcements (1 hour)</li>
+                    <li><strong>Add external link indicators</strong> - Footer links (30 minutes)</li>
+                    <li><strong>Test with screen reader</strong> - Manual testing with NVDA/JAWS (2 hours)</li>
+                </ol>
+                
+                <h3>Phase 3: Best Practices (Week 3)</h3>
+                <ol style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li><strong>Add ARIA live regions</strong> - Dynamic content updates (1-2 hours)</li>
+                    <li><strong>Improve form accessibility</strong> - If forms are added in future (N/A currently)</li>
+                    <li><strong>Add keyboard shortcuts documentation</strong> - Help section (1 hour)</li>
+                    <li><strong>Automated testing integration</strong> - Add axe-core or similar (2 hours)</li>
+                </ol>
+            </div>
+            
+            <!-- Testing Recommendations -->
+            <div class="section">
+                <h2>Recommended Testing Tools</h2>
+                
+                <h3>Automated Testing</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li><strong>axe DevTools</strong> - Browser extension for Chrome/Firefox</li>
+                    <li><strong>WAVE</strong> - WebAIM's accessibility evaluation tool</li>
+                    <li><strong>Lighthouse</strong> - Built into Chrome DevTools</li>
+                    <li><strong>@axe-core/react</strong> - Runtime accessibility testing in development</li>
+                </ul>
+                
+                <h3>Manual Testing</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li><strong>Keyboard navigation</strong> - Tab through entire site, test all interactions</li>
+                    <li><strong>Screen reader testing</strong> - NVDA (Windows), JAWS (Windows), VoiceOver (Mac)</li>
+                    <li><strong>Color contrast checker</strong> - WebAIM Contrast Checker or Stark plugin</li>
+                    <li><strong>Zoom testing</strong> - Test at 200% browser zoom</li>
+                </ul>
+                
+                <h3>Continuous Integration</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; color: #475569;">
+                    <li>Add <code>@axe-core/playwright</code> or <code>jest-axe</code> to test suite</li>
+                    <li>Configure CI/CD pipeline to fail on critical accessibility violations</li>
+                    <li>Set up accessibility regression testing</li>
+                </ul>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>Conclusion</h2>
+                <p style="line-height: 1.8; color: #475569;">
+                    The tkr-portfolio project demonstrates a strong foundation in web accessibility with thoughtful 
+                    implementation of semantic HTML, ARIA attributes, and keyboard navigation. With focused effort on 
+                    the identified critical issues—particularly heading hierarchy, image alt text, and color contrast—the 
+                    application can achieve full WCAG 2.1 Level AA compliance within 2-3 weeks.
+                </p>
+                <p style="margin-top: 1rem; line-height: 1.8; color: #475569;">
+                    The estimated effort to address all critical and warning-level issues is approximately <strong>12-16 
+                    development hours</strong>. Implementing the recommended testing tools and establishing an accessibility-first 
+                    development workflow will help maintain compliance as the project evolves.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

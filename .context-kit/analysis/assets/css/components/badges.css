@@ -1,0 +1,181 @@
+/**
+ * Badge Components
+ * Status indicators and labels
+ */
+
+.badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    margin-right: var(--spacing-sm);
+}
+
+.status-critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.status-high {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-medium {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.status-low {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.status-good {
+    background: #d1fae5;
+    color: #059669;
+}
+
+[data-theme="dark"] .status-critical {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+}
+
+[data-theme="dark"] .status-high {
+    background: rgba(217, 119, 6, 0.2);
+    color: #fcd34d;
+}
+
+[data-theme="dark"] .status-medium {
+    background: rgba(37, 99, 235, 0.2);
+    color: #93c5fd;
+}
+
+[data-theme="dark"] .status-low {
+    background: rgba(5, 150, 105, 0.2);
+    color: #6ee7b7;
+}
+
+[data-theme="dark"] .status-good {
+    background: rgba(5, 150, 105, 0.2);
+    color: #6ee7b7;
+}
+
+/* Priority Badges */
+.priority-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: var(--spacing-sm);
+}
+
+.priority-critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.priority-high {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.priority-medium {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.priority-low {
+    background: #d1fae5;
+    color: #059669;
+}
+
+/* Phase Badges */
+.phase-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+}
+
+.phase-1 .phase-badge {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.phase-2 .phase-badge {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.phase-3 .phase-badge {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.consolidated .phase-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Score Badges */
+.score-badge {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+}
+
+/* Count Badges */
+.count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 var(--spacing-xs);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+}
+
+.count-badge-error {
+    background: var(--color-error);
+}
+
+.count-badge-warning {
+    background: var(--color-warning);
+}
+
+.count-badge-success {
+    background: var(--color-success);
+}
+
+/* Icon Badges */
+.badge-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.badge-icon {
+    width: 1rem;
+    height: 1rem;
+}

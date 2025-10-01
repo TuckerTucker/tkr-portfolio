@@ -1,0 +1,46 @@
+# Repository Review Exclusion Patterns
+# Paths and patterns to exclude from all repository review agents
+# Format: One pattern per line, supports glob patterns
+
+# Claude Code Configuration (should not be analyzed)
+.claude/
+.claude/**/*
+claude.local.md
+
+# Context Kit Analysis (don't analyze the analysis!)
+.context-kit/
+.context-kit/**/*
+
+# Git and Version Control
+.git/
+.git/**/*
+
+# Node Modules and Dependencies
+node_modules/
+**/node_modules/**
+
+# Build Artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+coverage/
+**/*.log
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.cache

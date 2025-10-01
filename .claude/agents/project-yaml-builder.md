@@ -23,26 +23,45 @@ When invoked, you must follow these steps:
    - Reference @_context-kit.yml for existing structure
    - Verify all files exist, warn if any missing
 
-3. **Create unified structure** with these top-level keys:
-   - `meta`: Project kit metadata
-   - `deps`: Dependencies with Context7 IDs
+3. **Create unified structure** following Repo-Context Format standards with these top-level keys:
+   - `meta`: Project metadata (required)
+   - `deps`: Dependencies with Context7 IDs (abbreviated from 'dependencies')
    - `struct`: Directory structure (abbreviated from 'structure')
    - `design`: Design system specifications
+   - `arch`: Architecture patterns
+   - `ops`: Operations and workflows
+   - `semantic`: AI consumption hints
 
-4. **Apply compression techniques**:
-   - Use YAML anchors (&) for repeated values
-   - Create aliases (*) to reference anchors
-   - Abbreviate common keys (dependencies→deps, structure→struct, components→comp)
-   - Use compact array notation `[a, b, c]` instead of line-by-line
-   - Omit null/empty values
+4. **Apply YAML compression techniques** (Repo-Context Format v1.0):
+   - Use YAML 1.2 anchors (&name) for repeated values
+   - Create aliases (*name) to reference anchors with merge operator (<<: *name)
+   - Use standard abbreviations consistently:
+     * dependencies → deps
+     * structure → struct
+     * components → comp
+     * properties → props (or p)
+     * description → desc
+     * language → lang
+     * imports → imp
+     * exports → exp
+     * accessibility → a11y
+     * configuration → cfg
+     * environment → env
+   - Use compact array notation `[a, b, c]` for simple lists
+   - Use inline object notation `{key: val, key2: val2}` for simple key-value pairs
+   - Use `_:` pattern for directory-level aggregates: `_: {n: count, t: {type: count}}`
+   - Omit null, empty, or default values strategically
    - Combine related data under single keys
 
 5. **Optimize for AI consumption**:
    - Prioritize accuracy above all else
    - Maintain completeness over compression
+   - Balance compression with readability (don't sacrifice clarity for minimal gains)
    - Add strategic comments for complex sections
-   - Ensure valid YAML syntax throughout
-   - Test that anchors/aliases resolve correctly
+   - Ensure valid YAML 1.2 syntax throughout
+   - Validate that all anchors resolve correctly
+   - Define anchors first before using aliases
+   - Target 40-60% token reduction while maintaining essential information
 
 6. **Write final output** to `.context-kit/_context-kit.yml`
 
@@ -55,8 +74,8 @@ When invoked, you must follow these steps:
 ## Best Practices
 
 * Overwrite existing files directly without backup
-* Validate YAML syntax before writing
-* Use meaningful anchor names that indicate content
+* Validate YAML 1.2 syntax before writing
+* Use meaningful anchor names that indicate content (e.g., &js-deps, &py, &colors)
 * Group related anchors at the beginning of sections
 * Keep abbreviated keys intuitive and consistent
 * Document any non-obvious abbreviations in comments
@@ -64,49 +83,117 @@ When invoked, you must follow these steps:
 * Preserve critical information even if it means less compression
 * Always update persistent context in ./claude.local.md (project root) for future sessions
 * Ensure the YAML replacement preserves existing system prompts and coding guidelines
+* Apply compression techniques in this order: define anchors, use abbreviations, compact notation, strategic omissions
 
-## Compression Strategies
+## Compression Strategies (Repo-Context Format v1.0)
 
-* **Anchors for repeated values**: 
+* **Anchors and aliases with merge operator**:
   ```yaml
-  colors: &base-colors
-    primary: "#0066cc"
-    secondary: "#ff9900"
-  dark:
-    <<: *base-colors
+  # Define anchor for common language
+  files:
+    - &py {lang: python, ext: .py}
+
+    # Reference with alias and merge
+    - {p: "src/main.py", ln: 450, <<: *py, desc: "Entry point"}
+    - {p: "src/utils.py", ln: 120, <<: *py, desc: "Utilities"}
+
+  # Common patterns for repeated values
+  langs:
+    py: &py {lang: python, ext: .py}
+    js: &js {lang: javascript, ext: .js}
+    ts: &ts {lang: typescript, ext: .ts}
+
+  # Reuse throughout
+  files:
+    - {p: "main.py", <<: *py}
+    - {p: "app.js", <<: *js}
   ```
 
-* **Abbreviated keys**:
+* **Standard abbreviations**:
   - dependencies → deps
-  - structure → struct  
+  - structure → struct
   - components → comp
-  - properties → props
+  - properties → props (or p for extreme compression)
+  - description → desc
+  - language → lang
+  - imports → imp
+  - exports → exp
   - accessibility → a11y
+  - configuration → cfg
+  - environment → env
+  - states → s (in component specs)
 
 * **Compact notation**:
-  - Arrays: `sizes: [sm, md, lg]`
-  - Simple objects: `margin: {top: 1, right: 2}`
+  - Arrays: `sizes: [sm, md, lg]` (for lists under 5 items)
+  - Simple objects: `meta: {ln: 450, cls: 5, fn: 12}`
+  - Directory aggregates: `_: {n: 120, t: {py: 40, js: 35, css: 45}}`
+
+* **Strategic omissions**:
+  ```yaml
+  # Verbose (avoid)
+  files:
+    - path: "main.py"
+      lines: 450
+      exports: []
+      imports: null
+      description: null
+
+  # Optimized (prefer)
+  files:
+    - {p: "main.py", ln: 450}
+  ```
+
+* **Complete optimization example** (60% token reduction):
+  ```yaml
+  # Before (verbose - ~240 tokens)
+  repository:
+    languages:
+      python: 0.80
+      javascript: 0.15
+      sql: 0.05
+  files:
+    - path: "src/main.py"
+      lines: 450
+      language: "python"
+      description: "Application entry point"
+      imports: ["api.app", "config", "logging"]
+      exports: ["main", "initialize"]
+
+  # After (optimized - ~95 tokens)
+  repository:
+    langs: {py: 0.80, js: 0.15, sql: 0.05}
+  files:
+    - &py {lang: python}
+    - {p: "src/main.py", ln: 450, <<: *py, desc: "Entry point",
+       imp: [api.app, config, logging], exp: [main, initialize]}
+  ```
 
 ## Output Format
 
-Generate `.context-kit/_context-kit.yml` with this structure:
+Generate `.context-kit/_context-kit.yml` following Repo-Context Format v1.0 with this structure:
 ```yaml
 # Project configuration for AI agents - tkr-context-kit
-# Generated from agent analyses - optimized for token efficiency
+# Optimized per Repo-Context Format v1.0 - YAML 1.2 compliant
 meta:
   kit: tkr-context-kit
   fmt: 1  # format version
+  type: string  # project type
+  desc: "Brief description"
+  ver: "x.y.z"
+  ts: "2025-09-30T14:30:00Z"  # ISO 8601 UTC
 
 # Dependencies with Context7 references
-deps:
+deps: &deps
   js: &js-deps
-    react: {id: ctx7-12345, v: ^18.2.0}
-    typescript: {id: null, v: ^5.0.0}
-  dev:
-    jest: {id: ctx7-67890, v: ^29.0.0}
+    prod:
+      react: &react-dep {id: ctx7-12345, v: "^18.2.0"}
+      typescript: &ts-dep {id: null, v: "^5.0.0"}
+    dev:
+      jest: &vitest {id: ctx7-67890, v: "^29.0.0"}
 
-# Directory structure (max_depth: 5)
+# Directory structure (using _: pattern for aggregates)
 struct:
+  _: {n: 316, t: {ts: 91, tsx: 20, js: 45}}
   src:
     _: {n: 120, t: {ts: 40, tsx: 35}}  # n=count, t=types
     comp:
@@ -120,24 +207,39 @@ struct:
 design:
   tokens:
     color: &colors
-      bg: {1: "#ffffff", 2: "#f5f5f5"}
-      fg: {1: "#1a1a1a", 2: "#666666"}
+      bg:
+        primary: &bg-primary {val: "#f8fafc", type: color, desc: "Main bg"}
+        surface: {val: "#ffffff", type: color}
+      text:
+        primary: {val: "#1e293b", type: color}
     space: &spacing
-      unit: 8
-      scale: [0.5, 1, 2, 3, 4]  # multiples of unit
-  
+      xs: {val: "0.25rem", type: dimension, desc: "4px"}
+      sm: {val: "0.5rem", type: dimension, desc: "8px"}
+
   comp:
     Button:
       p: {variant: [primary, secondary], size: [sm, md, lg]}  # p=props
       s: [default, hover, active, disabled]  # s=states
       a11y: {role: button, kbd: [Enter, Space]}
-    
-  a11y:
-    wcag: "2.1-AA"
-    focus: {style: "2px solid", color: *colors.fg.1}
 
-# Common patterns
-patterns:
-  api: {base: "/api/v1", auth: "Bearer"}
-  err: {boundary: true, logging: "sentry"}
+  a11y:
+    compliance: "WCAG 2.1 AA"
+    focus: {style: "2px solid", color: *colors.text.primary}
+
+# Architecture patterns
+arch:
+  patterns: &arch-patterns
+    - "Service-Oriented Architecture"
+    - "TypeScript strict mode"
+
+# Operations
+ops:
+  ports: &ports
+    dashboard: 42001
+    api: 42003
+
+# AI consumption hints (prefix with ~)
+semantic:
+  ~multi_service: "Coordinated services with monitoring"
+  ~port_consistency: "42xxx port allocation"
 ```

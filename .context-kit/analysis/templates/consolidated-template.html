@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive repository review summary across security, quality, performance, accessibility, testing, documentation, dependencies, architecture, and commit practices">
+    <title>Repository Review - Consolidated Summary - tkr-project-kit</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
+    <link rel="stylesheet" href="../../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../../assets/css/components/badges.css">
+    <link rel="stylesheet" href="../../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+
+    <!-- Report Configuration -->
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'consolidated-summary',
+            reportDate: '{{REPORT_DATE}}',
+            reportTitle: 'Repository Review - Consolidated Summary',
+            agent: 'repo-review orchestration'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <div id="breadcrumbs"></div>
+
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>📊 Repository Review - Consolidated Summary</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Comprehensive repository review across {{TOTAL_AGENTS}} specialized agents
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📅 Generated: {{REPORT_DATE}}</span>
+                        <span>🤖 Agents: {{TOTAL_AGENTS}} specialized reviewers</span>
+                        <span>📊 Version: {{PROJECT_VERSION}}</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <div id="report-navigation"></div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Executive Summary -->
+            <section id="executive-summary">
+                <h2>📈 Executive Summary</h2>
+
+                <div class="card">
+                    <h3>Overall Repository Health: {{OVERALL_SCORE}}/100 ({{OVERALL_GRADE}})</h3>
+                    <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+                        {{EXECUTIVE_SUMMARY}}
+                    </p>
+                </div>
+
+                {{SCORE_GRID}}
+            </section>
+
+            <!-- Top Critical Priorities -->
+            <section id="critical-priorities">
+                <h2>🎯 Top {{PRIORITY_COUNT}} Critical Priorities</h2>
+                <div style="margin-top: 1.5rem;">
+                    {{PRIORITIES_CONTENT}}
+                </div>
+            </section>
+
+            <!-- Individual Report Links -->
+            <section id="detailed-reports">
+                <h2>📄 Detailed Analysis Reports</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    {{REPORT_LINKS}}
+                </div>
+            </section>
+
+            <!-- Implementation Roadmap -->
+            <section id="roadmap">
+                <h2>🗓️ Implementation Roadmap</h2>
+                {{ROADMAP_CONTENT}}
+            </section>
+
+            <!-- Strengths & Achievements -->
+            <section id="strengths">
+                <h2>💪 Repository Strengths</h2>
+                <div class="card">
+                    <ul style="line-height: 1.8;">
+                        {{STRENGTHS_LIST}}
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Orchestration Metadata -->
+            <section id="metadata">
+                <h2>🤖 Review Orchestration Details</h2>
+
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Phase</th>
+                                <th>Status</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{AGENT_EXECUTION_TABLE}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="margin-top: 1rem;">
+                    <h3>Execution Summary</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Mode:</strong> {{EXECUTION_MODE}}</li>
+                        <li><strong>Total Agents:</strong> {{TOTAL_AGENTS}}</li>
+                        <li><strong>Success Rate:</strong> {{SUCCESS_RATE}}%</li>
+                        <li><strong>Report Date:</strong> {{REPORT_DATE}}</li>
+                        <li><strong>Repository:</strong> tkr-project-kit {{PROJECT_VERSION}}</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Repository Review - Consolidated Summary</strong></p>
+            <p style="margin-top: 0.5rem;">Generated by repo-review orchestration | W3C Design Token Format 3.0 Compliant</p>
+            <p style="margin-top: 0.5rem;">tkr-project-kit {{PROJECT_VERSION}} | {{REPORT_DATE}}</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="../../index.html">All Reports</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/theme-toggle.js"></script>
+</body>
+</html>

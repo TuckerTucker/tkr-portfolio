@@ -24,7 +24,10 @@
       "Bash(make:*)",
       "Bash(cargo:*)",
       "Bash(go:*)",
+      "Bash(cat:*)",
+      "Bash(test:*)",
       "Edit",
+      "Find",
       "Create",
       "Read",
       "Write",
@@ -87,8 +90,9 @@
       "Bash(python3:*)",
       "Bash(.context-kit/logging-client/installation-scripts/detect-build-tool.sh:*)",
       "Bash(.context-kit/logging-client/setup-logging.sh:*)",
-      "Bash(cat:*)",
-      "Bash(awk:*)"
+      "Bash(npx eslint:*)",
+      "Read(//private/tmp/**)",
+      "Bash(npx license-checker:*)"
     ],
     "deny": [
       "Bash(rm -rf /)",

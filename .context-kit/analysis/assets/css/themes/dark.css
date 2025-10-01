@@ -1,0 +1,86 @@
+/**
+ * Dark Theme
+ * tkr-project-kit Analysis Reports
+ *
+ * Dark mode color scheme optimized for reduced eye strain
+ */
+
+[data-theme="dark"] {
+    /* Colors - Background */
+    --color-bg-primary: #0f172a;
+    --color-bg-surface: #1e293b;
+    --color-bg-secondary: #334155;
+    --color-bg-muted: #1e293b;
+
+    /* Colors - Text */
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-tertiary: #94a3b8;
+    --color-text-inverse: #1e293b;
+    --color-text-disabled: #64748b;
+
+    /* Colors - Interactive */
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+    --color-secondary: #94a3b8;
+    --color-focus-ring: rgba(96, 165, 250, 0.5);
+
+    /* Colors - Status */
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-error: #f87171;
+    --color-info: #60a5fa;
+
+    /* Colors - Severity */
+    --color-severity-critical: #f87171;
+    --color-severity-high: #fb923c;
+    --color-severity-medium: #fbbf24;
+    --color-severity-low: #34d399;
+
+    /* Colors - Border */
+    --color-border-default: #475569;
+    --color-border-muted: #334155;
+    --color-border-focus: #60a5fa;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust code blocks for dark theme */
+[data-theme="dark"] code {
+    background: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] pre {
+    background: var(--color-bg-primary);
+}
+
+/* Adjust severity backgrounds for dark theme */
+[data-theme="dark"] .bg-severity-critical {
+    background: rgba(248, 113, 113, 0.2);
+}
+
+[data-theme="dark"] .bg-severity-high {
+    background: rgba(251, 146, 60, 0.2);
+}
+
+[data-theme="dark"] .bg-severity-medium {
+    background: rgba(251, 191, 36, 0.2);
+}
+
+[data-theme="dark"] .bg-severity-low {
+    background: rgba(52, 211, 153, 0.2);
+}
+
+/* Improve contrast for links in dark mode */
+[data-theme="dark"] a {
+    color: var(--color-primary);
+}
+
+[data-theme="dark"] a:hover {
+    color: var(--color-primary-hover);
+}

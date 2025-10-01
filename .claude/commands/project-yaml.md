@@ -9,7 +9,7 @@ argument-hint: [output-path] - Optional path for the generated YAML file (defaul
 Generate comprehensive AI-optimized project documentation using specialized analysis agents.
 
 ## Description
-This command orchestrates multiple specialized agents to analyze the current project and generate a highly compressed YAML file optimized for AI agent consumption. The output follows the tkr-project-yaml specification for maximum utility with minimum token usage. Additionally, it updates the persistent Claude Code context in `./claude.local.md` (project root) to ensure future sessions have current project information.
+This command orchestrates multiple specialized agents to analyze the current project and generate a highly compressed YAML file optimized for AI agent consumption. The output follows the Repo-Context Format v1.0 specification for maximum utility with minimum token usage (40-60% token reduction). Additionally, it updates the persistent Claude Code context in `./claude.local.md` (project root) to ensure future sessions have current project information.
 
 ## Usage
 `/project-yaml [output-path]`
@@ -81,17 +81,23 @@ Each agent produces structured output files:
 
 The generated YAML will include:
 
-### Core Sections
-- **meta**: Project metadata and format version
+### Core Sections (Repo-Context Format v1.0)
+- **meta**: Project metadata and format version (required)
 - **deps**: Dependencies with Context7 documentation references
-- **struct**: Directory structure with file counts and types
+- **struct**: Directory structure with file counts and types using `_:` pattern
 - **design**: Design system tokens and component specifications
+- **arch**: Architecture patterns
+- **ops**: Operations and workflows
+- **semantic**: AI consumption hints (prefix with ~)
 
-### Optimization Features
-- YAML anchors and aliases for repeated values
-- Abbreviated keys for compression (deps, struct, comp, props, a11y)
-- Compact array notation
-- Strategic comments for complex sections
+### YAML Optimization Features (40-60% token reduction)
+- YAML 1.2 anchors (&name) and aliases (*name) with merge operator (<<: *name)
+- Standard abbreviations: deps, struct, comp, props/p, desc, lang, imp, exp, a11y, cfg, env
+- Compact array notation `[a, b, c]` for lists under 5 items
+- Inline object notation `{key: val}` for simple key-value pairs
+- Directory aggregates using `_: {n: count, t: {type: count}}` pattern
+- Strategic omission of null/empty/default values
+- Meaningful anchor names (e.g., &js-deps, &py, &colors)
 
 ## Output Structure
 ```
@@ -113,12 +119,17 @@ The generated YAML will include:
 - Run after major dependency updates or structural changes
 - Review agent outputs in `.context-kit/analysis/` for detailed findings
 - Use generated YAML to prime AI agents with project context
+- Validate YAML 1.2 syntax after generation
+- Verify anchors resolve correctly in the output
+- Target 40-60% token reduction while maintaining essential information
 
 ## Notes
 - Requires active MCP Context7 server connection for dependency mapping
 - Large projects may take 1-2 minutes for complete analysis (improved with parallel execution)
 - Agent outputs are preserved for debugging and manual review
-- YAML format optimized for token efficiency in AI agent consumption
+- Output follows Repo-Context Format v1.0 specification
+- YAML 1.2 compliant with optimized compression techniques
 - Phase 1 agents run in parallel for optimal performance
+- Achieves 40-60% token reduction through strategic compression
 
 After generation, the command provides a summary of documented components and any notable project structure findings.

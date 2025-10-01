@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive code quality assessment with complexity analysis, anti-pattern detection, and maintainability scoring">
+    <title>Code Quality Analysis Report - tkr-portfolio</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/themes/light.css">
+    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
+    <link rel="stylesheet" href="../../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../../assets/css/components/badges.css">
+    <link rel="stylesheet" href="../../assets/css/components/tables.css">
+    <link rel="stylesheet" href="../../assets/css/components/progress.css">
+    <link rel="stylesheet" href="../../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+
+    <!-- Report Configuration -->
+    <script>
+        window.REPORT_CONFIG = {
+            reportType: 'code-quality-report',
+            reportDate: '2025-09-30',
+            reportTitle: 'Code Quality Analysis Report',
+            agent: 'code-quality-agent'
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <div id="breadcrumbs"></div>
+
+        <!-- Header -->
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h1>📊 Code Quality Analysis Report</h1>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin-top: 0.5rem;">
+                        Comprehensive code quality assessment with complexity analysis, anti-pattern detection, and maintainability scoring
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                        <span>📅 Generated: 2025-09-30</span>
+                        <span>🤖 Agent: code-quality-agent</span>
+                        <span>📊 Version: 3.6.0</span>
+                    </div>
+                </div>
+                <div id="theme-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <div id="report-navigation"></div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Executive Summary -->
+            <section class="section" id="executive-summary">
+                <h2>Executive Summary</h2>
+                
+                <div class="metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <div class="card" style="text-align: center;">
+                        <h3 style="font-size: 3rem; color: var(--color-warning); margin: 0;">72</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">Overall Quality Score</p>
+                        <div class="badge badge-warning" style="margin-top: 0.5rem;">Moderate</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h3 style="font-size: 3rem; color: var(--color-primary); margin: 0;">87</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">Source Files Analyzed</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h3 style="font-size: 3rem; color: var(--color-error); margin: 0;">21</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">Total Violations</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h3 style="font-size: 3rem; color: var(--color-text-secondary); margin: 0;">10</h3>
+                        <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">Console.log Statements</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3>Violation Breakdown by Severity</h3>
+                    <table class="data-table" style="margin-top: 1rem;">
+                        <thead>
+                            <tr>
+                                <th>Severity</th>
+                                <th>Count</th>
+                                <th>Impact</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-error">Critical</span></td>
+                                <td>7</td>
+                                <td>Functions exceeding complexity 10, excessive lines</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-warning">Major</span></td>
+                                <td>9</td>
+                                <td>Unused variables, excessive parameters</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-info">Minor</span></td>
+                                <td>5</td>
+                                <td>Code style, naming conventions</td>
+                                <td>Low</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <h3>Key Findings</h3>
+                    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                        <li><strong>Complexity Hotspots:</strong> 7 functions exceed cyclomatic complexity threshold of 10</li>
+                        <li><strong>Code Size:</strong> 5 components exceed 400 lines (max: 563 lines in AgentConversationFlow.jsx)</li>
+                        <li><strong>Unused Code:</strong> 9 instances of unused variables and imports</li>
+                        <li><strong>Console Statements:</strong> 10 console.log statements found in production code</li>
+                        <li><strong>PropTypes Coverage:</strong> 44 components have PropTypes validation (50.6% coverage)</li>
+                        <li><strong>React Hooks:</strong> 63 useState instances across 27 files</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Complexity Hotspots -->
+            <section class="section" id="complexity-hotspots">
+                <h2>Complexity Hotspots</h2>
+                <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+                    Functions and components with high cyclomatic complexity requiring refactoring.
+                </p>
+
+                <div class="card">
+                    <h3>Top 10 Complexity Issues</h3>
+                    <table class="data-table" style="margin-top: 1rem;">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Issue</th>
+                                <th>Complexity/Lines</th>
+                                <th>Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>AIProgressAssessment.jsx</code></td>
+                                <td>Component function: 384 lines</td>
+                                <td>384 lines</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.jsx</code></td>
+                                <td>Component function: 230 lines</td>
+                                <td>230 lines</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.jsx</code></td>
+                                <td>Arrow function complexity: 14</td>
+                                <td>Complexity 14</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.test.jsx</code></td>
+                                <td>Test function: 218 lines</td>
+                                <td>218 lines</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AIProgressAssessment.jsx</code></td>
+                                <td>renderInterface: 73 lines</td>
+                                <td>73 lines</td>
+                                <td><span class="badge badge-warning">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.jsx</code></td>
+                                <td>renderInterface: 97 lines</td>
+                                <td>97 lines</td>
+                                <td><span class="badge badge-warning">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>AgentConversationFlow.jsx</code></td>
+                                <td>Component size: 563 lines</td>
+                                <td>563 lines</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>ProjectImpactMetrics.jsx</code></td>
+                                <td>Component size: 534 lines</td>
+                                <td>534 lines</td>
+                                <td><span class="badge badge-error">Critical</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>TaskBoardAIDemo.jsx</code></td>
+                                <td>Component size: 459 lines</td>
+                                <td>459 lines</td>
+                                <td><span class="badge badge-warning">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td><code>ContextEvolutionSlide.jsx</code></td>
+                                <td>Component size: 439 lines</td>
+                                <td>439 lines</td>
+                                <td><span class="badge badge-warning">Major</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box" style="margin-top: 1.5rem;">
+                    <h3>Refactoring Recommendations</h3>
+                    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                        <li><strong>Break down large components:</strong> Extract sub-components from files exceeding 400 lines</li>
+                        <li><strong>Simplify complex functions:</strong> Refactor functions with complexity &gt; 10 into smaller, focused functions</li>
+                        <li><strong>Extract render logic:</strong> Move large render functions into separate presentational components</li>
+                        <li><strong>Use composition:</strong> Leverage React composition patterns to reduce component complexity</li>
+                        <li><strong>Custom hooks:</strong> Extract stateful logic into reusable custom hooks</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3>Example Refactoring: AIProgressAssessment.jsx</h3>
+                    <div style="margin-top: 1rem;">
+                        <h4 style="color: var(--color-error);">❌ Before (384 lines, multiple responsibilities)</h4>
+                        <pre style="background: var(--color-bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); overflow-x: auto; margin-top: 0.5rem;"><code>const AIProgressAssessment = ({ className = "" }) => {
+  // 5 useState hooks
+  // 384 lines of rendering logic
+  // Multiple nested functions
+  // Assessment data embedded
+  return (&lt;div&gt;...&lt;/div&gt;);
+};</code></pre>
+
+                        <h4 style="color: var(--color-success); margin-top: 1.5rem;">✅ After (modular, separated concerns)</h4>
+                        <pre style="background: var(--color-bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); overflow-x: auto; margin-top: 0.5rem;"><code>// Extract data to separate file
+import { assessmentStages, skillLevels } from './assessmentData';
+
+// Extract custom hook for state management
+const useAssessment = () => {
+  const [currentStage, setCurrentStage] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [results, setResults] = useState(null);
+  // ... hook logic
+  return { currentStage, answers, results, /* methods */ };
+};
+
+// Extract sub-components
+const StageIndicator = ({ stage, index, isActive }) => { /* ... */ };
+const QuestionCard = ({ question, onAnswer }) => { /* ... */ };
+const ResultsView = ({ results }) => { /* ... */ };
+
+// Main component becomes orchestrator (~50 lines)
+const AIProgressAssessment = ({ className = "" }) => {
+  const assessment = useAssessment();
+  return (
+    &lt;div className={className}&gt;
+      &lt;StageIndicator {...stageProps} /&gt;
+      &lt;QuestionCard {...questionProps} /&gt;
+      {assessment.results && &lt;ResultsView results={assessment.results} /&gt;}
+    &lt;/div&gt;
+  );
+};</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unused Code -->
+            <section class="section" id="unused-code">
+                <h2>Unused Code Detection</h2>
+                <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+                    Unused variables, imports, and code that can be safely removed.
+                </p>
+
+                <div class="card">
+                    <h3>Unused Variables and Imports</h3>
+                    <table class="data-table" style="margin-top: 1rem;">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Line</th>
+                                <th>Issue</th>
+                                <th>Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>App.jsx</code></td>
+                                <td>12</td>
+                                <td>Unused variable <code>theme</code></td>
+                                <td>Remove or use for theme-based logic</td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.jsx</code></td>
+                                <td>24</td>
+                                <td>Unused prop <code>isMobile</code></td>
+                                <td>Remove from destructuring</td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.test.jsx</code></td>
+                                <td>2</td>
+                                <td>Unused import <code>fireEvent</code></td>
+                                <td>Remove unused testing utility</td>
+                            </tr>
+                            <tr>
+                                <td><code>AIInteractionShowcase.test.jsx</code></td>
+                                <td>2</td>
+                                <td>Unused import <code>waitFor</code></td>
+                                <td>Remove unused testing utility</td>
+                            </tr>
+                            <tr>
+                                <td><code>AIProgressAssessment.jsx</code></td>
+                                <td>1</td>
+                                <td>Unused import <code>useEffect</code></td>
+                                <td>Remove if not using effects</td>
+                            </tr>
+                            <tr>
+                                <td><code>AIProgressAssessment.jsx</code></td>
+                                <td>482</td>
+                                <td>Unused variable <code>qIndex</code></td>
+                                <td>Remove from map function</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="success-box" style="margin-top: 1.5rem;">
+                    <h3>Impact of Cleanup</h3>
+                    <p style="margin-top: 0.5rem;">Removing unused code will:</p>
+                    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                        <li>Reduce bundle size by eliminating unused imports</li>
+                        <li>Improve code clarity and maintainability</li>
+                        <li>Reduce cognitive load for developers</li>
+                        <li>Eliminate potential sources of confusion</li>
+                        <li>Pass ESLint validation checks</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Code Quality Metrics -->
+            <section class="section" id="quality-metrics">
+                <h2>Code Quality Metrics</h2>
+                
+                <div class="metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <div class="card">
+                        <h3>Component Architecture</h3>
+                        <table class="data-table" style="margin-top: 1rem;">
+                            <tbody>
+                                <tr>
+                                    <td>Total Components</td>
+                                    <td><strong>87</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>PropTypes Coverage</td>
+                                    <td><strong>50.6%</strong> (44 files)</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Component Size</td>
+                                    <td><strong>142 lines</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Components &gt; 400 lines</td>
+                                    <td><strong>5 files</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card">
+                        <h3>React Patterns</h3>
+                        <table class="data-table" style="margin-top: 1rem;">
+                            <tbody>
+                                <tr>
+                                    <td>useState Usage</td>
+                                    <td><strong>63 instances</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Files with State</td>
+                                    <td><strong>27 files</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Hooks</td>
+                                    <td><strong>3 hooks</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Console Statements</td>
+                                    <td><strong>10 instances</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card">
+                        <h3>Import Analysis</h3>
+                        <table class="data-table" style="margin-top: 1rem;">
+                            <tbody>
+                                <tr>
+                                    <td>Total Imports</td>
+                                    <td><strong>270 statements</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Average per File</td>
+                                    <td><strong>3.5 imports</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>UI Component Imports</td>
+                                    <td>High reuse of <code>@/components/ui/*</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Utility Usage</td>
+                                    <td>Consistent use of <code>@/lib/utils</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Code Smells -->
+            <section class="section" id="code-smells">
+                <h2>Code Smells & Anti-Patterns</h2>
+                
+                <div class="card">
+                    <h3>Identified Patterns</h3>
+                    <div style="margin-top: 1rem;">
+                        <div class="warning-box" style="margin-bottom: 1rem;">
+                            <h4>🔴 God Components (Large Multi-Purpose Components)</h4>
+                            <p style="margin-top: 0.5rem;">Several components exceed 400 lines and handle multiple responsibilities.</p>
+                            <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                                <li><code>AgentConversationFlow.jsx</code> - 563 lines (stage management + rendering + orchestration)</li>
+                                <li><code>AIProgressAssessment.jsx</code> - 557 lines (assessment logic + UI + results calculation)</li>
+                                <li><code>ProjectImpactMetrics.jsx</code> - 534 lines (metrics + visualization + interactions)</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Apply Single Responsibility Principle - extract sub-components and custom hooks.</p>
+                        </div>
+
+                        <div class="warning-box" style="margin-bottom: 1rem;">
+                            <h4>🟡 Duplicated Mobile Detection Logic</h4>
+                            <p style="margin-top: 0.5rem;">Multiple components implement similar mobile detection patterns.</p>
+                            <pre style="background: var(--color-bg-secondary); padding: 0.75rem; border-radius: var(--border-radius-sm); margin-top: 0.5rem;"><code>useEffect(() => {
+  const checkMobile = () => setIsMobile(window.innerWidth < 768);
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+  return () => window.removeEventListener('resize', checkMobile);
+}, []);</code></pre>
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Create a <code>useMediaQuery</code> custom hook for reusable responsive logic.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>🟢 Good Patterns Observed</h4>
+                            <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                                <li><strong>Consistent styling:</strong> Good use of <code>cn()</code> utility for class management</li>
+                                <li><strong>PropTypes validation:</strong> 50.6% of components have runtime type checking</li>
+                                <li><strong>Accessibility:</strong> Proper use of ARIA labels and semantic HTML</li>
+                                <li><strong>Component organization:</strong> Clear folder structure by feature/domain</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Naming Conventions -->
+            <section class="section" id="naming-conventions">
+                <h2>Naming Conventions</h2>
+                
+                <div class="card">
+                    <h3>Convention Analysis</h3>
+                    <div class="success-box" style="margin-top: 1rem;">
+                        <h4>✅ Excellent Adherence</h4>
+                        <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                            <li><strong>Component Names:</strong> Consistent PascalCase (e.g., <code>AIInteractionShowcase</code>)</li>
+                            <li><strong>File Names:</strong> kebab-case for UI components, PascalCase for React components</li>
+                            <li><strong>Variables:</strong> camelCase throughout (0 snake_case violations found)</li>
+                            <li><strong>Constants:</strong> Proper use of UPPER_CASE for configuration</li>
+                            <li><strong>Functions:</strong> Descriptive, action-oriented names</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h4>Naming Quality Examples</h4>
+                        <table class="data-table" style="margin-top: 1rem;">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Good Examples</th>
+                                    <th>Pattern</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Components</td>
+                                    <td><code>AgentConversationFlow</code>, <code>ProjectImpactMetrics</code></td>
+                                    <td>PascalCase, descriptive nouns</td>
+                                </tr>
+                                <tr>
+                                    <td>Hooks</td>
+                                    <td><code>useProjects</code>, <code>useTheme</code></td>
+                                    <td>use + descriptive name</td>
+                                </tr>
+                                <tr>
+                                    <td>Event Handlers</td>
+                                    <td><code>handleAnswer</code>, <code>handleStageClick</code></td>
+                                    <td>handle + event name</td>
+                                </tr>
+                                <tr>
+                                    <td>State Variables</td>
+                                    <td><code>currentStage</code>, <code>isPlaying</code></td>
+                                    <td>Descriptive, boolean prefixes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Maintainability Index -->
+            <section class="section" id="maintainability-index">
+                <h2>Maintainability Index</h2>
+                
+                <div class="card">
+                    <h3>Overall Maintainability Score: 72/100</h3>
+                    <div class="progress-bar" style="margin-top: 1rem;">
+                        <div class="progress-fill" style="width: 72%; background: var(--color-warning);"></div>
+                    </div>
+                    <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">
+                        <strong>Moderate</strong> - Code is maintainable but has areas requiring improvement
+                    </p>
+
+                    <div style="margin-top: 2rem;">
+                        <h4>Score Breakdown</h4>
+                        <table class="data-table" style="margin-top: 1rem;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Score</th>
+                                    <th>Weight</th>
+                                    <th>Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Complexity</td>
+                                    <td><strong>65/100</strong></td>
+                                    <td>30%</td>
+                                    <td><span class="badge badge-warning">-35 pts</span> (7 critical violations)</td>
+                                </tr>
+                                <tr>
+                                    <td>Code Size</td>
+                                    <td><strong>70/100</strong></td>
+                                    <td>20%</td>
+                                    <td><span class="badge badge-warning">-30 pts</span> (5 files &gt; 400 lines)</td>
+                                </tr>
+                                <tr>
+                                    <td>Code Duplication</td>
+                                    <td><strong>95/100</strong></td>
+                                    <td>15%</td>
+                                    <td><span class="badge badge-success">-5 pts</span> (minimal duplication)</td>
+                                </tr>
+                                <tr>
+                                    <td>Dead Code</td>
+                                    <td><strong>85/100</strong></td>
+                                    <td>15%</td>
+                                    <td><span class="badge badge-info">-15 pts</span> (9 unused variables)</td>
+                                </tr>
+                                <tr>
+                                    <td>Documentation</td>
+                                    <td><strong>75/100</strong></td>
+                                    <td>10%</td>
+                                    <td><span class="badge badge-info">-25 pts</span> (50.6% PropTypes coverage)</td>
+                                </tr>
+                                <tr>
+                                    <td>Naming Conventions</td>
+                                    <td><strong>100/100</strong></td>
+                                    <td>10%</td>
+                                    <td><span class="badge badge-success">Perfect</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1.5rem;">
+                        <h4>Score Interpretation</h4>
+                        <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                            <li><strong>76-100 (Excellent):</strong> Highly maintainable code with minimal technical debt</li>
+                            <li><strong>51-75 (Moderate):</strong> ⬅️ <em>Current score</em> - Maintainable but needs attention</li>
+                            <li><strong>26-50 (Difficult):</strong> Significant refactoring recommended</li>
+                            <li><strong>0-25 (Unmaintainable):</strong> Critical refactoring required</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="section" id="quick-actions">
+                <h2>Quick Actions</h2>
+                
+                <div class="card">
+                    <h3>Recommended Next Steps</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <button class="btn btn-primary" onclick="generatePlan('Refactor High Complexity Components')">
+                            🔧 Generate Refactoring Plan
+                        </button>
+                        <button class="btn btn-secondary" onclick="generatePlan('Remove Unused Code')">
+                            🧹 Generate Cleanup Plan
+                        </button>
+                        <button class="btn btn-secondary" onclick="generatePlan('Improve PropTypes Coverage')">
+                            📋 Generate Documentation Plan
+                        </button>
+                        <button class="btn btn-secondary" onclick="generatePlan('Extract Custom Hooks')">
+                            🎣 Generate Hooks Extraction Plan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3>Priority Action Items</h3>
+                    <ol style="margin-top: 1rem; line-height: 2;">
+                        <li><strong>Immediate (This Week):</strong>
+                            <ul style="margin-top: 0.5rem;">
+                                <li>Remove 9 unused variables and imports</li>
+                                <li>Remove 10 console.log statements</li>
+                            </ul>
+                        </li>
+                        <li><strong>Short-term (This Sprint):</strong>
+                            <ul style="margin-top: 0.5rem;">
+                                <li>Refactor 3 largest components (563, 557, 534 lines)</li>
+                                <li>Extract mobile detection into custom hook</li>
+                                <li>Add PropTypes to 20 more components</li>
+                            </ul>
+                        </li>
+                        <li><strong>Medium-term (Next Sprint):</strong>
+                            <ul style="margin-top: 0.5rem;">
+                                <li>Reduce complexity in 7 functions exceeding threshold</li>
+                                <li>Extract reusable sub-components from AI demos</li>
+                                <li>Improve test coverage for complex components</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Trends & Recommendations -->
+            <section class="section" id="recommendations">
+                <h2>Trends & Recommendations</h2>
+                
+                <div class="success-box">
+                    <h3>✅ Strengths</h3>
+                    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                        <li><strong>Excellent naming conventions:</strong> Consistent and descriptive across the codebase</li>
+                        <li><strong>Modern React patterns:</strong> Good use of hooks and functional components</li>
+                        <li><strong>Component organization:</strong> Clear folder structure by feature domain</li>
+                        <li><strong>Low duplication:</strong> Minimal code duplication detected</li>
+                        <li><strong>Utility usage:</strong> Consistent use of shared utilities and UI components</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box" style="margin-top: 1.5rem;">
+                    <h3>⚠️ Areas for Improvement</h3>
+                    <ul style="margin-top: 0.5rem; line-height: 1.8;">
+                        <li><strong>Component size:</strong> Break down large components into smaller, focused units</li>
+                        <li><strong>Complexity reduction:</strong> Simplify functions exceeding complexity threshold</li>
+                        <li><strong>Code reuse:</strong> Extract duplicated patterns (mobile detection, stage rendering) into shared utilities</li>
+                        <li><strong>Type safety:</strong> Increase PropTypes coverage from 50.6% to 80%+</li>
+                        <li><strong>Production hygiene:</strong> Remove console.log statements and unused code</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3>Recommended Development Practices</h3>
+                    <ol style="margin-top: 1rem; line-height: 2;">
+                        <li><strong>Component Design:</strong> Keep components under 200 lines; extract sub-components when exceeding</li>
+                        <li><strong>Complexity Target:</strong> Maintain cyclomatic complexity below 10 for all functions</li>
+                        <li><strong>Custom Hooks:</strong> Extract stateful logic into custom hooks for reusability</li>
+                        <li><strong>PropTypes:</strong> Add PropTypes validation to all components accepting props</li>
+                        <li><strong>Pre-commit Hooks:</strong> Set up ESLint pre-commit hooks to catch violations early</li>
+                        <li><strong>Code Reviews:</strong> Focus reviews on complexity, component size, and reusability</li>
+                    </ol>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Code Quality Analysis Report</strong></p>
+            <p style="margin-top: 0.5rem;">Generated by code-quality-agent | W3C Design Token Format 3.0 Compliant</p>
+            <p style="margin-top: 0.5rem;">tkr-project-kit 3.6.0 | 2025-09-30</p>
+            <p style="margin-top: 1rem; font-size: var(--font-size-xs);">
+                <a href="https://github.com/tuckertucker/tkr-project-kit" target="_blank" rel="noopener">GitHub</a> |
+                <a href="../../index.html">All Reports</a> |
+                <a href="#" onclick="window.print(); return false;">Print</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/theme-toggle.js"></script>
+
+    <!-- Custom Report Script -->
+    <script>
+        function generatePlan(recommendation) {
+            const message = '/create_plan ' + recommendation + ' - ' + window.location.pathname;
+            if (confirm('Generate implementation plan for: ' + recommendation + '?')) {
+                alert('Copy this command to Claude Code:\n\n' + message);
+            }
+        }
+    </script>
+</body>
+</html>
